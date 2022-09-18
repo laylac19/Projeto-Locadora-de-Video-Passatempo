@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="202209130827" author="layla">
+        <createSequence incrementBy="1" sequenceName="seq_ator" startValue="1"/>
+        <createTable tableName="ator">
+            <column name="id_ator" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_ator"/>
+            </column>
+            <column name="nome_ator" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ativo" type="BOOLEAN"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

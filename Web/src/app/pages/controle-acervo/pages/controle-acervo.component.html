@@ -1,0 +1,29 @@
+<div class="img-topo-pag"></div>
+<div class="titulo-pagina col-12 flex justify-content-start">
+    <span class="titulo">Controle de Acervo</span>
+</div>
+<div class="container">
+    <p-accordion [multiple]="true">
+        <div class="acordions-rota col-6">
+            <p-accordionTab header="Atores">
+                <app-ator-list></app-ator-list>
+            </p-accordionTab>
+        </div>
+        <div class="acordions-rota col-6">
+            <p-accordionTab header="Classes">
+                <app-classe-list></app-classe-list>
+            </p-accordionTab>
+        </div>
+        <div class="acordions-rota">
+            <p-accordionTab header="Diretor">
+                <app-diretor-list></app-diretor-list>
+            </p-accordionTab>
+        </div>
+    </p-accordion>
+</div>
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+
+
+
+
+

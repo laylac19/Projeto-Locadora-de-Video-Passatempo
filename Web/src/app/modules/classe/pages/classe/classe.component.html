@@ -1,0 +1,36 @@
+<div class="form ui-g-8 p-fluid">
+    <form [formGroup]="formClasse" class="ui-fluid ui-g-8">
+        <div class="field col-12 md:col-4">
+            <span class="item">
+                <label class="campo-form" for="inputNome">Nome Classe</label>
+                <input type="text" id="inputNome" pInputText formControlName="nomeClasse">
+            </span>
+        </div>
+        <div class="field col-12 md:col-4">
+            <span class="item">
+                <label class="campo-form">Valor R$</label>
+                <p-inputNumber formControlName="valor" mode="currency" locale="pt-BR" currency="BRL" [min]="0"
+                               [showButtons]="true" [step]="5"></p-inputNumber>
+            </span>
+        </div>
+        <div class="field col-12 md:col-4">
+            <span class="item">
+                <label class="campo-form" for="prazoDevolucao">Data de Devolução</label>
+                <p-calendar
+                    id="prazoDevolucao"
+                    formControlName="prazoDevolucao"
+                    dateFormat="dd/mm/yy"
+                    appendTo="body"
+                    [yearNavigator]="true"
+                    [defaultDate]="dataDevolucao"
+                ></p-calendar>
+            </span>
+        </div>
+    </form>
+</div>
+<div class="action-form">
+    <button type="button" pButton icon="pi pi-times" label="Cancelar" (click)="fecharForm()"
+            class="button-action ui-button-secondary mr-3"></button>
+    <button type="button" pButton icon="pi pi-check" label="Salvar" (click)="salvarFormulario()"
+            class="button-action button-save-new"></button>
+</div>

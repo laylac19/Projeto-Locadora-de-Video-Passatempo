@@ -1,0 +1,16 @@
+<div class="form ui-g-8 p-fluid">
+    <form [formGroup]="formDiretor" class="ui-fluid ui-g-8">
+        <div class="field col-12 md:col-4">
+            <span class="item">
+                <label class="campo-form" for="inputtext">Nome Diretor</label>
+                <input type="text" id="inputtext" pInputText formControlName="nomeDiretor">
+            </span>
+        </div>
+    </form>
+</div>
+<div class="action-form">
+    <button type="button" pButton icon="pi pi-times" label="Cancelar" (click)="fecharForm()"
+            class="button-action ui-button-secondary mr-3"></button>
+    <button type="button" pButton icon="pi pi-check" label="Salvar" (click)="salvarFormulario()"
+            class="button-action button-save-new"></button>
+</div>

@@ -1,0 +1,30 @@
+//formularios
+div.form {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+}
+
+div.field {
+    padding-bottom: 15px;
+}
+
+span.item {
+justify-content: space-evenly;
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+span.titulo {
+    font-size: 20pt;
+    font-family: 'Kreon', Verdana, sans-serif;
+    font-weight: 700;
+    margin-left: 10px;
+    color: var(--cor-tema-raisin-black);
+}
+
+div.action-form {
+    display: flex;
+    justify-content: space-between;
+}
+

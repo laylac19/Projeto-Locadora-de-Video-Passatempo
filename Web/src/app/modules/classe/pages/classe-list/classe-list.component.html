@@ -1,0 +1,68 @@
+<div class="container col-12 flex justify-content-star">
+    <div class="item-pagina col-12">
+        <span class="titulo">Classes</span>
+    </div>
+
+    <div class="item-pagina">
+        <button pButton type="button"
+                icon="pi pi-plus"
+                class="button-action ui-button-success button-save-new"
+                iconPos="left"
+                label="Nova Classe"
+                (click)="novaClasse()">
+        </button>
+    </div>
+
+    <div class="item-pagina card col-12 flex">
+        <p-table [columns]="colunas" [value]="listaClasse" [paginator]="true" [rows]="6" [responsive]="true" sortMode="multiple">
+            <ng-template pTemplate="header" let-colunas>
+                <tr>
+                    <th id="titulo-colunas" *ngFor="let col of colunas" [pSortableColumn]="col.field">
+                        {{col.header}}
+                        <ng-container>
+                            <p-sortIcon [field]="col.field"></p-sortIcon>
+                        </ng-container>
+                    </th>
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-rowData let-colunas="columns">
+                <tr>
+                    <td *ngFor="let col of colunas">
+                        <ng-container *ngIf="col.field!='acoes' && !campoData(col.field) && !campoValor(col.field)">
+                            {{rowData[col.field]}}
+                        </ng-container>
+                        <ng-container *ngIf="campoData(col.field)">
+                            {{rowData[col.field]| date: "dd/MM/yyyy"}}
+                        </ng-container>
+                        <ng-container *ngIf="campoValor(col.field)">
+                            {{ 'R$ '+ rowData[col.field] + ',00'}}
+                        </ng-container>
+                        <ng-container *ngIf="col.field === 'acoes' ">
+                            <div class="column-action">
+                                <button pButton type="button"
+                                        icon="pi pi-pencil"
+                                        class="button-action ui-button-success button-save-new"
+                                        iconPos="left"
+                                        pTooltip="Editar Diretor"
+                                        (click)="editarClasse(rowData.id)">
+                                </button>
+                                <button pButton type="button"
+                                        icon="pi pi-trash"
+                                        class="button-action ui-button-success button-save-new"
+                                        iconPos="left"
+                                        pTooltip="Excluir Diretor"
+                                        (click)="confirmarAcao(rowData.id)">
+                                </button>
+                            </div>
+                        </ng-container>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
+<p-dialog [(visible)]="display" header="{{tituloModal}}" [modal]="true" [contentStyle]="{'max-height':'100%'}"
+          (onHide)="resetarForm()">
+    <app-classe [classeModel]="classe" (resForm)="fecharModal()"></app-classe>
+</p-dialog>

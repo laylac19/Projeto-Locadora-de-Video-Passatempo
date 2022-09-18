@@ -1,0 +1,17 @@
+div.aplicacao {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+div.corpo-aplicacao {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+}
+
+div.conteudo-principal {
+    flex: 1;
+    overflow-y: auto;
+}
+

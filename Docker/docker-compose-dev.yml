@@ -1,0 +1,7 @@
+version: '2'
+services:
+  locad-postgresql:
+    extends:
+      file: postgresql.yml
+      service: locad-postgresql
+    container_name: locad-postgresql

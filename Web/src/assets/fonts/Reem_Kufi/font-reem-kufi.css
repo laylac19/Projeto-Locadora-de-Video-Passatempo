@@ -1,0 +1,23 @@
+@font-face {
+    font-family: "Reem Kufi";
+    font-weight: 400;
+    src: url("./ReemKufi-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Reem Kufi";
+    font-weight: 500;
+    src: url("./ReemKufi-Medium.ttf");
+}
+
+@font-face {
+    font-family: "Reem Kufi";
+    font-weight: 700;
+    src: url("./ReemKufi-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: "Reem Kufi";
+    font-weight: 900;
+    src: url("./ReemKufi-Bold.ttf");
+}

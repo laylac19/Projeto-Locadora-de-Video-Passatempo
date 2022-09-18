@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="202209130831" author="layla">
+        <createSequence incrementBy="1" sequenceName="seq_diretor" startValue="1"/>
+        <createTable tableName="diretor">
+            <column name="id_diretor" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_diretor"/>
+            </column>
+            <column name="nome_diretor" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ativo" type="BOOLEAN"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

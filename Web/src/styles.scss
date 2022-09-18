@@ -1,0 +1,27 @@
+@import "assets/css/variaveis-globais.css";
+@import "assets/fonts/Kreon/font-kreon.css";
+@import "assets/fonts/Reem_Kufi/font-reem-kufi.css";
+@import "assets/css/sobrescritas-primeng";
+@import "assets/css/estilizacoes-globais";
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.img-topo-pag {
+    background-image: url('assets/images/img_2.png');
+    background-size: cover;
+    background-position: 50% 50%;
+    height: 25vh;
+}

@@ -1,0 +1,22 @@
+button.button-action {
+    background-color: var(--cor-tema-bittersweet);
+    border: var(--cor-tema-bittersweet);
+}
+
+.p-scrollpanel {
+    &.custombar1 {
+        .p-scrollpanel-wrapper {
+            border-right: 9px solid var(--layer-1);
+        }
+
+        .p-scrollpanel-bar {
+            background-color: var(--primary-color);
+            opacity: 1;
+            transition: background-color .2s;
+
+            &:hover {
+                background-color: #007ad9;
+            }
+        }
+    }
+}
