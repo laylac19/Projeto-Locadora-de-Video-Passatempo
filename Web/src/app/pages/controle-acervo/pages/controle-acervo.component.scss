@@ -17,6 +17,13 @@ div.container {
     padding-left: 50px;
 }
 
+div.container-card {
+    display: flex;
+    flex-direction: row;
+    padding-right: 50px;
+    padding-left: 50px;
+}
+
 div.acordions {
     display: flex;
     justify-content: space-evenly;

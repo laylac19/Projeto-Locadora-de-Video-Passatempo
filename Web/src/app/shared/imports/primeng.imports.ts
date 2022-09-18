@@ -18,7 +18,7 @@ import {MessageModule} from "primeng/message";
 import {MessagesModule} from "primeng/messages";
 import {ScrollPanelModule} from "primeng/scrollpanel";
 import {ImageModule} from "primeng/image";
-import {InputMaskModule} from "primeng/inputmask";
+import {CardModule} from "primeng/card";
 
 
 export const PRIMENG_IMPORTS: any = [
@@ -43,5 +43,6 @@ export const PRIMENG_IMPORTS: any = [
     MessagesModule,
     ScrollPanelModule,
     ImageModule,
-    InputNumberModule
+    InputNumberModule,
+    CardModule
 ];

@@ -12,9 +12,9 @@ export class SidemenuComponent {
     @Input() public configuracaoMenuLateral?: SidemenuModel;
     @Input() public opcoes: OpcaoMenuModel[] = [
         new OpcaoMenuModel('pi pi-home', 'Início', 'Início',
-            () => window.alert('Listar Títulos de Filmes!!!')),
+            () => this.router.navigateByUrl('')),
         new OpcaoMenuModel('pi pi-server', 'Controle de Acervo', 'Controle de Acervo',
-            () => this.router.navigateByUrl('/controle-acervo')),
+            () => this.router.navigateByUrl('/ca')),
         new OpcaoMenuModel('pi pi-users', 'Atendimento Ao Cliente', 'Atendimento Ao Cliente',
             () => window.alert('Pagina Atentimento ao Cliente!!!')),
     ];
