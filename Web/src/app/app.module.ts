@@ -15,13 +15,15 @@ import {AtorModule} from "./modules/ator/ator.module";
 import {DiretorModule} from "./modules/diretor/diretor.module";
 import {ClasseModule} from "./modules/classe/classe.module";
 import {ConfirmationService} from "primeng/api";
+import { MenuControleAcervoComponent } from './components/menu-controle-acervo/menu-controle-acervo.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         TopbarComponent,
         SidemenuComponent,
-        ControleAcervoComponent
+        ControleAcervoComponent,
+        MenuControleAcervoComponent
     ],
     imports: [
         BrowserModule,

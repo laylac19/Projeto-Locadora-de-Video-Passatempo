@@ -20,3 +20,15 @@ button.button-action {
         }
     }
 }
+
+p-card.card-item-menu .p-card-content{
+    padding: 0;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    align-items: center;
+}
+
+p-card.card-item-menu .p-card-body{
+    background-color: var(--cor-tema-verde);
+}

@@ -1,0 +1,39 @@
+div.menu {
+    display: flex;
+    flex-direction: column;
+}
+
+div.container {
+    display: flex;
+    flex-direction: row;
+    padding: 0 50px 10px 50px;
+}
+
+div.container.menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+p-card.card-item-menu {
+    width: 150px;
+    height: 130px;
+}
+
+.icon {
+    color: var(--cor-tema-beige);
+    text-align: center;
+    font-size: 20pt;
+}
+
+.label-button {
+    color: var(--cor-tema-beige);
+    font-size: 15pt;
+    font-family: 'Kreon', Verdana, sans-serif;
+    font-weight: 700;
+    text-align: center;
+}
+
+p-card.card-item-menu .p-card-content {
+    flex-direction: column;
+}

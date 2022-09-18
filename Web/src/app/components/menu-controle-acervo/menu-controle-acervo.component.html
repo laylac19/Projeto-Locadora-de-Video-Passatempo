@@ -1,0 +1,37 @@
+<div class="menu col-12">
+    <div class="container menu">
+        <p-card class="card-item-menu" (click)="mudarTipoAcervo(1)">
+            <i class="icon pi pi-user"></i>
+            <span class="label-button">Atores</span>
+        </p-card>
+        <p-card class="card-item-menu" (click)="mudarTipoAcervo(2)">
+            <i class="icon bi bi-bookmark-star"></i>
+            <span class="label-button">Classes</span>
+        </p-card>
+        <p-card class="card-item-menu">
+            <i class="icon bi bi-person-workspace"></i>
+            <span class="label-button">Diretores</span>
+        </p-card>
+        <p-card class="card-item-menu">
+            <i class="icon bi bi-upc-scan"></i>
+            <span class="label-button">Itens</span>
+        </p-card>
+        <p-card class="card-item-menu">
+            <i class="icon bi bi-camera-reels"></i>
+            <span class="label-button">Títulos</span>
+        </p-card>
+    </div>
+    <div class="container list">
+        <p-card *ngIf="cardComponent === 'Atores'">
+            <app-ator-list></app-ator-list>
+        </p-card>
+        <p-card *ngIf="cardComponent === 'Classes'">
+            <app-classe-list></app-classe-list>
+        </p-card>
+        <p-card *ngIf="cardComponent === 'Diretores'">
+            <app-diretor-list></app-diretor-list>
+        </p-card>
+    </div>
+</div>
+
+
