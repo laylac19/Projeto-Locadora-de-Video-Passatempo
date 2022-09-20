@@ -21,14 +21,14 @@
             <span class="label-button">Títulos</span>
         </p-card>
     </div>
-    <div class="container list">
-        <p-card *ngIf="cardComponent === 'Atores'">
+    <div class="container list col-12">
+        <p-card class="list-card col-12" *ngIf="cardComponent === 'Atores'">
             <app-ator-list></app-ator-list>
         </p-card>
-        <p-card *ngIf="cardComponent === 'Classes'">
+        <p-card class="list-card col-12" *ngIf="cardComponent === 'Classes'">
             <app-classe-list></app-classe-list>
         </p-card>
-        <p-card *ngIf="cardComponent === 'Diretores'">
+        <p-card class="list-card col-12" *ngIf="cardComponent === 'Diretores'">
             <app-diretor-list></app-diretor-list>
         </p-card>
     </div>

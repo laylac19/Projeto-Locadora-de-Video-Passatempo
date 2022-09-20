@@ -46,7 +46,7 @@ export class AtorListComponent implements OnInit {
     public buscarAtor(): void {
         this.atorService.findAll().subscribe((data) => {
             this.listaAtor = data;
-        } )
+        })
     }
 
     public novoAtor(): void {
@@ -74,7 +74,7 @@ export class AtorListComponent implements OnInit {
     public confirmarDialog(id: number, alterarSituacao: () => void, entidade: EntidadeUtil): void {
         this.confirmMessage.confirm({
             header: 'Confirmação',
-            message: 'Deseja desativar esse(a) ' + entidade.descricao + ' ?' ,
+            message: 'Deseja desativar esse(a) ' + entidade.descricao + ' ?',
             acceptLabel: 'Sim',
             rejectLabel: 'Cancelar',
             accept: alterarSituacao
@@ -86,7 +86,7 @@ export class AtorListComponent implements OnInit {
     }
 
     public fecharModal(): void {
-        if(this.formAtor.listarAtores){
+        if (this.formAtor.listarAtores) {
             this.buscarAtor();
         }
         this.display = false;

@@ -13,11 +13,11 @@ div.container.menu {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    padding-bottom: 20px;
 }
 
 p-card.card-item-menu {
     width: 150px;
-    height: 130px;
 }
 
 .icon {
@@ -36,4 +36,9 @@ p-card.card-item-menu {
 
 p-card.card-item-menu .p-card-content {
     flex-direction: column;
+}
+
+div.container.list {
+    display: flex;
+    align-items: start;
 }
