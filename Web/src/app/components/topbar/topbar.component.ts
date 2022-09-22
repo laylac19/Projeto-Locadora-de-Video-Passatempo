@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
-import { SidemenuModel } from 'src/app/shared/models/sidemenu.model';
+import {Component, Input} from '@angular/core';
+import {OpcaoMenuModel} from "../../shared/models/opcao-menu.model";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-topbar',
@@ -7,11 +8,20 @@ import { SidemenuModel } from 'src/app/shared/models/sidemenu.model';
     styleUrls: ['./topbar.component.scss']
 })
 export class TopbarComponent {
-    @Input() public configuracaoMenuLateral?: SidemenuModel;
 
-    public alternarVisibilidadeMenuLateral(): void {
-        if(this.configuracaoMenuLateral) {
-            this.configuracaoMenuLateral.visivel = !this.configuracaoMenuLateral.visivel;
-        }
+    @Input() public opcoes: OpcaoMenuModel[] = [
+        new OpcaoMenuModel('pi pi-server', 'Controle de Acervo', 'Controle de Acervo',
+            () => this.router.navigateByUrl('/ca')),
+        new OpcaoMenuModel('pi pi-users', 'Atendimento Ao Cliente', 'Atendimento Ao Cliente',
+            () => window.alert('Pagina Atentimento ao Cliente!!!')),
+    ];
+
+    constructor(
+        private router: Router
+    ) {
+    }
+
+    public navegarParaUrl():void {
+        this.router.navigateByUrl('');
     }
 }

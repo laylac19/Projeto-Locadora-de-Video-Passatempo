@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { SidemenuModel } from 'src/app/shared/models/sidemenu.model';
+import {Component} from '@angular/core';
 
 @Component({
     selector: 'app-root',
@@ -7,5 +6,4 @@ import { SidemenuModel } from 'src/app/shared/models/sidemenu.model';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    public configuracaoMenuLateral: SidemenuModel = new SidemenuModel();
 }

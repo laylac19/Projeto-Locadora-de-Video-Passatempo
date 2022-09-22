@@ -4,6 +4,7 @@ div.topbar {
     border-bottom: 5px solid var(--cor-tema-bittersweet);
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 span.titulo {
@@ -12,4 +13,8 @@ span.titulo {
     font-weight: 700;
     margin-left: 10px;
     color: var(--cor-tema-beige);
+}
+
+div.opcao-menu {
+    padding: 0 5px 0 5px;
 }

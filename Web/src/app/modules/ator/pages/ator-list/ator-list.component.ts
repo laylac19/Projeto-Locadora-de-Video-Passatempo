@@ -39,7 +39,7 @@ export class AtorListComponent implements OnInit {
     public colunasTabela(): void {
         this.colunas = [
             new ColunaModel('nomeAtor', 'Nome Ator'),
-            new ColunaModel('acoes', 'Ações')
+            new ColunaModel('acoes', 'Ações','132px')
         ]
     }
 

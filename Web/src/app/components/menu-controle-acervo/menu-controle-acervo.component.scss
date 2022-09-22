@@ -13,7 +13,8 @@ div.container.menu {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    padding-bottom: 20px;
+    padding: 20px 0 20px 20px;
+    border-bottom: 5px solid var(--cor-tema-bittersweet);
 }
 
 p-card.card-item-menu {
@@ -41,4 +42,7 @@ p-card.card-item-menu .p-card-content {
 div.container.list {
     display: flex;
     align-items: start;
+    background-color: var(--cor-tema-eton-blue);
+    padding: 0 5px 0 5px;
+    border-bottom: 4px dashed var(--cor-tema-bittersweet);
 }
