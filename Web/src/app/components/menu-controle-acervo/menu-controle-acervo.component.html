@@ -1,4 +1,4 @@
-<div class="menu col-12">
+<div class="pagina col-12">
     <div class="container menu">
         <p-card class="card-item-menu" (click)="mudarTipoAcervo(1)">
             <i class="icon pi pi-user"></i>
@@ -22,13 +22,13 @@
         </p-card>
     </div>
     <div class="container list col-12">
-        <p-card class="list-card col-12" *ngIf="cardComponent === 'Atores'">
+        <p-card class="list-card col-8" *ngIf="cardComponent === 'Atores'">
             <app-ator-list></app-ator-list>
         </p-card>
-        <p-card class="list-card col-12" *ngIf="cardComponent === 'Classes'">
+        <p-card class="list-card col-8" *ngIf="cardComponent === 'Classes'">
             <app-classe-list></app-classe-list>
         </p-card>
-        <p-card class="list-card col-12" *ngIf="cardComponent === 'Diretores'">
+        <p-card class="list-card col-8" *ngIf="cardComponent === 'Diretores'">
             <app-diretor-list></app-diretor-list>
         </p-card>
     </div>

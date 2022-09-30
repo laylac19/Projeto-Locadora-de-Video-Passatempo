@@ -17,7 +17,8 @@
         <p-table [columns]="colunas" [value]="listaAtor" [paginator]="true" [rows]="7" [responsive]="true" sortMode="multiple">
             <ng-template pTemplate="header" let-colunas>
                 <tr>
-                    <th id="titulo-colunas" *ngFor="let col of colunas" [pSortableColumn]="col.field">
+                    <th id="titulo-colunas" *ngFor="let col of colunas" [pSortableColumn]="col.field"
+                        [style]="'width:'+ col.width">
                         {{col.header}}
                         <ng-container>
                             <p-sortIcon [field]="col.field"></p-sortIcon>
@@ -33,8 +34,8 @@
                             {{rowData[col.field]}}
                         </ng-container>
 
-                        <ng-container *ngIf="col.field === 'acoes' " class="column-action">
-                            <div class="flex justify-content-evenly">
+                        <ng-container *ngIf="col.field === 'acoes' ">
+                            <div class="column-action flex justify-content-evenly">
                                 <button pButton type="button"
                                         icon="pi pi-pencil"
                                         class="button-action ui-button-success button-save-new"

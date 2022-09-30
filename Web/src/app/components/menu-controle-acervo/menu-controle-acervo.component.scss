@@ -1,4 +1,4 @@
-div.menu {
+div.pagina {
     display: flex;
     flex-direction: column;
 }
@@ -45,4 +45,5 @@ div.container.list {
     background-color: var(--cor-tema-eton-blue);
     padding: 0 5px 0 5px;
     border-bottom: 4px dashed var(--cor-tema-bittersweet);
+    justify-content: center;
 }
