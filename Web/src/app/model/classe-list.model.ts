@@ -1,6 +1,6 @@
 export class ClasseListModel {
-    id: number;
-    nomeClasse: string;
-    valor: number;
-    prazoDevolucao: Date;
+    public id: number;
+    public nomeClasse: string;
+    public valor: number;
+    public prazoDevolucao: Date;
 }

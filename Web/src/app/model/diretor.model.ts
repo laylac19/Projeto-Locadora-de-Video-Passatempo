@@ -1,5 +1,5 @@
 export class DiretorModel {
-    id: number;
-    nomeDiretor: string;
-    ativo: boolean;
+    public id: number;
+    public nomeDiretor: string;
+    public ativo: boolean;
 }
