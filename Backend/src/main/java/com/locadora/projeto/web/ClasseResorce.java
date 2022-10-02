@@ -25,31 +25,31 @@ public class ClasseResorce {
     private final ClasseService service;
 
     @GetMapping
-    public ResponseEntity<List<ClasseListDTO>> findClass(){
+    public ResponseEntity<List<ClasseListDTO>> buscarTodasClasses(){
         List<ClasseListDTO> dto = service.findAll();
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ClasseDTO> findClassById(@PathVariable("id") Integer id){
+    public ResponseEntity<ClasseDTO> buscarClassePorID(@PathVariable("id") Integer id){
         ClasseDTO dto = service.find(id);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
     @PutMapping
-    public ResponseEntity<ClasseDTO> editClass(@RequestBody ClasseDTO classeDto){
+    public ResponseEntity<ClasseDTO> editarClasse(@RequestBody ClasseDTO classeDto){
         ClasseDTO dto = service.save(classeDto);
         return new ResponseEntity<>(dto, HttpStatus.CREATED);
     }
 
     @PostMapping
-    public ResponseEntity<ClasseDTO> saveClass(@RequestBody ClasseDTO classeDto){
+    public ResponseEntity<ClasseDTO> salvarClasse(@RequestBody ClasseDTO classeDto){
         ClasseDTO dto = service.save(classeDto);
         return new ResponseEntity<>(dto, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteClass(@PathVariable("id") Integer id){
+    public ResponseEntity<Void> deletarClasse(@PathVariable("id") Integer id){
         service.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

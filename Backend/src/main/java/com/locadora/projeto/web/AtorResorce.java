@@ -25,31 +25,31 @@ public class AtorResorce {
     private final AtorService service;
 
     @GetMapping
-    public ResponseEntity<List<AtorListDTO>> findAllActors(){
+    public ResponseEntity<List<AtorListDTO>> buscarTodosAtores(){
         List<AtorListDTO> dto = service.findAll();
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AtorDTO> findActorsById(@PathVariable("id") Integer id){
+    public ResponseEntity<AtorDTO> buscarAtoresPorID(@PathVariable("id") Integer id){
         AtorDTO dto = service.find(id);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
     @PutMapping
-    public ResponseEntity<AtorDTO> editActor(@RequestBody AtorDTO atorDto){
+    public ResponseEntity<AtorDTO> editarAtor(@RequestBody AtorDTO atorDto){
         AtorDTO dto = service.save(atorDto);
         return new ResponseEntity<>(dto, HttpStatus.CREATED);
     }
 
     @PostMapping
-    public ResponseEntity<AtorDTO> saveActor(@RequestBody AtorDTO atorDTO){
+    public ResponseEntity<AtorDTO> salvarAtor(@RequestBody AtorDTO atorDTO){
         AtorDTO dto = service.save(atorDTO);
         return new ResponseEntity<>(dto, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteActor(@PathVariable("id") Integer id){
+    public ResponseEntity<Void> deletarAtor(@PathVariable("id") Integer id){
         service.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

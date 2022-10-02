@@ -25,31 +25,31 @@ public class DiretorResorce {
     private final DiretorService service;
 
     @GetMapping
-    public ResponseEntity<List<DiretorListDTO>> findDirectors(){
+    public ResponseEntity<List<DiretorListDTO>> buscarTodosDiretores(){
         List<DiretorListDTO> dto = service.findAll();
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<DiretorDTO> findDirectorById(@PathVariable("id") Integer id){
+    public ResponseEntity<DiretorDTO> buscarDiretorPorID(@PathVariable("id") Integer id){
         DiretorDTO dto = service.find(id);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
     @PutMapping
-    public ResponseEntity<DiretorDTO> editDirector(@RequestBody DiretorDTO diretorDTO){
+    public ResponseEntity<DiretorDTO> editarDiretor(@RequestBody DiretorDTO diretorDTO){
         DiretorDTO dto = service.save(diretorDTO);
         return new ResponseEntity<>(dto, HttpStatus.CREATED);
     }
 
     @PostMapping
-    public ResponseEntity<DiretorDTO> saveDirector(@RequestBody DiretorDTO diretorDTO){
+    public ResponseEntity<DiretorDTO> salvarDiretor(@RequestBody DiretorDTO diretorDTO){
         DiretorDTO dto = service.save(diretorDTO);
         return new ResponseEntity<>(dto, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteDirector(@PathVariable("id") Integer id){
+    public ResponseEntity<Void> deletarDiretor(@PathVariable("id") Integer id){
         service.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
