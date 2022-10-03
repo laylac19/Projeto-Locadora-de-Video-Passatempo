@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="202210030741" author="layla">
+        <createSequence incrementBy="1" sequenceName="seq_titulo" startValue="1"/>
+        <createTable tableName="titulo">
+            <column name="id_titulo" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_titulo"/>
+            </column>
+            <column name="nome_titulo" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ano" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sinopse" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="categoria" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ativo" type="BOOLEAN"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

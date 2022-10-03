@@ -4,13 +4,14 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "classe")
-public class Classe {
+public class Classe implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_classe")
     @SequenceGenerator(name = "seq_classe", sequenceName = "seq_classe", allocationSize = 1)
