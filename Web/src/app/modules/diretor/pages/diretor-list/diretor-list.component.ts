@@ -40,7 +40,7 @@ export class DiretorListComponent implements OnInit {
     public colunasTabela(): void {
         this.colunas = [
             new ColunaModel('nomeDiretor', 'Nome Diretor'),
-            new ColunaModel('acoes', 'Ações')
+            new ColunaModel('acoes', 'Ações','132px')
         ]
     }
 

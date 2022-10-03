@@ -12,7 +12,6 @@ export class ClasseComponent implements OnInit {
 
     formClasse: FormGroup;
     novaClasse: ClasseModel;
-    dataDevolucao: Date = new Date();
 
     listarClasses: boolean = false;
 
@@ -34,7 +33,7 @@ export class ClasseComponent implements OnInit {
             id: [null],
             nomeClasse: ['', [Validators.required], [Validators.minLength(2)]],
             valor: [0, [Validators.required]],
-            prazoDevolucao: [null, [Validators.required]]
+            prazoDevolucao: ['', [Validators.required]]
         });
     }
 
@@ -55,7 +54,6 @@ export class ClasseComponent implements OnInit {
         this.service.findById(id).subscribe({
                 next: (response) => {
                     this.formClasse.patchValue(response);
-
                 },
                 error: (error) => {
                     console.log(error);

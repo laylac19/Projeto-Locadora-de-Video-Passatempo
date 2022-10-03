@@ -12,6 +12,9 @@ export class TituloModalEnum {
     static readonly NOVO_DIRETOR = new TituloModalEnum(7, 'Novo Diretor');
     static readonly EDITAR_DIRETOR = new TituloModalEnum(8, 'Editar Diretor');
 
+    static readonly NOVO_TITULO = new TituloModalEnum(7, 'Novo Filme');
+    static readonly EDITAR_TITULO = new TituloModalEnum(8, 'Editar Filme');
+
     static values = [
         TituloModalEnum.NOVO,
         TituloModalEnum.VISUALIZAR,
@@ -22,6 +25,8 @@ export class TituloModalEnum {
         TituloModalEnum.EDITAR_CLASSE,
         TituloModalEnum.NOVO_DIRETOR,
         TituloModalEnum.EDITAR_DIRETOR,
+        TituloModalEnum.NOVO_TITULO,
+        TituloModalEnum.EDITAR_TITULO
     ];
 
     private constructor(

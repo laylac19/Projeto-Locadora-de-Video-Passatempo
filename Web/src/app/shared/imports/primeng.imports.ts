@@ -19,6 +19,8 @@ import {MessagesModule} from "primeng/messages";
 import {ScrollPanelModule} from "primeng/scrollpanel";
 import {ImageModule} from "primeng/image";
 import {CardModule} from "primeng/card";
+import {MultiSelectModule} from "primeng/multiselect";
+import {AutoCompleteModule} from "primeng/autocomplete";
 
 
 export const PRIMENG_IMPORTS: any = [
@@ -44,5 +46,7 @@ export const PRIMENG_IMPORTS: any = [
     ScrollPanelModule,
     ImageModule,
     InputNumberModule,
-    CardModule
+    CardModule,
+    MultiSelectModule,
+    AutoCompleteModule
 ];

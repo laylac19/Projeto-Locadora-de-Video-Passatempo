@@ -17,7 +17,6 @@ export class AtorListComponent implements OnInit {
 
     colunas: ColunaModel[] = [];
     listaAtor: AtorListModel[] = [];
-
     ator: AtorModel;
 
     tituloModal: string;
@@ -33,7 +32,7 @@ export class AtorListComponent implements OnInit {
 
     ngOnInit(): void {
         this.colunasTabela();
-        this.buscarAtor();
+        this.listarTodosAtores();
     }
 
     public colunasTabela(): void {
@@ -43,7 +42,7 @@ export class AtorListComponent implements OnInit {
         ]
     }
 
-    public buscarAtor(): void {
+    public listarTodosAtores(): void {
         this.atorService.findAll().subscribe((data) => {
             this.listaAtor = data;
         })
@@ -63,7 +62,7 @@ export class AtorListComponent implements OnInit {
 
     public desativarAtor(id: number): void {
         this.atorService.delete(id).subscribe(() => {
-            this.buscarAtor();
+            this.listarTodosAtores();
         });
     }
 
@@ -87,7 +86,7 @@ export class AtorListComponent implements OnInit {
 
     public fecharModal(): void {
         if (this.formAtor.listarAtores) {
-            this.buscarAtor();
+            this.listarTodosAtores();
         }
         this.display = false;
     }
