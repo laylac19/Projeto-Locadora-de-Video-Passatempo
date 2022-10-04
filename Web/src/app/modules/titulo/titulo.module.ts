@@ -8,14 +8,17 @@ import {SharedModule} from "../../shared/shared.module";
 
 
 @NgModule({
-  declarations: [
-    TituloComponent,
-    TituloListComponent
-  ],
-  imports: [
-    CommonModule,
-    TituloRoutingModule,
-      SharedModule
-  ]
+    declarations: [
+        TituloComponent,
+        TituloListComponent
+    ],
+    exports: [
+        TituloListComponent
+    ],
+    imports: [
+        CommonModule,
+        TituloRoutingModule,
+        SharedModule
+    ]
 })
 export class TituloModule { }

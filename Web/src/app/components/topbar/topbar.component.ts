@@ -21,7 +21,11 @@ export class TopbarComponent {
     ) {
     }
 
-    public navegarParaUrl():void {
-        this.router.navigateByUrl('');
+    public navegarParaUrl(): void {
+        this.router.navigateByUrl('ca');
+    }
+
+
+    ngOnInit() {
     }
 }
