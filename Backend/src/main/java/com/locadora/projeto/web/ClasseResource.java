@@ -1,8 +1,8 @@
 package com.locadora.projeto.web;
 
-import com.locadora.projeto.service.AtorService;
-import com.locadora.projeto.service.dto.AtorDTO;
-import com.locadora.projeto.service.dto.AtorListDTO;
+import com.locadora.projeto.service.ClasseService;
+import com.locadora.projeto.service.dto.ClasseDTO;
+import com.locadora.projeto.service.dto.ClasseListDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,40 +18,39 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/atores")
+@RequestMapping("api/classes")
 @RequiredArgsConstructor
-public class AtorResorce {
+public class ClasseResource {
 
-    private final AtorService service;
+    private final ClasseService service;
 
     @GetMapping
-    public ResponseEntity<List<AtorListDTO>> buscarTodosAtores(){
-        List<AtorListDTO> dto = service.findAll();
+    public ResponseEntity<List<ClasseListDTO>> buscarTodasClasses(){
+        List<ClasseListDTO> dto = service.findAll();
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AtorDTO> buscarAtoresPorID(@PathVariable("id") Integer id){
-        AtorDTO dto = service.find(id);
+    public ResponseEntity<ClasseDTO> buscarClassePorID(@PathVariable("id") Integer id){
+        ClasseDTO dto = service.find(id);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
     @PutMapping
-    public ResponseEntity<AtorDTO> editarAtor(@RequestBody AtorDTO atorDto){
-        AtorDTO dto = service.save(atorDto);
+    public ResponseEntity<ClasseDTO> editarClasse(@RequestBody ClasseDTO classeDto){
+        ClasseDTO dto = service.save(classeDto);
         return new ResponseEntity<>(dto, HttpStatus.CREATED);
     }
 
     @PostMapping
-    public ResponseEntity<AtorDTO> salvarAtor(@RequestBody AtorDTO atorDTO){
-        AtorDTO dto = service.save(atorDTO);
+    public ResponseEntity<ClasseDTO> salvarClasse(@RequestBody ClasseDTO classeDto){
+        ClasseDTO dto = service.save(classeDto);
         return new ResponseEntity<>(dto, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletarAtor(@PathVariable("id") Integer id){
+    public ResponseEntity<Void> deletarClasse(@PathVariable("id") Integer id){
         service.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
 }

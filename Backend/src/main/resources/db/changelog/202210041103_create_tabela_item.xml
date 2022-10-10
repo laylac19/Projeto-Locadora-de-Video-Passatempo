@@ -5,22 +5,20 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
 
-    <changeSet id="202210030741" author="layla">
-        <createSequence incrementBy="1" sequenceName="seq_titulo" startValue="1"/>
-        <createTable tableName="titulo">
-            <column name="id_titulo" type="INT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_titulo"/>
+
+    <changeSet id="1665400897494-1" author="layla">
+        <createSequence incrementBy="1" sequenceName="seq_item" startValue="1"/>
+        <createTable tableName="item">
+            <column name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_item"/>
             </column>
-            <column name="nome_titulo" type="VARCHAR(255)">
+            <column name="numero_serie" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="ano" type="VARCHAR(255)">
+            <column name="data" type="DATE">
                 <constraints nullable="false"/>
             </column>
-            <column name="sinopse" type="TEXT">
-                <constraints nullable="false"/>
-            </column>
-            <column name="categoria" type="VARCHAR(255)">
+            <column name="tipo_item" type="INT">
                 <constraints nullable="false"/>
             </column>
             <column name="ativo" type="BOOLEAN"/>

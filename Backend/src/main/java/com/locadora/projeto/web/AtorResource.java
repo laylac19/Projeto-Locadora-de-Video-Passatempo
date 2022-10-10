@@ -1,8 +1,8 @@
 package com.locadora.projeto.web;
 
-import com.locadora.projeto.service.DiretorService;
-import com.locadora.projeto.service.dto.DiretorDTO;
-import com.locadora.projeto.service.dto.DiretorListDTO;
+import com.locadora.projeto.service.AtorService;
+import com.locadora.projeto.service.dto.AtorDTO;
+import com.locadora.projeto.service.dto.AtorListDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,39 +18,40 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/diretores")
+@RequestMapping("api/atores")
 @RequiredArgsConstructor
-public class DiretorResorce {
+public class AtorResource {
 
-    private final DiretorService service;
+    private final AtorService service;
 
     @GetMapping
-    public ResponseEntity<List<DiretorListDTO>> buscarTodosDiretores(){
-        List<DiretorListDTO> dto = service.findAll();
+    public ResponseEntity<List<AtorListDTO>> buscarTodosAtores(){
+        List<AtorListDTO> dto = service.findAll();
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<DiretorDTO> buscarDiretorPorID(@PathVariable("id") Integer id){
-        DiretorDTO dto = service.find(id);
+    public ResponseEntity<AtorDTO> buscarAtoresPorID(@PathVariable("id") Integer id){
+        AtorDTO dto = service.find(id);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
     @PutMapping
-    public ResponseEntity<DiretorDTO> editarDiretor(@RequestBody DiretorDTO diretorDTO){
-        DiretorDTO dto = service.save(diretorDTO);
+    public ResponseEntity<AtorDTO> editarAtor(@RequestBody AtorDTO atorDto){
+        AtorDTO dto = service.save(atorDto);
         return new ResponseEntity<>(dto, HttpStatus.CREATED);
     }
 
     @PostMapping
-    public ResponseEntity<DiretorDTO> salvarDiretor(@RequestBody DiretorDTO diretorDTO){
-        DiretorDTO dto = service.save(diretorDTO);
+    public ResponseEntity<AtorDTO> salvarAtor(@RequestBody AtorDTO atorDTO){
+        AtorDTO dto = service.save(atorDTO);
         return new ResponseEntity<>(dto, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletarDiretor(@PathVariable("id") Integer id){
+    public ResponseEntity<Void> deletarAtor(@PathVariable("id") Integer id){
         service.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
 }

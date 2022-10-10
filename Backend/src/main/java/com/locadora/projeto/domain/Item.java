@@ -5,7 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -16,17 +16,17 @@ public class Item implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_item")
     @SequenceGenerator(name = "seq_item", sequenceName = "seq_item", allocationSize = 1)
-    @Column(name = "id_item", nullable = false)
+    @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "num_serie", nullable = false)
+    @Column(name = "numero_serie", nullable = false)
     private String numeroSerie;
 
-    @Column(name = "data_aquisicao", nullable = false)
-    private Date dtAquisicao;
+    @Column(name = "data", nullable = false)
+    private LocalDate data;
 
     @Column(name = "tipo_item", nullable = false)
-    private String tipoItem; //fazer enum
+    private Integer tipoItem;
 
     @Column(name = "ativo")
     private Boolean ativo;

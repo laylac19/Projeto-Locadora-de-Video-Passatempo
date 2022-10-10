@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+
+    <changeSet id="1665405571035-1" author="layla">
+        <createSequence incrementBy="1" sequenceName="seq_titulo" startValue="1"/>
+        <createTable tableName="titulo">
+            <column name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_titulo"/>
+            </column>
+            <column name="nome" type="VARCHAR(255)"/>
+            <column name="sinopse" type="VARCHAR(255)"/>
+            <column name="id_diretor" type="INT"/>
+            <column name="ano" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_categoria" type="INT"/>
+            <column name="id_classe" type="INT"/>
+            <column name="ativo" type="BOOLEAN"/>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="id_categoria" baseTableName="titulo" constraintName="FK_TITULO_ON_ID_CATEGORIA" referencedColumnNames="id" referencedTableName="categoria"/>
+        <addForeignKeyConstraint baseColumnNames="id_classe" baseTableName="titulo" constraintName="FK_TITULO_ON_ID_CLASSE" referencedColumnNames="id_classe" referencedTableName="classe"/>
+        <addForeignKeyConstraint baseColumnNames="id_diretor" baseTableName="titulo" constraintName="FK_TITULO_ON_ID_DIRETOR" referencedColumnNames="id_diretor" referencedTableName="diretor"/>
+    </changeSet>
+</databaseChangeLog>

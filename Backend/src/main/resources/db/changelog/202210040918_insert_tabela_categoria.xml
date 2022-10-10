@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="1664889094821-1" author="layla">
+        <insert tableName="categoria">
+            <column name="id" valueNumeric="1"/>
+            <column name="nome_categoria" value="Ação"/>
+        </insert>
+        <insert tableName="categoria">
+            <column name="id" valueNumeric="2"/>
+            <column name="nome_categoria" value="Aventura"/>
+        </insert>
+        <insert tableName="categoria">
+            <column name="id" valueNumeric="3"/>
+            <column name="nome_categoria" value="Animação"/>
+        </insert>
+        <insert tableName="categoria">
+            <column name="id" valueNumeric="4"/>
+            <column name="nome_categoria" value="Anime"/>
+        </insert>
+        <insert tableName="categoria">
+            <column name="id" valueNumeric="5"/>
+            <column name="nome_categoria" value="Biografia"/>
+        </insert>
+        <insert tableName="categoria">
+            <column name="id" valueNumeric="6"/>
+            <column name="nome_categoria" value="Comédia"/>
+        </insert>
+        <insert tableName="categoria">
+            <column name="id" valueNumeric="7"/>
+            <column name="nome_categoria" value="Comédia Romântica"/>
+        </insert>
+        <insert tableName="categoria">
+            <column name="id" valueNumeric="8"/>
+            <column name="nome_categoria" value="Crime"/>
+        </insert>
+        <insert tableName="categoria">
+            <column name="id" valueNumeric="9"/>
+            <column name="nome_categoria" value="Crianças e Família"/>
+        </insert>
+        <insert tableName="categoria">
+            <column name="id" valueNumeric="10"/>
+            <column name="nome_categoria" value="Curta"/>
+        </insert>
+        <insert tableName="categoria">
+            <column name="id" valueNumeric="11"/>
+            <column name="nome_categoria" value="Documentário"/>
+        </insert>
+        <insert tableName="categoria">
+            <column name="id" valueNumeric="12"/>
+            <column name="nome_categoria" value="Drama"/>
+        </insert>
+        <insert tableName="categoria">
+            <column name="id" valueNumeric="13"/>
+            <column name="nome_categoria" value="Estrangeiro"/>
+        </insert>
+        <insert tableName="categoria">
+            <column name="id" valueNumeric="14"/>
+            <column name="nome_categoria" value="Fantasia"/>
+        </insert>
+        <insert tableName="categoria">
+            <column name="id" valueNumeric="15"/>
+            <column name="nome_categoria" value="Fé e Espiritualidade"/>
+        </insert>
+        <insert tableName="categoria">
+            <column name="id" valueNumeric="16"/>
+            <column name="nome_categoria" value="Ficção"/>
+        </insert>
+        <insert tableName="categoria">
+            <column name="id" valueNumeric="17"/>
+            <column name="nome_categoria" value="Ficção Científica"/>
+        </insert>
+        <insert tableName="categoria">
+            <column name="id" valueNumeric="18"/>
+            <column name="nome_categoria" value="Guerra"/>
+        </insert>
+        <insert tableName="categoria">
+            <column name="id" valueNumeric="19"/>
+            <column name="nome_categoria" value="História"/>
+        </insert>
+        <insert tableName="categoria">
+            <column name="id" valueNumeric="20"/>
+            <column name="nome_categoria" value="LGBTQ"/>
+        </insert>
+        <insert tableName="categoria">
+            <column name="id" valueNumeric="21"/>
+            <column name="nome_categoria" value="Música"/>
+        </insert>
+        <insert tableName="categoria">
+            <column name="id" valueNumeric="22"/>
+            <column name="nome_categoria" value="Musical"/>
+        </insert>
+        <insert tableName="categoria">
+            <column name="id" valueNumeric="23"/>
+            <column name="nome_categoria" value="Mistério"/>
+        </insert>
+        <insert tableName="categoria">
+            <column name="id" valueNumeric="24"/>
+            <column name="nome_categoria" value="Outro"/>
+        </insert>
+        <insert tableName="categoria">
+            <column name="id" valueNumeric="25"/>
+            <column name="nome_categoria" value="Romance"/>
+        </insert>
+        <insert tableName="categoria">
+            <column name="id" valueNumeric="26"/>
+            <column name="nome_categoria" value="Suspense"/>
+        </insert>
+        <insert tableName="categoria">
+            <column name="id" valueNumeric="27"/>
+            <column name="nome_categoria" value="Natureza"/>
+        </insert>
+        <insert tableName="categoria">
+            <column name="id" valueNumeric="28"/>
+            <column name="nome_categoria" value="Terror"/>
+        </insert>
+        <insert tableName="categoria">
+            <column name="id" valueNumeric="29"/>
+            <column name="nome_categoria" value="Viagem"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

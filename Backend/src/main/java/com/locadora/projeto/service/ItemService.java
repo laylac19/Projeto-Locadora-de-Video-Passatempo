@@ -1,17 +1,15 @@
 package com.locadora.projeto.service;
 
 import com.locadora.projeto.service.dto.ItemDTO;
-import com.locadora.projeto.service.dto.ItemListDTO;
-
-import java.util.List;
+import com.locadora.projeto.service.dto.TituloItemDTO;
 
 public interface ItemService {
-
-    List<ItemListDTO> findAll();
 
     ItemDTO find(Integer id);
 
     ItemDTO save(ItemDTO dto);
 
     void delete(Integer id);
+
+    void salvarItemTitulo(TituloItemDTO dto);
 }

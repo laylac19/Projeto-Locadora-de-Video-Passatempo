@@ -4,13 +4,15 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Getter
 @Setter
 public class ItemListDTO implements Serializable {
+
     private Integer id;
     private String numeroSerie;
-    private Date dtAquisicao;
+    private LocalDate data;
     private String tipoItem;
+    private String titulo;
 }

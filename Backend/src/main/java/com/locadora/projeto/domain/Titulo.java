@@ -4,28 +4,40 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
-@Getter
-@Setter
 @Entity
 @Table(name = "titulo")
-public class Titulo implements Serializable {
+@Getter
+@Setter
+public class Titulo {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_titulo")
     @SequenceGenerator(name = "seq_titulo", sequenceName = "seq_titulo", allocationSize = 1)
-    @Column(name = "id_titulo", nullable = false)
+    @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "nome_titulo", nullable = false)
-    private String nomeTitulo;
+    @Column(name = "nome")
+    private String nome;
 
-    @Column(name = "ano", nullable = false)
-    private String ano;
-
-    @Column(name = "sinopse", nullable = false)
+    @Column(name = "sinopse")
     private String sinopse;
 
-    @Column(name = "categoria", nullable = false)
-    private String categoria;
+    @ManyToOne
+    @JoinColumn(name = "id_diretor")
+    private Diretor diretor;
+
+    @Column(name = "ano", nullable = false)
+    private Integer ano;
+
+    @ManyToOne
+    @JoinColumn(name = "id_categoria")
+    private Categoria categoria;
+
+    @ManyToOne
+    @JoinColumn(name = "id_classe")
+    private Classe classe;
+
+    @Column(name = "ativo")
+    private Boolean ativo;
 }

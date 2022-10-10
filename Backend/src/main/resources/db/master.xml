@@ -8,7 +8,9 @@
     <include file="db/changelog/202209130827_create_tabela_ator.xml"/>
     <include file="db/changelog/202209130830_create_tabela_classe.xml"/>
     <include file="db/changelog/202209130831_create_tabela_diretor.xml"/>
-    <include file="db/changelog/202210021919_create_tabela_item.xml"/>
-    <include file="db/changelog/202210030735_create_tabela_titulo.xml"/>
-    <include file="db/changelog/202210030905_create_tabela_titulo_ator.xml"/>
+    <include file="db/changelog/202210040917_create_tabela_categoria.xml"/>
+    <include file="db/changelog/202210040918_insert_tabela_categoria.xml"/>
+    <include file="db/changelog/202210041103_create_tabela_item.xml"/>
+    <include file="db/changelog/202210041105_create_tabela_titulo.xml"/>
+    <include file="db/changelog/202210041107_create_tabela_tituloItem.xml"/>
 </databaseChangeLog>

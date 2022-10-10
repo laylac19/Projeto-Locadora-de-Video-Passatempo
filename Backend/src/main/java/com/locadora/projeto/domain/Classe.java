@@ -5,7 +5,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
 
 @Getter
 @Setter
@@ -25,7 +24,7 @@ public class Classe implements Serializable {
     private Double valor;
 
     @Column(name = "prado_devolucao", nullable = false)
-    private Date prazoDevolucao;
+    private Integer prazoDevolucao;
 
     @Column(name = "ativo")
     private Boolean ativo;
