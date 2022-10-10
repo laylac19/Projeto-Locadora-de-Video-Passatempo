@@ -1,4 +1,4 @@
 export class AtorListModel {
-    id: number;
-    nomeAtor: string;
+    public id: number;
+    public nomeAtor: string;
 }

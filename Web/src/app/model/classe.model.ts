@@ -1,7 +1,7 @@
 export class ClasseModel {
-    id: number;
-    nomeClasse: string;
-    valor: number;
-    prazoDevolucao: Date;
-    ativo: boolean;
+    public id: number;
+    public nomeClasse: string;
+    public valor: number;
+    public prazoDevolucao: Date;
+    public ativo: boolean;
 }

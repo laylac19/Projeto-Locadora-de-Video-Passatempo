@@ -1,6 +1,7 @@
 <div class="sidemenu" [ngClass]="{'invisivel': !estaVisivel() }">
-    <div class="opcao-menu" *ngFor="let opcao of opcoes">
-        <button pButton
+    <div class="opcao-menu flex justify-content-center" *ngFor="let opcao of opcoes">
+        <button class="button-action-side"
+                pButton
                 pRipple
                 type="button"
                 [icon]="opcao.icone"

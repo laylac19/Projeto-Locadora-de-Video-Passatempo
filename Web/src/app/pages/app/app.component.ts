@@ -1,4 +1,5 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {SidemenuModel} from "../../shared/models/sidemenu.model";
 
 @Component({
     selector: 'app-root',
@@ -6,4 +7,8 @@ import {Component} from '@angular/core';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+    @Input() public aplicarNovaRota?: string;
+
+    public configuracaoMenuLateral: SidemenuModel = new SidemenuModel();
+    public casoUso: string = 'Controle';
 }

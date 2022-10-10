@@ -41,11 +41,11 @@ export class ClasseListComponent implements OnInit {
             new ColunaModel('nomeClasse', 'Nome Classe'),
             new ColunaModel('valor', 'Valor'),
             new ColunaModel('prazoDevolucao', 'Prazo De Devolução'),
-            new ColunaModel('acoes', 'Ações')
+            new ColunaModel('acoes', 'Ações', '132px')
         ]
     }
 
-    campoData(coluna: string): boolean {
+    campoPrazoDevolucao(coluna: string): boolean {
         return coluna === 'prazoDevolucao';
     }
 

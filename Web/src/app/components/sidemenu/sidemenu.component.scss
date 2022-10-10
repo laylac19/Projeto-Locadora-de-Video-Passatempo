@@ -1,7 +1,7 @@
 div.sidemenu {
-    background-color: var(--cor-tema-blue-munsell);
+    background-color: var(--cor-tema-raisin-black);
     height: 100%;
-    border-right: 2px dashed var(--cor-tema-bittersweet);
+    border-right: 5px dashed var(--cor-tema-bittersweet);
     width: 250px;
 
     &.invisivel {
@@ -11,4 +11,8 @@ div.sidemenu {
 
 div.opcao-menu {
     padding: 8px;
+}
+
+.button-action-side {
+    width: 80%;
 }

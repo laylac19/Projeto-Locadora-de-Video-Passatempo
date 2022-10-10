@@ -1,5 +1,5 @@
 export class ControleAcervoEnumModel {
-
+    static readonly CONTROLE = new ControleAcervoEnumModel(0, 'Controle');
     static readonly ATOR = new ControleAcervoEnumModel(1, 'Atores');
     static readonly CLASSE = new ControleAcervoEnumModel(2, 'Classes');
     static readonly DIRETOR = new ControleAcervoEnumModel(3, 'Diretores');
@@ -8,6 +8,7 @@ export class ControleAcervoEnumModel {
 
 
     static values = [
+        ControleAcervoEnumModel.CONTROLE,
         ControleAcervoEnumModel.ATOR,
         ControleAcervoEnumModel.CLASSE,
         ControleAcervoEnumModel.DIRETOR,
