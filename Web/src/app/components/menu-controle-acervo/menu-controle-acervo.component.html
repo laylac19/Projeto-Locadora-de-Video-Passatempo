@@ -1,38 +1,29 @@
 <div class="pagina col-12">
     <div class="container menu">
-        <p-card class="card-item-menu" (click)="mudarTipoAcervo(1)">
-            <i class="icon pi pi-user"></i>
+        <p-card class="card-item-menu" (click)="mudarTipoAcervoPorURL(1)">
+            <em class="icon pi pi-user"></em>
             <span class="label-button">Atores</span>
         </p-card>
-        <p-card class="card-item-menu" (click)="mudarTipoAcervo(2)">
-            <i class="icon bi bi-bookmark-star"></i>
+        <p-card class="card-item-menu" (click)="mudarTipoAcervoPorURL(2)">
+            <em class="icon bi bi-bookmark-star"></em>
             <span class="label-button">Classes</span>
         </p-card>
-        <p-card class="card-item-menu" (click)="mudarTipoAcervo(3)">
-            <i class="icon bi bi-person-workspace"></i>
+        <p-card class="card-item-menu" (click)="mudarTipoAcervoPorURL(3)">
+            <em class="icon bi bi-person-workspace"></em>
             <span class="label-button">Diretores</span>
         </p-card>
-        <p-card class="card-item-menu" (click)="mudarTipoAcervo(4)">
-            <i class="icon bi bi-upc-scan"></i>
+        <p-card class="card-item-menu" (click)="mudarTipoAcervoPorURL(4)">
+            <em class="icon bi bi-upc-scan"></em>
             <span class="label-button">Itens</span>
         </p-card>
-        <p-card class="card-item-menu" (click)="mudarTipoAcervo(5)">
-            <i class="icon bi bi-camera-reels"></i>
-            <span class="label-button">Títulos</span>
+        <p-card class="card-item-menu" (click)="mudarTipoAcervoPorURL(5)">
+            <em class="icon bi bi-camera-reels"></em>
+            <span class="label-button">Títulos e Itens</span>
         </p-card>
     </div>
     <div class="container list col-12">
-        <p-card class="list-card col-8" *ngIf="cardComponent === 'Atores'">
-            <app-ator-list></app-ator-list>
-        </p-card>
-        <p-card class="list-card col-8" *ngIf="cardComponent === 'Classes'">
-            <app-classe-list></app-classe-list>
-        </p-card>
-        <p-card class="list-card col-8" *ngIf="cardComponent === 'Diretores'">
-            <app-diretor-list></app-diretor-list>
-        </p-card>
-        <p-card class="list-card col-8" *ngIf="cardComponent === 'Titulos'">
-            <app-titulo-list></app-titulo-list>
+        <p-card class="list-card col-8">
+            <router-outlet></router-outlet>
         </p-card>
     </div>
 </div>

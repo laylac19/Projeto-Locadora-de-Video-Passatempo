@@ -9,7 +9,7 @@ import {SharedModule} from './shared/shared.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {PanelMenuModule} from 'primeng/panelmenu';
 import {MenuModule} from 'primeng/menu';
-import {ControleAcervoComponent} from './pages/controle-acervo/pages/controle-acervo.component';
+import {ControleAcervoComponent} from './components/controle-acervo/controle-acervo.component';
 import {ScrollPanelModule} from "primeng/scrollpanel";
 import {AtorModule} from "./modules/ator/ator.module";
 import {DiretorModule} from "./modules/diretor/diretor.module";
@@ -24,7 +24,7 @@ import {TituloModule} from "./modules/titulo/titulo.module";
         TopbarComponent,
         SidemenuComponent,
         ControleAcervoComponent,
-        MenuControleAcervoComponent
+        MenuControleAcervoComponent,
     ],
     imports: [
         BrowserModule,
@@ -41,6 +41,9 @@ import {TituloModule} from "./modules/titulo/titulo.module";
     ],
     providers: [
         ConfirmationService,
+    ],
+    exports: [
+        ControleAcervoComponent
     ],
     bootstrap: [AppComponent]
 })

@@ -10,13 +10,22 @@ import {Router} from "@angular/router";
 })
 export class SidemenuComponent {
     @Input() public configuracaoMenuLateral?: SidemenuModel;
+
     @Input() public opcoes: OpcaoMenuModel[] = [
         new OpcaoMenuModel('pi pi-home', 'Início', 'Início',
-            () => this.router.navigateByUrl('')),
-        new OpcaoMenuModel('pi pi-server', 'Controle de Acervo', 'Controle de Acervo',
-            () => this.router.navigateByUrl('/ca')),
-        new OpcaoMenuModel('pi pi-users', 'Atendimento Ao Cliente', 'Atendimento Ao Cliente',
-            () => window.alert('Pagina Atentimento ao Cliente!!!')),
+            () => this.router.navigateByUrl('/Filmes')),
+        new OpcaoMenuModel('pi pi-server', 'Atores', 'Atores',
+            () => this.router.navigateByUrl('/Atores')),
+        new OpcaoMenuModel('pi pi-server', 'Classes', 'Classes',
+            () => this.router.navigateByUrl('/Classes')),
+        new OpcaoMenuModel('pi pi-server', 'Diretores', 'Diretores',
+            () => this.router.navigateByUrl('/Diretores')),
+        new OpcaoMenuModel('pi pi-server', 'Título Filmes', 'Título Filmes',
+            () => this.router.navigateByUrl('/Filmes')),
+        new OpcaoMenuModel('pi pi-server', 'Cadastrar Itens', 'Cadastrar Itens',
+            () => this.router.navigateByUrl('/Filmes')),
+        new OpcaoMenuModel('pi pi-server', 'Cadastrar Clientes', 'Cadastrar Itens',
+            () => this.router.navigateByUrl('/Filmes')),
     ];
 
     constructor(
