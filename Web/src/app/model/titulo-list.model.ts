@@ -1,7 +1,7 @@
 export class TituloListModel {
     public id: number;
-    public nomeTitulo: string;
+    public nome: string;
     public ano: number;
-    public categoria: string;
+    public nomeCategoria: string;
     public sinopse: string;
 }

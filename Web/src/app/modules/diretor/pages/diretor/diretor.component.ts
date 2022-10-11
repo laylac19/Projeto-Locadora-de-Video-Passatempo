@@ -10,10 +10,10 @@ import {DiretorService} from "../../../../shared/service/diretor.service";
 })
 export class DiretorComponent implements OnInit {
 
-    formDiretor: FormGroup;
-    novoDiretor: DiretorModel;
+    public formDiretor: FormGroup;
+    public novoDiretor: DiretorModel;
 
-    listarDiretores: boolean = true;
+    public listarDiretores: boolean = true;
 
     @Input() diretorModel: DiretorModel;
     @Output() resForm: EventEmitter<boolean> = new EventEmitter();

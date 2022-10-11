@@ -14,7 +14,8 @@
     </div>
 
     <div class="item-pagina tabela">
-        <p-table [columns]="colunas" [value]="listaDiretores" [paginator]="true" [rows]="10" [responsive]="true" sortMode="multiple">
+        <p-table [columns]="colunas" [value]="listaDiretores" [paginator]="true" [rows]="10" [responsive]="true"
+                 sortMode="multiple">
             <ng-template pTemplate="header" let-colunas>
                 <tr>
                     <th id="titulo-colunas" *ngFor="let col of colunas" [pSortableColumn]="col.field"
@@ -58,6 +59,7 @@
         </p-table>
     </div>
 </div>
-<p-dialog [(visible)]="display" header="{{tituloModal}}" [modal]="true" [contentStyle]="{'max-height':'100%'}" (onHide)="resetarForm()">
+<p-dialog [(visible)]="display" header="{{tituloModal}}" [modal]="true" [contentStyle]="{'max-height':'100%'}"
+          (onHide)="resetarForm()">
     <app-diretor [diretorModel]="diretor" (resForm)="fecharModal()"></app-diretor>
 </p-dialog>

@@ -32,3 +32,7 @@ p-card.card-item-menu .p-card-content{
 p-card.card-item-menu .p-card-body{
     background-color: var(--cor-tema-verde);
 }
+
+.p-datatable .p-datatable-thead > tr > th {
+    text-align: center;
+}

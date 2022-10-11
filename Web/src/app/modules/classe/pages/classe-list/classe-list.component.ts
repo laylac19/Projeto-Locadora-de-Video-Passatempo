@@ -15,12 +15,12 @@ import {EntidadeUtil} from "../../../../shared/util/entidade-util";
 })
 export class ClasseListComponent implements OnInit {
 
-    colunas: ColunaModel[] = [];
-    listaClasse: ClasseListModel[] = [];
+    public colunas: ColunaModel[] = [];
+    public listaClasse: ClasseListModel[] = [];
 
-    classe: ClasseModel;
+    public classe: ClasseModel;
 
-    tituloModal: string;
+    public tituloModal: string;
 
     @Input() display = false;
     @ViewChild(ClasseComponent) formClasse: ClasseComponent;
@@ -56,7 +56,7 @@ export class ClasseListComponent implements OnInit {
     public buscarClasse(): void {
         this.classeService.findAll().subscribe((data) => {
             this.listaClasse = data;
-        } )
+        })
     }
 
     public novaClasse(): void {
@@ -84,7 +84,7 @@ export class ClasseListComponent implements OnInit {
     public confirmarDialog(id: number, alterarSituacao: () => void, entidade: EntidadeUtil): void {
         this.confirmMessage.confirm({
             header: 'Confirmação',
-            message: 'Deseja desativar esse(a) ' + entidade.descricao + ' ?' ,
+            message: 'Deseja desativar esse(a) ' + entidade.descricao + ' ?',
             acceptLabel: 'Sim',
             rejectLabel: 'Cancelar',
             accept: alterarSituacao

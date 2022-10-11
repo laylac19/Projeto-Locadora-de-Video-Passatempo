@@ -15,11 +15,11 @@ import {ConfirmationService} from "primeng/api";
 })
 export class AtorListComponent implements OnInit {
 
-    colunas: ColunaModel[] = [];
-    listaAtor: AtorListModel[] = [];
-    ator: AtorModel;
+    public colunas: ColunaModel[] = [];
+    public listaAtor: AtorListModel[] = [];
+    public ator: AtorModel;
 
-    tituloModal: string;
+    public tituloModal: string;
 
     @Input() display = false;
     @ViewChild(AtorComponent) formAtor: AtorComponent;
@@ -38,7 +38,7 @@ export class AtorListComponent implements OnInit {
     public colunasTabela(): void {
         this.colunas = [
             new ColunaModel('nomeAtor', 'Nome Ator'),
-            new ColunaModel('acoes', 'Ações','132px')
+            new ColunaModel('acoes', 'Ações', '132px')
         ]
     }
 

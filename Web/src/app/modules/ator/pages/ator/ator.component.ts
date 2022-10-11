@@ -10,10 +10,10 @@ import {AtorService} from "../../../../shared/service/ator.service";
 })
 export class AtorComponent implements OnInit {
 
-    formAtor: FormGroup;
-    novoAtor: AtorModel;
+    public formAtor: FormGroup;
+    public novoAtor: AtorModel;
 
-    listarAtores: boolean = false;
+    public listarAtores: boolean = false;
 
     @Input() atorModel: AtorModel;
     @Output() resForm: EventEmitter<boolean> = new EventEmitter();

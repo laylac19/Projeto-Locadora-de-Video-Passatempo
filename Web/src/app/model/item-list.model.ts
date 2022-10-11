@@ -1,6 +1,7 @@
 export class ItemListModel {
     public id: number;
     public numeroSerie: string;
-    public dtAquisicao: Date;
+    public data: Date;
     public tipoItem: string;
+    public titulo: string;
 }

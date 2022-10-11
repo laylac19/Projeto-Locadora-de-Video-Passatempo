@@ -1,9 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {TituloModel} from "../../../../model/titulo.model";
-import {AtorModel} from "../../../../model/ator.model";
-import {ClasseModel} from "../../../../model/classe.model";
-import {DiretorModel} from "../../../../model/diretor.model";
+import {TituloService} from "../../../../shared/service/titulo.service";
 
 @Component({
     selector: 'app-titulo',
@@ -12,24 +10,17 @@ import {DiretorModel} from "../../../../model/diretor.model";
 })
 export class TituloComponent implements OnInit {
 
-    formTitulo: FormGroup;
-    novoTitulo: TituloModel;
+    public formTituloFilme: FormGroup;
+    public novoTituloFilme: TituloModel;
 
-    listaAtores: AtorModel[];
-    listaClasses: ClasseModel[];
-    listaDiretores: DiretorModel[];
+    public listarTitulos: boolean = false;
 
-    atoresSelecionados: AtorModel[];
-    classeTitulo: ClasseModel;
-    diretorTitulo: DiretorModel;
-
-    listarTitulos: boolean = false;
-
-    @Input() tituloModel: TituloModel;
+    @Input() tituloFilmeModel: TituloModel;
     @Output() resForm: EventEmitter<boolean> = new EventEmitter();
 
     constructor(
         private builder: FormBuilder,
+        private tituloService: TituloService
     ) {
     }
 
@@ -38,25 +29,24 @@ export class TituloComponent implements OnInit {
     }
 
     public novoFormulario(): void {
-        this.formTitulo = this.builder.group({
+        this.formTituloFilme = this.builder.group({
             id: [null],
-            nomeTitulo: ['', [Validators.required], [Validators.minLength(5)]],
+            nome: ['', [Validators.required], [Validators.minLength(5)]],
             ano: ['', [Validators.required]],
             sinopse: ['', [Validators.required], [Validators.minLength(10)], [Validators.maxLength(400)]],
-            categoria: ['', [Validators.required], [Validators.minLength(5)], [Validators.maxLength(30)]],
-            idAtor: ['', [Validators.required]],
+            idCategoria: ['', [Validators.required]],
+            idClasse: ['', [Validators.required]],
             idDiretor: ['', [Validators.required]],
-            idClasse: ['', [Validators.required]]
+            idAtores: ['', [Validators.required]]
         });
     }
 
-    /*
     public salvarFormulario(): void {
-        this.novoAtor = this.formAtor.getRawValue();
-        this.service.insert(this.novoAtor).subscribe({
+        this.novoTituloFilme = this.formTituloFilme.getRawValue();
+        this.tituloService.insert(this.novoTituloFilme).subscribe({
             next: () => {
                 this.fecharForm();
-                this.listarAtores = true;
+                this.listarTitulos = true;
             },
             error: (error) => {
                 console.log(error);
@@ -64,10 +54,10 @@ export class TituloComponent implements OnInit {
         });
     }
 
-    public editarAtor(id: number): void {
-        this.service.findById(id).subscribe({
+    public editarTituloFilme(id: number): void {
+        this.tituloService.findById(id).subscribe({
                 next: (response) => {
-                    this.formAtor.patchValue(response);
+                    this.formTituloFilme.patchValue(response);
                 },
                 error: (error) => {
                     console.log(error);
@@ -77,8 +67,7 @@ export class TituloComponent implements OnInit {
     }
 
     public fecharForm(): void {
-        this.formAtor.reset();
+        this.formTituloFilme.reset();
         this.resForm.emit();
     }
-     */
 }

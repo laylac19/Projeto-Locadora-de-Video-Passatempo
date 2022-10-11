@@ -1,84 +1,54 @@
 <div class="form p-fluid">
-    <form [formGroup]="formTitulo" class="ui-fluid">
+    <form [formGroup]="formTituloFilme" class="ui-fluid">
         <div class="field col-12">
             <span class="item">
                 <label class="campo-form" for="inputNomeTitulo">Nome Titulo</label>
-                <input type="text" id="inputNomeTitulo" pInputText formControlName="nomeTitulo">
+                <input type="text" id="inputNomeTitulo" pInputText formControlName="nome">
             </span>
-
+        </div>
+        <div class="area flex">
+            <div class="field col-4">
+                <span class="item">
+                    <label class="campo-form" for="inputAno">Ano</label>
+                    <input type="text" id="inputAno" pInputText formControlName="ano">
+                </span>
+            </div>
+            <div class="field col-4">
+                <span class="item">
+                    <label class="campo-form" for="inputCategoria">Categoria</label>
+                    <input type="text" id="inputCategoria" pInputText formControlName="idCategoria">
+                </span>
+            </div>
+            <div class="field col-4">
+                <span class="item">
+                    <label class="campo-form" for="inputClasse">Classe</label>
+                    <input type="text" id="inputClasse" pInputText formControlName="idClasse">
+                </span>
+            </div>
+        </div>
+        <div class="field col-12">
             <span class="item">
-                <label class="campo-form" for="inputAno">Ano</label>
-                <input type="text" id="inputAno" pInputText formControlName="ano">
+                <label class="campo-form" for="inputDiretor">Diretor</label>
+                <input type="text" id="inputDiretor" pInputText formControlName="idDiretor">
             </span>
-
-            <span class="item">
-                <label class="campo-form" for="inputAno">Categoria</label>
-                <input type="text" id="inputCategoria" pInputText formControlName="categoria">
-            </span>
-
+        </div>
+        <div class="field col-12">
             <span class="item">
                 <label class="campo-form" for="inputAno">Sinopse</label>
                 <textarea rows="5" cols="30" pInputTextarea formControlName="sinopse"></textarea>
             </span>
-
-            <!--            <span class="item">-->
-            <!--                <label class="campo-form" for="inputAno">Classe</label>-->
-            <!--                <p-autoComplete [(ngModel)]="selectedCountryAdvanced" [suggestions]="filteredCountries"-->
-            <!--                                (completeMethod)="filterCountry($event)" field="name" [dropdown]="true">-->
-            <!--                    <ng-template let-country pTemplate="item">-->
-            <!--                        <div class="country-item">-->
-            <!--                            <img src="assets/showcase/images/demo/flag/flag_placeholder.png"-->
-            <!--                                 [class]="'flag flag-' + country.code.toLowerCase()"/>-->
-            <!--                            <div>{{country.name}}</div>-->
-            <!--                        </div>-->
-            <!--                    </ng-template>-->
-            <!--                </p-autoComplete>-->
-            <!--            </span>-->
-
-            <!--            <span class="item">-->
-            <!--                <label class="campo-form" for="inputAno">Diretor</label>-->
-            <!--                <p-autoComplete [(ngModel)]="diretorTitulo" [suggestions]="filteredCountries"-->
-            <!--                                (completeMethod)="filterCountry($event)" field="name" [dropdown]="true">-->
-            <!--                    <ng-template let-country pTemplate="item">-->
-            <!--                        <div class="country-item">-->
-            <!--                            <img src="assets/showcase/images/demo/flag/flag_placeholder.png"-->
-            <!--                                 [class]="'flag flag-' + country.code.toLowerCase()"/>-->
-            <!--                            <div>{{country.name}}</div>-->
-            <!--                        </div>-->
-            <!--                    </ng-template>-->
-            <!--                </p-autoComplete>-->
-
-
-            <!--            <span class="item">-->
-            <!--                <label class="campo-form" for="inputAno">Atores</label>-->
-            <!--                 <p-multiSelect [options]="listaAtores" [(ngModel)]="atoresSelecionados" defaultLabel="Selecione"-->
-            <!--                                optionLabel="name" class="multiselect-custom">-->
-            <!--                     <ng-template let-value pTemplate="selectedItems">-->
-            <!--                        <div class="country-item country-item-value" *ngFor="let option of atoresSelecionados">-->
-            <!--                            <img src="assets/showcase/images/demo/flag/flag_placeholder.png"-->
-            <!--                                 [class]="'flag flag-' + option.code.toLowerCase()"/>-->
-            <!--                            <div>{{option.nome}}</div>-->
-            <!--                        </div>-->
-            <!--                        <div *ngIf="!atoresSelecionados || atoresSelecionados.length === 0" class="ator-placeholder">-->
-            <!--                            Atores Selecionados-->
-            <!--                        </div>-->
-            <!--                    </ng-template>-->
-            <!--                    <ng-template let-atores pTemplate="item">-->
-            <!--                        <div class="country-item">-->
-            <!--                            <img src="assets/showcase/images/demo/flag/flag_placeholder.png"-->
-            <!--                                 [class]="'flag flag-' + atores.code.toLowerCase()"/>-->
-            <!--                            <div>{{atores.name}}</div>-->
-            <!--                        </div>-->
-            <!--                    </ng-template>-->
-            <!--                </p-multiSelect>-->
-            <!--            </span>-->
-            <!--        </div>-->
+        </div>
+        <div class="field col-12">
+            <span class="item">
+                <label class="campo-form" for="inputAtores">Atores</label>
+                <input type="text" id="inputAtores" pInputText formControlName="idAtores">
+            </span>
         </div>
     </form>
 </div>
 <div class="action-form">
-    <button type="button" pButton icon="pi pi-times" label="Cancelar"
+    <button type="button" pButton icon="pi pi-times" label="Cancelar" (click)="fecharForm()"
             class="button-action ui-button-secondary mr-3"></button>
-    <button type="button" pButton icon="pi pi-check" label="Salvar"
+    <button type="button" pButton icon="pi pi-check" label="Salvar" (click)="salvarFormulario()"
             class="button-action button-save-new"></button>
 </div>

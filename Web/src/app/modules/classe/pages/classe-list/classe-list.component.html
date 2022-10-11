@@ -34,13 +34,13 @@
                             {{rowData[col.field]}}
                         </ng-container>
                         <ng-container *ngIf="campoPrazoDevolucao(col.field)">
-                            {{rowData[col.field] + 'dia(s)'}}
+                            {{rowData[col.field] + ' dia(s)'}}
                         </ng-container>
                         <ng-container *ngIf="campoValor(col.field)">
-                            {{ 'R$ '+ rowData[col.field] + ',00'}}
+                            {{ 'R$ '+ rowData[col.field]}}
                         </ng-container>
                         <ng-container *ngIf="col.field === 'acoes' ">
-                            <div class="column-action">
+                            <div class="column-action flex justify-content-evenly">
                                 <button pButton type="button"
                                         icon="pi pi-pencil"
                                         class="button-action ui-button-success button-save-new"

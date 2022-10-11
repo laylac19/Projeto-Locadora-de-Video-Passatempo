@@ -10,10 +10,10 @@ import {ClasseService} from "../../../../shared/service/classe.service";
 })
 export class ClasseComponent implements OnInit {
 
-    formClasse: FormGroup;
-    novaClasse: ClasseModel;
+    public formClasse: FormGroup;
+    public novaClasse: ClasseModel;
 
-    listarClasses: boolean = false;
+    public listarClasses: boolean = false;
 
     @Input() classeModel: ClasseModel;
     @Output() resForm: EventEmitter<boolean> = new EventEmitter();
