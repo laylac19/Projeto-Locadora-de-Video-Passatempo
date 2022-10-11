@@ -3,8 +3,8 @@ export class EntidadeUtil {
     static readonly ATOR = new EntidadeUtil(1, 'Ator');
     static readonly CLASSE = new EntidadeUtil(2, 'Classe');
     static readonly DIRETOR = new EntidadeUtil(3, 'Diretor');
-    static readonly TITULO = new EntidadeUtil(3, 'Filme');
-    static readonly ITEM_TIULO = new EntidadeUtil(3, 'Título Filme');
+    static readonly TITULO = new EntidadeUtil(4, 'Filme');
+    static readonly ITEM_TITULO = new EntidadeUtil(5, 'Item Filme');
 
 
     static values = [
@@ -12,7 +12,7 @@ export class EntidadeUtil {
         EntidadeUtil.CLASSE,
         EntidadeUtil.DIRETOR,
         EntidadeUtil.TITULO,
-        EntidadeUtil.ITEM_TIULO
+        EntidadeUtil.ITEM_TITULO
     ];
 
     constructor(

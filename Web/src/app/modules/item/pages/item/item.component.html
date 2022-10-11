@@ -2,15 +2,35 @@
     <form [formGroup]="formItem" class="ui-fluid">
         <div class="field col-12">
             <span class="item">
-                <label class="campo-form" for="inputtext">Nome Autor</label>
-                <input type="text" id="inputtext" pInputText formControlName="nomeAtor">
+                <label class="campo-form" for="inputNumSer">Número de Série</label>
+                <input type="text" id="inputNumSer" pInputText formControlName="numeroSerie">
             </span>
+        </div>
+        <div class="field col-12">
+            <span class="item">
+                <label class="campo-form" for="inputTitulo">Título Filme</label>
+                <input type="text" id="inputTitulo" pInputText formControlName="nomeAtor">
+            </span>
+        </div>
+        <div class="area flex">
+            <div class="field col-6">
+                <span class="item">
+                    <label class="campo-form" for="inputData">Data Aquisição</label>
+                    <input type="text" id="inputData" pInputText formControlName="data">
+                </span>
+            </div>
+            <div class="field col-6">
+                <span class="item">
+                    <label class="campo-form" for="inputTipo">Tipo Item</label>
+                    <input type="text" id="inputTipo" pInputText formControlName="tipoItem">
+                </span>
+            </div>
         </div>
     </form>
 </div>
 <div class="action-form">
-    <button type="button" pButton icon="pi pi-times" label="Cancelar"
+    <button type="button" pButton icon="pi pi-times" label="Cancelar" (click)="fecharForm()"
             class="button-action ui-button-secondary mr-3"></button>
-    <button type="button" pButton icon="pi pi-check" label="Salvar"
+    <button type="button" pButton icon="pi pi-check" label="Salvar" (click)="salvarFormulario()"
             class="button-action button-save-new"></button>
 </div>

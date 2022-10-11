@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ItemModel} from "../../../../model/item.model";
+import {ItemService} from "../../../../shared/service/item.service";
 
 @Component({
     selector: 'app-item',
@@ -9,16 +10,17 @@ import {ItemModel} from "../../../../model/item.model";
 })
 export class ItemComponent implements OnInit {
 
-    formItem: FormGroup;
-    novoItem: ItemModel;
+    public formItem: FormGroup;
+    public novoItem: ItemModel;
 
-    listarItens: boolean = false;
+    public listarItens: boolean = false;
 
     @Input() itemModel: ItemModel;
     @Output() resForm: EventEmitter<boolean> = new EventEmitter();
 
     constructor(
         private builder: FormBuilder,
+        private itemService: ItemService
     ) {
     }
 
@@ -30,18 +32,17 @@ export class ItemComponent implements OnInit {
         this.formItem = this.builder.group({
             id: [null],
             numeroSerie: ['', [Validators.required], [Validators.minLength(6)], [Validators.maxLength(6)]],
-            dtAquisicao: [null, [Validators.required]],
+            data: [null, [Validators.required]],
             tipoItem: ['', [Validators.required]],
         });
     }
 
-    /*
     public salvarFormulario(): void {
-        this.novoAtor = this.formAtor.getRawValue();
-        this.service.insert(this.novoAtor).subscribe({
+        this.novoItem = this.formItem.getRawValue();
+        this.itemService.insert(this.novoItem).subscribe({
             next: () => {
                 this.fecharForm();
-                this.listarAtores = true;
+                this.listarItens = true;
             },
             error: (error) => {
                 console.log(error);
@@ -49,10 +50,10 @@ export class ItemComponent implements OnInit {
         });
     }
 
-    public editarAtor(id: number): void {
-        this.service.findById(id).subscribe({
+    public editarItem(id: number): void {
+        this.itemService.findById(id).subscribe({
                 next: (response) => {
-                    this.formAtor.patchValue(response);
+                    this.formItem.patchValue(response);
                 },
                 error: (error) => {
                     console.log(error);
@@ -62,9 +63,7 @@ export class ItemComponent implements OnInit {
     }
 
     public fecharForm(): void {
-        this.formAtor.reset();
+        this.formItem.reset();
         this.resForm.emit();
     }
-     */
-
 }
