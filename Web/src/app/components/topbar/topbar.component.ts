@@ -13,7 +13,7 @@ export class TopbarComponent {
     @Input() public configuracaoMenuLateral?: SidemenuModel;
 
     @Input() public opcoes: OpcaoMenuModel[] = [
-        new OpcaoMenuModel('pi pi-server', 'Controle de Acervo', 'Controle de Acervo',
+        new OpcaoMenuModel('bi bi-archive', 'Controle de Acervo', 'Controle de Acervo',
             () => this.router.navigateByUrl('/Filmes')),
         new OpcaoMenuModel('pi pi-users', 'Atendimento Ao Cliente', 'Atendimento Ao Cliente',
             () => window.alert('Pagina Atentimento ao Cliente!!!')),
