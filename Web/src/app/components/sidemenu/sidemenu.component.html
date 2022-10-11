@@ -1,5 +1,26 @@
 <div class="sidemenu" [ngClass]="{'invisivel': !estaVisivel() }">
-    <div class="opcao-menu flex justify-content-center" *ngFor="let opcao of opcoes">
+    <div class="titulo-caso-uso pt-4">
+        <em class="icon bi bi-archive"></em>
+        <span class="titulo-caso-side flex justify-content-center">CONTROLE DE ACERVO</span>
+    </div>
+
+    <div class="opcao-menu flex justify-content-center" *ngFor="let opcao of opcoesControleAverco">
+        <button class="button-action-side"
+                pButton
+                pRipple
+                type="button"
+                [icon]="opcao.icone"
+                [label]="opcao.label"
+                [pTooltip]="opcao.tooltip"
+                tooltipPosition="right"
+                (click)="opcao.aoClicar()">
+        </button>
+    </div>
+    <div class="titulo-caso-uso pt-4">
+        <em class="icon bi bi-chat-dots"></em>
+        <span class="titulo-caso-side flex justify-content-center">ATENDIMENETO AO CLIENTE</span>
+    </div>
+    <div class="opcao-menu flex justify-content-center" *ngFor="let opcao of opcoesAtendimentoCliente">
         <button class="button-action-side"
                 pButton
                 pRipple
