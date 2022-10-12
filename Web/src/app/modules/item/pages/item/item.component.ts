@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ItemModel} from "../../../../model/item.model";
 import {ItemService} from "../../../../shared/service/item.service";
+import {SelectItem} from "primeng/api";
 
 @Component({
     selector: 'app-item',
@@ -14,6 +15,9 @@ export class ItemComponent implements OnInit {
     public novoItem: ItemModel;
 
     public listarItens: boolean = false;
+
+    public titulosDropDown: SelectItem[];
+    public tipoItemDropDown: SelectItem[];
 
     @Input() itemModel: ItemModel;
     @Output() resForm: EventEmitter<boolean> = new EventEmitter();

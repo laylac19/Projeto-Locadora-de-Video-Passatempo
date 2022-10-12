@@ -21,6 +21,7 @@ import {ImageModule} from "primeng/image";
 import {CardModule} from "primeng/card";
 import {MultiSelectModule} from "primeng/multiselect";
 import {AutoCompleteModule} from "primeng/autocomplete";
+import {DropdownModule} from "primeng/dropdown";
 
 
 export const PRIMENG_IMPORTS: any = [
@@ -48,5 +49,6 @@ export const PRIMENG_IMPORTS: any = [
     InputNumberModule,
     CardModule,
     MultiSelectModule,
-    AutoCompleteModule
+    AutoCompleteModule,
+    DropdownModule
 ];

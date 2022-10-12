@@ -1,12 +1,12 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {ColunaModel} from "../../../../model/coluna.model";
 import {ItemListModel} from "../../../../model/item-list.model";
 import {ItemModel} from "../../../../model/item.model";
 import {ItemComponent} from "../item/item.component";
 import {ConfirmationService} from "primeng/api";
 import {ItemService} from "../../../../shared/service/item.service";
-import {TituloModalEnum} from "../../../../model/titulo-modal-enum.model";
+import {TituloModalEnum} from "../../../../model/util/titulo-modal-enum.model";
 import {EntidadeUtil} from "../../../../shared/util/entidade-util";
+import {ColunaModel} from "../../../../model/util/coluna.model";
 
 @Component({
     selector: 'app-item-list',
@@ -38,7 +38,7 @@ export class ItemListComponent implements OnInit {
     public colunasTabela(): void {
         this.colunas = [
             new ColunaModel('numeroSerie', 'Número de Série'),
-            new ColunaModel('titulo', 'Filme'),
+            new ColunaModel('titulo', 'Título Filme'),
             new ColunaModel('data', 'Data Aquisição'),
             new ColunaModel('tipoItem', 'Tipo'),
             new ColunaModel('acoes', 'Ações', '132px')
@@ -52,14 +52,14 @@ export class ItemListComponent implements OnInit {
     }
 
     public novoItem(): void {
-        this.tituloModal = TituloModalEnum.setTitulo(TituloModalEnum.NOVO_TITULO.index).header;
+        this.tituloModal = TituloModalEnum.setTitulo(TituloModalEnum.NOVO_ITEM.index).header;
         this.formItem.formItem.reset();
         this.display = true;
     }
 
     public editarItem(id: number): void {
         this.display = true;
-        this.tituloModal = TituloModalEnum.setTitulo(TituloModalEnum.EDITAR_TITULO.index).header;
+        this.tituloModal = TituloModalEnum.setTitulo(TituloModalEnum.EDITAR_ITEM.index).header;
         this.formItem.editarItem(id);
     }
 

@@ -1,4 +1,4 @@
-<div class="form p-fluid">
+<div class="form p-fluid p-">
     <form [formGroup]="formTituloFilme" class="ui-fluid">
         <div class="field col-12">
             <span class="item">
@@ -15,21 +15,39 @@
             </div>
             <div class="field col-4">
                 <span class="item">
-                    <label class="campo-form" for="inputCategoria">Categoria</label>
-                    <input type="text" id="inputCategoria" pInputText formControlName="idCategoria">
+                    <label class="campo-form">Categoria</label>
+                    <p-dropdown formControlName="idCategoria" [filter]="true" [options]="categoriasDropDown"
+                                placeholder="Selecione"
+                                appendTo="body">
+                        <ng-template let-item pTemplate="item">
+                            <div class="ui-helper-clearfix div-itens">
+                                <div class="place-categoria">{{item.label}}</div>
+                            </div>
+                        </ng-template>
+                    </p-dropdown>
                 </span>
             </div>
             <div class="field col-4">
                 <span class="item">
-                    <label class="campo-form" for="inputClasse">Classe</label>
-                    <input type="text" id="inputClasse" pInputText formControlName="idClasse">
+                    <label class="campo-form">Classe</label>
+                    <p-dropdown formControlName="idClasse" [options]="classesDropDown" placeholder="Selecione"
+                                appendTo="body" class="ui-fluid">
+                    </p-dropdown>
                 </span>
             </div>
         </div>
         <div class="field col-12">
             <span class="item">
-                <label class="campo-form" for="inputDiretor">Diretor</label>
-                <input type="text" id="inputDiretor" pInputText formControlName="idDiretor">
+                <label class="campo-form">Diretor</label>
+                <p-dropdown formControlName="idCategoria" [filter]="true" [options]="diretoresDropDown"
+                            placeholder="Selecione"
+                            appendTo="body">
+                        <ng-template let-item pTemplate="item">
+                            <div class="ui-helper-clearfix div-itens">
+                                <div class="place-drop">{{item.label}}</div>
+                            </div>
+                        </ng-template>
+                </p-dropdown>
             </span>
         </div>
         <div class="field col-12">
@@ -39,10 +57,73 @@
             </span>
         </div>
         <div class="field col-12">
-            <span class="item">
-                <label class="campo-form" for="inputAtores">Atores</label>
-                <input type="text" id="inputAtores" pInputText formControlName="idAtores">
-            </span>
+            <p-accordion>
+                <p-accordionTab header="Elenco">
+                    <div class="area-acordion flex col-12">
+                        <div class="field acordion col-8">
+                            <span class="item">
+                                <label class="campo-form">Nome</label>
+                                <p-dropdown [options]="atoresDropDown" [(ngModel)]="atorSelecionado" optionLabel="name"
+                                            [filter]="true" filterBy="name" [showClear]="true"
+                                            placeholder="Selecione">
+                                    <ng-template pTemplate="selectedItem">
+                                        <div class="country-item country-item-value" *ngIf="atorSelecionado">
+                                            <div>{{atorSelecionado}}</div>
+                                        </div>
+                                    </ng-template>
+                                    <ng-template let-atores pTemplate="item">
+                                        <div class="country-item">
+                                            <div>{{atores.name}}</div>
+                                        </div>
+                                    </ng-template>
+                                </p-dropdown>
+                            </span>
+                        </div>
+                        <div class="field button col-4">
+                            <button type="button" pButton icon="pi pi-plus" label="Adicionar"
+                                    class="button-action ui-button-secondary mr-3"></button>
+                        </div>
+                    </div>
+                    <div class="item-pagina tabela">
+                        <p-table [columns]="colunas" [paginator]="true" [rows]="7" [responsive]="true"
+                                 sortMode="multiple">
+                            <ng-template pTemplate="header" let-colunas>
+                                <tr>
+                                    <th id="titulo-colunas" *ngFor="let col of colunas" [pSortableColumn]="col.field"
+                                        [style]="'width:'+ col.width">
+                                        {{col.header}}
+                                        <ng-container>
+                                            <p-sortIcon [field]="col.field"></p-sortIcon>
+                                        </ng-container>
+                                    </th>
+                                </tr>
+                            </ng-template>
+
+                            <ng-template pTemplate="body" let-rowData let-colunas="columns">
+                                <tr>
+                                    <td *ngFor="let col of colunas">
+                                        <ng-container *ngIf="col.field != 'acoes' ">
+                                            {{rowData[col.field]}}
+                                        </ng-container>
+
+                                        <ng-container *ngIf="col.field === 'acoes' ">
+                                            <div class="column-action flex justify-content-evenly">
+                                                <button pButton type="button"
+                                                        icon="pi pi-trash"
+                                                        class="button-action ui-button-success button-save-new"
+                                                        iconPos="left"
+                                                        pTooltip="Retirar">
+                                                </button>
+                                            </div>
+                                        </ng-container>
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </p-accordionTab>
+            </p-accordion>
+
         </div>
     </form>
 </div>

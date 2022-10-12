@@ -3,24 +3,6 @@ button.button-action {
     border: var(--cor-tema-bittersweet);
 }
 
-.p-scrollpanel {
-    &.custombar1 {
-        .p-scrollpanel-wrapper {
-            border-right: 9px solid var(--layer-1);
-        }
-
-        .p-scrollpanel-bar {
-            background-color: var(--primary-color);
-            opacity: 1;
-            transition: background-color .2s;
-
-            &:hover {
-                background-color: #007ad9;
-            }
-        }
-    }
-}
-
 p-card.card-item-menu .p-card-content{
     padding: 0;
     display: flex;
@@ -31,8 +13,4 @@ p-card.card-item-menu .p-card-content{
 
 p-card.card-item-menu .p-card-body{
     background-color: var(--cor-tema-verde);
-}
-
-.p-datatable .p-datatable-thead > tr > th {
-    text-align: center;
 }

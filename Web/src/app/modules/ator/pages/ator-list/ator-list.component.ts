@@ -1,12 +1,12 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {ColunaModel} from "../../../../model/coluna.model";
 import {AtorModel} from "../../../../model/ator.model";
 import {AtorComponent} from "../ator/ator.component";
-import {TituloModalEnum} from "../../../../model/titulo-modal-enum.model";
+import {TituloModalEnum} from "../../../../model/util/titulo-modal-enum.model";
 import {AtorListModel} from "../../../../model/ator-list.model";
 import {AtorService} from "../../../../shared/service/ator.service";
 import {EntidadeUtil} from "../../../../shared/util/entidade-util";
 import {ConfirmationService} from "primeng/api";
+import {ColunaModel} from "../../../../model/util/coluna.model";
 
 @Component({
     selector: 'app-ator-list',

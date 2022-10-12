@@ -1,12 +1,12 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {ColunaModel} from "../../../../model/coluna.model";
 import {TituloListModel} from "../../../../model/titulo-list.model";
 import {TituloModel} from "../../../../model/titulo.model";
 import {TituloComponent} from "../titulo/titulo.component";
 import {ConfirmationService} from "primeng/api";
-import {TituloModalEnum} from "../../../../model/titulo-modal-enum.model";
+import {TituloModalEnum} from "../../../../model/util/titulo-modal-enum.model";
 import {TituloService} from "../../../../shared/service/titulo.service";
 import {EntidadeUtil} from "../../../../shared/util/entidade-util";
+import {ColunaModel} from "../../../../model/util/coluna.model";
 
 @Component({
     selector: 'app-titulo-list',

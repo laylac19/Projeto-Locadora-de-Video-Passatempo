@@ -8,8 +8,16 @@
         </div>
         <div class="field col-12">
             <span class="item">
-                <label class="campo-form" for="inputTitulo">Título Filme</label>
-                <input type="text" id="inputTitulo" pInputText>
+                <label class="campo-form">Título Filme</label>
+                <p-dropdown formControlName="idTitulo" [filter]="true" [options]="titulosDropDown"
+                            placeholder="Selecione"
+                            appendTo="body">
+                        <ng-template let-item pTemplate="item">
+                            <div class="ui-helper-clearfix div-itens">
+                                <div class="place-drop">{{item.label}}</div>
+                            </div>
+                        </ng-template>
+                </p-dropdown>
             </span>
         </div>
         <div class="area flex">
@@ -21,8 +29,10 @@
             </div>
             <div class="field col-6">
                 <span class="item">
-                    <label class="campo-form" for="inputTipo">Tipo Item</label>
-                    <input type="text" id="inputTipo" pInputText formControlName="tipoItem">
+                    <label class="campo-form">Tipo Item</label>
+                    <p-dropdown formControlName="idClasse" [options]="tipoItemDropDown" placeholder="Selecione"
+                                appendTo="body" class="ui-fluid">
+                    </p-dropdown>
                 </span>
             </div>
         </div>
