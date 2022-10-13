@@ -14,3 +14,11 @@ p-card.card-item-menu .p-card-content{
 p-card.card-item-menu .p-card-body{
     background-color: var(--cor-tema-verde);
 }
+
+app-titulo-list > p-dialog > div > div {
+    min-width: 50%;
+}
+
+p-dialog-header {
+    cursor: none;
+}
