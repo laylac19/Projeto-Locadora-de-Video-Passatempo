@@ -12,7 +12,9 @@ public interface TituloMapper extends EntityMapper<TituloDTO, Titulo> {
     @Override
     @Mapping(target = "classe.id", source = "idClasse")
     @Mapping(target = "categoria.id", source = "idCategoria")
+    @Mapping(target = "diretor.id", source = "idDiretor")
     Titulo toEntity (TituloDTO dto);
+
 
     @Override
     @InheritInverseConfiguration

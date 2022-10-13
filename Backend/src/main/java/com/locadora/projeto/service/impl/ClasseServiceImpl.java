@@ -5,6 +5,7 @@ import com.locadora.projeto.repository.ClasseRepository;
 import com.locadora.projeto.service.ClasseService;
 import com.locadora.projeto.service.dto.ClasseDTO;
 import com.locadora.projeto.service.dto.ClasseListDTO;
+import com.locadora.projeto.service.dto.DropdownDTO;
 import com.locadora.projeto.service.mapper.ClasseListMapper;
 import com.locadora.projeto.service.mapper.ClasseMapper;
 import com.locadora.projeto.service.util.MensagemClasseUtil;
@@ -49,4 +50,9 @@ public class ClasseServiceImpl implements ClasseService {
         classe.setAtivo(false);
         repository.save(classe);
     }
+
+    public List<DropdownDTO> searchDropdown(){
+        return repository.buscarDropdown();
+    }
+
 }

@@ -3,6 +3,7 @@ package com.locadora.projeto.web;
 import com.locadora.projeto.service.ClasseService;
 import com.locadora.projeto.service.dto.ClasseDTO;
 import com.locadora.projeto.service.dto.ClasseListDTO;
+import com.locadora.projeto.service.dto.DropdownDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +34,12 @@ public class ClasseResource {
     @GetMapping("/{id}")
     public ResponseEntity<ClasseDTO> buscarClassePorID(@PathVariable("id") Integer id){
         ClasseDTO dto = service.find(id);
+        return new ResponseEntity<>(dto, HttpStatus.OK);
+    }
+
+    @GetMapping("/dropdown")
+    public ResponseEntity<List<DropdownDTO>> buscarDropdwon(){
+        List<DropdownDTO> dto = service.searchDropdown();
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 

@@ -3,6 +3,7 @@ package com.locadora.projeto.web;
 import com.locadora.projeto.service.DiretorService;
 import com.locadora.projeto.service.dto.DiretorDTO;
 import com.locadora.projeto.service.dto.DiretorListDTO;
+import com.locadora.projeto.service.dto.DropdownDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +34,12 @@ public class DiretorResource {
     @GetMapping("/{id}")
     public ResponseEntity<DiretorDTO> buscarDiretorPorID(@PathVariable("id") Integer id){
         DiretorDTO dto = service.find(id);
+        return new ResponseEntity<>(dto, HttpStatus.OK);
+    }
+
+    @GetMapping("/dropdown")
+    public ResponseEntity<List<DropdownDTO>> buscarDropdwon(){
+        List<DropdownDTO> dto = service.searchDropdown();
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 

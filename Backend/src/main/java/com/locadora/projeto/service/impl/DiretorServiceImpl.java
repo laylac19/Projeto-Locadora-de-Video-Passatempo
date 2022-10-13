@@ -5,9 +5,11 @@ import com.locadora.projeto.repository.DiretorRepository;
 import com.locadora.projeto.service.DiretorService;
 import com.locadora.projeto.service.dto.DiretorDTO;
 import com.locadora.projeto.service.dto.DiretorListDTO;
+import com.locadora.projeto.service.dto.DropdownDTO;
 import com.locadora.projeto.service.mapper.DiretorListMapper;
 import com.locadora.projeto.service.mapper.DiretorMapper;
 import com.locadora.projeto.service.util.MensagemDiretorUtil;
+import com.locadora.projeto.service.util.MensagemItemUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -48,5 +50,9 @@ public class DiretorServiceImpl implements DiretorService {
         Diretor diretor = findById(id);
         diretor.setAtivo(false);
         repository.save(diretor);
+    }
+
+    public List<DropdownDTO> searchDropdown(){
+        return repository.dropdownDiretor();
     }
 }
