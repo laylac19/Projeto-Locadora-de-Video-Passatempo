@@ -38,19 +38,19 @@ public class DiretorResource {
     }
 
     @GetMapping("/dropdown")
-    public ResponseEntity<List<DropdownDTO>> buscarDropdwon(){
+    public ResponseEntity<List<DropdownDTO>> preencherDropdwon(){
         List<DropdownDTO> dto = service.searchDropdown();
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
-    @PutMapping
-    public ResponseEntity<DiretorDTO> editarDiretor(@RequestBody DiretorDTO diretorDTO){
+    @PostMapping
+    public ResponseEntity<DiretorDTO> salvarDiretor(@RequestBody DiretorDTO diretorDTO){
         DiretorDTO dto = service.save(diretorDTO);
         return new ResponseEntity<>(dto, HttpStatus.CREATED);
     }
 
-    @PostMapping
-    public ResponseEntity<DiretorDTO> salvarDiretor(@RequestBody DiretorDTO diretorDTO){
+    @PutMapping
+    public ResponseEntity<DiretorDTO> editarDiretor(@RequestBody DiretorDTO diretorDTO){
         DiretorDTO dto = service.save(diretorDTO);
         return new ResponseEntity<>(dto, HttpStatus.CREATED);
     }

@@ -1,9 +1,12 @@
 package com.locadora.projeto.domain.enuns;
 
+import com.locadora.projeto.service.dto.DropdownDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Getter
@@ -27,6 +30,14 @@ public enum TipoItemEnum {
 
     public static String buscarNomeEnum(Integer valor){
         return buscarNomeTipo.get(valor).getNome();
+    }
+
+    public static List<DropdownDTO> dropdown(){
+        List<DropdownDTO> lista = new ArrayList<>();
+        for (TipoItemEnum tipoItemEnum : TipoItemEnum.values()){
+            lista.add(new DropdownDTO(tipoItemEnum.getId(), tipoItemEnum.getNome()));
+        }
+        return lista;
     }
 
 }

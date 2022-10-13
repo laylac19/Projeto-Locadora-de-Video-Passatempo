@@ -13,6 +13,7 @@ public class ItemListDTO implements Serializable {
     private Integer id;
     private String numeroSerie;
     private LocalDate data;
-    private String tipoItem;
+    private String nomeTipoItem;
     private String titulo;
+    private Boolean ativo;
 }

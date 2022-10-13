@@ -3,6 +3,7 @@ package com.locadora.projeto.web;
 import com.locadora.projeto.service.AtorService;
 import com.locadora.projeto.service.dto.AtorDTO;
 import com.locadora.projeto.service.dto.AtorListDTO;
+import com.locadora.projeto.service.dto.DropdownDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,6 +35,12 @@ public class AtorResource {
     public ResponseEntity<AtorDTO> buscarAtoresPorID(@PathVariable("id") Integer id){
         AtorDTO dto = service.find(id);
         return new ResponseEntity<>(dto, HttpStatus.OK);
+    }
+
+    @GetMapping("/dropdown")
+    public ResponseEntity<List<DropdownDTO>> preencherDropdown(){
+        List<DropdownDTO> dropdown = service.searchDropdown();
+        return new ResponseEntity<>(dropdown, HttpStatus.OK);
     }
 
     @PostMapping

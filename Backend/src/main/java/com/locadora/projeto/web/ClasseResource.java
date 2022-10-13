@@ -38,19 +38,19 @@ public class ClasseResource {
     }
 
     @GetMapping("/dropdown")
-    public ResponseEntity<List<DropdownDTO>> buscarDropdwon(){
+    public ResponseEntity<List<DropdownDTO>> preencherDropdwon(){
         List<DropdownDTO> dto = service.searchDropdown();
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
-    @PutMapping
-    public ResponseEntity<ClasseDTO> editarClasse(@RequestBody ClasseDTO classeDto){
+    @PostMapping
+    public ResponseEntity<ClasseDTO> salvarClasse(@RequestBody ClasseDTO classeDto){
         ClasseDTO dto = service.save(classeDto);
         return new ResponseEntity<>(dto, HttpStatus.CREATED);
     }
 
-    @PostMapping
-    public ResponseEntity<ClasseDTO> salvarClasse(@RequestBody ClasseDTO classeDto){
+    @PutMapping
+    public ResponseEntity<ClasseDTO> editarClasse(@RequestBody ClasseDTO classeDto){
         ClasseDTO dto = service.save(classeDto);
         return new ResponseEntity<>(dto, HttpStatus.CREATED);
     }

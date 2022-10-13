@@ -6,7 +6,7 @@
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
 
 
-    <changeSet id="1665400897494-1" author="layla">
+    <changeSet id="1665684256538-1" author="layla">
         <createSequence incrementBy="1" sequenceName="seq_item" startValue="1"/>
         <createTable tableName="item">
             <column name="id" type="INT">
@@ -22,6 +22,8 @@
                 <constraints nullable="false"/>
             </column>
             <column name="ativo" type="BOOLEAN"/>
+            <column name="titulo_id" type="INT"/>
         </createTable>
+        <addForeignKeyConstraint baseColumnNames="titulo_id" baseTableName="item" constraintName="FK_ITEM_ON_TITULO" referencedColumnNames="id" referencedTableName="titulo"/>
     </changeSet>
 </databaseChangeLog>

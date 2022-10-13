@@ -10,7 +10,7 @@
     <include file="db/changelog/202209130831_create_tabela_diretor.xml"/>
     <include file="db/changelog/202210040917_create_tabela_categoria.xml"/>
     <include file="db/changelog/202210040918_insert_tabela_categoria.xml"/>
-    <include file="db/changelog/202210041103_create_tabela_item.xml"/>
     <include file="db/changelog/202210041105_create_tabela_titulo.xml"/>
+    <include file="db/changelog/202210041103_create_tabela_item.xml"/>
     <include file="db/changelog/202210131409_create_tabela_atorTitulo.xml"/>
 </databaseChangeLog>

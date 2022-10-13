@@ -1,5 +1,6 @@
 package com.locadora.projeto.domain;
 
+import com.locadora.projeto.domain.enuns.TipoItemEnum;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -30,4 +31,12 @@ public class Item implements Serializable {
 
     @Column(name = "ativo")
     private Boolean ativo;
+
+    @ManyToOne
+    @JoinColumn(name = "titulo_id")
+    private Titulo titulo;
+
+    public String buscarNomeTipoItem(){
+        return TipoItemEnum.buscarNomeEnum(this.tipoItem);
+    }
 }

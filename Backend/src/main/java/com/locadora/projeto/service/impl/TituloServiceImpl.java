@@ -9,7 +9,7 @@ import com.locadora.projeto.service.dto.DropdownDTO;
 import com.locadora.projeto.service.dto.TituloDTO;
 import com.locadora.projeto.service.dto.TituloListDTO;
 import com.locadora.projeto.service.mapper.TituloMapper;
-import com.locadora.projeto.service.util.MensagemDiretorUtil;
+import com.locadora.projeto.service.util.MensagemTituloUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -27,7 +27,6 @@ public class TituloServiceImpl implements TituloService {
     private final TituloRepository repository;
     private final AtorService atorService;
 
-
     public List<TituloListDTO> findAll() {
         return repository.buscarTitulos();
     }
@@ -43,7 +42,7 @@ public class TituloServiceImpl implements TituloService {
     private Titulo findById(Integer id){
         return repository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
-                        MensagemDiretorUtil.DIRETOR_NAO_ENCOTRADO));
+                        MensagemTituloUtil.TITULO_NAO_ENCOTRADO));
     }
 
     public TituloDTO save(TituloDTO dto) {
