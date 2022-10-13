@@ -36,15 +36,15 @@ public class AtorResource {
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
-    @PutMapping
-    public ResponseEntity<AtorDTO> editarAtor(@RequestBody AtorDTO atorDto){
-        AtorDTO dto = service.save(atorDto);
-        return new ResponseEntity<>(dto, HttpStatus.CREATED);
-    }
-
     @PostMapping
     public ResponseEntity<AtorDTO> salvarAtor(@RequestBody AtorDTO atorDTO){
         AtorDTO dto = service.save(atorDTO);
+        return new ResponseEntity<>(dto, HttpStatus.CREATED);
+    }
+
+    @PutMapping
+    public ResponseEntity<AtorDTO> editarAtor(@RequestBody AtorDTO atorDto){
+        AtorDTO dto = service.save(atorDto);
         return new ResponseEntity<>(dto, HttpStatus.CREATED);
     }
 

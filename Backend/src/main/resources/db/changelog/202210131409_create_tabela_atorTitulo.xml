@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+
+    <changeSet id="1665682928340-1" author="layla">
+        <createTable tableName="ator_titulo">
+            <column name="ator_id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_ator_titulo"/>
+            </column>
+            <column name="titulo_id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_ator_titulo"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="ator_id" baseTableName="ator_titulo" constraintName="FK_ATOR_TITULO_ON_ATOR" referencedColumnNames="id_ator" referencedTableName="ator"/>
+        <addForeignKeyConstraint baseColumnNames="titulo_id" baseTableName="ator_titulo" constraintName="FK_ATOR_TITULO_ON_TITULO" referencedColumnNames="id" referencedTableName="titulo"/>
+    </changeSet>
+</databaseChangeLog>

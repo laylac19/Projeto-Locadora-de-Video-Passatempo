@@ -15,12 +15,12 @@ export class AtorService {
 
     resourceUrl = environment.apiUrl + '/atores';
 
-    findById(id: number): Observable<AtorModel> {
-        return this.http.get<AtorModel>(this.resourceUrl + '/' + id);
-    }
-
     findAll(): Observable<AtorListModel[]> {
         return this.http.get<AtorListModel[]>(this.resourceUrl);
+    }
+
+    findById(id: number): Observable<AtorModel> {
+        return this.http.get<AtorModel>(this.resourceUrl + '/' + id);
     }
 
     insert(entity: AtorModel): Observable<AtorModel> {

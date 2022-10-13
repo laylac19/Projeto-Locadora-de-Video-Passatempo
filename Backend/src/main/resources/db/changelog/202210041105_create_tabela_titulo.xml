@@ -13,7 +13,7 @@
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_titulo"/>
             </column>
             <column name="nome" type="VARCHAR(255)"/>
-            <column name="sinopse" type="VARCHAR(255)"/>
+            <column name="sinopse" type="TEXT"/>
             <column name="id_diretor" type="INT"/>
             <column name="ano" type="INT">
                 <constraints nullable="false"/>

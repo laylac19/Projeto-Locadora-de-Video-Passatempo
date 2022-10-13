@@ -4,6 +4,7 @@ import {environment} from "../../../environments/environment";
 import {DiretorModel} from "../../model/diretor.model";
 import {Observable} from "rxjs";
 import {DiretorListModel} from "../../model/diretor-list.model";
+import {SelectItem} from "primeng/api";
 
 @Injectable({
     providedIn: 'root'
@@ -15,12 +16,16 @@ export class DiretorService {
 
     resourceUrl = environment.apiUrl + '/diretores';
 
+    findAll(): Observable<DiretorListModel[]> {
+        return this.http.get<DiretorListModel[]>(this.resourceUrl);
+    }
+
     findById(id: number): Observable<DiretorModel> {
         return this.http.get<DiretorModel>(this.resourceUrl + '/' + id);
     }
 
-    findAll(): Observable<DiretorListModel[]> {
-        return this.http.get<DiretorListModel[]>(this.resourceUrl);
+    fillDropdown(): Observable<SelectItem[]>{
+        return this.http.get<SelectItem[]>(this.resourceUrl + '/dropdown')
     }
 
     insert(entity: DiretorModel): Observable<DiretorModel> {

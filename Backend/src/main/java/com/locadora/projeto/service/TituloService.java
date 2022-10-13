@@ -16,5 +16,7 @@ public interface TituloService {
 
     void delete(Integer id);
 
-    List<DropdownDTO> buscarDropdown();
+    List<DropdownDTO> searchDropdown();
+
+    void salvarAtorTitulo(Integer idTitulo, Integer idAtor);
 }

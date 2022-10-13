@@ -9,17 +9,16 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 
-
+@Embeddable
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Embeddable
-public class TituloItemID implements Serializable {
+public class AtorTituloPK implements Serializable {
 
-    @Column(name = "id_titulo", nullable = false)
+    @Column(name = "ator_id")
+    private Integer idAtor;
+
+    @Column(name = "titulo_id")
     private Integer idTitulo;
-
-    @Column(name = "id_item", nullable = false)
-    private Integer idItem;
 }

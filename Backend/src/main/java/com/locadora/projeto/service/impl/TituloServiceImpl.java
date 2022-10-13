@@ -1,7 +1,9 @@
 package com.locadora.projeto.service.impl;
 
+import com.locadora.projeto.domain.AtorTitulo;
 import com.locadora.projeto.domain.Titulo;
 import com.locadora.projeto.repository.TituloRepository;
+import com.locadora.projeto.service.AtorService;
 import com.locadora.projeto.service.TituloService;
 import com.locadora.projeto.service.dto.DropdownDTO;
 import com.locadora.projeto.service.dto.TituloDTO;
@@ -23,6 +25,7 @@ public class TituloServiceImpl implements TituloService {
 
     private final TituloMapper mapper;
     private final TituloRepository repository;
+    private final AtorService atorService;
 
 
     public List<TituloListDTO> findAll() {
@@ -33,7 +36,7 @@ public class TituloServiceImpl implements TituloService {
         return mapper.toDto(findById(id));
     }
 
-    public List<DropdownDTO> buscarDropdown(){
+    public List<DropdownDTO> searchDropdown(){
         return repository.buscarDropdown();
     }
 
@@ -51,5 +54,13 @@ public class TituloServiceImpl implements TituloService {
         Titulo titulo = findById(id);
         titulo.setAtivo(false);
         repository.save(titulo);
+    }
+
+    public void salvarAtorTitulo(Integer idTitulo, Integer idAtor){
+        AtorTitulo entity = new AtorTitulo();
+        entity.setAtor(atorService.findByIdEntity(idAtor));
+        entity.setTitulo(findById(idTitulo));
+        entity.setIdTitulo(idTitulo);
+        entity.setIdAtor(idAtor);
     }
 }

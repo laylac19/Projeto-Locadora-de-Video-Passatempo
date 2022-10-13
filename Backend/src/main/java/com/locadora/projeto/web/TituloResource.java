@@ -31,7 +31,7 @@ public class TituloResource {
     }
     @GetMapping("/dropdown")
     public ResponseEntity<List<DropdownDTO>> buscarDropdwon(){
-        List<DropdownDTO> dto = service.buscarDropdown();
+        List<DropdownDTO> dto = service.searchDropdown();
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 

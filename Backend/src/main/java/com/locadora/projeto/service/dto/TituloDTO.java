@@ -17,5 +17,6 @@ public class TituloDTO implements Serializable {
     private String sinopse;
     private Integer idCategoria;
     private Integer idClasse;
-
+    private Integer idDiretor;
+    private Boolean ativo = true;
 }

@@ -5,6 +5,7 @@ import com.locadora.projeto.repository.AtorRepository;
 import com.locadora.projeto.service.AtorService;
 import com.locadora.projeto.service.dto.AtorDTO;
 import com.locadora.projeto.service.dto.AtorListDTO;
+import com.locadora.projeto.service.dto.DropdownDTO;
 import com.locadora.projeto.service.mapper.AtorListMapper;
 import com.locadora.projeto.service.mapper.AtorMapper;
 import com.locadora.projeto.service.util.MensagemAtorUtil;
@@ -32,24 +33,27 @@ public class AtorServiceImpl implements AtorService {
     }
 
     public AtorDTO find(Integer id) {
-        return mapper.toDto(findById(id));
+        return mapper.toDto(findByIdEntity(id));
     }
 
-    private Ator findById(Integer id){
+    public Ator findByIdEntity(Integer id){
         return repository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
                         MensagemAtorUtil.ATOR_NAO_ENCOTRADO));
     }
 
     public AtorDTO save(AtorDTO dto) {
-        Ator ator = mapper.toEntity(dto);
-        Ator ator2 = repository.save(ator);
-        return mapper.toDto(ator2);
+        return mapper.toDto(repository.save(mapper.toEntity(dto)));
     }
 
     public void delete(Integer id) {
-        Ator ator = findById(id);
+        Ator ator = findByIdEntity(id);
         ator.setAtivo(false);
         repository.save(ator);
     }
+
+    public List<DropdownDTO> searchDropdown(){
+        return repository.buscarDropdown();
+    }
+
 }
