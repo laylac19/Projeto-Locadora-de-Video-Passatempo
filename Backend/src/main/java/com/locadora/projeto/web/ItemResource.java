@@ -20,7 +20,7 @@ public class ItemResource {
     private final ItemService service;
 
     @GetMapping
-    public ResponseEntity<List<ItemListDTO>> buscarTodosAtores(){
+    public ResponseEntity<List<ItemListDTO>> buscarTodosItens(){
         List<ItemListDTO> dto = service.findAll();
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }

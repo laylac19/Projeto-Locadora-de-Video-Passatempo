@@ -4,6 +4,7 @@ import {environment} from "../../../environments/environment";
 import {Observable} from "rxjs";
 import {ItemModel} from "../../model/item.model";
 import {ItemListModel} from "../../model/item-list.model";
+import {SelectItem} from "primeng/api";
 
 @Injectable({
     providedIn: 'root'
@@ -15,12 +16,16 @@ export class ItemService {
 
     resourceUrl = environment.apiUrl + '/itens';
 
+    findAll(): Observable<ItemListModel[]> {
+        return this.http.get<ItemListModel[]>(this.resourceUrl);
+    }
+
     findById(id: number): Observable<ItemModel> {
         return this.http.get<ItemModel>(this.resourceUrl + '/' + id);
     }
 
-    findAll(): Observable<ItemListModel[]> {
-        return this.http.get<ItemListModel[]>(this.resourceUrl);
+    fillDropdown(): Observable<SelectItem[]>{
+        return this.http.get<SelectItem[]>(this.resourceUrl + '/dropdown')
     }
 
     insert(entity: ItemModel): Observable<ItemModel> {

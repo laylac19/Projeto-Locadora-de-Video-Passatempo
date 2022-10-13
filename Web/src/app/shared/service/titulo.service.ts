@@ -16,6 +16,10 @@ export class TituloService {
 
     resourceUrl = environment.apiUrl + '/titulos';
 
+    findAll(): Observable<TituloListModel[]> {
+        return this.http.get<TituloListModel[]>(this.resourceUrl);
+    }
+
     findById(id: number): Observable<TituloModel> {
         return this.http.get<TituloModel>(this.resourceUrl + '/' + id);
     }
@@ -24,13 +28,13 @@ export class TituloService {
         return this.http.get<SelectItem[]>(this.resourceUrl + '/dropdown')
     }
 
-    findAll(): Observable<TituloListModel[]> {
-        return this.http.get<TituloListModel[]>(this.resourceUrl);
-    }
-
     insert(entity: TituloModel): Observable<TituloModel> {
         return this.http.post<TituloModel>(this.resourceUrl, entity);
     }
+
+    // insertCastMovie(idTiulo: number, idAtor: number): Observable<TituloModel> {
+    //     return this.http.post<TituloModel>(this.resourceUrl + '/' + idTiulo + '/' + idAtor);
+    // }
 
     update(entity: TituloModel): Observable<TituloModel> {
         return this.http.put<TituloModel>(this.resourceUrl, entity);
