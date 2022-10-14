@@ -17,11 +17,11 @@
                 <span class="item">
                     <label class="campo-form">Categoria</label>
                     <p-dropdown formControlName="idCategoria" [filter]="true" [options]="categoriasDropDown"
-                                placeholder="Selecione"
+                                placeholder="Selecione a Categoria"
                                 appendTo="body">
                         <ng-template let-item pTemplate="item">
                             <div class="ui-helper-clearfix div-itens">
-                                <div class="place-categoria">{{item.label}}</div>
+                                <div class="place-drop">{{item.label}}</div>
                             </div>
                         </ng-template>
                     </p-dropdown>
@@ -30,7 +30,7 @@
             <div class="field col-4">
                 <span class="item">
                     <label class="campo-form">Classe</label>
-                    <p-dropdown formControlName="idClasse" [options]="classesDropDown" placeholder="Selecione"
+                    <p-dropdown formControlName="idClasse" [options]="classesDropDown" placeholder="Selecione a Classe"
                                 appendTo="body" class="ui-fluid">
                     </p-dropdown>
                 </span>
@@ -38,16 +38,16 @@
         </div>
         <div class="field col-12">
             <span class="item">
-                <label class="campo-form">Diretor</label>
-                <p-dropdown formControlName="idCategoria" [filter]="true" [options]="diretoresDropDown"
-                            placeholder="Selecione"
-                            appendTo="body">
-                        <ng-template let-item pTemplate="item">
-                            <div class="ui-helper-clearfix div-itens">
-                                <div class="place-drop">{{item.label}}</div>
-                            </div>
-                        </ng-template>
-                </p-dropdown>
+                <label class="campo-form">Diretor(a)</label>
+               <p-dropdown formControlName="idDiretor" [filter]="true" [options]="diretoresDropDown"
+                           placeholder="Selecione o Diretor(a)"
+                           appendTo="body">
+                   <ng-template let-item pTemplate="item">
+                       <div class="ui-helper-clearfix div-itens">
+                           <div class="place-drop">{{item.label}}</div>
+                       </div>
+                   </ng-template>
+               </p-dropdown>
             </span>
         </div>
         <div class="field col-12">
@@ -63,20 +63,15 @@
                         <div class="field acordion col-8">
                             <span class="item">
                                 <label class="campo-form">Nome</label>
-                                <p-dropdown [options]="atoresDropDown" [(ngModel)]="atorSelecionado" optionLabel="name"
-                                            [filter]="true" filterBy="name" [showClear]="true"
-                                            placeholder="Selecione">
-                                    <ng-template pTemplate="selectedItem">
-                                        <div class="country-item country-item-value" *ngIf="atorSelecionado">
-                                            <div>{{atorSelecionado}}</div>
-                                        </div>
-                                    </ng-template>
-                                    <ng-template let-atores pTemplate="item">
-                                        <div class="country-item">
-                                            <div>{{atores.name}}</div>
-                                        </div>
-                                    </ng-template>
-                                </p-dropdown>
+                                <p-dropdown formControlName="idAtor" [filter]="true" [options]="atoresDropDown"
+                                            placeholder="Selecione o Elenco"
+                                            appendTo="body">
+                                   <ng-template let-item pTemplate="item">
+                                       <div class="ui-helper-clearfix div-itens">
+                                           <div class="place-drop">{{item.label}}</div>
+                                       </div>
+                                   </ng-template>
+                               </p-dropdown>
                             </span>
                         </div>
                         <div class="field button col-4">

@@ -4,6 +4,9 @@ import {TituloModel} from "../../../../model/titulo.model";
 import {TituloService} from "../../../../shared/service/titulo.service";
 import {ColunaModel} from "../../../../model/util/coluna.model";
 import {SelectItem} from "primeng/api";
+import {ClasseService} from "../../../../shared/service/classe.service";
+import {DiretorService} from "../../../../shared/service/diretor.service";
+import {AtorService} from "../../../../shared/service/ator.service";
 
 @Component({
     selector: 'app-titulo',
@@ -13,6 +16,7 @@ import {SelectItem} from "primeng/api";
 export class TituloComponent implements OnInit {
 
     public colunas: ColunaModel[] = [];
+
     public categoriasDropDown: SelectItem[];
     public classesDropDown: SelectItem[];
     public diretoresDropDown: SelectItem[];
@@ -22,7 +26,6 @@ export class TituloComponent implements OnInit {
     public novoTituloFilme: TituloModel;
 
     public listarTitulos: boolean = false;
-    public atorSelecionado: string;
 
 
     @Input() tituloFilmeModel: TituloModel;
@@ -30,13 +33,17 @@ export class TituloComponent implements OnInit {
 
     constructor(
         private builder: FormBuilder,
-        private tituloService: TituloService
+        private tituloService: TituloService,
+        private classeService: ClasseService,
+        private diretorService: DiretorService,
+        private atorService: AtorService
     ) {
     }
 
     ngOnInit(): void {
         this.novoFormulario();
         this.colunasTabelaElenco();
+        this.preencherDropdowns();
     }
 
     public colunasTabelaElenco(): void {
@@ -44,6 +51,30 @@ export class TituloComponent implements OnInit {
             new ColunaModel('elenco', 'Elenco'),
             new ColunaModel('acoes', 'Ações', '132px')
         ]
+    }
+
+    public preencherDropdowns(): void {
+        this.dropdownClasses();
+        this.dropdownDiretores();
+        this.dropdownAtores();
+    }
+
+    public dropdownClasses(): void {
+        this.classeService.fillDropdown().subscribe((data)=>{
+            this.classesDropDown = data;
+        });
+    }
+
+    public dropdownDiretores(): void {
+        this.diretorService.fillDropdown().subscribe((data)=>{
+            this.diretoresDropDown = data;
+        });
+    }
+
+    public dropdownAtores(): void {
+        this.atorService.fillDropdown().subscribe((data)=>{
+            this.atoresDropDown = data;
+        });
     }
 
     public novoFormulario(): void {
@@ -55,7 +86,7 @@ export class TituloComponent implements OnInit {
             idCategoria: ['', [Validators.required]],
             idClasse: ['', [Validators.required]],
             idDiretor: ['', [Validators.required]],
-            idAtores: ['', [Validators.required]]
+            idAtor: ['', [Validators.required]]
         });
     }
 
