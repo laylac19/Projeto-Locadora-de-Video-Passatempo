@@ -26,6 +26,7 @@ export class TituloComponent implements OnInit {
     public novoTituloFilme: TituloModel;
 
     public listarTitulos: boolean = false;
+    public listarElenco: boolean = false;
 
 
     @Input() tituloFilmeModel: TituloModel;
@@ -118,5 +119,9 @@ export class TituloComponent implements OnInit {
     public fecharForm(): void {
         this.formTituloFilme.reset();
         this.resForm.emit();
+    }
+
+    public adicionarMembroElenco(id?: number): void {
+        console.log(id);
     }
 }

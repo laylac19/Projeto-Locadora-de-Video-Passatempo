@@ -32,7 +32,7 @@ export class TituloService {
         return this.http.post<TituloModel>(this.resourceUrl, entity);
     }
 
-    // insertCastMovie(idTiulo: number, idAtor: number): Observable<TituloModel> {
+    // insertCastMovie(idTiulo: number, idAtor: number): Observable<void> {
     //     return this.http.post<TituloModel>(this.resourceUrl + '/' + idTiulo + '/' + idAtor);
     // }
 

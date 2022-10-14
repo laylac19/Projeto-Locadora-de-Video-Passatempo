@@ -76,10 +76,12 @@
                         </div>
                         <div class="field button col-4">
                             <button type="button" pButton icon="pi pi-plus" label="Adicionar"
-                                    class="button-action ui-button-secondary mr-3"></button>
+                                    (click)="adicionarMembroElenco()"
+                                    class="button-action ui-button-secondary mr-3">
+                            </button>
                         </div>
                     </div>
-                    <div class="item-pagina tabela">
+                    <div class="item-pagina tabela pt-1">
                         <p-table [columns]="colunas" [paginator]="true" [rows]="7" [responsive]="true"
                                  sortMode="multiple">
                             <ng-template pTemplate="header" let-colunas>
