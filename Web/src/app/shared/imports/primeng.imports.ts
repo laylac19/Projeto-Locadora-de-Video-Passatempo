@@ -22,6 +22,7 @@ import {CardModule} from "primeng/card";
 import {MultiSelectModule} from "primeng/multiselect";
 import {AutoCompleteModule} from "primeng/autocomplete";
 import {DropdownModule} from "primeng/dropdown";
+import {TabViewModule} from "primeng/tabview";
 
 
 export const PRIMENG_IMPORTS: any = [
@@ -50,5 +51,6 @@ export const PRIMENG_IMPORTS: any = [
     CardModule,
     MultiSelectModule,
     AutoCompleteModule,
-    DropdownModule
+    DropdownModule,
+    TabViewModule
 ];

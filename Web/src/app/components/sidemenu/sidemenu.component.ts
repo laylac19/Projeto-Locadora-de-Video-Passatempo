@@ -27,8 +27,8 @@ export class SidemenuComponent {
     ];
 
     @Input() public opcoesAtendimentoCliente: OpcaoMenuModel[] = [
-        new OpcaoMenuModel('bi bi-person-plus', 'Cadastrar Clientes', 'Cadastrar Itens',
-            () => this.router.navigateByUrl('/Filmes')),
+        new OpcaoMenuModel('bi bi-person-plus', 'Cadastrar Clientes', 'Cadastrar Clientes',
+            () => this.router.navigateByUrl('/Clientes')),
     ];
 
 
