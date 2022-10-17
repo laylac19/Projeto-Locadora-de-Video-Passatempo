@@ -1,4 +1,4 @@
 export class DiretorListModel {
-    id: number;
-    nomeDiretor: string;
+    public id: number;
+    public nomeDiretor: string;
 }

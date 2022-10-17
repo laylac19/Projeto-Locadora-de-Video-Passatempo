@@ -4,6 +4,7 @@ import {environment} from "../../../environments/environment";
 import {Observable} from "rxjs";
 import {AtorModel} from "../../model/ator.model";
 import {AtorListModel} from "../../model/ator-list.model";
+import {SelectItem} from "primeng/api";
 
 @Injectable({
     providedIn: 'root'
@@ -15,12 +16,16 @@ export class AtorService {
 
     resourceUrl = environment.apiUrl + '/atores';
 
+    findAll(): Observable<AtorListModel[]> {
+        return this.http.get<AtorListModel[]>(this.resourceUrl);
+    }
+
     findById(id: number): Observable<AtorModel> {
         return this.http.get<AtorModel>(this.resourceUrl + '/' + id);
     }
 
-    findAll(): Observable<AtorListModel[]> {
-        return this.http.get<AtorListModel[]>(this.resourceUrl);
+    fillDropdown(): Observable<SelectItem[]>{
+        return this.http.get<SelectItem[]>(this.resourceUrl + '/dropdown')
     }
 
     insert(entity: AtorModel): Observable<AtorModel> {

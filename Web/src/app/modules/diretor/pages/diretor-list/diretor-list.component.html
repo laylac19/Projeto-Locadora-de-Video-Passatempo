@@ -1,4 +1,4 @@
-<div class="container col-12 flex justify-content-star">
+<div class="container col-12 flex">
     <div class="item-pagina col-12">
         <span class="titulo">Diretores</span>
     </div>
@@ -13,11 +13,13 @@
         </button>
     </div>
 
-    <div class="item-pagina col-12 flex">
-        <p-table [columns]="colunas" [value]="listaDiretores" [paginator]="true" [rows]="10" [responsive]="true" sortMode="multiple">
+    <div class="item-pagina tabela">
+        <p-table [columns]="colunas" [value]="listaDiretores" [paginator]="true" [rows]="10" [responsive]="true"
+                 sortMode="multiple">
             <ng-template pTemplate="header" let-colunas>
                 <tr>
-                    <th id="titulo-colunas" *ngFor="let col of colunas" [pSortableColumn]="col.field">
+                    <th id="titulo-colunas" *ngFor="let col of colunas" [pSortableColumn]="col.field"
+                        [style]="'width:'+ col.width">
                         {{col.header}}
                         <ng-container>
                             <p-sortIcon [field]="col.field"></p-sortIcon>
@@ -34,7 +36,7 @@
                         </ng-container>
 
                         <ng-container *ngIf="col.field === 'acoes' ">
-                            <div class="flex justify-content-center p-0">
+                            <div class="column-action flex justify-content-evenly">
                                 <button pButton type="button"
                                         icon="pi pi-pencil"
                                         class="button-action ui-button-success button-save-new"
@@ -57,6 +59,7 @@
         </p-table>
     </div>
 </div>
-<p-dialog [(visible)]="display" header="{{tituloModal}}" [modal]="true" [contentStyle]="{'max-height':'100%'}" (onHide)="resetarForm()">
+<p-dialog [(visible)]="display" header="{{tituloModal}}" [modal]="true" [contentStyle]="{'max-height':'100%'}"
+          (onHide)="resetarForm()">
     <app-diretor [diretorModel]="diretor" (resForm)="fecharModal()"></app-diretor>
 </p-dialog>

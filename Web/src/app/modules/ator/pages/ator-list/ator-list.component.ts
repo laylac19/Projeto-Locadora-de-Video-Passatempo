@@ -1,12 +1,12 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {ColunaModel} from "../../../../model/coluna.model";
 import {AtorModel} from "../../../../model/ator.model";
 import {AtorComponent} from "../ator/ator.component";
-import {TituloModalEnum} from "../../../../model/titulo-modal-enum.model";
+import {TituloModalEnum} from "../../../../model/util/titulo-modal-enum.model";
 import {AtorListModel} from "../../../../model/ator-list.model";
 import {AtorService} from "../../../../shared/service/ator.service";
 import {EntidadeUtil} from "../../../../shared/util/entidade-util";
 import {ConfirmationService} from "primeng/api";
+import {ColunaModel} from "../../../../model/util/coluna.model";
 
 @Component({
     selector: 'app-ator-list',
@@ -15,12 +15,11 @@ import {ConfirmationService} from "primeng/api";
 })
 export class AtorListComponent implements OnInit {
 
-    colunas: ColunaModel[] = [];
-    listaAtor: AtorListModel[] = [];
+    public colunas: ColunaModel[] = [];
+    public listaAtor: AtorListModel[] = [];
+    public ator: AtorModel;
 
-    ator: AtorModel;
-
-    tituloModal: string;
+    public tituloModal: string;
 
     @Input() display = false;
     @ViewChild(AtorComponent) formAtor: AtorComponent;
@@ -33,17 +32,17 @@ export class AtorListComponent implements OnInit {
 
     ngOnInit(): void {
         this.colunasTabela();
-        this.buscarAtor();
+        this.listarTodosAtores();
     }
 
     public colunasTabela(): void {
         this.colunas = [
             new ColunaModel('nomeAtor', 'Nome Ator'),
-            new ColunaModel('acoes', 'Ações','132px')
+            new ColunaModel('acoes', 'Ações', '132px')
         ]
     }
 
-    public buscarAtor(): void {
+    public listarTodosAtores(): void {
         this.atorService.findAll().subscribe((data) => {
             this.listaAtor = data;
         })
@@ -63,7 +62,7 @@ export class AtorListComponent implements OnInit {
 
     public desativarAtor(id: number): void {
         this.atorService.delete(id).subscribe(() => {
-            this.buscarAtor();
+            this.listarTodosAtores();
         });
     }
 
@@ -87,7 +86,7 @@ export class AtorListComponent implements OnInit {
 
     public fecharModal(): void {
         if (this.formAtor.listarAtores) {
-            this.buscarAtor();
+            this.listarTodosAtores();
         }
         this.display = false;
     }

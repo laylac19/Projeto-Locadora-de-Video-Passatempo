@@ -1,8 +1,8 @@
 div.sidemenu {
-    background-color: var(--cor-tema-blue-munsell);
+    background-color: var(--cor-tema-raisin-black);
     height: 100%;
-    border-right: 2px dashed var(--cor-tema-bittersweet);
-    width: 250px;
+    border-right: 5px dashed var(--cor-tema-bittersweet);
+    width: 270px;
 
     &.invisivel {
         display: none;
@@ -10,5 +10,28 @@ div.sidemenu {
 }
 
 div.opcao-menu {
+    padding: 8px;
+}
+
+.button-action-side {
+    width: 80%;
+}
+
+span.titulo-caso-side {
+    font-size: 13pt;
+    font-family: 'Kreon', Verdana, sans-serif;
+    font-weight: 300;
+    color: var(--cor-tema-beige);
+}
+
+.icon {
+    color: var(--cor-tema-beige);
+    text-align: center;
+    font-size: 12pt;
+}
+
+div.titulo-caso-uso {
+    display: flex;
+    justify-content: space-around;
     padding: 8px;
 }

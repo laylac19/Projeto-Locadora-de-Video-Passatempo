@@ -1,12 +1,12 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {ColunaModel} from "../../../../model/coluna.model";
 import {ClasseModel} from "../../../../model/classe.model";
 import {ClasseComponent} from "../classe/classe.component";
-import {TituloModalEnum} from "../../../../model/titulo-modal-enum.model";
+import {TituloModalEnum} from "../../../../model/util/titulo-modal-enum.model";
 import {ClasseService} from "../../../../shared/service/classe.service";
 import {ConfirmationService} from "primeng/api";
 import {ClasseListModel} from "../../../../model/classe-list.model";
 import {EntidadeUtil} from "../../../../shared/util/entidade-util";
+import {ColunaModel} from "../../../../model/util/coluna.model";
 
 @Component({
     selector: 'app-classe-list',
@@ -15,12 +15,12 @@ import {EntidadeUtil} from "../../../../shared/util/entidade-util";
 })
 export class ClasseListComponent implements OnInit {
 
-    colunas: ColunaModel[] = [];
-    listaClasse: ClasseListModel[] = [];
+    public colunas: ColunaModel[] = [];
+    public listaClasse: ClasseListModel[] = [];
 
-    classe: ClasseModel;
+    public classe: ClasseModel;
 
-    tituloModal: string;
+    public tituloModal: string;
 
     @Input() display = false;
     @ViewChild(ClasseComponent) formClasse: ClasseComponent;
@@ -41,11 +41,11 @@ export class ClasseListComponent implements OnInit {
             new ColunaModel('nomeClasse', 'Nome Classe'),
             new ColunaModel('valor', 'Valor'),
             new ColunaModel('prazoDevolucao', 'Prazo De Devolução'),
-            new ColunaModel('acoes', 'Ações')
+            new ColunaModel('acoes', 'Ações', '132px')
         ]
     }
 
-    campoData(coluna: string): boolean {
+    campoPrazoDevolucao(coluna: string): boolean {
         return coluna === 'prazoDevolucao';
     }
 
@@ -56,7 +56,7 @@ export class ClasseListComponent implements OnInit {
     public buscarClasse(): void {
         this.classeService.findAll().subscribe((data) => {
             this.listaClasse = data;
-        } )
+        })
     }
 
     public novaClasse(): void {
@@ -84,7 +84,7 @@ export class ClasseListComponent implements OnInit {
     public confirmarDialog(id: number, alterarSituacao: () => void, entidade: EntidadeUtil): void {
         this.confirmMessage.confirm({
             header: 'Confirmação',
-            message: 'Deseja desativar esse(a) ' + entidade.descricao + ' ?' ,
+            message: 'Deseja desativar esse(a) ' + entidade.descricao + ' ?',
             acceptLabel: 'Sim',
             rejectLabel: 'Cancelar',
             accept: alterarSituacao

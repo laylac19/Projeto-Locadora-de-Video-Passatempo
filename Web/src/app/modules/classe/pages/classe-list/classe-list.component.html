@@ -17,7 +17,8 @@
         <p-table [columns]="colunas" [value]="listaClasse" [paginator]="true" [rows]="6" [responsive]="true" sortMode="multiple">
             <ng-template pTemplate="header" let-colunas>
                 <tr>
-                    <th id="titulo-colunas" *ngFor="let col of colunas" [pSortableColumn]="col.field">
+                    <th id="titulo-colunas" *ngFor="let col of colunas" [pSortableColumn]="col.field"
+                        [style]="'width:'+ col.width">
                         {{col.header}}
                         <ng-container>
                             <p-sortIcon [field]="col.field"></p-sortIcon>
@@ -29,17 +30,17 @@
             <ng-template pTemplate="body" let-rowData let-colunas="columns">
                 <tr>
                     <td *ngFor="let col of colunas">
-                        <ng-container *ngIf="col.field!='acoes' && !campoData(col.field) && !campoValor(col.field)">
+                        <ng-container *ngIf="col.field!='acoes' && !campoPrazoDevolucao(col.field) && !campoValor(col.field)">
                             {{rowData[col.field]}}
                         </ng-container>
-                        <ng-container *ngIf="campoData(col.field)">
-                            {{rowData[col.field]| date: "dd/MM/yyyy"}}
+                        <ng-container *ngIf="campoPrazoDevolucao(col.field)">
+                            {{rowData[col.field] + ' dia(s)'}}
                         </ng-container>
                         <ng-container *ngIf="campoValor(col.field)">
-                            {{ 'R$ '+ rowData[col.field] + ',00'}}
+                            {{ 'R$ '+ rowData[col.field]}}
                         </ng-container>
                         <ng-container *ngIf="col.field === 'acoes' ">
-                            <div class="column-action">
+                            <div class="column-action flex justify-content-evenly">
                                 <button pButton type="button"
                                         icon="pi pi-pencil"
                                         class="button-action ui-button-success button-save-new"

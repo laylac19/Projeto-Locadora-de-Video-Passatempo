@@ -17,7 +17,7 @@
             <column name="valor" type="DOUBLE">
                 <constraints nullable="false"/>
             </column>
-            <column name="prado_devolucao" type="DATETIME">
+            <column name="prado_devolucao" type="INT">
                 <constraints nullable="false"/>
             </column>
             <column name="ativo" type="BOOLEAN"/>

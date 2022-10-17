@@ -10,11 +10,10 @@ import {ClasseService} from "../../../../shared/service/classe.service";
 })
 export class ClasseComponent implements OnInit {
 
-    formClasse: FormGroup;
-    novaClasse: ClasseModel;
-    dataDevolucao: Date = new Date();
+    public formClasse: FormGroup;
+    public novaClasse: ClasseModel;
 
-    listarClasses: boolean = false;
+    public listarClasses: boolean = false;
 
     @Input() classeModel: ClasseModel;
     @Output() resForm: EventEmitter<boolean> = new EventEmitter();
@@ -34,7 +33,7 @@ export class ClasseComponent implements OnInit {
             id: [null],
             nomeClasse: ['', [Validators.required], [Validators.minLength(2)]],
             valor: [0, [Validators.required]],
-            prazoDevolucao: [null, [Validators.required]]
+            prazoDevolucao: ['', [Validators.required]]
         });
     }
 
@@ -55,7 +54,6 @@ export class ClasseComponent implements OnInit {
         this.service.findById(id).subscribe({
                 next: (response) => {
                     this.formClasse.patchValue(response);
-
                 },
                 error: (error) => {
                     console.log(error);

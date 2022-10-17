@@ -4,13 +4,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.io.Serializable;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "classe")
-public class Classe {
+public class Classe implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_classe")
     @SequenceGenerator(name = "seq_classe", sequenceName = "seq_classe", allocationSize = 1)
@@ -24,7 +24,7 @@ public class Classe {
     private Double valor;
 
     @Column(name = "prado_devolucao", nullable = false)
-    private Date prazoDevolucao;
+    private Integer prazoDevolucao;
 
     @Column(name = "ativo")
     private Boolean ativo;

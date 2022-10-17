@@ -2,6 +2,7 @@ package com.locadora.projeto.service;
 
 import com.locadora.projeto.service.dto.ClasseDTO;
 import com.locadora.projeto.service.dto.ClasseListDTO;
+import com.locadora.projeto.service.dto.DropdownDTO;
 
 import java.util.List;
 
@@ -14,4 +15,6 @@ public interface ClasseService {
     ClasseDTO save(ClasseDTO dto);
 
     void delete(Integer id);
+
+    List<DropdownDTO> searchDropdown();
 }

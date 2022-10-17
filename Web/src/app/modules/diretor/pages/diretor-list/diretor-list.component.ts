@@ -1,12 +1,12 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {ColunaModel} from "../../../../model/coluna.model";
 import {DiretorModel} from "../../../../model/diretor.model";
 import {DiretorComponent} from "../diretor/diretor.component";
-import {TituloModalEnum} from "../../../../model/titulo-modal-enum.model";
+import {TituloModalEnum} from "../../../../model/util/titulo-modal-enum.model";
 import {DiretorListModel} from "../../../../model/diretor-list.model";
 import {DiretorService} from "../../../../shared/service/diretor.service";
 import {ConfirmationService} from "primeng/api";
 import {EntidadeUtil} from "../../../../shared/util/entidade-util";
+import {ColunaModel} from "../../../../model/util/coluna.model";
 
 @Component({
     selector: 'app-diretor-list',
@@ -15,13 +15,12 @@ import {EntidadeUtil} from "../../../../shared/util/entidade-util";
 })
 export class DiretorListComponent implements OnInit {
 
-    colunas: ColunaModel[] = [];
-    listaDiretores: DiretorListModel[] = [];
+    public colunas: ColunaModel[] = [];
+    public listaDiretores: DiretorListModel[] = [];
 
-    diretor: DiretorModel;
+    public diretor: DiretorModel;
 
-    tituloModal: string;
-
+    public tituloModal: string;
 
     @Input() display = false;
     @ViewChild(DiretorComponent) formDiretor: DiretorComponent;
@@ -40,14 +39,14 @@ export class DiretorListComponent implements OnInit {
     public colunasTabela(): void {
         this.colunas = [
             new ColunaModel('nomeDiretor', 'Nome Diretor'),
-            new ColunaModel('acoes', 'Ações')
+            new ColunaModel('acoes', 'Ações', '132px')
         ]
     }
 
     public buscarDiretor(): void {
         this.diretorService.findAll().subscribe((data) => {
             this.listaDiretores = data;
-        } )
+        })
     }
 
     public novoDiretor(): void {
@@ -75,7 +74,7 @@ export class DiretorListComponent implements OnInit {
     public confirmarDialog(id: number, alterarSituacao: () => void, entidade: EntidadeUtil): void {
         this.confirmMessage.confirm({
             header: 'Confirmação',
-            message: 'Deseja desativar esse(a) ' + entidade.descricao + ' ?' ,
+            message: 'Deseja desativar esse(a) ' + entidade.descricao + ' ?',
             acceptLabel: 'Sim',
             rejectLabel: 'Cancelar',
             accept: alterarSituacao
@@ -87,7 +86,7 @@ export class DiretorListComponent implements OnInit {
     }
 
     public fecharModal(): void {
-        if(this.formDiretor.listarDiretores){
+        if (this.formDiretor.listarDiretores) {
             this.buscarDiretor();
         }
         this.display = false;

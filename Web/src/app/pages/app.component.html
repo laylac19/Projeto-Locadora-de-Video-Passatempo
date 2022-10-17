@@ -1,0 +1,12 @@
+<div class="aplicacao">
+    <app-topbar [configuracaoMenuLateral]="configuracaoMenuLateral"></app-topbar>
+    <div class="corpo-aplicacao">
+        <app-sidemenu [configuracaoMenuLateral]="configuracaoMenuLateral"></app-sidemenu>
+        <div class="conteudo-principal">
+            <span *ngIf="casoUso === 'Controle'">
+                <app-controle-acervo></app-controle-acervo>
+            </span>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,139 @@
+<div class="form p-fluid p-">
+    <form [formGroup]="formTituloFilme" class="ui-fluid">
+        <div class="field col-12">
+            <span class="item">
+                <label class="campo-form" for="inputNomeTitulo">Nome Titulo</label>
+                <input type="text" id="inputNomeTitulo" pInputText formControlName="nome">
+            </span>
+        </div>
+        <div class="area flex">
+            <div class="field col-4">
+                <span class="item">
+                    <label class="campo-form" for="inputAno">Ano</label>
+                    <input type="text" id="inputAno" pInputText formControlName="ano">
+                </span>
+            </div>
+            <div class="field col-4">
+                <span class="item">
+                    <label class="campo-form">Categoria</label>
+                    <p-dropdown formControlName="idCategoria" [filter]="true" [options]="categoriasDropDown"
+                                placeholder="Selecione a Categoria"
+                                appendTo="body">
+                        <ng-template let-item pTemplate="item">
+                            <div class="ui-helper-clearfix div-itens">
+                                <div class="place-drop">{{item.label}}</div>
+                            </div>
+                        </ng-template>
+                    </p-dropdown>
+                </span>
+            </div>
+            <div class="field col-4">
+                <span class="item">
+                    <label class="campo-form">Classe</label>
+                    <p-dropdown formControlName="idClasse" [options]="classesDropDown" placeholder="Selecione a Classe"
+                                appendTo="body" class="ui-fluid">
+                    </p-dropdown>
+                </span>
+            </div>
+        </div>
+        <div class="field col-12">
+            <span class="item">
+                <label class="campo-form">Diretor(a)</label>
+               <p-dropdown formControlName="idDiretor" [filter]="true" [options]="diretoresDropDown"
+                           placeholder="Selecione o Diretor(a)"
+                           appendTo="body">
+                   <ng-template let-item pTemplate="item">
+                       <div class="ui-helper-clearfix div-itens">
+                           <div class="place-drop">{{item.label}}</div>
+                       </div>
+                   </ng-template>
+               </p-dropdown>
+            </span>
+        </div>
+        <div class="field col-12">
+            <span class="item">
+                <label class="campo-form" for="inputAno">Sinopse</label>
+                <textarea rows="5" cols="30" pInputTextarea formControlName="sinopse"></textarea>
+            </span>
+        </div>
+        <div class="field-continuar">
+            <button pButton type="button"
+                    icon="pi pi-plus"
+                    class="button-action ui-button-success button-save-new"
+                    iconPos="left"
+                    label="Continuar e Adicionar Elenco">
+            </button>
+        </div>
+        <div class="field-acordion col-12">
+            <p-accordion>
+                <p-accordionTab header="Elenco">
+                    <div class="area-acordion flex col-12">
+                        <div class="field acordion col-8">
+                            <span class="item">
+                                <label class="campo-form">Nome</label>
+                                <p-dropdown formControlName="idAtor" [filter]="true" [options]="atoresDropDown"
+                                            placeholder="Selecione o Elenco"
+                                            appendTo="body">
+                                   <ng-template let-item pTemplate="item">
+                                       <div class="ui-helper-clearfix div-itens">
+                                           <div class="place-drop">{{item.label}}</div>
+                                       </div>
+                                   </ng-template>
+                               </p-dropdown>
+                            </span>
+                        </div>
+                        <div class="field button col-4">
+                            <button type="button" pButton icon="pi pi-plus" label="Adicionar"
+                                    (click)="adicionarMembroElenco()"
+                                    class="button-action ui-button-secondary mr-3">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="item-pagina tabela pt-1">
+                        <p-table [columns]="colunas" [paginator]="true" [rows]="7" [responsive]="true"
+                                 sortMode="multiple">
+                            <ng-template pTemplate="header" let-colunas>
+                                <tr>
+                                    <th id="titulo-colunas" *ngFor="let col of colunas" [pSortableColumn]="col.field"
+                                        [style]="'width:'+ col.width">
+                                        {{col.header}}
+                                        <ng-container>
+                                            <p-sortIcon [field]="col.field"></p-sortIcon>
+                                        </ng-container>
+                                    </th>
+                                </tr>
+                            </ng-template>
+
+                            <ng-template pTemplate="body" let-rowData let-colunas="columns">
+                                <tr>
+                                    <td *ngFor="let col of colunas">
+                                        <ng-container *ngIf="col.field != 'acoes' ">
+                                            {{rowData[col.field]}}
+                                        </ng-container>
+
+                                        <ng-container *ngIf="col.field === 'acoes' ">
+                                            <div class="column-action flex justify-content-evenly">
+                                                <button pButton type="button"
+                                                        icon="pi pi-trash"
+                                                        class="button-action ui-button-success button-save-new"
+                                                        iconPos="left"
+                                                        pTooltip="Retirar">
+                                                </button>
+                                            </div>
+                                        </ng-container>
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </p-accordionTab>
+            </p-accordion>
+        </div>
+    </form>
+</div>
+<div class="action-form">
+    <button type="button" pButton icon="pi pi-times" label="Cancelar" (click)="fecharForm()"
+            class="button-action ui-button-secondary mr-3"></button>
+    <button type="button" pButton icon="pi pi-check" label="Salvar" (click)="salvarFormulario()"
+            class="button-action button-save-new"></button>
+</div>
