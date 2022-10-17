@@ -29,6 +29,10 @@ export class TituloService {
         return this.http.get<SelectItem[]>(this.resourceUrl + '/dropdown')
     }
 
+    fillMovieCategoryDropdown(): Observable<SelectItem[]>{
+        return this.http.get<SelectItem[]>(this.resourceUrl + '/dropdown-categoria')
+    }
+
     insert(entity: TituloModel): Observable<TituloModel> {
         return this.http.post<TituloModel>(this.resourceUrl, entity);
     }
