@@ -32,9 +32,9 @@ export class TituloService {
         return this.http.post<TituloModel>(this.resourceUrl, entity);
     }
 
-    // insertCastMovie(idTiulo: number, idAtor: number): Observable<void> {
-    //     return this.http.post<TituloModel>(this.resourceUrl + '/' + idTiulo + '/' + idAtor);
-    // }
+    insertCastMovie(idTiulo: number, idAtor: number): Observable<TituloModel> {
+        return this.http.post<TituloModel>(this.resourceUrl + '/' + idTiulo + '/' + idAtor);
+    }
 
     update(entity: TituloModel): Observable<TituloModel> {
         return this.http.put<TituloModel>(this.resourceUrl, entity);

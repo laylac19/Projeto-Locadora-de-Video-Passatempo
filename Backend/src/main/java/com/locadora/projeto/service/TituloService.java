@@ -3,6 +3,7 @@ package com.locadora.projeto.service;
 import com.locadora.projeto.service.dto.DropdownDTO;
 import com.locadora.projeto.service.dto.TituloDTO;
 import com.locadora.projeto.service.dto.TituloListDTO;
+import com.locadora.projeto.service.dto.VinculoEntidadeDTO;
 
 import java.util.List;
 
@@ -18,5 +19,5 @@ public interface TituloService {
 
     List<DropdownDTO> searchDropdown();
 
-    void salvarAtorTitulo(Integer idTitulo, Integer idAtor);
+    void salvarAtorTitulo(VinculoEntidadeDTO dto);
 }
