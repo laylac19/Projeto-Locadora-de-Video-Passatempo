@@ -13,7 +13,6 @@ import {TituloModalEnum} from "../../../../model/util/titulo-modal-enum.model";
     styleUrls: ['./socio-list.component.scss']
 })
 export class SocioListComponent implements OnInit {
-    public ativos: boolean = true;
 
     public colunas: ColunaModel[] = [];
     public listaSociosAtivos: ClienteListModel[] = [];
@@ -21,8 +20,10 @@ export class SocioListComponent implements OnInit {
     public socio: ClienteModel;
 
     public tituloModal: string;
+    public ativos: boolean = true;
 
     @Input() display = false;
+    @Input() public configuracaoListagem?: boolean = true;
     @ViewChild(ClienteFormComponent) formCliente: ClienteFormComponent;
 
     constructor(
@@ -33,7 +34,7 @@ export class SocioListComponent implements OnInit {
 
     ngOnInit(): void {
         this.colunasTabela();
-        // this.listarTodosAtores();
+        // this.listarSocios();
     }
 
     public colunasTabela(): void {
@@ -46,6 +47,15 @@ export class SocioListComponent implements OnInit {
             new ColunaModel('acoes', 'Ações', '132px')
         ]
     }
+
+    // public listarSocios(): void {
+    //     if(this.configuracaoListagem) {
+    //         this.listaSociosAtivos();
+    //         this.ativos;
+    //     }
+    //     this.listaSociosInativos();
+    //     this.ativos = false;
+    // }
 
     // public listarSociosAtivos(): void {
     //     this.clienteService.findAll().subscribe((data) => {

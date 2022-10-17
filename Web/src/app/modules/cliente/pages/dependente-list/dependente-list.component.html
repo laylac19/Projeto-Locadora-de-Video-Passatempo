@@ -1,5 +1,5 @@
 <div class="container col-12 flex">
-    <div class="item-pagina tabela">
+    <div class="item-pagina tabela" *ngIf="ativos">
         <div class="item-pagina col-12">
             <span class="titulo">Dependentes Ativos</span>
         </div>
@@ -45,7 +45,7 @@
             </ng-template>
         </p-table>
     </div>
-    <div class="item-pagina tabela">
+    <div class="item-pagina tabela" *ngIf="!ativos">
         <div class="item-pagina col-12">
             <span class="titulo">Dependentes Inativos</span>
         </div>

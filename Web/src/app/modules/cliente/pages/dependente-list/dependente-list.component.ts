@@ -13,17 +13,16 @@ import {TituloModalEnum} from "../../../../model/util/titulo-modal-enum.model";
     styleUrls: ['./dependente-list.component.scss']
 })
 export class DependenteListComponent implements OnInit {
-
-    public ativos: boolean = true;
-
     public colunas: ColunaModel[] = [];
     public listaDependentesAtivos: ClienteListModel[] = [];
     public listaDependentesInativos: ClienteListModel[] = [];
     public dependete: ClienteModel;
 
     public tituloModal: string;
+    public ativos: boolean = true;
 
     @Input() display = false;
+    @Input() public configuracaoListagem?: boolean = true;
     @ViewChild(ClienteFormComponent) formCliente: ClienteFormComponent;
 
     constructor(
@@ -34,14 +33,14 @@ export class DependenteListComponent implements OnInit {
 
     ngOnInit(): void {
         this.colunasTabela();
-        // this.listarTodosAtores();
+        // this.listarDependentes();
     }
 
     public colunasTabela(): void {
         this.colunas = [
             new ColunaModel('socio', 'Nome Sócio'),
             new ColunaModel('numInscricao', 'Nº Inscrição'),
-            new ColunaModel('nomeCliente', 'Nome Cliente'),
+            new ColunaModel('nomeCliente', 'Nome Dependente'),
             new ColunaModel('dtNascimento', 'Data Nascimento'),
             new ColunaModel('cpf', 'CPF'),
             new ColunaModel('telefone', 'Telefone'),
@@ -49,13 +48,22 @@ export class DependenteListComponent implements OnInit {
         ]
     }
 
-    // public listarSociosAtivos(): void {
+    // public listarDependentes(): void {
+    //     if(this.configuracaoListagem) {
+    //         this.listarDependentesAtivos();
+    //         this.ativos;
+    //     }
+    //     this.listarDependentesInativos();
+    //     this.ativos = false;
+    // }
+
+    // public listarDependentesAtivos(): void {
     //     this.clienteService.findAll().subscribe((data) => {
     //         this.listaSociosAtivos = data;
     //     })
     // }
     //
-    // public listarSociosinativos(): void {
+    // public listarDependentesInativos(): void {
     //     this.clienteService.findAll().subscribe((data) => {
     //         this.listaSociosInativos = data;
     //     })

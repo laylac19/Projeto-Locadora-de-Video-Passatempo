@@ -15,16 +15,16 @@
 
     <p-tabView>
         <p-tabPanel header="Sócios Ativos">
-            <app-socio-list></app-socio-list>
+            <app-socio-list [configuracaoListagem]="clienteAtivo"></app-socio-list>
         </p-tabPanel>
         <p-tabPanel header="Dependentes Ativos">
-            <app-dependente-list></app-dependente-list>
+            <app-dependente-list [configuracaoListagem]="clienteAtivo"></app-dependente-list>
         </p-tabPanel>
         <p-tabPanel header="Sócios Inativos">
-            <app-socio-list></app-socio-list>
+            <app-socio-list [configuracaoListagem]="clienteAtivo"></app-socio-list>
         </p-tabPanel>
         <p-tabPanel header="Dependentes Inativos">
-            <app-dependente-list></app-dependente-list>
+            <app-dependente-list [configuracaoListagem]="clienteAtivo"></app-dependente-list>
         </p-tabPanel>
     </p-tabView>
 </div>

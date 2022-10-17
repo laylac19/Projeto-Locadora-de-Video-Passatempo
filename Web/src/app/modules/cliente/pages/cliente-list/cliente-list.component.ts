@@ -2,6 +2,7 @@ import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {TituloModalEnum} from "../../../../model/util/titulo-modal-enum.model";
 import {ClienteFormComponent} from "../cliente-form/cliente-form.component";
 import {ClienteModel} from "../../../../model/cliente.model";
+import {SidemenuModel} from "../../../../shared/models/sidemenu.model";
 
 @Component({
     selector: 'app-cliente-list',
@@ -12,6 +13,7 @@ export class ClienteListComponent implements OnInit {
 
     public tituloModal: string;
     public cliente: ClienteModel;
+    public clienteAtivo: boolean = true;
 
     @Input() display = false;
     @ViewChild(ClienteFormComponent) formCliente: ClienteFormComponent;
