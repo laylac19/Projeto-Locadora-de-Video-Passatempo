@@ -18,8 +18,8 @@ export class TituloModalEnum {
     static readonly NOVO_ITEM = new TituloModalEnum(11, 'Novo Item');
     static readonly EDITAR_ITEM = new TituloModalEnum(12, 'Editar Item');
 
-    static readonly NOVO_CLIENTE = new TituloModalEnum(12, 'Novo Cliente');
-    static readonly EDITAR_CLIENTE = new TituloModalEnum(13, 'Editar Cliente');
+    static readonly NOVO_CLIENTE = new TituloModalEnum(13, 'Novo Cliente');
+    static readonly EDITAR_CLIENTE = new TituloModalEnum(14, 'Editar Cliente');
 
 
     static values = [

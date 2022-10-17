@@ -1,64 +1,62 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ClienteModel} from "../../../../model/cliente.model";
-import {AtorService} from "../../../../shared/service/ator.service";
 
 @Component({
-    selector: 'app-cliente',
-    templateUrl: './cliente.component.html',
-    styleUrls: ['./cliente.component.scss']
+    selector: 'app-cliente-form',
+    templateUrl: './cliente-form.component.html',
+    styleUrls: ['./cliente-form.component.scss']
 })
-export class ClienteComponent implements OnInit {
+export class ClienteFormComponent implements OnInit {
 
     public formCliente: FormGroup;
     public novoCliente: ClienteModel;
 
-    public listarCLientes: boolean = false
+    public listarClientes: boolean = false;
 
     @Input() clienteModel: ClienteModel;
     @Output() resForm: EventEmitter<boolean> = new EventEmitter();
 
-
     constructor(
         private builder: FormBuilder,
-        private service: AtorService,
     ) {
     }
 
     ngOnInit(): void {
+        this.novoFormulario();
     }
 
     public novoFormulario(): void {
         this.formCliente = this.builder.group({
             id: [null],
-            numInscricao: [0, [Validators.required]],
-            nomeCliente: ['', [Validators.required], [Validators.minLength(3)]],
+            numInscricao: ['', [Validators.required]],
+            nomeCliente: ['', [Validators.required], [Validators.minLength(2)]],
             dtNascimento: ['', [Validators.required]],
             sexo: ['', [Validators.required]],
             idTipoCliente: ['', [Validators.required]],
-            cpf: ['', [Validators.required], [Validators.minLength(11)], Validators.maxLength(11)],
-            endereco: ['', [Validators.required]],
-            telefone: ['', [Validators.required], [Validators.maxLength(11)]],
+            cpf: ['', [Validators.required], [Validators.maxLength(11)]],
+            endereco: ['', [Validators.required], [Validators.minLength(20)]],
+            telefone: ['', [Validators.required], [Validators.minLength(2)], [Validators.maxLength(11)]],
         });
     }
 
     // public salvarFormulario(): void {
-    //     this.novoAtor = this.formAtor.getRawValue();
-    //     this.service.insert(this.novoAtor).subscribe({
+    //     this.novaClasse = this.formClasse.getRawValue();
+    //     this.service.insert(this.novaClasse).subscribe({
     //         next: () => {
     //             this.fecharForm();
-    //             this.listarAtores = true;
+    //             this.listarClasses = true;
     //         },
     //         error: (error) => {
     //             console.log(error);
     //         }
-    //     });
+    //     })
     // }
     //
-    // public editarAtor(id: number): void {
+    // public editarForm(id: number): void {
     //     this.service.findById(id).subscribe({
     //             next: (response) => {
-    //                 this.formAtor.patchValue(response);
+    //                 this.formClasse.patchValue(response);
     //             },
     //             error: (error) => {
     //                 console.log(error);
