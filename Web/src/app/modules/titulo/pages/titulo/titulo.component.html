@@ -56,7 +56,15 @@
                 <textarea rows="5" cols="30" pInputTextarea formControlName="sinopse"></textarea>
             </span>
         </div>
-        <div class="field col-12">
+        <div class="field-continuar">
+            <button pButton type="button"
+                    icon="pi pi-plus"
+                    class="button-action ui-button-success button-save-new"
+                    iconPos="left"
+                    label="Continuar e Adicionar Elenco">
+            </button>
+        </div>
+        <div class="field-acordion col-12">
             <p-accordion>
                 <p-accordionTab header="Elenco">
                     <div class="area-acordion flex col-12">
@@ -120,7 +128,6 @@
                     </div>
                 </p-accordionTab>
             </p-accordion>
-
         </div>
     </form>
 </div>
