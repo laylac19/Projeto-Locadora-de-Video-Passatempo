@@ -1,9 +1,11 @@
 package com.locadora.projeto.web;
 
+import com.locadora.projeto.domain.enuns.CategoriaEnum;
 import com.locadora.projeto.service.TituloService;
 import com.locadora.projeto.service.dto.DropdownDTO;
 import com.locadora.projeto.service.dto.TituloDTO;
 import com.locadora.projeto.service.dto.TituloListDTO;
+import com.locadora.projeto.service.dto.VinculoEntidadeDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,10 +31,17 @@ public class TituloResource {
         TituloDTO dto = service.find(id);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
+
     @GetMapping("/dropdown")
     public ResponseEntity<List<DropdownDTO>> buscarDropdwon(){
         List<DropdownDTO> dto = service.searchDropdown();
         return new ResponseEntity<>(dto, HttpStatus.OK);
+    }
+
+    @GetMapping("/dropdown-categoria")
+    public ResponseEntity<List<DropdownDTO>> preencherCategoriaDropdown(){
+        List<DropdownDTO> dropdown = CategoriaEnum.dropdown();
+        return new ResponseEntity<>(dropdown, HttpStatus.OK);
     }
 
     @PostMapping
@@ -41,10 +50,9 @@ public class TituloResource {
         return new ResponseEntity<>(dto, HttpStatus.CREATED);
     }
 
-    @PostMapping("ator-titulo/{idTitulo}/{idAtor}")
-    public ResponseEntity<TituloDTO> salvarElencoTitulo(@PathVariable("idTitulo") Integer idTitulo,
-                                                    @PathVariable("idAtor") Integer idAtor){
-        service.salvarAtorTitulo(idTitulo, idAtor);
+    @PostMapping("ator-titulo")
+    public ResponseEntity<TituloDTO> salvarElencoTitulo(@RequestBody VinculoEntidadeDTO dto){
+        service.saveActorWithTitle(dto);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 

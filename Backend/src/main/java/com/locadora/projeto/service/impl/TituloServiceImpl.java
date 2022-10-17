@@ -8,6 +8,7 @@ import com.locadora.projeto.service.TituloService;
 import com.locadora.projeto.service.dto.DropdownDTO;
 import com.locadora.projeto.service.dto.TituloDTO;
 import com.locadora.projeto.service.dto.TituloListDTO;
+import com.locadora.projeto.service.dto.VinculoEntidadeDTO;
 import com.locadora.projeto.service.mapper.TituloMapper;
 import com.locadora.projeto.service.util.MensagemTituloUtil;
 import lombok.RequiredArgsConstructor;
@@ -55,11 +56,11 @@ public class TituloServiceImpl implements TituloService {
         repository.save(titulo);
     }
 
-    public void salvarAtorTitulo(Integer idTitulo, Integer idAtor){
+    public void saveActorWithTitle(VinculoEntidadeDTO dto){
         AtorTitulo entity = new AtorTitulo();
-        entity.setAtor(atorService.findByIdEntity(idAtor));
-        entity.setTitulo(findById(idTitulo));
-        entity.setIdTitulo(idTitulo);
-        entity.setIdAtor(idAtor);
+        entity.setAtor(atorService.findByIdEntity(dto.getId2()));
+        entity.setTitulo(findById(dto.getId1()));
+        entity.setIdTitulo(dto.getId1());
+        entity.setIdAtor(dto.getId2());
     }
 }

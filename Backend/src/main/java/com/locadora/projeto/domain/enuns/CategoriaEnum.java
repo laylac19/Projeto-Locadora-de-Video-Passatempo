@@ -1,7 +1,11 @@
 package com.locadora.projeto.domain.enuns;
 
+import com.locadora.projeto.service.dto.DropdownDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @Getter
@@ -39,4 +43,12 @@ public enum CategoriaEnum {
 
     private final Integer id;
     private final String nomeCategoria;
+
+    public static List<DropdownDTO> dropdown(){
+        List<DropdownDTO> lista = new ArrayList<>();
+        for (CategoriaEnum categoriaEnum : CategoriaEnum.values()){
+            lista.add(new DropdownDTO(categoriaEnum.getId(), categoriaEnum.getNomeCategoria()));
+        }
+        return lista;
+    }
 }
