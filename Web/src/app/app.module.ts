@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './pages/app/app.component';
+import {AppComponent} from './pages/app.component';
 import {TopbarComponent} from './components/topbar/topbar.component';
 import {SidemenuComponent} from './components/sidemenu/sidemenu.component';
 import {SharedModule} from './shared/shared.module';

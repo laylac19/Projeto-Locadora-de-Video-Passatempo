@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {SidemenuModel} from "../../shared/models/sidemenu.model";
+import {SidemenuModel} from "../shared/models/sidemenu.model";
 
 @Component({
     selector: 'app-root',
