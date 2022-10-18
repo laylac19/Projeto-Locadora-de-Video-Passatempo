@@ -25,14 +25,12 @@ export class TituloComponent implements OnInit {
 
     public formTituloFilme: FormGroup;
     public novoTituloFilme: TituloModel;
+    public vinculo: VinculoEntidades;
 
     public listarTitulos: boolean = false;
     public listarElenco: boolean = false;
-
-    public idTiulo: number;
+    public idTitulo: number;
     public idAtor: number;
-    public vinculo: VinculoEntidades;
-
 
     @Input() tituloFilmeModel: TituloModel;
     @Output() resForm: EventEmitter<boolean> = new EventEmitter();
@@ -93,7 +91,7 @@ export class TituloComponent implements OnInit {
     public novoFormulario(): void {
         this.formTituloFilme = this.builder.group({
             id: [null],
-            nome: ['', [Validators.required], [Validators.minLength(5)]],
+            nome: ['', [Validators.required], [Validators.min(5)]],
             ano: ['', [Validators.required]],
             sinopse: ['', [Validators.required], [Validators.minLength(10)], [Validators.maxLength(400)]],
             idCategoria: ['', [Validators.required]],
@@ -107,7 +105,7 @@ export class TituloComponent implements OnInit {
         this.novoTituloFilme = this.formTituloFilme.getRawValue();
         this.tituloService.insert(this.novoTituloFilme).subscribe({
             next: (response) => {
-                this.idTiulo = response.id;
+                this.idTitulo = response.id;
             },
             error: (error) => {
                 console.log(error);
@@ -133,9 +131,10 @@ export class TituloComponent implements OnInit {
     }
 
     public adicionarMembroElenco(): void {
+        this.idAtor = this.formTituloFilme.get('idAtor')?.value;
+        this.vinculo = new VinculoEntidades(this.idTitulo, this.idAtor);
         this.tituloService.insertCastMovie(this.vinculo).subscribe({
             next: () => {
-                console.log(this.vinculo.id2)
                 this.listarElenco = true;
             }
         });
