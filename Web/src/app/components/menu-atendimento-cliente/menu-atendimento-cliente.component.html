@@ -1,0 +1,27 @@
+<div class="pagina col-12">
+    <div class="container menu">
+        <p-card class="card-item-menu" (click)="mudarTipoAtendimentoPorURL(0)">
+            <em class="icon bi bi-file-earmark-person"></em>
+            <span class="label-button">Cadastrar Cliente</span>
+        </p-card>
+        <p-card class="card-item-menu" (click)="mudarTipoAtendimentoPorURL(1)">
+            <em class="icon bi bi-bookmark-star"></em>
+            <span class="label-button">Efetuar Locação</span>
+        </p-card>
+        <p-card class="card-item-menu" (click)="mudarTipoAtendimentoPorURL(2)">
+            <em class="icon bi-person-video3 pr-2"></em>
+            <span class="label-button">Efetuar Devolução</span>
+        </p-card>
+        <p-card class="card-item-menu" (click)="navegarConsultaTitulo(5)">
+            <em class="icon bi bi-upc-scan"></em>
+            <span class="label-button">Consultar Titulo</span>
+        </p-card>
+    </div>
+    <div class="container list col-12">
+        <p-card class="list-card col-10">
+            <router-outlet></router-outlet>
+        </p-card>
+    </div>
+</div>
+
+

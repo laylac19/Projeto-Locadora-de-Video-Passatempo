@@ -17,6 +17,8 @@ import {ClasseModule} from "./modules/classe/classe.module";
 import {ConfirmationService} from "primeng/api";
 import { MenuControleAcervoComponent } from './components/menu-controle-acervo/menu-controle-acervo.component';
 import {TituloModule} from "./modules/titulo/titulo.module";
+import { MenuAtendimentoClienteComponent } from './components/menu-atendimento-cliente/menu-atendimento-cliente.component';
+import { AtendimentoClienteComponent } from './components/atendimento-cliente/atendimento-cliente.component';
 
 @NgModule({
     declarations: [
@@ -25,6 +27,8 @@ import {TituloModule} from "./modules/titulo/titulo.module";
         SidemenuComponent,
         ControleAcervoComponent,
         MenuControleAcervoComponent,
+        MenuAtendimentoClienteComponent,
+        AtendimentoClienteComponent,
     ],
     imports: [
         BrowserModule,
