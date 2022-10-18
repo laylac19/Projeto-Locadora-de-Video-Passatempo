@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface TituloRepository extends JpaRepository<Titulo, Integer> {
 
-    @Query("select new com.locadora.projeto.service.dto.TituloListDTO(t.id, t.nome, t.ano, t.categoria.nomeCategoria, t.sinopse) " +
+    @Query("select new com.locadora.projeto.service.dto.TituloListDTO(t.id, t.nome, t.ano, t.categoria.nomeCategoria, t.classe.nomeClasse) " +
             "from Titulo t where t.ativo = true")
     List<TituloListDTO> buscarTitulos();
 

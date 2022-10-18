@@ -39,7 +39,7 @@ export class TituloListComponent implements OnInit {
         this.colunas = [
             new ColunaModel('nome', 'Nome Título'),
             new ColunaModel('ano', 'Ano Lançamento'),
-            new ColunaModel('classe', 'Classse'),
+            new ColunaModel('nomeClasse', 'Classse'),
             new ColunaModel('nomeCategoria', 'Categoria'),
             new ColunaModel('acoes', 'Ações', '132px')
         ]

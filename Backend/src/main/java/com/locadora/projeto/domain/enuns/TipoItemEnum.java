@@ -13,9 +13,9 @@ import java.util.Map;
 @AllArgsConstructor
 public enum TipoItemEnum {
 
-    FITA(1, "FITA"),
+    FITA(1, "Fita"),
     DVD(2, "DVD"),
-    BLUE_RAY(3, "BLUERAY");
+    BLUE_RAY(3, "BlueRay");
 
     private final Integer id;
     private final String nome;
