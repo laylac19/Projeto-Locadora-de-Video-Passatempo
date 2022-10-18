@@ -7,13 +7,13 @@
             </span>
         </div>
         <div class="area flex">
-            <div class="field col-4">
+            <div class="field col-2">
                 <span class="item">
                     <label class="campo-form" for="inputAno">Ano</label>
                     <input type="text" id="inputAno" pInputText formControlName="ano">
                 </span>
             </div>
-            <div class="field col-4">
+            <div class="field col-5">
                 <span class="item">
                     <label class="campo-form">Categoria</label>
                     <p-dropdown formControlName="idCategoria" [filter]="true" [options]="categoriasDropDown"
@@ -27,7 +27,7 @@
                     </p-dropdown>
                 </span>
             </div>
-            <div class="field col-4">
+            <div class="field col-5">
                 <span class="item">
                     <label class="campo-form">Classe</label>
                     <p-dropdown formControlName="idClasse" [options]="classesDropDown" placeholder="Selecione a Classe"
@@ -61,7 +61,8 @@
                     icon="pi pi-plus"
                     class="button-action ui-button-success button-save-new"
                     iconPos="left"
-                    label="Continuar e Adicionar Elenco">
+                    label="Continuar e Adicionar Elenco"
+                    (click)="salvarFormulario()">
             </button>
         </div>
         <div class="field-acordion col-12">

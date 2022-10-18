@@ -37,10 +37,10 @@ export class TituloListComponent implements OnInit {
 
     public colunasTabela(): void {
         this.colunas = [
-            new ColunaModel('nomeTitulo', 'Nome Título'),
+            new ColunaModel('nome', 'Nome Título'),
             new ColunaModel('ano', 'Ano Lançamento'),
             new ColunaModel('classe', 'Classse'),
-            new ColunaModel('categoria', 'Categoria'),
+            new ColunaModel('nomeCategoria', 'Categoria'),
             new ColunaModel('acoes', 'Ações', '132px')
         ]
     }

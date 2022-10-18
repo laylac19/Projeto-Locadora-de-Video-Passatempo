@@ -7,6 +7,7 @@ import {SelectItem} from "primeng/api";
 import {ClasseService} from "../../../../shared/service/classe.service";
 import {DiretorService} from "../../../../shared/service/diretor.service";
 import {AtorService} from "../../../../shared/service/ator.service";
+import {VinculoEntidades} from "../../../../model/vinculo-entidade.model";
 
 @Component({
     selector: 'app-titulo',
@@ -27,6 +28,10 @@ export class TituloComponent implements OnInit {
 
     public listarTitulos: boolean = false;
     public listarElenco: boolean = false;
+
+    public idTiulo: number;
+    public idAtor: number;
+    public vinculo: VinculoEntidades;
 
 
     @Input() tituloFilmeModel: TituloModel;
@@ -58,6 +63,13 @@ export class TituloComponent implements OnInit {
         this.dropdownClasses();
         this.dropdownDiretores();
         this.dropdownAtores();
+        this.dropdownCategorias();
+    }
+
+    public dropdownCategorias(): void {
+        this.tituloService.fillMovieCategoryDropdown().subscribe((data)=>{
+            this.categoriasDropDown = data;
+        });
     }
 
     public dropdownClasses(): void {
@@ -94,9 +106,8 @@ export class TituloComponent implements OnInit {
     public salvarFormulario(): void {
         this.novoTituloFilme = this.formTituloFilme.getRawValue();
         this.tituloService.insert(this.novoTituloFilme).subscribe({
-            next: () => {
-                this.fecharForm();
-                this.listarTitulos = true;
+            next: (response) => {
+                this.idTiulo = response.id;
             },
             error: (error) => {
                 console.log(error);
@@ -121,7 +132,12 @@ export class TituloComponent implements OnInit {
         this.resForm.emit();
     }
 
-    public adicionarMembroElenco(id?: number): void {
-        console.log(id);
+    public adicionarMembroElenco(): void {
+        this.tituloService.insertCastMovie(this.vinculo).subscribe({
+            next: () => {
+                console.log(this.vinculo.id2)
+                this.listarElenco = true;
+            }
+        });
     }
 }
