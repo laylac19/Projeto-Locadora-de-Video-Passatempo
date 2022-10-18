@@ -30,6 +30,21 @@ export class ItemComponent implements OnInit {
 
     ngOnInit(): void {
         this.novoFormulario();
+        this.preencherDropdowns();
+    }
+
+    public preencherDropdowns(): void {
+        this.dropDownItem();
+    }
+
+    public dropDownTItulo(): void {
+
+    }
+
+    public dropDownItem(): void {
+        this.itemService.fillItenDropdown().subscribe((data)=> {
+            this.tipoItemDropDown = data;
+        })
     }
 
     public novoFormulario(): void {
