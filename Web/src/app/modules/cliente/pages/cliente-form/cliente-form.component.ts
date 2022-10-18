@@ -16,6 +16,7 @@ export class ClienteFormComponent implements OnInit {
     public listarClientes: boolean = false;
 
     public sexo: SelectItem[];
+    public clientesDropDown: SelectItem[];
 
     @Input() clienteModel: ClienteModel;
     @Output() resForm: EventEmitter<boolean> = new EventEmitter();
@@ -72,5 +73,9 @@ export class ClienteFormComponent implements OnInit {
     public fecharForm(): void {
         this.formCliente.reset();
         this.resForm.emit();
+    }
+
+    public adicionarDependente(id?: number): void {
+        console.log(id);
     }
 }

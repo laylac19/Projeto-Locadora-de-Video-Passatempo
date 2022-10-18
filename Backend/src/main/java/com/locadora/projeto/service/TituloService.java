@@ -19,5 +19,5 @@ public interface TituloService {
 
     List<DropdownDTO> searchDropdown();
 
-    void salvarAtorTitulo(VinculoEntidadeDTO dto);
+    void  saveActorWithTitle(VinculoEntidadeDTO dto);
 }

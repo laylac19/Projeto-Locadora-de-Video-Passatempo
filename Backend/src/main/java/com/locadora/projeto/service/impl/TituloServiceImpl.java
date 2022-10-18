@@ -56,7 +56,7 @@ public class TituloServiceImpl implements TituloService {
         repository.save(titulo);
     }
 
-    public void salvarAtorTitulo(VinculoEntidadeDTO dto){
+    public void saveActorWithTitle(VinculoEntidadeDTO dto){
         AtorTitulo entity = new AtorTitulo();
         entity.setAtor(atorService.findByIdEntity(dto.getId2()));
         entity.setTitulo(findById(dto.getId1()));

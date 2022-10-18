@@ -1,7 +1,6 @@
 package com.locadora.projeto.web;
 
 import com.locadora.projeto.domain.enuns.CategoriaEnum;
-import com.locadora.projeto.domain.enuns.TipoItemEnum;
 import com.locadora.projeto.service.TituloService;
 import com.locadora.projeto.service.dto.DropdownDTO;
 import com.locadora.projeto.service.dto.TituloDTO;
@@ -32,6 +31,7 @@ public class TituloResource {
         TituloDTO dto = service.find(id);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
+
     @GetMapping("/dropdown")
     public ResponseEntity<List<DropdownDTO>> buscarDropdwon(){
         List<DropdownDTO> dto = service.searchDropdown();
@@ -52,7 +52,7 @@ public class TituloResource {
 
     @PostMapping("ator-titulo")
     public ResponseEntity<TituloDTO> salvarElencoTitulo(@RequestBody VinculoEntidadeDTO dto){
-        service.salvarAtorTitulo(dto);
+        service.saveActorWithTitle(dto);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 

@@ -44,7 +44,6 @@ public enum CategoriaEnum {
     private final Integer id;
     private final String nomeCategoria;
 
-
     public static List<DropdownDTO> dropdown(){
         List<DropdownDTO> lista = new ArrayList<>();
         for (CategoriaEnum categoriaEnum : CategoriaEnum.values()){

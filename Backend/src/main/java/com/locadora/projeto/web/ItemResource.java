@@ -31,12 +31,11 @@ public class ItemResource {
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
-    @GetMapping("/dropdown-categoria")
+    @GetMapping("/dropdown-tipo-item")
     public ResponseEntity<List<DropdownDTO>> preencherTipoItemDropdown(){
         List<DropdownDTO> dropdown = TipoItemEnum.dropdown();
         return new ResponseEntity<>(dropdown, HttpStatus.OK);
     }
-
 
     @PostMapping
     public ResponseEntity<ItemDTO> salvarItem(@RequestBody ItemDTO itemDTO){
