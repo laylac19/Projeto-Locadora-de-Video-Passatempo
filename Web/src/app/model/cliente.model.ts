@@ -1,11 +1,8 @@
 export class ClienteModel {
     public id: number;
-    public numInscricao: number;
-    public nomeCliente: number;
-    public dtNascimento: Date;
-    public sexo: boolean;
-    public idTipoCliente: number;
-    public cpf: string;
-    public endereco: string;
-    public telefone: string;
+    public numeroInscricao: string;
+    public nome: string;
+    public dataNascimento: Date;
+    public sexo: number;
+    public ativo: boolean;
 }
