@@ -31,6 +31,12 @@ public class AtorResource {
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
+    @GetMapping("atores-filme/{idFilme}")
+    public ResponseEntity<List<String>> buscarElencoFilme(@PathVariable("idFilme") Integer idFilme){
+        List<String> listaAtores = service.searchCastMovie(idFilme);
+        return new ResponseEntity<>(listaAtores, HttpStatus.OK);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<AtorDTO> buscarAtoresPorID(@PathVariable("id") Integer id){
         AtorDTO dto = service.find(id);

@@ -13,4 +13,7 @@
     <include file="db/changelog/202210041105_create_tabela_titulo.xml"/>
     <include file="db/changelog/202210041103_create_tabela_item.xml"/>
     <include file="db/changelog/202210131409_create_tabela_atorTitulo.xml"/>
+    <include file="db/changelog/202210182315_create_tabela_cliente.xml"/>
+    <include file="db/changelog/202210182316_create_tabela_socio.xml"/>
+    <include file="db/changelog/202210182341_create_tabela_dependente_socio_cliente.xml"/>
 </databaseChangeLog>

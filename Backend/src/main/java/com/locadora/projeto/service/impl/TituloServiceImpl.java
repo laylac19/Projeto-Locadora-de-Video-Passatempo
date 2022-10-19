@@ -2,6 +2,7 @@ package com.locadora.projeto.service.impl;
 
 import com.locadora.projeto.domain.AtorTitulo;
 import com.locadora.projeto.domain.Titulo;
+import com.locadora.projeto.repository.AtorTituloRepository;
 import com.locadora.projeto.repository.TituloRepository;
 import com.locadora.projeto.service.AtorService;
 import com.locadora.projeto.service.TituloService;
@@ -26,6 +27,8 @@ public class TituloServiceImpl implements TituloService {
 
     private final TituloMapper mapper;
     private final TituloRepository repository;
+
+    private final AtorTituloRepository atorTituloRepository;
     private final AtorService atorService;
 
     public List<TituloListDTO> findAll() {
@@ -62,5 +65,6 @@ public class TituloServiceImpl implements TituloService {
         entity.setTitulo(findById(dto.getId1()));
         entity.setIdTitulo(dto.getId1());
         entity.setIdAtor(dto.getId2());
+        atorTituloRepository.save(entity);
     }
 }

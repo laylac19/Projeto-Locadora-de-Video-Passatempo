@@ -20,4 +20,6 @@ public interface AtorService {
     Ator findByIdEntity(Integer id);
 
     List<DropdownDTO> searchDropdown();
+
+    List<String> searchCastMovie(Integer idFilme);
 }

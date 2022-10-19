@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+
+    <changeSet id="1666147372342-1" author="layla">
+        <createTable tableName="dependente">
+            <column name="socio_id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_dependente"/>
+            </column>
+            <column name="cliente_id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_dependente"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="cliente_id" baseTableName="dependente" constraintName="FK_DEPENDENTE_ON_CLIENTE" referencedColumnNames="id" referencedTableName="cliente"/>
+        <addForeignKeyConstraint baseColumnNames="socio_id" baseTableName="dependente" constraintName="FK_DEPENDENTE_ON_SOCIO" referencedColumnNames="id" referencedTableName="socio"/>
+    </changeSet>
+</databaseChangeLog>
