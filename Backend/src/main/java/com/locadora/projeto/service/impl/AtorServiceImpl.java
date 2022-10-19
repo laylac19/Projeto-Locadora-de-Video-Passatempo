@@ -56,4 +56,7 @@ public class AtorServiceImpl implements AtorService {
         return repository.buscarDropdown();
     }
 
+    public List<String> buscarAtoresFilme(Integer idFilme) {
+        return repository.buscarAtoresFilme(idFilme);
+    }
 }
