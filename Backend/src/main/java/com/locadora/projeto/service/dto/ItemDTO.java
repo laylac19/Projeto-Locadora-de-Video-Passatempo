@@ -15,4 +15,5 @@ public class ItemDTO implements Serializable {
     private LocalDate data;
     private Integer idTitulo;
     private Integer tipoItem;
+    private Boolean ativo = true;
 }

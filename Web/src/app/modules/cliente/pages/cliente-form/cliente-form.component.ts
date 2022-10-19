@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ClienteModel} from "../../../../model/cliente.model";
 import {SelectItem} from "primeng/api";
+import {ClienteService} from "../../../../shared/service/cliente.service";
 
 @Component({
     selector: 'app-cliente-form',
@@ -23,6 +24,7 @@ export class ClienteFormComponent implements OnInit {
 
     constructor(
         private builder: FormBuilder,
+        private clienteService: ClienteService
     ) {
     }
 
@@ -45,30 +47,30 @@ export class ClienteFormComponent implements OnInit {
         });
     }
 
-    // public salvarFormulario(): void {
-    //     this.novaClasse = this.formClasse.getRawValue();
-    //     this.service.insert(this.novaClasse).subscribe({
-    //         next: () => {
-    //             this.fecharForm();
-    //             this.listarClasses = true;
-    //         },
-    //         error: (error) => {
-    //             console.log(error);
-    //         }
-    //     })
-    // }
-    //
-    // public editarForm(id: number): void {
-    //     this.service.findById(id).subscribe({
-    //             next: (response) => {
-    //                 this.formClasse.patchValue(response);
-    //             },
-    //             error: (error) => {
-    //                 console.log(error);
-    //             },
-    //         }
-    //     );
-    // }
+    public salvarFormulario(): void {
+        this.novoCliente = this.formCliente.getRawValue();
+        this.clienteService.insert(this.novoCliente).subscribe({
+            next: () => {
+                this.fecharForm();
+                this.listarClientes = true;
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        })
+    }
+
+    public editarForm(id: number): void {
+        this.clienteService.findById(id).subscribe({
+                next: (response) => {
+                    this.formCliente.patchValue(response);
+                },
+                error: (error) => {
+                    console.log(error);
+                },
+            }
+        );
+    }
 
     public fecharForm(): void {
         this.formCliente.reset();

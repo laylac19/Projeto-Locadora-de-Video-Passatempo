@@ -27,9 +27,7 @@ export class ClienteListComponent implements OnInit {
     public novoSocio(): void {
         this.tituloModal = TituloModalEnum.setTitulo(TituloModalEnum.NOVO_CLIENTE.index).header;
         this.formCliente.formCliente.reset();
-        console.log(1)
         this.display = true;
-        console.log(2)
     }
 
     public resetarForm(): void {
@@ -37,10 +35,10 @@ export class ClienteListComponent implements OnInit {
     }
 
     public fecharModal(): void {
-        // if (this.formCliente.listarClientes) {
-        //     this.listaSociosAtivos();
-        //     this.listaSociosInativos();
-        // }
+        if (this.formCliente.listarClientes) {
+            // this.listaSociosAtivos();
+            // this.listaSociosInativos();
+        }
         this.display = false;
     }
 
