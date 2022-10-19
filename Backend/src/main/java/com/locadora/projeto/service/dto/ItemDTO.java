@@ -13,5 +13,6 @@ public class ItemDTO implements Serializable {
     private Integer id;
     private String numeroSerie;
     private LocalDate data;
+    private Integer idTitulo;
     private Integer tipoItem;
 }

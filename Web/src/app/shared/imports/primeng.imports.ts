@@ -23,6 +23,7 @@ import {MultiSelectModule} from "primeng/multiselect";
 import {AutoCompleteModule} from "primeng/autocomplete";
 import {DropdownModule} from "primeng/dropdown";
 import {TabViewModule} from "primeng/tabview";
+import {InputMaskModule} from "primeng/inputmask";
 
 
 export const PRIMENG_IMPORTS: any = [
@@ -52,5 +53,6 @@ export const PRIMENG_IMPORTS: any = [
     MultiSelectModule,
     AutoCompleteModule,
     DropdownModule,
-    TabViewModule
+    TabViewModule,
+    InputMaskModule
 ];

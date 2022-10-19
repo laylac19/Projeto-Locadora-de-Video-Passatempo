@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ItemModel} from "../../../../model/item.model";
 import {ItemService} from "../../../../shared/service/item.service";
 import {SelectItem} from "primeng/api";
+import {TituloService} from "../../../../shared/service/titulo.service";
 
 @Component({
     selector: 'app-item',
@@ -19,12 +20,15 @@ export class ItemComponent implements OnInit {
     public titulosDropDown: SelectItem[];
     public tipoItemDropDown: SelectItem[];
 
+    public dtAquisicao: Date = new Date();
+
     @Input() itemModel: ItemModel;
     @Output() resForm: EventEmitter<boolean> = new EventEmitter();
 
     constructor(
         private builder: FormBuilder,
-        private itemService: ItemService
+        private itemService: ItemService,
+        private tituloServie: TituloService
     ) {
     }
 
@@ -35,14 +39,17 @@ export class ItemComponent implements OnInit {
 
     public preencherDropdowns(): void {
         this.dropDownItem();
+        this.dropDownTItulo();
     }
 
     public dropDownTItulo(): void {
-
+        this.tituloServie.fillDropdown().subscribe((data) => {
+            this.titulosDropDown = data;
+        })
     }
 
     public dropDownItem(): void {
-        this.itemService.fillItenDropdown().subscribe((data)=> {
+        this.itemService.fillItenDropdown().subscribe((data) => {
             this.tipoItemDropDown = data;
         })
     }
@@ -53,6 +60,7 @@ export class ItemComponent implements OnInit {
             numeroSerie: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6)]],
             data: [null, [Validators.required]],
             tipoItem: ['', [Validators.required]],
+            idTitulo: ['', [Validators.required]]
         });
     }
 

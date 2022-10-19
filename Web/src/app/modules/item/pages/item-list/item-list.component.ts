@@ -40,7 +40,7 @@ export class ItemListComponent implements OnInit {
             new ColunaModel('numeroSerie', 'Número de Série'),
             new ColunaModel('titulo', 'Título Filme'),
             new ColunaModel('data', 'Data Aquisição'),
-            new ColunaModel('tipoItem', 'Tipo'),
+            new ColunaModel('nomeTipoItem', 'Tipo'),
             new ColunaModel('acoes', 'Ações', '132px')
         ]
     }

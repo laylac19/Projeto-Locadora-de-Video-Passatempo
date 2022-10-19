@@ -16,7 +16,7 @@ public interface TituloRepository extends JpaRepository<Titulo, Integer> {
             "from Titulo t where t.ativo = true")
     List<TituloListDTO> buscarTitulos();
 
-    @Query("select new com.locadora.projeto.service.dto.DropdownDTO(t.id, t.nome) From Titulo t")
+    @Query("select new com.locadora.projeto.service.dto.DropdownDTO(t.id, t.nome) From Titulo t where t.ativo = true")
     List<DropdownDTO> buscarDropdown();
 
 }
