@@ -50,7 +50,7 @@ export class ItemComponent implements OnInit {
     public novoFormulario(): void {
         this.formItem = this.builder.group({
             id: [null],
-            numeroSerie: ['', [Validators.required], [Validators.minLength(6)], [Validators.maxLength(6)]],
+            numeroSerie: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6)]],
             data: [null, [Validators.required]],
             tipoItem: ['', [Validators.required]],
         });

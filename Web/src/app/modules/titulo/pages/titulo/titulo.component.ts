@@ -31,6 +31,7 @@ export class TituloComponent implements OnInit {
     public listarElenco: boolean = false;
     public idTitulo: number;
     public idAtor: number;
+    public model: TituloModel;
 
     @Input() tituloFilmeModel: TituloModel;
     @Output() resForm: EventEmitter<boolean> = new EventEmitter();
@@ -91,9 +92,9 @@ export class TituloComponent implements OnInit {
     public novoFormulario(): void {
         this.formTituloFilme = this.builder.group({
             id: [null],
-            nome: ['', [Validators.required], [Validators.min(5)]],
+            nome: ['', [Validators.required, Validators.min(5)]],
             ano: ['', [Validators.required]],
-            sinopse: ['', [Validators.required], [Validators.minLength(10)], [Validators.maxLength(400)]],
+            sinopse: ['', [Validators.required, Validators.min(10), Validators.max(400)]],
             idCategoria: ['', [Validators.required]],
             idClasse: ['', [Validators.required]],
             idDiretor: ['', [Validators.required]],
@@ -117,6 +118,7 @@ export class TituloComponent implements OnInit {
         this.tituloService.findById(id).subscribe({
                 next: (response) => {
                     this.formTituloFilme.patchValue(response);
+                    console.log(this.formTituloFilme.getRawValue());
                 },
                 error: (error) => {
                     console.log(error);

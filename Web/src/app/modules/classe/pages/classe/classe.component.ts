@@ -31,8 +31,8 @@ export class ClasseComponent implements OnInit {
     public novoFormulario(): void {
         this.formClasse = this.builder.group({
             id: [null],
-            nomeClasse: ['', [Validators.required], [Validators.minLength(2)]],
-            valor: [0, [Validators.required]],
+            nomeClasse: ['', [Validators.required, Validators.minLength(2)]],
+            valor: ['', [Validators.required]],
             prazoDevolucao: ['', [Validators.required]]
         });
     }

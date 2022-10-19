@@ -31,7 +31,7 @@ export class DiretorComponent implements OnInit {
     public novoFormulario(): void {
         this.formDiretor = this.builder.group({
             id: [null],
-            nomeDiretor: ['', [Validators.required]]
+            nomeDiretor: ['', [Validators.required, Validators.minLength(3)]]
         });
     }
 
