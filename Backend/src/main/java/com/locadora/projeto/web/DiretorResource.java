@@ -28,6 +28,7 @@ public class DiretorResource {
     @GetMapping
     public ResponseEntity<List<DiretorListDTO>> buscarTodosDiretores(){
         List<DiretorListDTO> dto = service.findAll();
+        System.out.println("tea");
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
