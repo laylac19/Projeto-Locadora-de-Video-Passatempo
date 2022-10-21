@@ -14,11 +14,11 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SocioClientePK implements Serializable {
+public class DependentePK implements Serializable {
 
     @Column(name = "socio_id")
     private Integer idSocio;
 
     @Column(name = "cliente_id")
-    private Integer idCliente;
+    private Integer idDependente;
 }

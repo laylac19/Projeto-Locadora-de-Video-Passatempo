@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -43,6 +44,7 @@ public class AtorServiceImpl implements AtorService {
     }
 
     public AtorDTO save(AtorDTO dto) {
+        verificarNomeDuplicado(dto.getNomeAtor());
         return mapper.toDto(repository.save(mapper.toEntity(dto)));
     }
 
@@ -58,5 +60,12 @@ public class AtorServiceImpl implements AtorService {
 
     public List<String> buscarAtoresFilme(Integer idFilme) {
         return repository.buscarAtoresFilme(idFilme);
+    }
+
+    private void verificarNomeDuplicado(String nome){
+        Optional<Ator> ator = repository.findAtorByNomeAtor(nome);
+        if(ator.isPresent()){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, MensagemAtorUtil.ATOR_DUPLICADO);
+        }
     }
 }

@@ -16,23 +16,29 @@ public class ClienteResource {
 
     private final ClienteService service;
 
-    @GetMapping
-    public ResponseEntity<List<ClienteListDTO>> buscarTodasClasses(){
-        List<ClienteListDTO> dto = service.findAll();
+    @GetMapping("/dependentes/{situacao}")
+    public ResponseEntity<List<ClienteListDTO>> buscarAtivos(@PathVariable("situacao") Boolean situacao){
+        List<ClienteListDTO> dto = service.findAllDependentes(situacao);
+        return new ResponseEntity<>(dto, HttpStatus.OK);
+    }
+
+    @GetMapping("/socios/{situacao}")
+    public ResponseEntity<List<ClienteListDTO>> buscarInativos(@PathVariable("situacao") Boolean situacao){
+        List<ClienteListDTO> dto = service.findAllSocios(situacao);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ClienteDTO> buscarClassePorID(@PathVariable("id") Integer id){
+    public ResponseEntity<ClienteDTO> buscarClientePorID(@PathVariable("id") Integer id){
         ClienteDTO dto = service.find(id);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
-//    @GetMapping("/dropdown")
-//    public ResponseEntity<List<DropdownDTO>> preencherDropdwon(){
-//        List<DropdownDTO> dto = service.searchDropdown();
-//        return new ResponseEntity<>(dto, HttpStatus.OK);
-//    }
+    @GetMapping("/socios/dropdown")
+    public ResponseEntity<List<DropdownDTO>> buscarClientesNaoSocios(){
+        List<DropdownDTO> dto = service.clientesNaoSociosDropdown();
+        return new ResponseEntity<>(dto, HttpStatus.OK);
+    }
 
     @PostMapping
     public ResponseEntity<ClienteDTO> salvarClasse(@RequestBody ClienteDTO clienteDTO){

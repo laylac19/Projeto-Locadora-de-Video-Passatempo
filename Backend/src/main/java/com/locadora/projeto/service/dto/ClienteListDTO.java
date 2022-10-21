@@ -1,7 +1,7 @@
 package com.locadora.projeto.service.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
@@ -9,7 +9,7 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-@NoArgsConstructor
+@AllArgsConstructor
 public class ClienteListDTO implements Serializable {
 
     private Integer id;
@@ -18,5 +18,4 @@ public class ClienteListDTO implements Serializable {
     private String cpf;
     private String telefone;
     private LocalDate dataNascimento;
-
 }
