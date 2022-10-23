@@ -3,6 +3,15 @@
         <div class="item-pagina col-12">
             <span class="titulo">Sócios Ativos</span>
         </div>
+        <div class="item-pagina">
+            <button pButton type="button"
+                    icon="pi pi-plus"
+                    class="button-action ui-button-success button-save-new"
+                    iconPos="left"
+                    label="Cadastrar Sócio"
+                    (click)="novoSocio()">
+            </button>
+        </div>
         <p-table [columns]="colunas" [value]="listaSociosAtivos" [paginator]="true" [rows]="7" [responsive]="true"
                  sortMode="multiple">
             <ng-template pTemplate="header" let-colunas>
@@ -30,13 +39,15 @@
                                         icon="pi pi-pencil"
                                         class="button-action ui-button-success button-save-new"
                                         iconPos="left"
-                                        pTooltip="Editar Sócio">
+                                        pTooltip="Editar Sócio"
+                                        (click)="editarSocio(rowData.id)">
                                 </button>
                                 <button pButton type="button"
                                         icon="pi pi-trash"
                                         class="button-action ui-button-success button-save-new"
                                         iconPos="left"
-                                        pTooltip="Excluir Sócio">
+                                        pTooltip="Excluir Sócio"
+                                        (click)="desativarSocio(rowData.id)">
                                 </button>
                             </div>
                         </ng-container>
@@ -75,13 +86,14 @@
                                         icon="pi pi-pencil"
                                         class="button-action ui-button-success button-save-new"
                                         iconPos="left"
-                                        pTooltip="Editar Sócio">
+                                        pTooltip="Visualizar Dados"
+                                        (click)="visualizarDadosSocio(rowData.id)">
                                 </button>
                                 <button pButton type="button"
                                         icon="pi pi-trash"
                                         class="button-action ui-button-success button-save-new"
                                         iconPos="left"
-                                        pTooltip="Excluir Sócio">
+                                        pTooltip="Reativar Sócio">
                                 </button>
                             </div>
                         </ng-container>

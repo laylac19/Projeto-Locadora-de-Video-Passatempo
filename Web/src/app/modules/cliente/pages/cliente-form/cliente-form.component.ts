@@ -1,9 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ClienteModel} from "../../../../model/cliente.model";
-import {SelectItem} from "primeng/api";
 import {ClienteService} from "../../../../shared/service/cliente.service";
-import {SexoModel} from "../../../../model/util/sexo.model";
 
 @Component({
     selector: 'app-cliente-form',
@@ -17,8 +15,7 @@ export class ClienteFormComponent implements OnInit {
 
     public listarClientes: boolean = false;
 
-    public sexo: SelectItem[];
-    public clientesDropDown: SelectItem[];
+    public dataNascimento: Date = new Date();
 
     @Input() clienteModel: ClienteModel;
     @Output() resForm: EventEmitter<boolean> = new EventEmitter();

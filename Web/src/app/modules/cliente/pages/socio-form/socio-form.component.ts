@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ClienteModel} from "../../../../model/cliente.model";
 import {SelectItem} from "primeng/api";
 import {SocioModel} from "../../../../model/socio.model";
 import {ClienteService} from "../../../../shared/service/cliente.service";
@@ -19,7 +18,7 @@ export class SocioFormComponent implements OnInit {
 
     public clientesDropDown: SelectItem[];
 
-    @Input() clienteModel: ClienteModel;
+    @Input() socioModel: SocioModel;
     @Output() resForm: EventEmitter<boolean> = new EventEmitter();
 
     constructor(
@@ -49,15 +48,16 @@ export class SocioFormComponent implements OnInit {
 
     public salvarFormulario(): void {
         this.novoSocio = this.formSocio.getRawValue();
-        this.clienteService.insert(this.novoSocio).subscribe({
-            next: () => {
-                this.fecharForm();
-                this.listarSocios = true;
-            },
-            error: (error) => {
-                console.log(error);
-            }
-        })
+        console.log(this.novoSocio);
+        // this.clienteService.insert(this.novoSocio).subscribe({
+        //     next: () => {
+        //         this.fecharForm();
+        //         this.listarSocios = true;
+        //     },
+        //     error: (error) => {
+        //         console.log(error);
+        //     }
+        // })
     }
 
     public editarForm(id: number): void {
@@ -70,6 +70,15 @@ export class SocioFormComponent implements OnInit {
                 },
             }
         );
+    }
+
+    public visualizarDadosSocio(id: number) {
+        this.clienteService.findById(id).subscribe({
+            next: (response) => {
+                this.formSocio.disabled;
+                this.formSocio.patchValue(response);
+            },
+        })
     }
 
     public fecharForm(): void {

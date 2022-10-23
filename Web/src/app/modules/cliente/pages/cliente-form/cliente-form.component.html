@@ -7,7 +7,7 @@
                     <input type="text" id="numInsc" pInputText formControlName="numInscricao">
                 </span>
             </div>
-            <div class="field col-6">
+            <div class="field col-8">
                 <span class="item">
                     <label class="campo-form" for="inputNome">Nome Cliente</label>
                     <input type="text" id="inputNome" pInputText formControlName="nome">
@@ -15,24 +15,39 @@
             </div>
         </div>
         <div class="area flex">
-            <div class="field col-4">
+            <div class="field col-6">
                 <span class="item">
                     <label class="campo-form">Sexo</label>
-                    <p-dropdown formControlName="sexo" [filter]="true" [options]="sexo"
-                                placeholder="Selecione"
-                                appendTo="body">
-                        <ng-template let-item pTemplate="item">
-                            <div class="ui-helper-clearfix div-itens">
-                                <div class="place-drop">{{item.label}}</div>
-                            </div>
-                        </ng-template>
-                    </p-dropdown>
+                    <div class="area flex align-items-center">
+                        <div class="radio">
+                            <p-radioButton name="groupname" [value]="1" label="Feminino" class="pr-2"
+                                           formControlName="sexo"></p-radioButton>
+                        </div>
+                        <div class="radio">
+                            <p-radioButton name="groupname" [value]="2" label="Masculino" class="pr-2"
+                                           formControlName="sexo"></p-radioButton>
+                        </div>
+                        <div class="radio">
+                            <p-radioButton name="groupname" [value]="3" label="Outro" class="pr-2"
+                                           formControlName="sexo"></p-radioButton>
+                        </div>
+                    </div>
                 </span>
             </div>
-            <div class="field col-4">
+            <div class="field col-6">
                 <span class="item">
                     <label class="campo-form" for="inputDtNasc">Data Nascimento</label>
-                    <input type="text" id="inputDtNasc" pInputText formControlName="dataNascimento">
+                    <p-calendar
+                        class="calendario"
+                        placeholder="DD/MM/AAAA"
+                        id="inputDtNasc"
+                        formControlName="dataNascimento"
+                        dateFormat="dd/mm/yy"
+                        appendTo="body"
+                        [yearNavigator]="true"
+                        [defaultDate]="dataNascimento"
+                        [showIcon]="true"
+                    ></p-calendar>
                 </span>
             </div>
         </div>

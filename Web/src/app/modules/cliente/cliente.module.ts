@@ -8,10 +8,11 @@ import { ClienteListComponent } from './pages/cliente-list/cliente-list.componen
 import { SocioListComponent } from './pages/socio-list/socio-list.component';
 import { DependenteListComponent } from './pages/dependente-list/dependente-list.component';
 import { SocioFormComponent } from './pages/socio-form/socio-form.component';
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
     declarations: [
-    
+
     ClienteFormComponent,
          ClienteListComponent,
          SocioListComponent,
@@ -21,7 +22,8 @@ import { SocioFormComponent } from './pages/socio-form/socio-form.component';
     imports: [
         CommonModule,
         ClienteRoutingModule,
-        SharedModule
+        SharedModule,
+        MatSelectModule
     ]
 })
 export class ClienteModule {

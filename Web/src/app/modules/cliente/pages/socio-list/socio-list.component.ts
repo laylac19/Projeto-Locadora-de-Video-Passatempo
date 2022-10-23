@@ -1,12 +1,12 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {ColunaModel} from "../../../../model/util/coluna.model";
-import {ClienteFormComponent} from "../cliente-form/cliente-form.component";
 import {ClienteService} from "../../../../shared/service/cliente.service";
 import {ConfirmationService} from "primeng/api";
 import {TituloModalEnum} from "../../../../model/util/titulo-modal-enum.model";
 import {EntidadeUtil} from "../../../../shared/util/entidade-util";
 import {SocioListModel} from "../../../../model/socio-list.model";
 import {SocioModel} from "../../../../model/socio.model";
+import {SocioFormComponent} from "../socio-form/socio-form.component";
 
 @Component({
     selector: 'app-socio-list',
@@ -25,7 +25,7 @@ export class SocioListComponent implements OnInit {
 
     @Input() display = false;
     @Input() public configuracaoListagem?: boolean;
-    @ViewChild(ClienteFormComponent) formCliente: ClienteFormComponent;
+    @ViewChild(SocioFormComponent) formSocio: SocioFormComponent;
 
     constructor(
         private clienteService: ClienteService,
@@ -71,15 +71,22 @@ export class SocioListComponent implements OnInit {
     }
 
     public novoSocio(): void {
-        this.tituloModal = TituloModalEnum.setTitulo(TituloModalEnum.NOVO_CLIENTE.index).header;
-        this.formCliente.formCliente.reset();
+        this.tituloModal = TituloModalEnum.setTitulo(TituloModalEnum.NOVO_SOCIO.index).header;
+        console.log(this.formSocio);
+        console.log(this.formSocio.formSocio);
         this.display = true;
     }
 
     public editarSocio(id: number): void {
         this.display = true;
-        this.tituloModal = TituloModalEnum.setTitulo(TituloModalEnum.EDITAR_CLIENTE.index).header;
-        this.formCliente.editarForm(id);
+        this.tituloModal = TituloModalEnum.setTitulo(TituloModalEnum.EDITAR_SOCIO.index).header;
+        this.formSocio.editarForm(id);
+    }
+
+    public visualizarDadosSocio(id: number): void {
+        this.display = true;
+        this.tituloModal = TituloModalEnum.setTitulo(TituloModalEnum.VISUALIZAR_SOCIO.index).header;
+        this.formSocio.visualizarDadosSocio(id);
     }
 
     public desativarSocio(id: number): void {
@@ -104,13 +111,12 @@ export class SocioListComponent implements OnInit {
     }
 
     public resetarForm(): void {
-        this.formCliente.fecharForm();
+        this.formSocio.fecharForm();
     }
 
     public fecharModal(): void {
-        if (this.formCliente.listarClientes) {
+        if (this.formSocio.listarSocios) {
             this.listarSociosAtivos();
-            this.listarSociosInativos();
         }
         this.display = false;
     }
