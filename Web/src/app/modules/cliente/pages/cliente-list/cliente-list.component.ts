@@ -12,12 +12,15 @@ export class ClienteListComponent implements OnInit {
 
     public tituloModal: string;
     public status: boolean;
+    public clienteAtivo: boolean;
 
     public cliente: ClienteModel;
 
 
+
     @Input() display = false;
     @ViewChild(ClienteFormComponent) formCliente: ClienteFormComponent;
+    abaSelecionada: boolean;
 
 
     constructor(
@@ -25,6 +28,14 @@ export class ClienteListComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.requisicaoAba();
+    }
+
+    public requisicaoAba(): void {
+        if(this.abaSelecionada) {
+            this.clienteAtivo = true;
+        }
+        this.clienteAtivo = false;
     }
 
     public novoSocio(): void {

@@ -1,12 +1,12 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {ColunaModel} from "../../../../model/util/coluna.model";
-import {ClienteModel} from "../../../../model/cliente.model";
 import {ClienteFormComponent} from "../cliente-form/cliente-form.component";
 import {ClienteService} from "../../../../shared/service/cliente.service";
 import {ConfirmationService} from "primeng/api";
 import {TituloModalEnum} from "../../../../model/util/titulo-modal-enum.model";
 import {EntidadeUtil} from "../../../../shared/util/entidade-util";
 import {SocioListModel} from "../../../../model/socio-list.model";
+import {SocioModel} from "../../../../model/socio.model";
 
 @Component({
     selector: 'app-socio-list',
@@ -18,13 +18,13 @@ export class SocioListComponent implements OnInit {
     public colunas: ColunaModel[] = [];
     public listaSociosAtivos: SocioListModel[] = [];
     public listaSociosInativos: SocioListModel[] = [];
-    public socio: ClienteModel;
+    public socio: SocioModel;
 
     public tituloModal: string;
-    public ativos: boolean;
+    public ativos: boolean = true;
 
     @Input() display = false;
-    @Input() public configuracaoListagem?: boolean = true;
+    @Input() public configuracaoListagem?: boolean;
     @ViewChild(ClienteFormComponent) formCliente: ClienteFormComponent;
 
     constructor(
@@ -49,14 +49,13 @@ export class SocioListComponent implements OnInit {
         ]
     }
 
-    public listarSocios(): void {
-        console.log(this.configuracaoListagem)
-        if(this.configuracaoListagem) {
-            this.listarSociosAtivos();
-            this.ativos = true;
+    public listarSocios(): boolean {
+        if(this.configuracaoListagem === true) {
+            this.listarSociosInativos();
+            return this.ativos = false;
         }
-        this.listarSociosInativos();
-        this.ativos = false;
+        this.listarSociosAtivos();
+        return this.ativos = true;
     }
 
     public listarSociosAtivos(): void {

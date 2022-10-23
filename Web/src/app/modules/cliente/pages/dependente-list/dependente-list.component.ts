@@ -14,13 +14,14 @@ import {EntidadeUtil} from "../../../../shared/util/entidade-util";
     styleUrls: ['./dependente-list.component.scss']
 })
 export class DependenteListComponent implements OnInit {
+
     public colunas: ColunaModel[] = [];
     public listaDependentesAtivos: ClienteListModel[] = [];
     public listaDependentesInativos: ClienteListModel[] = [];
     public dependete: ClienteModel;
 
     public tituloModal: string;
-    public ativos: boolean = true;
+    public ativos: boolean;
 
     @Input() display = false;
     @Input() public configuracaoListagem?: boolean;
@@ -50,10 +51,9 @@ export class DependenteListComponent implements OnInit {
     }
 
     public listarDependentes(): void {
-        console.log(this.configuracaoListagem)
         if(this.configuracaoListagem) {
             this.listarDependentesAtivos();
-            this.ativos;
+            this.ativos = true;
         }
         this.listarDependentesInativos();
         this.ativos = false;
