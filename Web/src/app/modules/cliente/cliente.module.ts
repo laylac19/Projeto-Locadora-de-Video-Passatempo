@@ -7,6 +7,7 @@ import { ClienteFormComponent } from './pages/cliente-form/cliente-form.componen
 import { ClienteListComponent } from './pages/cliente-list/cliente-list.component';
 import { SocioListComponent } from './pages/socio-list/socio-list.component';
 import { DependenteListComponent } from './pages/dependente-list/dependente-list.component';
+import { SocioFormComponent } from './pages/socio-form/socio-form.component';
 
 @NgModule({
     declarations: [
@@ -14,7 +15,8 @@ import { DependenteListComponent } from './pages/dependente-list/dependente-list
     ClienteFormComponent,
          ClienteListComponent,
          SocioListComponent,
-         DependenteListComponent
+         DependenteListComponent,
+         SocioFormComponent
   ],
     imports: [
         CommonModule,

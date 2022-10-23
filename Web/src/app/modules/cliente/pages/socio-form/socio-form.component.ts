@@ -2,22 +2,21 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ClienteModel} from "../../../../model/cliente.model";
 import {SelectItem} from "primeng/api";
+import {SocioModel} from "../../../../model/socio.model";
 import {ClienteService} from "../../../../shared/service/cliente.service";
-import {SexoModel} from "../../../../model/util/sexo.model";
 
 @Component({
-    selector: 'app-cliente-form',
-    templateUrl: './cliente-form.component.html',
-    styleUrls: ['./cliente-form.component.scss']
+    selector: 'app-socio-form',
+    templateUrl: './socio-form.component.html',
+    styleUrls: ['./socio-form.component.scss']
 })
-export class ClienteFormComponent implements OnInit {
+export class SocioFormComponent implements OnInit {
 
-    public formCliente: FormGroup;
-    public novoCliente: ClienteModel;
+    public formSocio: FormGroup;
+    public novoSocio: SocioModel;
 
-    public listarClientes: boolean = false;
+    public listarSocios: boolean = false;
 
-    public sexo: SelectItem[];
     public clientesDropDown: SelectItem[];
 
     @Input() clienteModel: ClienteModel;
@@ -35,27 +34,25 @@ export class ClienteFormComponent implements OnInit {
     }
 
     public preencherDropdown() {
-        // SexoModel.values.map((data) => {
-        //     console.log(data);
-        // });
+        this.clienteService.fillNonPartnersCustomersDropdown().subscribe(data => {
+            this.clientesDropDown = data;
+        })
     }
 
     public novoFormulario(): void {
-        this.formCliente = this.builder.group({
-            id: [null],
-            numInscricao: [null],
-            nome: ['', [Validators.required, Validators.minLength(2)]],
-            dataNascimento: ['', [Validators.required]],
-            sexo: ['', [Validators.required]],
+        this.formSocio = this.builder.group({
+            cpf: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
+            endereco: ['', [Validators.required, Validators.minLength(15), Validators.maxLength(100)]],
+            telefone: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
         });
     }
 
     public salvarFormulario(): void {
-        this.novoCliente = this.formCliente.getRawValue();
-        this.clienteService.insert(this.novoCliente).subscribe({
+        this.novoSocio = this.formSocio.getRawValue();
+        this.clienteService.insert(this.novoSocio).subscribe({
             next: () => {
                 this.fecharForm();
-                this.listarClientes = true;
+                this.listarSocios = true;
             },
             error: (error) => {
                 console.log(error);
@@ -66,7 +63,7 @@ export class ClienteFormComponent implements OnInit {
     public editarForm(id: number): void {
         this.clienteService.findById(id).subscribe({
                 next: (response) => {
-                    this.formCliente.patchValue(response);
+                    this.formSocio.patchValue(response);
                 },
                 error: (error) => {
                     console.log(error);
@@ -76,11 +73,12 @@ export class ClienteFormComponent implements OnInit {
     }
 
     public fecharForm(): void {
-        this.formCliente.reset();
+        this.formSocio.reset();
         this.resForm.emit();
     }
 
     public adicionarDependente(id?: number): void {
         console.log(id);
     }
+
 }

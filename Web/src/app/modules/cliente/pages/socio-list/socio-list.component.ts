@@ -1,12 +1,12 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {ColunaModel} from "../../../../model/util/coluna.model";
-import {ClienteListModel} from "../../../../model/cliente-list.model";
 import {ClienteModel} from "../../../../model/cliente.model";
 import {ClienteFormComponent} from "../cliente-form/cliente-form.component";
 import {ClienteService} from "../../../../shared/service/cliente.service";
 import {ConfirmationService} from "primeng/api";
 import {TituloModalEnum} from "../../../../model/util/titulo-modal-enum.model";
 import {EntidadeUtil} from "../../../../shared/util/entidade-util";
+import {SocioListModel} from "../../../../model/socio-list.model";
 
 @Component({
     selector: 'app-socio-list',
@@ -16,12 +16,12 @@ import {EntidadeUtil} from "../../../../shared/util/entidade-util";
 export class SocioListComponent implements OnInit {
 
     public colunas: ColunaModel[] = [];
-    public listaSociosAtivos: ClienteListModel[] = [];
-    public listaSociosInativos: ClienteListModel[] = [];
+    public listaSociosAtivos: SocioListModel[] = [];
+    public listaSociosInativos: SocioListModel[] = [];
     public socio: ClienteModel;
 
     public tituloModal: string;
-    public ativos: boolean = true;
+    public ativos: boolean;
 
     @Input() display = false;
     @Input() public configuracaoListagem?: boolean = true;
@@ -50,22 +50,23 @@ export class SocioListComponent implements OnInit {
     }
 
     public listarSocios(): void {
+        console.log(this.configuracaoListagem)
         if(this.configuracaoListagem) {
             this.listarSociosAtivos();
-            this.ativos;
+            this.ativos = true;
         }
         this.listarSociosInativos();
         this.ativos = false;
     }
 
     public listarSociosAtivos(): void {
-        this.clienteService.findAll().subscribe((data) => {
+        this.clienteService.findAllPartners(true).subscribe((data) => {
             this.listaSociosAtivos = data;
         })
     }
 
     public listarSociosInativos(): void {
-        this.clienteService.findAll().subscribe((data) => {
+        this.clienteService.findAllPartners(false).subscribe((data) => {
             this.listaSociosInativos = data;
         })
     }

@@ -14,17 +14,20 @@
     </div>
 
     <p-tabView>
-        <p-tabPanel header="Sócios Ativos">
-            <app-socio-list [configuracaoListagem]="clienteAtivo"></app-socio-list>
+        <p-tabPanel [selected]="status === true" header="Todos Clientes Ativos">
+            fazer requsição
         </p-tabPanel>
-        <p-tabPanel header="Dependentes Ativos">
-            <app-dependente-list [configuracaoListagem]="clienteAtivo"></app-dependente-list>
+        <p-tabPanel [selected]="status === true" header="Sócios Ativos">
+            <app-socio-list [configuracaoListagem]="status"></app-socio-list>
         </p-tabPanel>
-        <p-tabPanel header="Sócios Inativos">
-            <app-socio-list [configuracaoListagem]="clienteAtivo"></app-socio-list>
+        <p-tabPanel [selected]="status === true" header="Dependentes Ativos">
+            <app-dependente-list [configuracaoListagem]="status"></app-dependente-list>
         </p-tabPanel>
-        <p-tabPanel header="Dependentes Inativos">
-            <app-dependente-list [configuracaoListagem]="clienteAtivo"></app-dependente-list>
+        <p-tabPanel [selected]="status === false" header="Sócios Inativos">
+            <app-socio-list [configuracaoListagem]="status"></app-socio-list>
+        </p-tabPanel>
+        <p-tabPanel [selected]="status === false" header="Dependentes Inativos">
+            <app-dependente-list [configuracaoListagem]="status"></app-dependente-list>
         </p-tabPanel>
     </p-tabView>
 </div>

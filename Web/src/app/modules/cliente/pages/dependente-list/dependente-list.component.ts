@@ -23,7 +23,7 @@ export class DependenteListComponent implements OnInit {
     public ativos: boolean = true;
 
     @Input() display = false;
-    @Input() public configuracaoListagem?: boolean = true;
+    @Input() public configuracaoListagem?: boolean;
     @ViewChild(ClienteFormComponent) formCliente: ClienteFormComponent;
 
     constructor(
@@ -50,6 +50,7 @@ export class DependenteListComponent implements OnInit {
     }
 
     public listarDependentes(): void {
+        console.log(this.configuracaoListagem)
         if(this.configuracaoListagem) {
             this.listarDependentesAtivos();
             this.ativos;
@@ -59,13 +60,13 @@ export class DependenteListComponent implements OnInit {
     }
 
     public listarDependentesAtivos(): void {
-        this.clienteService.findAll().subscribe((data) => {
+        this.clienteService.findAllDependents(true).subscribe((data) => {
             this.listaDependentesAtivos = data;
         })
     }
 
     public listarDependentesInativos(): void {
-        this.clienteService.findAll().subscribe((data) => {
+        this.clienteService.findAllDependents(false).subscribe((data) => {
             this.listaDependentesInativos = data;
         })
     }
