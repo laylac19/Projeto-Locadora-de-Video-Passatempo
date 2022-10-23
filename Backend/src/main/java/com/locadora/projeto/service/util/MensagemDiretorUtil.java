@@ -1,9 +1,9 @@
 package com.locadora.projeto.service.util;
 
-public class MensagemDiretorUtil {
+import lombok.experimental.UtilityClass;
 
-    public MensagemDiretorUtil() {
-    }
+@UtilityClass
+public class MensagemDiretorUtil {
 
     public static final String DIRETOR_NAO_ENCOTRADO = "Esse Diretor Não Foi Encontrado";
 }

@@ -5,9 +5,8 @@ import com.locadora.projeto.repository.ClienteRepository;
 import com.locadora.projeto.service.ClienteService;
 import com.locadora.projeto.service.dto.ClienteDTO;
 import com.locadora.projeto.service.dto.ClienteListDTO;
-import com.locadora.projeto.service.mapper.ClienteListMapper;
+import com.locadora.projeto.service.dto.DropdownDTO;
 import com.locadora.projeto.service.mapper.ClienteMapper;
-import com.locadora.projeto.service.util.MensagemClasseUtil;
 import com.locadora.projeto.service.util.MensagemClienteUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -22,17 +21,28 @@ import java.util.List;
 @Transactional
 public class ClienteServiceImpl implements ClienteService {
 
-    private final ClienteListMapper listMapper;
     private final ClienteMapper mapper;
     private final ClienteRepository repository;
 
 
-    public List<ClienteListDTO> findAll() {
-        return listMapper.toDto(repository.findAll());
-    }
+//    public List<ClienteListDTO> findAll() {
+//        return listMapper.toDto(repository.findAll());
+//    }
 
     public ClienteDTO find(Integer id) {
         return mapper.toDto(findbyId(id));
+    }
+
+    public List<ClienteListDTO> findAllDependents(Boolean situacao) {
+        return repository.clientesDependente(situacao);
+    }
+
+    public List<ClienteListDTO> findAllPartners(Boolean situacao) {
+        return repository.clienteSocios(situacao);
+    }
+
+    public List<DropdownDTO> NonPartnersCustomersDropdown() {
+        return repository.buscarClientesNaoSocios();
     }
 
     private Cliente findbyId(Integer id){
@@ -56,9 +66,4 @@ public class ClienteServiceImpl implements ClienteService {
         cliente.setAtivo(false);
         repository.save(cliente);
     }
-
-//    public List<DropdownDTO> searchDropdown(){
-//        return repository.buscarDropdown();
-//    }
-
 }

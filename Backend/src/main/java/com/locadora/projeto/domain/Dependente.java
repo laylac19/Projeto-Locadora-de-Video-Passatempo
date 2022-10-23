@@ -7,11 +7,11 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "dependente")
-@IdClass(SocioClientePK.class)
+@IdClass(DependentePK.class)
 @Embeddable
 @Getter
 @Setter
-public class SocioCliente {
+public class Dependente {
 
     @Id
     @Column(name = "socio_id")
@@ -19,7 +19,7 @@ public class SocioCliente {
 
     @Id
     @Column(name = "cliente_id")
-    private Integer idCliente;
+    private Integer idDependente;
 
     @ManyToOne
     @JoinColumn(name = "socio_id", referencedColumnName = "id", insertable = false, updatable = false)

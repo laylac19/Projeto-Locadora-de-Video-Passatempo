@@ -16,9 +16,15 @@ public class ClienteResource {
 
     private final ClienteService service;
 
-    @GetMapping
-    public ResponseEntity<List<ClienteListDTO>> buscarTodasCliente(){
-        List<ClienteListDTO> dto = service.findAll();
+    @GetMapping("/dependentes/{situacao}")
+    public ResponseEntity<List<ClienteListDTO>> buscarAtivos(@PathVariable("situacao") Boolean situacao){
+        List<ClienteListDTO> dto = service.findAllDependents(situacao);
+        return new ResponseEntity<>(dto, HttpStatus.OK);
+    }
+
+    @GetMapping("/socios/{situacao}")
+    public ResponseEntity<List<ClienteListDTO>> buscarInativos(@PathVariable("situacao") Boolean situacao){
+        List<ClienteListDTO> dto = service.findAllPartners(situacao);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
@@ -28,11 +34,11 @@ public class ClienteResource {
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
-//    @GetMapping("/dropdown")
-//    public ResponseEntity<List<DropdownDTO>> preencherDropdwon(){
-//        List<DropdownDTO> dto = service.searchDropdown();
-//        return new ResponseEntity<>(dto, HttpStatus.OK);
-//    }
+    @GetMapping("/socios/dropdown")
+    public ResponseEntity<List<DropdownDTO>> buscarClientesNaoSocios(){
+        List<DropdownDTO> dto = service.NonPartnersCustomersDropdown();
+        return new ResponseEntity<>(dto, HttpStatus.OK);
+    }
 
     @PostMapping
     public ResponseEntity<ClienteDTO> salvarCliente(@RequestBody ClienteDTO clienteDTO){
