@@ -103,3 +103,7 @@
         </p-table>
     </div>
 </div>
+<p-dialog [(visible)]="display" header="{{tituloModal}}" [modal]="true" [contentStyle]="{'max-height':'100%'}"
+          (onHide)="resetarForm()">
+    <app-socio-form [socioModel]="socio" (resForm)="fecharModal()"></app-socio-form>
+</p-dialog>
