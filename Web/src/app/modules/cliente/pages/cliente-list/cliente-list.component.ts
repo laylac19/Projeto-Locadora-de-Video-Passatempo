@@ -2,6 +2,8 @@ import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {TituloModalEnum} from "../../../../model/util/titulo-modal-enum.model";
 import {ClienteFormComponent} from "../cliente-form/cliente-form.component";
 import {ClienteModel} from "../../../../model/cliente.model";
+import {ColunaModel} from "../../../../model/util/coluna.model";
+import {ClienteListModel} from "../../../../model/cliente-list.model";
 
 @Component({
     selector: 'app-cliente-list',
@@ -15,8 +17,8 @@ export class ClienteListComponent implements OnInit {
     public clienteAtivo: boolean;
 
     public cliente: ClienteModel;
-
-
+    public listaCliente: ClienteListModel[] = [];
+    public colunas: ColunaModel[] = [];
 
     @Input() display = false;
     @ViewChild(ClienteFormComponent) formCliente: ClienteFormComponent;
@@ -28,6 +30,7 @@ export class ClienteListComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.colunasTabela();
         this.requisicaoAba();
     }
 
@@ -36,6 +39,14 @@ export class ClienteListComponent implements OnInit {
             this.clienteAtivo = true;
         }
         this.clienteAtivo = false;
+    }
+
+    public colunasTabela(): void {
+        this.colunas = [
+            new ColunaModel('numeroInscricao', 'Nº Inscrição'),
+            new ColunaModel('nome', 'Nome Cliente'),
+            new ColunaModel('dtNascimento', 'Data Nascimento'),
+        ]
     }
 
     public novoSocio(): void {
