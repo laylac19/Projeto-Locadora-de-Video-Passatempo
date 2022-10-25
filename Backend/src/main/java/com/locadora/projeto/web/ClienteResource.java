@@ -16,15 +16,21 @@ public class ClienteResource {
 
     private final ClienteService service;
 
+    @GetMapping
+    public ResponseEntity<List<ClienteListDTO>> buscarTodos(){
+        List<ClienteListDTO> dto = service.findAllAtivos();
+        return new ResponseEntity<>(dto, HttpStatus.OK);
+    }
+
     @GetMapping("/dependentes/{situacao}")
-    public ResponseEntity<List<ClienteListDTO>> buscarAtivos(@PathVariable("situacao") Boolean situacao){
-        List<ClienteListDTO> dto = service.findAllDependentes(situacao);
+    public ResponseEntity<List<ClienteSocioListDTO>> buscarAtivos(@PathVariable("situacao") Boolean situacao){
+        List<ClienteSocioListDTO> dto = service.findAllDependentes(situacao);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
     @GetMapping("/socios/{situacao}")
-    public ResponseEntity<List<ClienteListDTO>> buscarInativos(@PathVariable("situacao") Boolean situacao){
-        List<ClienteListDTO> dto = service.findAllSocios(situacao);
+    public ResponseEntity<List<ClienteSocioListDTO>> buscarInativos(@PathVariable("situacao") Boolean situacao){
+        List<ClienteSocioListDTO> dto = service.findAllSocios(situacao);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 

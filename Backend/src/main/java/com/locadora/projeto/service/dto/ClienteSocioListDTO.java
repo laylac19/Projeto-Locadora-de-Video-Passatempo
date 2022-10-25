@@ -10,11 +10,13 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @AllArgsConstructor
-public class ClienteListDTO implements Serializable {
+public class ClienteSocioListDTO implements Serializable {
 
     private Integer id;
     private String numeroInscricao;
     private String nome;
+    private String cpf;
+    private String telefone;
     private LocalDate dataNascimento;
-    private Boolean ativo;
+
 }

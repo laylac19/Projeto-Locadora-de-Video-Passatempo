@@ -5,12 +5,12 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 @Getter
 @Setter
-@PrimaryKeyJoinColumn(name = "id")
 @Entity
+@Table(name = "socio")
 public class Socio extends Cliente {
 
     @Column(name = "cpf", nullable = false)

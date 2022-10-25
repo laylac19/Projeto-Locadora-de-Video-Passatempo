@@ -5,17 +5,18 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
 
-    <changeSet id="1666177606881-1" author="layla">
-        <createSequence incrementBy="50" sequenceName="cliente_seq" startValue="1"/>
+
+    <changeSet id="1666700706029-1" author="layla">
+        <createSequence incrementBy="50" sequenceName="seq_cliente" startValue="1"/>
         <createTable tableName="cliente">
             <column name="id" type="INT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_cliente"/>
             </column>
-            <column name="numero-inscricao" type="VARCHAR(255)"/>
+            <column name="numero_inscricao" type="VARCHAR(255)"/>
             <column name="nome" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="data-nascimento" type="DATE">
+            <column name="data_nascimento" type="DATE">
                 <constraints nullable="false"/>
             </column>
             <column name="sexo" type="INT">

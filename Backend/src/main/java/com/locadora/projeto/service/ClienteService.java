@@ -6,8 +6,9 @@ import java.util.List;
 
 public interface ClienteService {
 
-    List<ClienteListDTO> findAllDependentes(Boolean situacao);
-    List<ClienteListDTO> findAllSocios(Boolean situacao);
+    List<ClienteListDTO> findAllAtivos();
+    List<ClienteSocioListDTO> findAllDependentes(Boolean situacao);
+    List<ClienteSocioListDTO> findAllSocios(Boolean situacao);
     List<DropdownDTO> clientesNaoSociosDropdown();
 
     ClienteDTO find(Integer id);
