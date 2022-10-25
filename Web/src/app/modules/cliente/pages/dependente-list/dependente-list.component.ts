@@ -5,7 +5,6 @@ import {ClienteModel} from "../../../../model/cliente.model";
 import {ClienteFormComponent} from "../cliente-form/cliente-form.component";
 import {ClienteService} from "../../../../shared/service/cliente.service";
 import {ConfirmationService} from "primeng/api";
-import {TituloModalEnum} from "../../../../model/util/titulo-modal-enum.model";
 import {EntidadeUtil} from "../../../../shared/util/entidade-util";
 
 @Component({
@@ -51,12 +50,12 @@ export class DependenteListComponent implements OnInit {
     }
 
     public listarDependentes(): void {
-        if(this.configuracaoListagem) {
-            this.listarDependentesAtivos();
-            this.ativos = true;
+        if(this.configuracaoListagem === true) {
+            this.listarDependentesInativos();
+            this.ativos = false;
         }
-        this.listarDependentesInativos();
-        this.ativos = false;
+        this.listarDependentesAtivos();
+        this.ativos = true;
     }
 
     public listarDependentesAtivos(): void {
@@ -69,18 +68,6 @@ export class DependenteListComponent implements OnInit {
         this.clienteService.findAllDependents(false).subscribe((data) => {
             this.listaDependentesInativos = data;
         })
-    }
-
-    public novoDependente(): void {
-        this.tituloModal = TituloModalEnum.setTitulo(TituloModalEnum.NOVO_CLIENTE.index).header;
-        this.formCliente.formCliente.reset();
-        this.display = true;
-    }
-
-    public editarDependente(id: number): void {
-        this.display = true;
-        this.tituloModal = TituloModalEnum.setTitulo(TituloModalEnum.EDITAR_CLIENTE.index).header;
-        this.formCliente.editarForm(id);
     }
 
     public desativarDependente(id: number): void {
@@ -102,17 +89,5 @@ export class DependenteListComponent implements OnInit {
             rejectLabel: 'Cancelar',
             accept: alterarSituacao
         });
-    }
-
-    public resetarForm(): void {
-        this.formCliente.fecharForm();
-    }
-
-    public fecharModal(): void {
-        if (this.formCliente.listarClientes) {
-            this.listarDependentesAtivos();
-            this.listarDependentesInativos();
-        }
-        this.display = false;
     }
 }
