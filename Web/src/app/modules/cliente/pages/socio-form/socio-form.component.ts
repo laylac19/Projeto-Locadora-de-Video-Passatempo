@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {SelectItem} from "primeng/api";
 import {SocioModel} from "../../../../model/socio.model";
 import {ClienteService} from "../../../../shared/service/cliente.service";
+import {VinculoEntidades} from "../../../../model/vinculo-entidade.model";
 
 @Component({
     selector: 'app-socio-form',
@@ -13,13 +14,17 @@ export class SocioFormComponent implements OnInit {
 
     public formSocio: FormGroup;
     public novoSocio: SocioModel;
+    public vinculo: VinculoEntidades;
 
     public listarSocios: boolean = false;
+    public idSocio: number;
+    public idDependente: number;
 
     public clientesDropDown: SelectItem[];
 
     @Input() socioModel: SocioModel;
     @Output() resForm: EventEmitter<boolean> = new EventEmitter();
+    private listarDependentes: boolean  = false;
 
     constructor(
         private builder: FormBuilder,
@@ -40,7 +45,7 @@ export class SocioFormComponent implements OnInit {
 
     public novoFormulario(): void {
         this.formSocio = this.builder.group({
-            idCliente: [null],
+            idCliente: [null, [Validators.required]],
             cpf: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
             endereco: ['', [Validators.required, Validators.minLength(15), Validators.maxLength(100)]],
             telefone: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
@@ -50,7 +55,8 @@ export class SocioFormComponent implements OnInit {
     public salvarFormulario(): void {
         this.novoSocio = this.formSocio.getRawValue();
         this.clienteService.insert(this.novoSocio).subscribe({
-            next: () => {
+            next: (response) => {
+                console.log(response);
                 this.fecharForm();
                 this.listarSocios = true;
             },
@@ -86,8 +92,18 @@ export class SocioFormComponent implements OnInit {
         this.resForm.emit();
     }
 
-    public adicionarDependente(id?: number): void {
-        console.log(id);
+    public adicionarDependente(idSocio?: number): void {
+        this.idSocio = this.formSocio.get('idCliente')?.value;
+        this.vinculo = new VinculoEntidades(this.idSocio, this.idDependente);
+        this.clienteService.saveDependent(this.vinculo).subscribe({
+            next: () => {
+                this.listarDependentes = true;
+                this.listarDependentesDeSocio(this.idSocio);
+            }
+        })
     }
 
+    private listarDependentesDeSocio(idSocio: number) {
+        console.log('falta função')
+    }
 }
