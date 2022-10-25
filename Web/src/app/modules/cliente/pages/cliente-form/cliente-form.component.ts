@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ClienteModel} from "../../../../model/cliente.model";
 import {ClienteService} from "../../../../shared/service/cliente.service";
+import {SelectItem} from "primeng/api";
 
 @Component({
     selector: 'app-cliente-form',
@@ -12,6 +13,7 @@ export class ClienteFormComponent implements OnInit {
 
     public formCliente: FormGroup;
     public novoCliente: ClienteModel;
+    public sexo: SelectItem[];
 
     public listarClientes: boolean = false;
 
@@ -32,15 +34,17 @@ export class ClienteFormComponent implements OnInit {
     }
 
     public preencherDropdown() {
-        // SexoModel.values.map((data) => {
-        //     console.log(data);
-        // });
+        this.sexo = [
+            {label: 'Feminino', value: 1},
+            {label: 'Masculino', value: 2},
+            {label: 'Prefiro não informar', value: 3},
+            {label: 'Outros', value: 4}
+        ]
     }
 
     public novoFormulario(): void {
         this.formCliente = this.builder.group({
             id: [null],
-            numInscricao: [null],
             nome: ['', [Validators.required, Validators.minLength(2)]],
             dataNascimento: ['', [Validators.required]],
             sexo: ['', [Validators.required]],
@@ -60,24 +64,8 @@ export class ClienteFormComponent implements OnInit {
         })
     }
 
-    public editarForm(id: number): void {
-        this.clienteService.findById(id).subscribe({
-                next: (response) => {
-                    this.formCliente.patchValue(response);
-                },
-                error: (error) => {
-                    console.log(error);
-                },
-            }
-        );
-    }
-
     public fecharForm(): void {
         this.formCliente.reset();
         this.resForm.emit();
-    }
-
-    public adicionarDependente(id?: number): void {
-        console.log(id);
     }
 }

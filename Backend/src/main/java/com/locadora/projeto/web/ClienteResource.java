@@ -23,13 +23,13 @@ public class ClienteResource {
     }
 
     @GetMapping("/dependentes/{situacao}")
-    public ResponseEntity<List<ClienteSocioListDTO>> buscarDependentesPorSituacao(@PathVariable("situacao") Boolean situacao){
-        List<ClienteSocioListDTO> dto = service.findAllDependents(situacao);
+    public ResponseEntity<List<ClienteListDTO>> buscarDependentesPorSituacao(@PathVariable("situacao") Boolean situacao){
+        List<ClienteListDTO> dto = service.findAllDependents(situacao);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
     @GetMapping("/socios/{situacao}")
-    public ResponseEntity<List<ClienteSocioListDTO>> buscarClientesPorSituacao(@PathVariable("situacao") Boolean situacao){
+    public ResponseEntity<List<ClienteSocioListDTO>> buscarSociosPorSituacao(@PathVariable("situacao") Boolean situacao){
         List<ClienteSocioListDTO> dto = service.findAllPartners(situacao);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }

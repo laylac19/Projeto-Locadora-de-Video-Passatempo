@@ -40,6 +40,7 @@ export class SocioFormComponent implements OnInit {
 
     public novoFormulario(): void {
         this.formSocio = this.builder.group({
+            idCliente: [null],
             cpf: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
             endereco: ['', [Validators.required, Validators.minLength(15), Validators.maxLength(100)]],
             telefone: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
@@ -49,15 +50,15 @@ export class SocioFormComponent implements OnInit {
     public salvarFormulario(): void {
         this.novoSocio = this.formSocio.getRawValue();
         console.log(this.novoSocio);
-        // this.clienteService.insert(this.novoSocio).subscribe({
-        //     next: () => {
-        //         this.fecharForm();
-        //         this.listarSocios = true;
-        //     },
-        //     error: (error) => {
-        //         console.log(error);
-        //     }
-        // })
+        this.clienteService.insert(this.novoSocio).subscribe({
+            next: () => {
+                this.fecharForm();
+                this.listarSocios = true;
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        })
     }
 
     public editarForm(id: number): void {

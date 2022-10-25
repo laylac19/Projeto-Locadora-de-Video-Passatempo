@@ -3,8 +3,8 @@
         <div class="area flex">
             <div class="field col-8">
                 <span class="item">
-                    <label class="campo-form">Nome Cliente</label>
-                    <p-dropdown formControlName="idTitulo" [filter]="true" [options]="clientesDropDown"
+                    <label class="campo-form">Nome Sócio</label>
+                    <p-dropdown formControlName="idCliente" [filter]="true" [options]="clientesDropDown"
                                 placeholder="Selecione"
                                 appendTo="body">
                         <ng-template let-item pTemplate="item">
@@ -51,7 +51,7 @@
                         <div class="field acordion col-8">
                             <span class="item">
                                 <label class="campo-form">Nome Cliente</label>
-                                <p-dropdown formControlName="idAtor" [filter]="true" [options]="clientesDropDown"
+                                <p-dropdown formControlName="sexo" [filter]="true" [options]="clientesDropDown"
                                             placeholder="Selecione o Dependente"
                                             appendTo="body">
                                    <ng-template let-item pTemplate="item">

@@ -18,6 +18,6 @@ public class ClienteDTO implements Serializable {
     private String nome;
     private LocalDate dataNascimento;
     private Integer sexo;
-    private Boolean ativo;
+    private Boolean ativo = true;
 
 }

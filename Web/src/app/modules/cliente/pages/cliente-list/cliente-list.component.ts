@@ -4,6 +4,7 @@ import {ClienteFormComponent} from "../cliente-form/cliente-form.component";
 import {ClienteModel} from "../../../../model/cliente.model";
 import {ColunaModel} from "../../../../model/util/coluna.model";
 import {ClienteListModel} from "../../../../model/cliente-list.model";
+import {ClienteService} from "../../../../shared/service/cliente.service";
 
 @Component({
     selector: 'app-cliente-list',
@@ -17,7 +18,7 @@ export class ClienteListComponent implements OnInit {
     public clienteAtivo: boolean;
 
     public cliente: ClienteModel;
-    public listaCliente: ClienteListModel[] = [];
+    public listaClienteAtivos: ClienteListModel[] = [];
     public colunas: ColunaModel[] = [];
 
     @Input() display = false;
@@ -26,12 +27,14 @@ export class ClienteListComponent implements OnInit {
 
 
     constructor(
+        private clienteService: ClienteService,
     ) {
     }
 
     ngOnInit(): void {
         this.colunasTabela();
         this.requisicaoAba();
+        this.listarTodosClientesAtivos();
     }
 
     public requisicaoAba(): void {
@@ -45,8 +48,14 @@ export class ClienteListComponent implements OnInit {
         this.colunas = [
             new ColunaModel('numeroInscricao', 'Nº Inscrição'),
             new ColunaModel('nome', 'Nome Cliente'),
-            new ColunaModel('dtNascimento', 'Data Nascimento'),
+            new ColunaModel('dataNascimento', 'Data Nascimento'),
         ]
+    }
+
+    public listarTodosClientesAtivos(): void {
+        this.clienteService.findAllActive().subscribe((data) => {
+            this.listaClienteAtivos = data;
+        })
     }
 
     public novoSocio(): void {
@@ -61,8 +70,7 @@ export class ClienteListComponent implements OnInit {
 
     public fecharModal(): void {
         if (this.formCliente.listarClientes) {
-            // this.listaSociosAtivos();
-            // this.listaSociosInativos();
+            this.listarTodosClientesAtivos();
         }
         this.display = false;
     }

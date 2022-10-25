@@ -7,7 +7,7 @@ import java.util.List;
 public interface ClienteService {
 
     List<ClienteListDTO> findAllActive();
-    List<ClienteSocioListDTO> findAllDependents(Boolean situacao);
+    List<ClienteListDTO> findAllDependents(Boolean situacao);
 
     List<ClienteSocioListDTO> findAllPartners(Boolean situacao);
 

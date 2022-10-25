@@ -45,7 +45,6 @@ export class AtorListComponent implements OnInit {
     public listarTodosAtores(): void {
         this.atorService.findAll().subscribe((data) => {
             this.listaAtor = data;
-            console.log(this.listaAtor)
         })
     }
 

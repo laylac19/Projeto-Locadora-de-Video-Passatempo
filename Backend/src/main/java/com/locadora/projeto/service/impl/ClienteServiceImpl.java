@@ -29,7 +29,7 @@ public class ClienteServiceImpl implements ClienteService {
         return repository.buscarTodos();
     }
 
-    public List<ClienteSocioListDTO> findAllDependents(Boolean situacao) {
+    public List<ClienteListDTO> findAllDependents(Boolean situacao) {
         return repository.clientesDependente(situacao);
     }
 

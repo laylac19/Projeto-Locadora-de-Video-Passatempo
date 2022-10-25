@@ -6,7 +6,6 @@ import {Observable} from "rxjs";
 import {SelectItem} from "primeng/api";
 import {ClienteListModel} from "../../model/cliente-list.model";
 import {ClienteModel} from "../../model/cliente.model";
-import {SocioModel} from "../../model/socio.model";
 import {SocioListModel} from "../../model/socio-list.model";
 
 @Injectable({
@@ -19,12 +18,16 @@ export class ClienteService {
 
     resourceUrl = environment.apiUrl + '/cliente';
 
+    findAllActive(): Observable<ClienteListModel[]> {
+        return this.http.get<ClienteListModel[]>(this.resourceUrl);
+    }
+
     findAllDependents(status: boolean): Observable<ClienteListModel[]> {
-        return this.http.get<ClienteListModel[]>(this.resourceUrl + '/' + status);
+        return this.http.get<ClienteListModel[]>(this.resourceUrl + '/dependentes/' + status);
     }
 
     findAllPartners(status: boolean): Observable<SocioListModel[]> {
-        return this.http.get<SocioListModel[]>(this.resourceUrl + '/' + status);
+        return this.http.get<SocioListModel[]>(this.resourceUrl + '/socios/' + status);
     }
 
     findById(id: number): Observable<ClienteModel> {
