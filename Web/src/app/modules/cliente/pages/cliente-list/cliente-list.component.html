@@ -32,7 +32,35 @@
                     <ng-template pTemplate="body" let-rowData let-colunas="columns">
                         <tr>
                             <td *ngFor="let col of colunas">
-                                <ng-container>{{rowData[col.field]}}</ng-container>
+                                <ng-container *ngIf="col.field != 'acoes' ">
+                                    {{rowData[col.field]}}
+                                </ng-container>
+
+                                <ng-container *ngIf="col.field === 'acoes' ">
+                                    <div class="column-action flex justify-content-evenly">
+                                        <button pButton type="button"
+                                                icon="bi bi-eye"
+                                                class="button-action ui-button-success button-save-new"
+                                                iconPos="left"
+                                                pTooltip="Visualizar Dados"
+                                                (click)="visualizarDadosCliente(rowData.id)">
+                                        </button>
+                                        <button pButton type="button"
+                                                icon="pi pi-pencil"
+                                                class="button-action ui-button-success button-save-new"
+                                                iconPos="left"
+                                                pTooltip="Editar Cliente"
+                                                (click)="editarCliente(rowData.id)">
+                                        </button>
+                                        <button pButton type="button"
+                                                icon="pi pi-trash"
+                                                class="button-action ui-button-success button-save-new"
+                                                iconPos="left"
+                                                pTooltip="Excluir Cliente"
+                                                (click)="desativarCliente(rowData.id)">
+                                        </button>
+                                    </div>
+                                </ng-container>
                             </td>
                         </tr>
                     </ng-template>

@@ -16,6 +16,9 @@ export class ClienteFormComponent implements OnInit {
     public sexo: SelectItem[];
 
     public listarClientes: boolean = false;
+    public abilitarBotao: boolean = true;
+    public novoDado: boolean;
+    public numInsc: string;
 
     public dataNascimento: Date = new Date();
 
@@ -64,7 +67,38 @@ export class ClienteFormComponent implements OnInit {
         })
     }
 
+    public editarCliente(id: number): void {
+        this.clienteService.findById(id).subscribe({
+                next: (response) => {
+                    !this.novoDado;
+                    this.numInsc = response.numeroInscricao;
+                    this.formCliente.patchValue(response);
+                },
+                error: (error) => {
+                    console.log(error);
+                },
+            }
+        );
+    }
+
+    public visualizarCliente(id: number): void {
+        this.clienteService.findById(id).subscribe({
+                next: (response) => {
+                    !this.novoDado;
+                    this.numInsc = response.numeroInscricao;
+                    this.formCliente.patchValue(response);
+                    this.formCliente.disable();
+                    this.abilitarBotao = true;
+                },
+                error: (error) => {
+                    console.log(error);
+                },
+            }
+        );
+    }
+
     public fecharForm(): void {
+        this.numInsc = '';
         this.formCliente.reset();
         this.resForm.emit();
     }

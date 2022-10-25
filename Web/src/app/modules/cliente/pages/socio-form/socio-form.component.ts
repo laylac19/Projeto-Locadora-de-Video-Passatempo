@@ -33,7 +33,7 @@ export class SocioFormComponent implements OnInit {
     }
 
     public preencherDropdown() {
-        this.clienteService.fillNonPartnersCustomersDropdown().subscribe(data => {
+        this.clienteService.fillNonPartnersCustomersDropdown().subscribe((data) => {
             this.clientesDropDown = data;
         })
     }
@@ -49,7 +49,6 @@ export class SocioFormComponent implements OnInit {
 
     public salvarFormulario(): void {
         this.novoSocio = this.formSocio.getRawValue();
-        console.log(this.novoSocio);
         this.clienteService.insert(this.novoSocio).subscribe({
             next: () => {
                 this.fecharForm();

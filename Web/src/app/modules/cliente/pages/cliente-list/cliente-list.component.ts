@@ -49,6 +49,7 @@ export class ClienteListComponent implements OnInit {
             new ColunaModel('numeroInscricao', 'Nº Inscrição'),
             new ColunaModel('nome', 'Nome Cliente'),
             new ColunaModel('dataNascimento', 'Data Nascimento'),
+            new ColunaModel('acoes', 'Ações', '132px')
         ]
     }
 
@@ -62,6 +63,24 @@ export class ClienteListComponent implements OnInit {
         this.tituloModal = TituloModalEnum.setTitulo(TituloModalEnum.NOVO_CLIENTE.index).header;
         this.formCliente.formCliente.reset();
         this.display = true;
+    }
+
+    public editarCliente(id: number): void {
+        this.display = true;
+        this.tituloModal = TituloModalEnum.setTitulo(TituloModalEnum.EDITAR_CLIENTE.index).header;
+        this.formCliente.editarCliente(id);
+    }
+
+    public visualizarDadosCliente(id: number): void {
+        this.display = true;
+        this.tituloModal = TituloModalEnum.setTitulo(TituloModalEnum.VISUALIZAR.index).header;
+        this.formCliente.visualizarCliente(id);
+    }
+
+    public desativarCliente(id: number): void {
+        this.clienteService.delete(id).subscribe(() => {
+            this.listarTodosClientesAtivos();
+        });
     }
 
     public resetarForm(): void {

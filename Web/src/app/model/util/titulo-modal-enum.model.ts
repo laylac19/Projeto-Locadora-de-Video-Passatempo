@@ -1,6 +1,6 @@
 export class TituloModalEnum {
     static readonly NOVO = new TituloModalEnum(0, 'Novo');
-    static readonly VISUALIZAR = new TituloModalEnum(1, 'Visualizar');
+    static readonly VISUALIZAR = new TituloModalEnum(1, 'Visualizar Dados');
     static readonly EDITAR = new TituloModalEnum(2, 'Editar');
 
     static readonly NOVO_ATOR = new TituloModalEnum(3, 'Novo Ator');

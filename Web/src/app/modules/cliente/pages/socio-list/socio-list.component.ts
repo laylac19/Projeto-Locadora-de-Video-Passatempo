@@ -72,8 +72,6 @@ export class SocioListComponent implements OnInit {
 
     public novoSocio(): void {
         this.tituloModal = TituloModalEnum.setTitulo(TituloModalEnum.NOVO_SOCIO.index).header;
-        console.log(this.formSocio);
-        console.log(this.formSocio.formSocio);
         this.display = true;
     }
 

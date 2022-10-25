@@ -3,8 +3,8 @@
         <div class="area flex">
             <div class="field col-4">
                 <span class="item">
-                    <label class="campo-form">Número de Inscrição</label>
-                    <input type="text" id="numInsc" pInputText>
+                    <label class="campo-form">Nº de Inscrição</label>
+                    <p class="numInsc" *ngIf="!novoDado">{{numInsc}}</p>
                 </span>
             </div>
             <div class="field col-8">
@@ -45,6 +45,6 @@
 <div class="action-form">
     <button type="button" pButton icon="pi pi-times" label="Cancelar" (click)="fecharForm()"
             class="button-action ui-button-secondary mr-3"></button>
-    <button type="button" pButton icon="pi pi-check" label="Salvar" (click)="salvarFormulario()"
+    <button type="button" pButton icon="pi pi-check" label="Salvar" (click)="salvarFormulario()" [disabled]="abilitarBotao"
             class="button-action button-save-new"></button>
 </div>

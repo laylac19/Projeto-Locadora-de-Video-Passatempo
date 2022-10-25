@@ -8,7 +8,6 @@ import {ClasseService} from "../../../../shared/service/classe.service";
 import {DiretorService} from "../../../../shared/service/diretor.service";
 import {AtorService} from "../../../../shared/service/ator.service";
 import {VinculoEntidades} from "../../../../model/vinculo-entidade.model";
-import {AtorListModel} from "../../../../model/ator-list.model";
 
 @Component({
     selector: 'app-titulo',
@@ -33,7 +32,7 @@ export class TituloComponent implements OnInit {
     public listarElenco: boolean = false;
     // public abilitarAcordion: boolean = true;
     // public abirAcordion: boolean = false;
-    public abilitarBotao: boolean = true;
+    public abilitarBotao: boolean = false;
     public idTitulo: number;
     public idAtor: number;
     public model: TituloModel;
