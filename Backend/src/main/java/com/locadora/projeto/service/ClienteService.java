@@ -6,16 +6,16 @@ import java.util.List;
 
 public interface ClienteService {
 
-    ClienteDTO find(Integer id);
+    List<ClienteListDTO> findAllActive();
+    List<ClienteSocioListDTO> findAllDependents(Boolean situacao);
 
-    List<ClienteListDTO> findAllDependents(Boolean situacao);
-
-    List<ClienteListDTO> findAllPartners(Boolean situacao);
+    List<ClienteSocioListDTO> findAllPartners(Boolean situacao);
 
     List<DropdownDTO> NonPartnersCustomersDropdown();
+
+    ClienteDTO find(Integer id);
 
     ClienteDTO save(ClienteDTO dto);
 
     void delete(Integer id);
-
 }

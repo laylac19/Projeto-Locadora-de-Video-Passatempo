@@ -5,6 +5,7 @@ import com.locadora.projeto.repository.ClienteRepository;
 import com.locadora.projeto.service.ClienteService;
 import com.locadora.projeto.service.dto.ClienteDTO;
 import com.locadora.projeto.service.dto.ClienteListDTO;
+import com.locadora.projeto.service.dto.ClienteSocioListDTO;
 import com.locadora.projeto.service.dto.DropdownDTO;
 import com.locadora.projeto.service.mapper.ClienteMapper;
 import com.locadora.projeto.service.util.MensagemClienteUtil;
@@ -24,21 +25,20 @@ public class ClienteServiceImpl implements ClienteService {
     private final ClienteMapper mapper;
     private final ClienteRepository repository;
 
-
-//    public List<ClienteListDTO> findAll() {
-//        return listMapper.toDto(repository.findAll());
-//    }
-
-    public ClienteDTO find(Integer id) {
-        return mapper.toDto(findbyId(id));
+    public List<ClienteListDTO> findAllActive() {
+        return repository.buscarTodos();
     }
 
-    public List<ClienteListDTO> findAllDependents(Boolean situacao) {
+    public List<ClienteSocioListDTO> findAllDependents(Boolean situacao) {
         return repository.clientesDependente(situacao);
     }
 
-    public List<ClienteListDTO> findAllPartners(Boolean situacao) {
+    public List<ClienteSocioListDTO> findAllPartners(Boolean situacao) {
         return repository.clienteSocios(situacao);
+    }
+
+    public ClienteDTO find(Integer id) {
+        return mapper.toDto(findbyId(id));
     }
 
     public List<DropdownDTO> NonPartnersCustomersDropdown() {

@@ -91,10 +91,11 @@ export class TituloListComponent implements OnInit {
     }
 
     public fecharModal(): void {
-        if (this.formTituloFilme.listarTitulos) {
+        if (!this.formTituloFilme.listarTitulos) {
+            this.displayFormTitulo = false;
             this.listarTodosTitulosFilmes();
         }
-        this.displayFormTitulo = false;
+
     }
 
     // public delabilitarAcaoModal(abilitar: boolean): void {

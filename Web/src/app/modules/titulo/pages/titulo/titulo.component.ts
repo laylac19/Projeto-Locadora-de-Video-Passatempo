@@ -140,6 +140,7 @@ export class TituloComponent implements OnInit {
     public fecharForm(): void {
         this.formTituloFilme.reset();
         this.resForm.emit();
+        this.listaElenco = [];
     }
 
     public adicionarMembroElenco(): void {
