@@ -24,4 +24,7 @@ public interface AtorRepository extends JpaRepository<Ator, Integer> {
     List<String> buscarAtoresFilme(@Param("idFilme") Integer idFilme);
 
 
+
+
+
 }

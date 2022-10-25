@@ -2,6 +2,7 @@ package com.locadora.projeto.service.impl;
 
 import com.locadora.projeto.domain.Classe;
 import com.locadora.projeto.repository.ClasseRepository;
+import com.locadora.projeto.repository.TituloRepository;
 import com.locadora.projeto.service.ClasseService;
 import com.locadora.projeto.service.dto.ClasseDTO;
 import com.locadora.projeto.service.dto.ClasseListDTO;
@@ -26,6 +27,8 @@ public class ClasseServiceImpl implements ClasseService {
     private final ClasseMapper mapper;
     private final ClasseRepository repository;
 
+    private final TituloRepository tituloRepository;
+
 
     public List<ClasseListDTO> findAll() {
         return listMapper.toDto(repository.findAllByAtivoIsTrue());
@@ -46,6 +49,7 @@ public class ClasseServiceImpl implements ClasseService {
     }
 
     public void delete(Integer id) {
+        verificarVinculoClasseTitulo(id);
         Classe classe = findbyId(id);
         classe.setAtivo(false);
         repository.save(classe);
@@ -53,6 +57,12 @@ public class ClasseServiceImpl implements ClasseService {
 
     public List<DropdownDTO> searchDropdown(){
         return repository.buscarDropdown();
+    }
+
+    private void verificarVinculoClasseTitulo(Integer id){
+        if(Boolean.TRUE.equals(tituloRepository.existsByClasseId(id))){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, MensagemClasseUtil.CLASSE_VINCULADA_TITULO);
+        }
     }
 
 }

@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -38,6 +39,12 @@ public class ClienteResource {
     public ResponseEntity<ClienteDTO> buscarClientePorID(@PathVariable("id") Integer id){
         ClienteDTO dto = service.find(id);
         return new ResponseEntity<>(dto, HttpStatus.OK);
+    }
+
+    @PostMapping("/salvar-dependente")
+    public ResponseEntity<Void> salvarDependente(@Valid @RequestBody VinculoEntidadeDTO dto){
+        service.salvarDependente(dto);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping("/socios/dropdown")

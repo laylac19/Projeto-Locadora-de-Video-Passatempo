@@ -2,6 +2,7 @@ package com.locadora.projeto.service.impl;
 
 import com.locadora.projeto.domain.Ator;
 import com.locadora.projeto.repository.AtorRepository;
+import com.locadora.projeto.repository.AtorTituloRepository;
 import com.locadora.projeto.service.AtorService;
 import com.locadora.projeto.service.dto.AtorDTO;
 import com.locadora.projeto.service.dto.AtorListDTO;
@@ -12,7 +13,6 @@ import com.locadora.projeto.service.util.MensagemAtorUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -27,6 +27,8 @@ public class AtorServiceImpl implements AtorService {
     private final AtorMapper mapper;
     private final AtorListMapper listMapper;
     private final AtorRepository repository;
+    private final AtorTituloRepository atorTituloRepository;
+
 
 
     public List<AtorListDTO> findAll() {
@@ -44,11 +46,12 @@ public class AtorServiceImpl implements AtorService {
     }
 
     public AtorDTO save(AtorDTO dto) {
-        verificarNomeDuplicado(dto.getNomeAtor());
+        verificarNomeDuplicado(dto);
         return mapper.toDto(repository.save(mapper.toEntity(dto)));
     }
 
     public void delete(Integer id) {
+        verificarVinculoTitulo(id);
         Ator ator = findByIdEntity(id);
         ator.setAtivo(false);
         repository.save(ator);
@@ -62,10 +65,20 @@ public class AtorServiceImpl implements AtorService {
         return repository.buscarAtoresFilme(idFilme);
     }
 
-    private void verificarNomeDuplicado(String nome){
-        Optional<Ator> ator = repository.findAtorByNomeAtor(nome);
-        if(ator.isPresent()){
+    private void verificarNomeDuplicado(AtorDTO dto){
+        Optional<Ator> ator = repository.findAtorByNomeAtor(dto.getNomeAtor());
+        if(nomeDuplicado(dto, ator)){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, MensagemAtorUtil.ATOR_DUPLICADO);
+        }
+    }
+
+    private boolean nomeDuplicado(AtorDTO dto, Optional<Ator> optionalAtor) {
+        return optionalAtor.isPresent() && optionalAtor.get().getId().equals(dto.getId());
+    }
+
+    private void verificarVinculoTitulo(Integer id){
+        if(Boolean.TRUE.equals(atorTituloRepository.existsByAtorId(id))){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, MensagemAtorUtil.ATOR_VINCULADO_TITULO);
         }
     }
 }
