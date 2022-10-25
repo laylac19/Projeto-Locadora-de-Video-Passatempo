@@ -7,6 +7,7 @@ import {SelectItem} from "primeng/api";
 import {ClienteListModel} from "../../model/cliente-list.model";
 import {ClienteModel} from "../../model/cliente.model";
 import {SocioListModel} from "../../model/socio-list.model";
+import {VinculoEntidades} from "../../model/vinculo-entidade.model";
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,10 @@ export class ClienteService {
 
     findById(id: number): Observable<ClienteModel> {
         return this.http.get<ClienteModel>(this.resourceUrl + '/' + id);
+    }
+
+    saveDependent(vinculo: VinculoEntidades): Observable<ClienteModel> {
+        return this.http.post<ClienteModel>(this.resourceUrl + '/salvar-dependente', vinculo);
     }
 
     fillNonPartnersCustomersDropdown(): Observable<SelectItem[]>{

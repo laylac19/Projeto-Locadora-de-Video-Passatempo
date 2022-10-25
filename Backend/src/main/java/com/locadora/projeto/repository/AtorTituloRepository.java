@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AtorTituloRepository extends JpaRepository<AtorTitulo, AtorTituloPK> {
+
+    Boolean existsByAtorId(Integer id);
 }

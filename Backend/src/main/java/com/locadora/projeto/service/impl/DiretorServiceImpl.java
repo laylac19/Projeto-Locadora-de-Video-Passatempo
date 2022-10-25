@@ -11,7 +11,6 @@ import com.locadora.projeto.service.mapper.DiretorListMapper;
 import com.locadora.projeto.service.mapper.DiretorMapper;
 import com.locadora.projeto.service.util.MensagemClasseUtil;
 import com.locadora.projeto.service.util.MensagemDiretorUtil;
-import com.locadora.projeto.service.util.MensagemItemUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -29,8 +28,8 @@ public class DiretorServiceImpl implements DiretorService {
     private final DiretorListMapper listMapper;
     private final DiretorMapper mapper;
     private final DiretorRepository repository;
-
     private final TituloRepository tituloRepository;
+
 
     public List<DiretorListDTO> findAll() {
         return listMapper.toDto(repository.findAllByAtivoIsTrue());

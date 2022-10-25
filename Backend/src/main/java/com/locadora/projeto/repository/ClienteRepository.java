@@ -11,9 +11,12 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
+
+    Optional<Cliente> findClienteByNome(String nome);
 
     @Query("select new com.locadora.projeto.service.dto.ClienteListDTO(c.id, c.numeroInscricao, c.nome, c.dataNascimento, c.ativo) " +
             "from Cliente c where c.ativo = true")
@@ -21,7 +24,7 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
 
     @Query("select new com.locadora.projeto.service.dto.ClienteListDTO(c.id, c.numeroInscricao, c.nome, c.dataNascimento, c.ativo)" +
             "from Socio s join Cliente c on c.id = s.id where c.ativo = :situacao and s.id in (select d.idDependente from Dependente d)")
-    List<ClienteListDTO> clientesDependente(@Param("situacao") Boolean situacao);
+    List<ClienteSocioListDTO> clientesDependente(@Param("situacao") Boolean situacao);
 
     @Query("select new com.locadora.projeto.service.dto.ClienteSocioListDTO(c.id, c.numeroInscricao, c.nome, s.cpf, s.telefone, c.dataNascimento) " +
             "from Socio s join Cliente c on c.id = s.id where c.ativo = :situacao")

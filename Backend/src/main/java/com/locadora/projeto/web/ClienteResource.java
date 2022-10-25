@@ -24,8 +24,8 @@ public class ClienteResource {
     }
 
     @GetMapping("/dependentes/{situacao}")
-    public ResponseEntity<List<ClienteListDTO>> buscarDependentesPorSituacao(@PathVariable("situacao") Boolean situacao){
-        List<ClienteListDTO> dto = service.findAllDependents(situacao);
+    public ResponseEntity<List<ClienteSocioListDTO>> buscarDependentesPorSituacao(@PathVariable("situacao") Boolean situacao){
+        List<ClienteSocioListDTO> dto = service.findAllDependents(situacao);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
