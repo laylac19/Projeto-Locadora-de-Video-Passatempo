@@ -19,6 +19,9 @@ export class TituloListComponent implements OnInit {
     public listaTitulosFilmes: TituloListModel[] = [];
     public tituloFilme: TituloModel;
 
+    // public abilitarAcordion: boolean = true;
+    // public abirAcordion: boolean = false;
+
     public tituloModal: string;
 
     @Input() displayFormTitulo = false;
@@ -93,4 +96,14 @@ export class TituloListComponent implements OnInit {
         }
         this.displayFormTitulo = false;
     }
+
+    // public delabilitarAcaoModal(abilitar: boolean): void {
+    //     if (abilitar) {
+    //         this.abilitarAcordion = false;
+    //         this.abirAcordion = true;
+    //         return;
+    //     }
+    //     this.abilitarAcordion = true;
+    //     this.abirAcordion = false;
+    // }
 }

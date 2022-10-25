@@ -8,6 +8,7 @@ import {ClasseService} from "../../../../shared/service/classe.service";
 import {DiretorService} from "../../../../shared/service/diretor.service";
 import {AtorService} from "../../../../shared/service/ator.service";
 import {VinculoEntidades} from "../../../../model/vinculo-entidade.model";
+import {AtorListModel} from "../../../../model/ator-list.model";
 
 @Component({
     selector: 'app-titulo',
@@ -17,6 +18,7 @@ import {VinculoEntidades} from "../../../../model/vinculo-entidade.model";
 export class TituloComponent implements OnInit {
 
     public colunas: ColunaModel[] = [];
+    public listaElenco: SelectItem[] = [];
 
     public categoriasDropDown: SelectItem[];
     public classesDropDown: SelectItem[];
@@ -29,11 +31,16 @@ export class TituloComponent implements OnInit {
 
     public listarTitulos: boolean = false;
     public listarElenco: boolean = false;
+    // public abilitarAcordion: boolean = true;
+    // public abirAcordion: boolean = false;
+    public abilitarBotao: boolean = true;
     public idTitulo: number;
     public idAtor: number;
     public model: TituloModel;
 
     @Input() tituloFilmeModel: TituloModel;
+    @Input() abilitarAcordion: boolean;
+    @Input() abirAcordion: boolean;
     @Output() resForm: EventEmitter<boolean> = new EventEmitter();
 
     constructor(
@@ -53,7 +60,7 @@ export class TituloComponent implements OnInit {
 
     public colunasTabelaElenco(): void {
         this.colunas = [
-            new ColunaModel('elenco', 'Elenco'),
+            new ColunaModel('label', 'Elenco'),
             new ColunaModel('acoes', 'Ações', '132px')
         ]
     }
@@ -102,11 +109,14 @@ export class TituloComponent implements OnInit {
         });
     }
 
+
     public salvarFormulario(): void {
         this.novoTituloFilme = this.formTituloFilme.getRawValue();
         this.tituloService.insert(this.novoTituloFilme).subscribe({
             next: (response) => {
                 this.idTitulo = response.id;
+                this.abilitarAcordion = false;
+                this.abirAcordion = true;
             },
             error: (error) => {
                 console.log(error);
@@ -118,7 +128,7 @@ export class TituloComponent implements OnInit {
         this.tituloService.findById(id).subscribe({
                 next: (response) => {
                     this.formTituloFilme.patchValue(response);
-                    console.log(this.formTituloFilme.getRawValue());
+                    this.listarAtoresElenco(id);
                 },
                 error: (error) => {
                     console.log(error);
@@ -138,7 +148,15 @@ export class TituloComponent implements OnInit {
         this.tituloService.insertCastMovie(this.vinculo).subscribe({
             next: () => {
                 this.listarElenco = true;
+                this.listarAtoresElenco(this.idTitulo);
             }
         });
+        this.abilitarBotao = false;
+    }
+
+    public listarAtoresElenco(idFilme: number): void {
+        this.atorService.findCastMovie(idFilme).subscribe((dataElenco) => {
+            this.listaElenco = dataElenco;
+        })
     }
 }

@@ -20,6 +20,10 @@ export class AtorService {
         return this.http.get<AtorListModel[]>(this.resourceUrl);
     }
 
+    findCastMovie(idFilme: number):  Observable<SelectItem[]> {
+        return this.http.get<SelectItem[]>(this.resourceUrl + '/atores-filme/' + idFilme);
+    }
+
     findById(id: number): Observable<AtorModel> {
         return this.http.get<AtorModel>(this.resourceUrl + '/' + id);
     }

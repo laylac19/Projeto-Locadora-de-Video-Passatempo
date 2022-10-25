@@ -21,5 +21,5 @@ public interface AtorService {
 
     List<DropdownDTO> searchDropdown();
 
-    List<String> searchCastMovie(Integer idFilme);
+    List<DropdownDTO> searchCastMovie(Integer idFilme);
 }
