@@ -1,38 +1,40 @@
 <div class="form p-fluid">
     <form [formGroup]="formSocio" class="ui-fluid">
         <div class="area flex">
-            <div class="field col-4">
+            <div class="field col-8">
                 <span class="item">
-                    <label class="campo-form">Número de Inscrição</label>
-                    <input type="text" id="numInsc" pInputText>
+                    <label class="campo-form">Nome Cliente</label>
+                    <p-dropdown formControlName="idTitulo" [filter]="true" [options]="clientesDropDown"
+                                placeholder="Selecione"
+                                appendTo="body">
+                        <ng-template let-item pTemplate="item">
+                            <div class="ui-helper-clearfix div-itens">
+                                <div class="place-drop">{{item.label}}</div>
+                            </div>
+                        </ng-template>
+                </p-dropdown>
                 </span>
             </div>
-            <div class="field col-6">
+            <div class="field col-4">
                 <span class="item">
-                    <label class="campo-form" for="inputNome">Nome Cliente</label>
-                    <input type="text" id="inputNome" pInputText>
+                    <label class="campo-form">CPF</label>
+                    <p-inputMask mask="999.999.999-99" formControlName="telefone" placeholder="(99) 99999-9999"></p-inputMask>
                 </span>
             </div>
         </div>
         <div class="area flex">
-            <div class="field col-4">
+            <div class="field col-2">
                 <span class="item">
-                    <label class="campo-form" for="inputCpf">CPF</label>
-                    <input type="text" id="inputCpf" pInputText formControlName="cpf">
+                    <label class="campo-form">Telefone</label>
+                    <p-inputMask mask="(99) 99999-9999" formControlName="telefone" placeholder="(99) 99999-9999"></p-inputMask>
                 </span>
             </div>
-            <div class="field col-4">
+            <div class="field col-10">
                 <span class="item">
-                    <label class="campo-form" for="inputTelefone">Telefone</label>
-                    <input type="text" id="inputTelefone" pInputText formControlName="telefone">
+                    <label class="campo-form" for="inputNomeTitulo">Endereço(Nº, Rua, Bairro)</label>
+                    <input type="text" id="inputNomeTitulo" pInputText formControlName="endereco">
                 </span>
             </div>
-        </div>
-        <div class="field col-12">
-            <span class="item">
-                <label class="campo-form" for="inputNomeTitulo">Endereço(Nº, Rua, Bairro)</label>
-                <input type="text" id="inputNomeTitulo" pInputText formControlName="endereco">
-            </span>
         </div>
         <div class="field-continuar">
             <button pButton type="button"
