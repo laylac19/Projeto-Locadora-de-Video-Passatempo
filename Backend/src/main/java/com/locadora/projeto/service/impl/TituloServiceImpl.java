@@ -3,6 +3,7 @@ package com.locadora.projeto.service.impl;
 import com.locadora.projeto.domain.AtorTitulo;
 import com.locadora.projeto.domain.Titulo;
 import com.locadora.projeto.repository.AtorTituloRepository;
+import com.locadora.projeto.repository.ItemRepository;
 import com.locadora.projeto.repository.TituloRepository;
 import com.locadora.projeto.service.AtorService;
 import com.locadora.projeto.service.TituloService;
@@ -19,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -27,9 +29,10 @@ public class TituloServiceImpl implements TituloService {
 
     private final TituloMapper mapper;
     private final TituloRepository repository;
-
     private final AtorTituloRepository atorTituloRepository;
     private final AtorService atorService;
+    private final ItemRepository itemRepository;
+
 
     public List<TituloListDTO> findAll() {
         return repository.buscarTitulos();
@@ -50,10 +53,12 @@ public class TituloServiceImpl implements TituloService {
     }
 
     public TituloDTO save(TituloDTO dto) {
+        checkNameDuplicate(dto);
         return mapper.toDto(repository.save(mapper.toEntity(dto)));
     }
 
     public void delete(Integer id) {
+        checkLinkTitleItem(id);
         Titulo titulo = findById(id);
         titulo.setAtivo(false);
         repository.save(titulo);
@@ -66,5 +71,22 @@ public class TituloServiceImpl implements TituloService {
         entity.setIdTitulo(dto.getId1());
         entity.setIdAtor(dto.getId2());
         atorTituloRepository.save(entity);
+    }
+
+    private void checkNameDuplicate(TituloDTO dto){
+        Optional<Titulo> titulo = repository.findTituloByNome(dto.getNome());
+        if(nameDuplicate(dto, titulo)){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, MensagemTituloUtil.TITULO_NAO_ENCOTRADO);
+        }
+    }
+
+    private boolean nameDuplicate(TituloDTO dto, Optional<Titulo> optional) {
+        return optional.isPresent() && optional.get().getId().equals(dto.getId());
+    }
+
+    private void checkLinkTitleItem(Integer id) {
+        if(Boolean.TRUE.equals(itemRepository.existsByTituloId(id))){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, MensagemTituloUtil.TITULO_VINCULADO_ITEM);
+        }
     }
 }

@@ -5,6 +5,7 @@ import com.locadora.projeto.service.dto.ClienteListDTO;
 import com.locadora.projeto.service.dto.ClienteSocioListDTO;
 import com.locadora.projeto.service.dto.DropdownDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -27,6 +28,11 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
     List<ClienteSocioListDTO> clienteSocios(@Param("situacao") Boolean situacao);
 
     @Query("select new com.locadora.projeto.service.dto.DropdownDTO(c.id, c.nome) from Cliente c " +
-            "where c.id not in (select s.id from Socio s) and c.id not in (select d.idDependente from Dependente d)")
+            "where c.id not in (select s.id from Socio s) and c.id not in (select d.idDependente from Dependente d) " +
+            "and c.ativo = true")
     List<DropdownDTO> buscarClientesNaoSocios();
+
+    @Modifying
+    @Query("update Cliente c set c.ativo = false where c.id in :lista")
+    void desativarDependentes(@Param("lista") List<Integer> lista);
 }

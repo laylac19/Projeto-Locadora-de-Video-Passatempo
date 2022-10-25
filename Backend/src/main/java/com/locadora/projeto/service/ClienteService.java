@@ -18,4 +18,6 @@ public interface ClienteService {
     ClienteDTO save(ClienteDTO dto);
 
     void delete(Integer id);
+
+    void saveDependent(VinculoEntidadeDTO dto);
 }

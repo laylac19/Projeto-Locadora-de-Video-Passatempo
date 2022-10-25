@@ -2,6 +2,7 @@ package com.locadora.projeto.service.impl;
 
 import com.locadora.projeto.domain.Ator;
 import com.locadora.projeto.repository.AtorRepository;
+import com.locadora.projeto.repository.AtorTituloRepository;
 import com.locadora.projeto.service.AtorService;
 import com.locadora.projeto.service.dto.AtorDTO;
 import com.locadora.projeto.service.dto.AtorListDTO;
@@ -27,7 +28,7 @@ public class AtorServiceImpl implements AtorService {
     private final AtorMapper mapper;
     private final AtorListMapper listMapper;
     private final AtorRepository repository;
-
+    private final AtorTituloRepository atorTituloRepository;
 
     public List<AtorListDTO> findAll() {
         return listMapper.toDto(repository.findAllByAtivoIsTrue());
@@ -44,11 +45,12 @@ public class AtorServiceImpl implements AtorService {
     }
 
     public AtorDTO save(AtorDTO dto) {
-        verificarNomeDuplicado(dto.getNomeAtor());
+        checkDuplicateName(dto);
         return mapper.toDto(repository.save(mapper.toEntity(dto)));
     }
 
     public void delete(Integer id) {
+        checkTitleLink(id);
         Ator ator = findByIdEntity(id);
         ator.setAtivo(false);
         repository.save(ator);
@@ -62,10 +64,20 @@ public class AtorServiceImpl implements AtorService {
         return repository.buscarAtoresFilme(idFilme);
     }
 
-    private void verificarNomeDuplicado(String nome){
-        Optional<Ator> ator = repository.findAtorByNomeAtor(nome);
-        if(ator.isPresent()){
+    private void checkDuplicateName(AtorDTO dto){
+        Optional<Ator> ator = repository.findAtorByNomeAtor(dto.getNomeAtor());
+        if(duplicateName(dto, ator)){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, MensagemAtorUtil.ATOR_DUPLICADO);
+        }
+    }
+
+    private boolean duplicateName(AtorDTO dto, Optional<Ator> optionalAtor) {
+        return optionalAtor.isPresent() && optionalAtor.get().getId().equals(dto.getId());
+    }
+
+    private void checkTitleLink(Integer id){
+        if(Boolean.TRUE.equals(atorTituloRepository.existsByAtorId(id))){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, MensagemAtorUtil.ATOR_VINCULADO_TITULO);
         }
     }
 
