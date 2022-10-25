@@ -14,3 +14,8 @@ Aplicação `Angular + Sprint Boot` desenvolvida durante as matérias Desenvolvi
 - Branches de hotfix e fix atualizam a master e a develop;
 - Defeitos abertos no teste de uma funcionalidade não geram branch, são reparados na branch da HISTORIA respectiva;
 - Só é feito o merge da Develop na Master se uma HISTORIA estiver completa e funcionando como esperado;
+
+# DOCKER - Comandos
+- docker-compose -f docker-compose-dev.yml up -d
+- docker-compose -f docker-compose-dev.yml stop -d
+- docker-compose -f docker-compose-dev.yml down
