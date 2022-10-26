@@ -4,7 +4,7 @@
             <div class="field col-8">
                 <span class="item">
                     <label class="campo-form">Nome Sócio</label>
-                    <p-dropdown formControlName="idCliente" [filter]="true" [options]="clientesDropDown"
+                    <p-dropdown formControlName="idClienteSocio" [filter]="true" [options]="clientesDropDown"
                                 placeholder="Selecione"
                                 appendTo="body">
                         <ng-template let-item pTemplate="item">
@@ -18,7 +18,7 @@
             <div class="field col-4">
                 <span class="item">
                     <label class="campo-form">CPF</label>
-                    <p-inputMask mask="999.999.999-99" formControlName="telefone" placeholder="(99) 99999-9999"></p-inputMask>
+                    <p-inputMask mask="999.999.999-99" formControlName="telefone" placeholder="999.999.999-99"></p-inputMask>
                 </span>
             </div>
         </div>
@@ -36,15 +36,6 @@
                 </span>
             </div>
         </div>
-        <div class="field-continuar">
-            <button pButton type="button"
-                    icon="pi pi-plus"
-                    class="button-action ui-button-success button-save-new"
-                    iconPos="left"
-                    label="Continuar"
-                    (click)="salvarFormulario()">
-            </button>
-        </div>
         <div class="field-acordion col-12">
             <p-accordion>
                 <p-accordionTab header="Dependentes">
@@ -52,7 +43,7 @@
                         <div class="field acordion col-8">
                             <span class="item">
                                 <label class="campo-form">Nome Cliente</label>
-                                <p-dropdown formControlName="sexo" [filter]="true" [options]="clientesDropDown"
+                                <p-dropdown formControlName="idClienteDependente" [filter]="true" [options]="clientesDropDown"
                                             placeholder="Selecione o Dependente"
                                             appendTo="body">
                                    <ng-template let-item pTemplate="item">
@@ -81,6 +72,6 @@
 <div class="action-form">
     <button type="button" pButton icon="pi pi-times" label="Cancelar" (click)="fecharForm()"
             class="button-action ui-button-secondary mr-3"></button>
-    <button type="button" pButton icon="pi pi-check" label="Salvar"
+    <button type="button" pButton icon="pi pi-check" label="Salvar" (click)="salvarFormulario()"
             class="button-action button-save-new"></button>
 </div>

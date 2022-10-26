@@ -40,8 +40,8 @@ export class SocioListComponent implements OnInit {
 
     public colunasTabela(): void {
         this.colunas = [
-            new ColunaModel('numInscricao', 'Nº Inscrição'),
-            new ColunaModel('nomeCliente', 'Nome Cliente'),
+            new ColunaModel('numeroInscricao', 'Nº Inscrição'),
+            new ColunaModel('nome', 'Nome Cliente'),
             new ColunaModel('dtNascimento', 'Data Nascimento'),
             new ColunaModel('cpf', 'CPF'),
             new ColunaModel('telefone', 'Telefone'),
