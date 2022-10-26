@@ -4,6 +4,7 @@ import com.locadora.projeto.service.AtorService;
 import com.locadora.projeto.service.dto.AtorDTO;
 import com.locadora.projeto.service.dto.AtorListDTO;
 import com.locadora.projeto.service.dto.DropdownDTO;
+import com.locadora.projeto.service.dto.VinculoEntidadeDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -64,6 +65,12 @@ public class AtorResource {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarAtor(@PathVariable("id") Integer id){
         service.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @DeleteMapping("/ator-titulo")
+    public ResponseEntity<Void> deletarAtorTitulo(@RequestBody VinculoEntidadeDTO dto){
+        service.withdrawActorFromCast(dto);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 

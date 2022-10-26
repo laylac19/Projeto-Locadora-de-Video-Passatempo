@@ -9,6 +9,7 @@ import com.locadora.projeto.repository.SocioRepository;
 import com.locadora.projeto.service.ClienteService;
 import com.locadora.projeto.service.dto.*;
 import com.locadora.projeto.service.mapper.ClienteMapper;
+import com.locadora.projeto.service.mapper.SocioMapper;
 import com.locadora.projeto.service.util.MensagemAtorUtil;
 import com.locadora.projeto.service.util.MensagemClienteUtil;
 import com.locadora.projeto.service.util.MensagemSocioUtil;
@@ -30,6 +31,8 @@ public class ClienteServiceImpl implements ClienteService {
     private final ClienteRepository repository;
     private final DependenteRepository dependenteRepository;
     private final SocioRepository socioRepository;
+    private final SocioMapper socioMapper;
+
 
     public List<ClienteListDTO> findAllActive() {
         return repository.buscarTodos();
@@ -112,9 +115,13 @@ public class ClienteServiceImpl implements ClienteService {
         return socioRepository.existsSocioById(idSocio);
     }
 
-    private void disableDependents(Integer idSocio){
+    private void disableDependents(Integer idSocio) {
         if(Boolean.TRUE.equals(isSocio(idSocio))){
             repository.desativarDependentes(dependenteRepository.buscarDependentes(idSocio));
         }
+    }
+
+    public SocioDTO saveSocio(SocioDTO dto){
+        return socioMapper.toDto(socioRepository.save(socioMapper.toEntity(dto)));
     }
 }

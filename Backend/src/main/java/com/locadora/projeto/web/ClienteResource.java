@@ -59,6 +59,12 @@ public class ClienteResource {
         return new ResponseEntity<>(dto, HttpStatus.CREATED);
     }
 
+    @PostMapping("/socio")
+    public ResponseEntity<SocioDTO> salvarSocio(@RequestBody SocioDTO dto){
+        SocioDTO socio = service.saveSocio(dto);
+        return new ResponseEntity<>(socio, HttpStatus.CREATED);
+    }
+
     @PutMapping
     public ResponseEntity<ClienteDTO> editarCliente(@RequestBody ClienteDTO clienteDTO){
         ClienteDTO dto = service.save(clienteDTO);

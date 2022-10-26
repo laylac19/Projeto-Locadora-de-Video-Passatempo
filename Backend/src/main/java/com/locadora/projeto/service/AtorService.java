@@ -4,6 +4,7 @@ import com.locadora.projeto.domain.Ator;
 import com.locadora.projeto.service.dto.AtorDTO;
 import com.locadora.projeto.service.dto.AtorListDTO;
 import com.locadora.projeto.service.dto.DropdownDTO;
+import com.locadora.projeto.service.dto.VinculoEntidadeDTO;
 
 import java.util.List;
 
@@ -22,4 +23,6 @@ public interface AtorService {
     List<DropdownDTO> searchDropdown();
 
     List<DropdownDTO> searchCastMovie(Integer idFilme);
+
+    void withdrawActorFromCast(VinculoEntidadeDTO dto);
 }

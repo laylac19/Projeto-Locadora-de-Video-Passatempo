@@ -20,4 +20,6 @@ public interface ClienteService {
     void delete(Integer id);
 
     void saveDependent(VinculoEntidadeDTO dto);
+
+    public SocioDTO saveSocio(SocioDTO dto);
 }
