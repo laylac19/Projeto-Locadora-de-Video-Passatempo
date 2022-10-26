@@ -17,4 +17,5 @@ public class ClienteListDTO implements Serializable {
     private String nome;
     private LocalDate dataNascimento;
     private Boolean ativo;
+
 }

@@ -31,7 +31,6 @@ public class DiretorServiceImpl implements DiretorService {
     private final TituloRepository tituloRepository;
 
 
-
     public List<DiretorListDTO> findAll() {
         return listMapper.toDto(repository.findAllByAtivoIsTrue());
     }
@@ -47,12 +46,12 @@ public class DiretorServiceImpl implements DiretorService {
     }
 
     public DiretorDTO save(DiretorDTO dto) {
-        verificarNomeDuplicado(dto);
+        checkNameDuplicate(dto);
         return mapper.toDto(repository.save(mapper.toEntity(dto)));
     }
 
     public void delete(Integer id) {
-        verificarVinculoDiretorTitulo(id);
+        checkLinkDirectorTitle(id);
         Diretor diretor = findById(id);
         diretor.setAtivo(false);
         repository.save(diretor);
@@ -62,18 +61,18 @@ public class DiretorServiceImpl implements DiretorService {
         return repository.dropdownDiretor();
     }
 
-    private void verificarNomeDuplicado(DiretorDTO dto){
+    private void checkNameDuplicate(DiretorDTO dto){
         Optional<Diretor> diretor = repository.findDiretorByNomeDiretor(dto.getNomeDiretor());
-        if(nomeDuplicado(dto, diretor)){
+        if(nameDuplicate(dto, diretor)){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, MensagemDiretorUtil.DIRETOR_NAO_ENCOTRADO);
         }
     }
 
-    private boolean nomeDuplicado(DiretorDTO dto, Optional<Diretor> optional) {
+    private boolean nameDuplicate(DiretorDTO dto, Optional<Diretor> optional) {
         return optional.isPresent() && optional.get().getId().equals(dto.getId());
     }
 
-    private void verificarVinculoDiretorTitulo(Integer id){
+    private void checkLinkDirectorTitle(Integer id){
         if(Boolean.TRUE.equals(tituloRepository.existsByDiretorId(id))){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, MensagemClasseUtil.CLASSE_VINCULADA_TITULO);
         }

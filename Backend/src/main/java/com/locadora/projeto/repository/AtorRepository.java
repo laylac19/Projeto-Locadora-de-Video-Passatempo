@@ -20,10 +20,8 @@ public interface AtorRepository extends JpaRepository<Ator, Integer> {
     @Query("select new com.locadora.projeto.service.dto.DropdownDTO(a.id, a.nomeAtor) from Ator a where a.ativo = true")
     List<DropdownDTO> buscarDropdown();
 
-    @Query("select a.nomeAtor from Ator a join AtorTitulo at on a.id = at.idAtor where at.idTitulo = :idFilme")
-    List<String> buscarAtoresFilme(@Param("idFilme") Integer idFilme);
-
-
+    @Query("select new com.locadora.projeto.service.dto.DropdownDTO(a.id, a.nomeAtor) from Ator a join AtorTitulo at on a.id = at.idAtor where at.idTitulo = :idFilme")
+    List<DropdownDTO> buscarAtoresFilme(@Param("idFilme") Integer idFilme);
 
 
 

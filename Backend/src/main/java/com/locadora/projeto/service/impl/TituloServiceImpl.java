@@ -29,10 +29,10 @@ public class TituloServiceImpl implements TituloService {
 
     private final TituloMapper mapper;
     private final TituloRepository repository;
-    private final AtorService atorService;
     private final AtorTituloRepository atorTituloRepository;
-
+    private final AtorService atorService;
     private final ItemRepository itemRepository;
+
 
     public List<TituloListDTO> findAll() {
         return repository.buscarTitulos();
@@ -53,12 +53,12 @@ public class TituloServiceImpl implements TituloService {
     }
 
     public TituloDTO save(TituloDTO dto) {
-        verificarNomeDuplicado(dto);
+        checkNameDuplicate(dto);
         return mapper.toDto(repository.save(mapper.toEntity(dto)));
     }
 
     public void delete(Integer id) {
-        verificarVinculoTituloItem(id);
+        checkLinkTitleItem(id);
         Titulo titulo = findById(id);
         titulo.setAtivo(false);
         repository.save(titulo);
@@ -73,18 +73,18 @@ public class TituloServiceImpl implements TituloService {
         atorTituloRepository.save(entity);
     }
 
-    private void verificarNomeDuplicado(TituloDTO dto){
+    private void checkNameDuplicate(TituloDTO dto){
         Optional<Titulo> titulo = repository.findTituloByNome(dto.getNome());
-        if(nomeDuplicado(dto, titulo)){
+        if(nameDuplicate(dto, titulo)){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, MensagemTituloUtil.TITULO_NAO_ENCOTRADO);
         }
     }
 
-    private boolean nomeDuplicado(TituloDTO dto, Optional<Titulo> optional) {
+    private boolean nameDuplicate(TituloDTO dto, Optional<Titulo> optional) {
         return optional.isPresent() && optional.get().getId().equals(dto.getId());
     }
 
-    private void verificarVinculoTituloItem(Integer id) {
+    private void checkLinkTitleItem(Integer id) {
         if(Boolean.TRUE.equals(itemRepository.existsByTituloId(id))){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, MensagemTituloUtil.TITULO_VINCULADO_ITEM);
         }

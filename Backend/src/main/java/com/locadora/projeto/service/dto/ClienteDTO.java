@@ -1,5 +1,6 @@
 package com.locadora.projeto.service.dto;
 
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,6 +18,6 @@ public class ClienteDTO implements Serializable {
     private String nome;
     private LocalDate dataNascimento;
     private Integer sexo;
-    private Boolean ativo;
+    private Boolean ativo = true;
 
 }

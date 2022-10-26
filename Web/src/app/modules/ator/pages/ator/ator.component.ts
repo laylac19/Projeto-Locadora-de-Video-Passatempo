@@ -31,7 +31,7 @@ export class AtorComponent implements OnInit {
     public novoFormulario(): void {
         this.formAtor = this.builder.group({
             id: [null],
-            nomeAtor: ['', [Validators.required], [Validators.minLength(2)]]
+            nomeAtor: ['', [Validators.required, Validators.minLength(3)]]
         });
     }
 

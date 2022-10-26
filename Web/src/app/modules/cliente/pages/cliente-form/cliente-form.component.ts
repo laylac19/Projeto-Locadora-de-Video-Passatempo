@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ClienteModel} from "../../../../model/cliente.model";
+import {ClienteService} from "../../../../shared/service/cliente.service";
 import {SelectItem} from "primeng/api";
 
 @Component({
@@ -12,70 +13,93 @@ export class ClienteFormComponent implements OnInit {
 
     public formCliente: FormGroup;
     public novoCliente: ClienteModel;
+    public sexo: SelectItem[];
 
     public listarClientes: boolean = false;
+    public abilitarBotao: boolean = true;
+    public novoDado: boolean;
+    public numInsc: string;
 
-    public sexo: SelectItem[];
-    public clientesDropDown: SelectItem[];
+    public dataNascimento: Date = new Date();
 
     @Input() clienteModel: ClienteModel;
     @Output() resForm: EventEmitter<boolean> = new EventEmitter();
 
     constructor(
         private builder: FormBuilder,
+        private clienteService: ClienteService
     ) {
     }
 
     ngOnInit(): void {
         this.novoFormulario();
+        this.preencherDropdown();
+    }
+
+    public preencherDropdown() {
+        this.sexo = [
+            {label: 'Feminino', value: 1},
+            {label: 'Masculino', value: 2},
+            {label: 'Prefiro não informar', value: 3},
+            {label: 'Outros', value: 4}
+        ]
     }
 
     public novoFormulario(): void {
         this.formCliente = this.builder.group({
             id: [null],
-            numInscricao: [null, [Validators.required]],
-            nomeCliente: [null, [Validators.required], [Validators.minLength(2)]],
-            dtNascimento: [null, [Validators.required]],
-            sexo: [null, [Validators.required]],
-            idTipoCliente: [null, [Validators.required]],
-            cpf: [null, [Validators.required], [Validators.maxLength(11)]],
-            endereco: [null, [Validators.required], [Validators.minLength(20)]],
-            telefone: [null, [Validators.required], [Validators.minLength(2)], [Validators.maxLength(11)]],
-            idDependente: [null]
+            nome: ['', [Validators.required, Validators.minLength(2)]],
+            dataNascimento: ['', [Validators.required]],
+            sexo: ['', [Validators.required]],
         });
     }
 
-    // public salvarFormulario(): void {
-    //     this.novaClasse = this.formClasse.getRawValue();
-    //     this.service.insert(this.novaClasse).subscribe({
-    //         next: () => {
-    //             this.fecharForm();
-    //             this.listarClasses = true;
-    //         },
-    //         error: (error) => {
-    //             console.log(error);
-    //         }
-    //     })
-    // }
-    //
-    // public editarForm(id: number): void {
-    //     this.service.findById(id).subscribe({
-    //             next: (response) => {
-    //                 this.formClasse.patchValue(response);
-    //             },
-    //             error: (error) => {
-    //                 console.log(error);
-    //             },
-    //         }
-    //     );
-    // }
-
-    public fecharForm(): void {
-        this.formCliente.reset();
-        this.resForm.emit();
+    public salvarFormulario(): void {
+        this.novoCliente = this.formCliente.getRawValue();
+        this.clienteService.insert(this.novoCliente).subscribe({
+            next: () => {
+                this.fecharForm();
+                this.listarClientes = true;
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        })
     }
 
-    public adicionarDependente(id?: number): void {
-        console.log(id);
+    public editarCliente(id: number): void {
+        this.clienteService.findById(id).subscribe({
+                next: (response) => {
+                    !this.novoDado;
+                    this.numInsc = response.numeroInscricao;
+                    this.formCliente.patchValue(response);
+                },
+                error: (error) => {
+                    console.log(error);
+                },
+            }
+        );
+    }
+
+    public visualizarCliente(id: number): void {
+        this.clienteService.findById(id).subscribe({
+                next: (response) => {
+                    !this.novoDado;
+                    this.numInsc = response.numeroInscricao;
+                    this.formCliente.patchValue(response);
+                    this.formCliente.disable();
+                    this.abilitarBotao = true;
+                },
+                error: (error) => {
+                    console.log(error);
+                },
+            }
+        );
+    }
+
+    public fecharForm(): void {
+        this.numInsc = '';
+        this.formCliente.reset();
+        this.resForm.emit();
     }
 }

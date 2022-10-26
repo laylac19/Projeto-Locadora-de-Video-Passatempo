@@ -1,0 +1,86 @@
+<div class="form p-fluid">
+    <form [formGroup]="formSocio" class="ui-fluid">
+        <div class="area flex">
+            <div class="field col-8">
+                <span class="item">
+                    <label class="campo-form">Nome Sócio</label>
+                    <p-dropdown formControlName="idCliente" [filter]="true" [options]="clientesDropDown"
+                                placeholder="Selecione"
+                                appendTo="body">
+                        <ng-template let-item pTemplate="item">
+                            <div class="ui-helper-clearfix div-itens">
+                                <div class="place-drop">{{item.label}}</div>
+                            </div>
+                        </ng-template>
+                </p-dropdown>
+                </span>
+            </div>
+            <div class="field col-4">
+                <span class="item">
+                    <label class="campo-form">CPF</label>
+                    <p-inputMask mask="999.999.999-99" formControlName="telefone" placeholder="(99) 99999-9999"></p-inputMask>
+                </span>
+            </div>
+        </div>
+        <div class="area flex">
+            <div class="field col-2">
+                <span class="item">
+                    <label class="campo-form">Telefone</label>
+                    <p-inputMask mask="(99) 99999-9999" formControlName="telefone" placeholder="(99) 99999-9999"></p-inputMask>
+                </span>
+            </div>
+            <div class="field col-10">
+                <span class="item">
+                    <label class="campo-form" for="inputNomeTitulo">Endereço(Nº, Rua, Bairro)</label>
+                    <input type="text" id="inputNomeTitulo" pInputText formControlName="endereco">
+                </span>
+            </div>
+        </div>
+        <div class="field-continuar">
+            <button pButton type="button"
+                    icon="pi pi-plus"
+                    class="button-action ui-button-success button-save-new"
+                    iconPos="left"
+                    label="Continuar"
+                    (click)="salvarFormulario()">
+            </button>
+        </div>
+        <div class="field-acordion col-12">
+            <p-accordion>
+                <p-accordionTab header="Dependentes">
+                    <div class="area-acordion flex col-12">
+                        <div class="field acordion col-8">
+                            <span class="item">
+                                <label class="campo-form">Nome Cliente</label>
+                                <p-dropdown formControlName="sexo" [filter]="true" [options]="clientesDropDown"
+                                            placeholder="Selecione o Dependente"
+                                            appendTo="body">
+                                   <ng-template let-item pTemplate="item">
+                                       <div class="ui-helper-clearfix div-itens">
+                                           <div class="place-drop">{{item.label}}</div>
+                                       </div>
+                                   </ng-template>
+                               </p-dropdown>
+                            </span>
+                        </div>
+                        <div class="field button col-4">
+                            <button type="button" pButton icon="pi pi-plus" label="Adicionar"
+                                    (click)="adicionarDependente()"
+                                    class="button-action ui-button-secondary mr-3">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="item-pagina tabela pt-1">
+                        <app-dependente-list></app-dependente-list>
+                    </div>
+                </p-accordionTab>
+            </p-accordion>
+        </div>
+    </form>
+</div>
+<div class="action-form">
+    <button type="button" pButton icon="pi pi-times" label="Cancelar" (click)="fecharForm()"
+            class="button-action ui-button-secondary mr-3"></button>
+    <button type="button" pButton icon="pi pi-check" label="Salvar"
+            class="button-action button-save-new"></button>
+</div>

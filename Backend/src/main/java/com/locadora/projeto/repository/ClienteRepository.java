@@ -16,14 +16,13 @@ import java.util.Optional;
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
 
-
     Optional<Cliente> findClienteByNome(String nome);
 
     @Query("select new com.locadora.projeto.service.dto.ClienteListDTO(c.id, c.numeroInscricao, c.nome, c.dataNascimento, c.ativo) " +
             "from Cliente c where c.ativo = true")
     List<ClienteListDTO> buscarTodos();
 
-    @Query("select new com.locadora.projeto.service.dto.ClienteSocioListDTO(s.id, c.numeroInscricao, c.nome, s.cpf, s.telefone, c.dataNascimento) " +
+    @Query("select new com.locadora.projeto.service.dto.ClienteListDTO(c.id, c.numeroInscricao, c.nome, c.dataNascimento, c.ativo)" +
             "from Socio s join Cliente c on c.id = s.id where c.ativo = :situacao and s.id in (select d.idDependente from Dependente d)")
     List<ClienteSocioListDTO> clientesDependente(@Param("situacao") Boolean situacao);
 

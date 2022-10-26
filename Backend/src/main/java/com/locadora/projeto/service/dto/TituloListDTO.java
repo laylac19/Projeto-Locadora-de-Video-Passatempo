@@ -13,5 +13,5 @@ public class TituloListDTO {
     private String nome;
     private Integer ano;
     private String nomeCategoria;
-    private String sinopse;
+    private String nomeClasse;
 }

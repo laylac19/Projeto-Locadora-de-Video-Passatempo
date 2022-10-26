@@ -22,3 +22,8 @@ app-titulo-list > p-dialog > div > div {
 p-dialog-header {
     cursor: none;
 }
+
+app-cliente-list > div > p-tabview > div > div.p-tabview-panels {
+    padding: 0 !important;
+}
+

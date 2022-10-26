@@ -37,8 +37,8 @@ export class TituloService {
         return this.http.post<TituloModel>(this.resourceUrl, entity);
     }
 
-    insertCastMovie(idTiulo: number, idAtor: number, vinculo: VinculoEntidades): Observable<TituloModel> {
-        return this.http.post<TituloModel>(this.resourceUrl + '/' + idTiulo + '/' + idAtor, vinculo);
+    insertCastMovie(vinculo: VinculoEntidades): Observable<TituloModel> {
+        return this.http.post<TituloModel>(this.resourceUrl + '/ator-titulo', vinculo);
     }
 
     update(entity: TituloModel): Observable<TituloModel> {

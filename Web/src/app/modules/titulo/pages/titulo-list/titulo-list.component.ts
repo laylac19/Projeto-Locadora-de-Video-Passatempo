@@ -19,6 +19,9 @@ export class TituloListComponent implements OnInit {
     public listaTitulosFilmes: TituloListModel[] = [];
     public tituloFilme: TituloModel;
 
+    // public abilitarAcordion: boolean = true;
+    // public abirAcordion: boolean = false;
+
     public tituloModal: string;
 
     @Input() displayFormTitulo = false;
@@ -37,10 +40,10 @@ export class TituloListComponent implements OnInit {
 
     public colunasTabela(): void {
         this.colunas = [
-            new ColunaModel('nomeTitulo', 'Nome Título'),
+            new ColunaModel('nome', 'Nome Título'),
             new ColunaModel('ano', 'Ano Lançamento'),
-            new ColunaModel('classe', 'Classse'),
-            new ColunaModel('categoria', 'Categoria'),
+            new ColunaModel('nomeClasse', 'Classse'),
+            new ColunaModel('nomeCategoria', 'Categoria'),
             new ColunaModel('acoes', 'Ações', '132px')
         ]
     }
@@ -88,9 +91,20 @@ export class TituloListComponent implements OnInit {
     }
 
     public fecharModal(): void {
-        if (this.formTituloFilme.listarTitulos) {
+        if (!this.formTituloFilme.listarTitulos) {
+            this.displayFormTitulo = false;
             this.listarTodosTitulosFilmes();
         }
-        this.displayFormTitulo = false;
+
     }
+
+    // public delabilitarAcaoModal(abilitar: boolean): void {
+    //     if (abilitar) {
+    //         this.abilitarAcordion = false;
+    //         this.abirAcordion = true;
+    //         return;
+    //     }
+    //     this.abilitarAcordion = true;
+    //     this.abirAcordion = false;
+    // }
 }

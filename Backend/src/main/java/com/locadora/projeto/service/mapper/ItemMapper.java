@@ -11,7 +11,7 @@ public interface ItemMapper extends EntityMapper<ItemDTO, Item> {
 
     @Override
     @Mapping(target = "titulo.id", source = "idTitulo")
-    Item toEntity(ItemDTO dto);
+    Item toEntity (ItemDTO dto);
 
     @Override
     @InheritInverseConfiguration

@@ -3,101 +3,48 @@
         <div class="area flex">
             <div class="field col-4">
                 <span class="item">
-                    <label class="campo-form">Número de Inscrição</label>
-                    <input type="text" id="numInsc" pInputText formControlName="numInscricao">
+                    <label class="campo-form">Nº de Inscrição</label>
+                    <p class="numInsc" *ngIf="!novoDado">{{numInsc}}</p>
                 </span>
             </div>
-            <div class="field col-6">
+            <div class="field col-8">
                 <span class="item">
-                    <label class="campo-form" for="inputNome">Nome Sócio</label>
-                    <input type="text" id="inputNome" pInputText formControlName="nomeCliente">
-                </span>
-            </div>
-            <div class="field col-2">
-                <span class="item">
-                    <label class="campo-form">Sexo</label>
-                    <p-dropdown formControlName="sexo" [filter]="true" [options]="sexo"
-                                placeholder="Selecione"
-                                appendTo="body">
-                        <ng-template let-item pTemplate="item">
-                            <div class="ui-helper-clearfix div-itens">
-                                <div class="place-drop">{{item.label}}</div>
-                            </div>
-                        </ng-template>
-                    </p-dropdown>
+                    <label class="campo-form" for="inputNome">Nome Cliente</label>
+                    <input type="text" id="inputNome" pInputText formControlName="nome">
                 </span>
             </div>
         </div>
         <div class="area flex">
-            <div class="field col-4">
+            <div class="field col-6">
+                <span class="item">
+                    <label class="campo-form">Sexo</label>
+                    <p-dropdown formControlName="sexo" [options]="sexo" placeholder="Selecione"
+                                appendTo="body" class="ui-fluid">
+                    </p-dropdown>
+                </span>
+            </div>
+            <div class="field col-6">
                 <span class="item">
                     <label class="campo-form" for="inputDtNasc">Data Nascimento</label>
-                    <input type="text" id="inputDtNasc" pInputText formControlName="dtNascimento">
+                    <p-calendar
+                        class="calendario"
+                        placeholder="DD/MM/AAAA"
+                        id="inputDtNasc"
+                        formControlName="dataNascimento"
+                        dateFormat="dd/mm/yy"
+                        appendTo="body"
+                        [yearNavigator]="true"
+                        [defaultDate]="dataNascimento"
+                        [showIcon]="true"
+                    ></p-calendar>
                 </span>
             </div>
-            <div class="field col-4">
-                <span class="item">
-                    <label class="campo-form" for="inputCpf">CPF</label>
-                    <input type="text" id="inputCpf" pInputText formControlName="cpf">
-                </span>
-            </div>
-            <div class="field col-4">
-                <span class="item">
-                    <label class="campo-form" for="inputTelefone">Telefone</label>
-                    <input type="text" id="inputTelefone" pInputText formControlName="telefone">
-                </span>
-            </div>
-        </div>
-        <div class="field col-12">
-            <span class="item">
-                <label class="campo-form" for="inputNomeTitulo">Endereço(Nº, Rua, Bairro)</label>
-                <input type="text" id="inputNomeTitulo" pInputText formControlName="endereco">
-            </span>
-        </div>
-        <div class="field-continuar">
-            <button pButton type="button"
-                    icon="pi pi-plus"
-                    class="button-action ui-button-success button-save-new"
-                    iconPos="left"
-                    label="Continuar">
-            </button>
-        </div>
-        <div class="field-acordion col-12">
-            <p-accordion>
-                <p-accordionTab header="Dependentes">
-                    <div class="area-acordion flex col-12">
-                        <div class="field acordion col-8">
-                            <span class="item">
-                                <label class="campo-form">Nome</label>
-                                <p-dropdown formControlName="idAtor" [filter]="true" [options]="clientesDropDown"
-                                            placeholder="Selecione o Dependente"
-                                            appendTo="body">
-                                   <ng-template let-item pTemplate="item">
-                                       <div class="ui-helper-clearfix div-itens">
-                                           <div class="place-drop">{{item.label}}</div>
-                                       </div>
-                                   </ng-template>
-                               </p-dropdown>
-                            </span>
-                        </div>
-                        <div class="field button col-4">
-                            <button type="button" pButton icon="pi pi-plus" label="Adicionar"
-                                    (click)="adicionarDependente()"
-                                    class="button-action ui-button-secondary mr-3">
-                            </button>
-                        </div>
-                    </div>
-                    <div class="item-pagina tabela pt-1">
-                        <app-dependente-list></app-dependente-list>
-                    </div>
-                </p-accordionTab>
-            </p-accordion>
         </div>
     </form>
 </div>
 <div class="action-form">
     <button type="button" pButton icon="pi pi-times" label="Cancelar" (click)="fecharForm()"
             class="button-action ui-button-secondary mr-3"></button>
-    <button type="button" pButton icon="pi pi-check" label="Salvar"
+    <button type="button" pButton icon="pi pi-check" label="Salvar" (click)="salvarFormulario()" [disabled]="abilitarBotao"
             class="button-action button-save-new"></button>
 </div>

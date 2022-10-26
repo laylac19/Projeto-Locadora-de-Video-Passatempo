@@ -26,7 +26,6 @@ public class ClasseServiceImpl implements ClasseService {
     private final ClasseListMapper listMapper;
     private final ClasseMapper mapper;
     private final ClasseRepository repository;
-
     private final TituloRepository tituloRepository;
 
 
@@ -49,7 +48,7 @@ public class ClasseServiceImpl implements ClasseService {
     }
 
     public void delete(Integer id) {
-        verificarVinculoClasseTitulo(id);
+        checkLinkTitleClass(id);
         Classe classe = findbyId(id);
         classe.setAtivo(false);
         repository.save(classe);
@@ -59,7 +58,7 @@ public class ClasseServiceImpl implements ClasseService {
         return repository.buscarDropdown();
     }
 
-    private void verificarVinculoClasseTitulo(Integer id){
+    private void checkLinkTitleClass(Integer id){
         if(Boolean.TRUE.equals(tituloRepository.existsByClasseId(id))){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, MensagemClasseUtil.CLASSE_VINCULADA_TITULO);
         }

@@ -6,7 +6,11 @@
             <span *ngIf="casoUso === 'Controle'">
                 <app-controle-acervo></app-controle-acervo>
             </span>
+            <span *ngIf="casoUso === 'Atendimento'">
+                <app-menu-atendimento-cliente></app-menu-atendimento-cliente>
+            </span>
             <router-outlet></router-outlet>
         </div>
     </div>
 </div>
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>

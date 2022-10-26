@@ -13,6 +13,7 @@ import com.locadora.projeto.service.util.MensagemAtorUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -29,8 +30,6 @@ public class AtorServiceImpl implements AtorService {
     private final AtorRepository repository;
     private final AtorTituloRepository atorTituloRepository;
 
-
-
     public List<AtorListDTO> findAll() {
         return listMapper.toDto(repository.findAllByAtivoIsTrue());
     }
@@ -46,12 +45,12 @@ public class AtorServiceImpl implements AtorService {
     }
 
     public AtorDTO save(AtorDTO dto) {
-        verificarNomeDuplicado(dto);
+        checkDuplicateName(dto);
         return mapper.toDto(repository.save(mapper.toEntity(dto)));
     }
 
     public void delete(Integer id) {
-        verificarVinculoTitulo(id);
+        checkTitleLink(id);
         Ator ator = findByIdEntity(id);
         ator.setAtivo(false);
         repository.save(ator);
@@ -61,24 +60,25 @@ public class AtorServiceImpl implements AtorService {
         return repository.buscarDropdown();
     }
 
-    public List<String> buscarAtoresFilme(Integer idFilme) {
+    public List<DropdownDTO> searchCastMovie(Integer idFilme) {
         return repository.buscarAtoresFilme(idFilme);
     }
 
-    private void verificarNomeDuplicado(AtorDTO dto){
+    private void checkDuplicateName(AtorDTO dto){
         Optional<Ator> ator = repository.findAtorByNomeAtor(dto.getNomeAtor());
-        if(nomeDuplicado(dto, ator)){
+        if(duplicateName(dto, ator)){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, MensagemAtorUtil.ATOR_DUPLICADO);
         }
     }
 
-    private boolean nomeDuplicado(AtorDTO dto, Optional<Ator> optionalAtor) {
+    private boolean duplicateName(AtorDTO dto, Optional<Ator> optionalAtor) {
         return optionalAtor.isPresent() && optionalAtor.get().getId().equals(dto.getId());
     }
 
-    private void verificarVinculoTitulo(Integer id){
+    private void checkTitleLink(Integer id){
         if(Boolean.TRUE.equals(atorTituloRepository.existsByAtorId(id))){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, MensagemAtorUtil.ATOR_VINCULADO_TITULO);
         }
     }
+
 }

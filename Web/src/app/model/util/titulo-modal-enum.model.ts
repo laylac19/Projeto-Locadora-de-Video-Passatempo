@@ -1,6 +1,6 @@
 export class TituloModalEnum {
     static readonly NOVO = new TituloModalEnum(0, 'Novo');
-    static readonly VISUALIZAR = new TituloModalEnum(1, 'Visualizar');
+    static readonly VISUALIZAR = new TituloModalEnum(1, 'Visualizar Dados');
     static readonly EDITAR = new TituloModalEnum(2, 'Editar');
 
     static readonly NOVO_ATOR = new TituloModalEnum(3, 'Novo Ator');
@@ -21,6 +21,10 @@ export class TituloModalEnum {
     static readonly NOVO_CLIENTE = new TituloModalEnum(13, 'Novo Cliente');
     static readonly EDITAR_CLIENTE = new TituloModalEnum(14, 'Editar Cliente');
 
+    static readonly NOVO_SOCIO = new TituloModalEnum(15, 'Novo Sócio');
+    static readonly VISUALIZAR_SOCIO = new TituloModalEnum(16, 'Visualizar Dados Sócio');
+    static readonly EDITAR_SOCIO = new TituloModalEnum(17, 'Editar Sócio');
+
 
     static values = [
         TituloModalEnum.NOVO,
@@ -37,7 +41,10 @@ export class TituloModalEnum {
         TituloModalEnum.NOVO_ITEM,
         TituloModalEnum.EDITAR_ITEM,
         TituloModalEnum.NOVO_CLIENTE,
-        TituloModalEnum.EDITAR_CLIENTE
+        TituloModalEnum.EDITAR_CLIENTE,
+        TituloModalEnum.NOVO_SOCIO,
+        TituloModalEnum.VISUALIZAR_SOCIO,
+        TituloModalEnum.EDITAR_SOCIO
     ];
 
     private constructor(

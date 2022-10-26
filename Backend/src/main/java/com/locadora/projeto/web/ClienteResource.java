@@ -19,19 +19,19 @@ public class ClienteResource {
 
     @GetMapping
     public ResponseEntity<List<ClienteListDTO>> buscarTodos(){
-        List<ClienteListDTO> dto = service.findAllAtivos();
+        List<ClienteListDTO> dto = service.findAllActive();
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
     @GetMapping("/dependentes/{situacao}")
-    public ResponseEntity<List<ClienteSocioListDTO>> buscarAtivos(@PathVariable("situacao") Boolean situacao){
-        List<ClienteSocioListDTO> dto = service.findAllDependentes(situacao);
+    public ResponseEntity<List<ClienteSocioListDTO>> buscarDependentesPorSituacao(@PathVariable("situacao") Boolean situacao){
+        List<ClienteSocioListDTO> dto = service.findAllDependents(situacao);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
     @GetMapping("/socios/{situacao}")
-    public ResponseEntity<List<ClienteSocioListDTO>> buscarInativos(@PathVariable("situacao") Boolean situacao){
-        List<ClienteSocioListDTO> dto = service.findAllSocios(situacao);
+    public ResponseEntity<List<ClienteSocioListDTO>> buscarSociosPorSituacao(@PathVariable("situacao") Boolean situacao){
+        List<ClienteSocioListDTO> dto = service.findAllPartners(situacao);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
@@ -43,30 +43,30 @@ public class ClienteResource {
 
     @PostMapping("/salvar-dependente")
     public ResponseEntity<Void> salvarDependente(@Valid @RequestBody VinculoEntidadeDTO dto){
-        service.salvarDependente(dto);
+        service.saveDependent(dto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/socios/dropdown")
+    @GetMapping("/clientes/dropdown")
     public ResponseEntity<List<DropdownDTO>> buscarClientesNaoSocios(){
-        List<DropdownDTO> dto = service.clientesNaoSociosDropdown();
+        List<DropdownDTO> dto = service.NonPartnersCustomersDropdown();
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<ClienteDTO> salvarClasse(@RequestBody ClienteDTO clienteDTO){
+    public ResponseEntity<ClienteDTO> salvarCliente(@RequestBody ClienteDTO clienteDTO){
         ClienteDTO dto = service.save(clienteDTO);
         return new ResponseEntity<>(dto, HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity<ClienteDTO> editarClasse(@RequestBody ClienteDTO clienteDTO){
+    public ResponseEntity<ClienteDTO> editarCliente(@RequestBody ClienteDTO clienteDTO){
         ClienteDTO dto = service.save(clienteDTO);
         return new ResponseEntity<>(dto, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletarClasse(@PathVariable("id") Integer id){
+    public ResponseEntity<Void> deletarCliente(@PathVariable("id") Integer id){
         service.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

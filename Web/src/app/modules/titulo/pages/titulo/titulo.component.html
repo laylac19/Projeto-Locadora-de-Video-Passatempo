@@ -7,13 +7,13 @@
             </span>
         </div>
         <div class="area flex">
-            <div class="field col-4">
+            <div class="field col-2">
                 <span class="item">
                     <label class="campo-form" for="inputAno">Ano</label>
                     <input type="text" id="inputAno" pInputText formControlName="ano">
                 </span>
             </div>
-            <div class="field col-4">
+            <div class="field col-5">
                 <span class="item">
                     <label class="campo-form">Categoria</label>
                     <p-dropdown formControlName="idCategoria" [filter]="true" [options]="categoriasDropDown"
@@ -27,7 +27,7 @@
                     </p-dropdown>
                 </span>
             </div>
-            <div class="field col-4">
+            <div class="field col-5">
                 <span class="item">
                     <label class="campo-form">Classe</label>
                     <p-dropdown formControlName="idClasse" [options]="classesDropDown" placeholder="Selecione a Classe"
@@ -61,16 +61,17 @@
                     icon="pi pi-plus"
                     class="button-action ui-button-success button-save-new"
                     iconPos="left"
-                    label="Continuar e Adicionar Elenco">
+                    label="Continuar e Adicionar Elenco"
+                    (click)="salvarFormulario()">
             </button>
         </div>
         <div class="field-acordion col-12">
             <p-accordion>
-                <p-accordionTab header="Elenco">
+                <p-accordionTab header="Elenco" [disabled]="abilitarAcordion" [selected]="abirAcordion">
                     <div class="area-acordion flex col-12">
                         <div class="field acordion col-8">
                             <span class="item">
-                                <label class="campo-form">Nome</label>
+                                <label class="campo-form">Nome Atore</label>
                                 <p-dropdown formControlName="idAtor" [filter]="true" [options]="atoresDropDown"
                                             placeholder="Selecione o Elenco"
                                             appendTo="body">
@@ -90,7 +91,7 @@
                         </div>
                     </div>
                     <div class="item-pagina tabela pt-1">
-                        <p-table [columns]="colunas" [paginator]="true" [rows]="7" [responsive]="true"
+                        <p-table [columns]="colunas" [value]="listaElenco" [paginator]="true" [rows]="7" [responsive]="true"
                                  sortMode="multiple">
                             <ng-template pTemplate="header" let-colunas>
                                 <tr>
@@ -134,6 +135,6 @@
 <div class="action-form">
     <button type="button" pButton icon="pi pi-times" label="Cancelar" (click)="fecharForm()"
             class="button-action ui-button-secondary mr-3"></button>
-    <button type="button" pButton icon="pi pi-check" label="Salvar" (click)="salvarFormulario()"
+    <button type="button" pButton icon="pi pi-check" label="Salvar" (click)="fecharForm()" [disabled]="abilitarBotao"
             class="button-action button-save-new"></button>
 </div>

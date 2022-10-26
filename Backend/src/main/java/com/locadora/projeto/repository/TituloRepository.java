@@ -15,7 +15,7 @@ public interface TituloRepository extends JpaRepository<Titulo, Integer> {
 
     Optional<Titulo> findTituloByNome(String nome);
 
-    @Query("select new com.locadora.projeto.service.dto.TituloListDTO(t.id, t.nome, t.ano, t.categoria.nomeCategoria, t.sinopse) " +
+    @Query("select new com.locadora.projeto.service.dto.TituloListDTO(t.id, t.nome, t.ano, t.categoria.nomeCategoria, t.classe.nomeClasse) " +
             "from Titulo t where t.ativo = true")
     List<TituloListDTO> buscarTitulos();
 
@@ -23,7 +23,7 @@ public interface TituloRepository extends JpaRepository<Titulo, Integer> {
 
     Boolean existsByDiretorId(Integer idDiretor);
 
-    @Query("select new com.locadora.projeto.service.dto.DropdownDTO(t.id, t.nome) From Titulo t")
+    @Query("select new com.locadora.projeto.service.dto.DropdownDTO(t.id, t.nome) From Titulo t where t.ativo = true")
     List<DropdownDTO> buscarDropdown();
 
 }

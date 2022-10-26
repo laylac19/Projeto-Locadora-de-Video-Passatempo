@@ -3,7 +3,7 @@ export class TituloModel {
     public nome: string;
     public ano: number;
     public sinopse: string;
-    public idCategoria: string;
+    public idCategoria: number;
     public idClasse: number;
     public idDiretor: number;
 }

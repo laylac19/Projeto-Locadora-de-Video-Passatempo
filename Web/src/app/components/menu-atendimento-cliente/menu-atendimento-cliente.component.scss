@@ -1,0 +1,49 @@
+div.pagina {
+    display: flex;
+    flex-direction: column;
+}
+
+div.container {
+    display: flex;
+    flex-direction: row;
+    padding: 0 50px 10px 50px;
+}
+
+div.container.menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 20px 0 20px 20px;
+    border-bottom: 5px solid var(--cor-tema-bittersweet);
+}
+
+p-card.card-item-menu {
+    width: 200px;
+}
+
+.icon {
+    color: var(--cor-tema-beige);
+    text-align: center;
+    font-size: 20pt;
+}
+
+.label-button {
+    color: var(--cor-tema-beige);
+    font-size: 15pt;
+    font-family: 'Kreon', Verdana, sans-serif;
+    font-weight: 700;
+    text-align: center;
+}
+
+p-card.card-item-menu .p-card-content {
+    flex-direction: column;
+}
+
+div.container.list {
+    display: flex;
+    align-items: start;
+    background-color: var(--cor-tema-eton-blue);
+    padding: 0 5px 0 5px;
+    border-bottom: 4px dashed var(--cor-tema-bittersweet);
+    justify-content: center;
+}
