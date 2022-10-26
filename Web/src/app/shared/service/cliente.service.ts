@@ -8,6 +8,7 @@ import {ClienteListModel} from "../../model/cliente-list.model";
 import {ClienteModel} from "../../model/cliente.model";
 import {SocioListModel} from "../../model/socio-list.model";
 import {VinculoEntidades} from "../../model/vinculo-entidade.model";
+import {SocioModel} from "../../model/socio.model";
 
 @Injectable({
   providedIn: 'root'
@@ -45,6 +46,10 @@ export class ClienteService {
 
     insert(entity: ClienteModel): Observable<ClienteModel> {
         return this.http.post<ClienteModel>(this.resourceUrl, entity);
+    }
+
+    savePartners(entity: SocioModel): Observable<SocioModel> {
+        return this.http.post<SocioModel>(this.resourceUrl + '/socio', entity);
     }
 
     update(entity: ClienteModel): Observable<ClienteModel> {

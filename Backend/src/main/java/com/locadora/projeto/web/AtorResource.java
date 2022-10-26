@@ -68,9 +68,9 @@ public class AtorResource {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @DeleteMapping("/ator-titulo")
-    public ResponseEntity<Void> deletarAtorTitulo(@RequestBody VinculoEntidadeDTO dto){
-        service.withdrawActorFromCast(dto);
+    @DeleteMapping("/ator-titulo/{idAtor}/{idTitulo}")
+    public ResponseEntity<Void> deletarAtorTitulo(@PathVariable("idAtor") Integer idAtor, @PathVariable("idTitulo") Integer idTitulo){
+        service.withdrawActorFromCast(idAtor, idTitulo);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
