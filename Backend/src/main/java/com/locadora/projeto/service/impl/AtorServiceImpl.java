@@ -7,6 +7,7 @@ import com.locadora.projeto.service.AtorService;
 import com.locadora.projeto.service.dto.AtorDTO;
 import com.locadora.projeto.service.dto.AtorListDTO;
 import com.locadora.projeto.service.dto.DropdownDTO;
+import com.locadora.projeto.service.dto.VinculoEntidadeDTO;
 import com.locadora.projeto.service.mapper.AtorListMapper;
 import com.locadora.projeto.service.mapper.AtorMapper;
 import com.locadora.projeto.service.util.MensagemAtorUtil;
@@ -79,6 +80,10 @@ public class AtorServiceImpl implements AtorService {
         if(Boolean.TRUE.equals(atorTituloRepository.existsByAtorId(id))){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, MensagemAtorUtil.ATOR_VINCULADO_TITULO);
         }
+    }
+
+    public void deletarAtorTitulo(VinculoEntidadeDTO dto){
+        atorTituloRepository.deleteAtorTituloByAtorIdAndTituloId(dto.getId1(), dto.getId2());
     }
 
 }
