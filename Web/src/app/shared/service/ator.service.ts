@@ -5,6 +5,8 @@ import {Observable} from "rxjs";
 import {AtorModel} from "../../model/ator.model";
 import {AtorListModel} from "../../model/ator-list.model";
 import {SelectItem} from "primeng/api";
+import {ClasseModel} from "../../model/classe.model";
+import {VinculoEntidades} from "../../model/vinculo-entidade.model";
 
 @Injectable({
     providedIn: 'root'
@@ -42,5 +44,9 @@ export class AtorService {
 
     delete(id: number): Observable<AtorModel> {
         return this.http.delete<AtorModel>(this.resourceUrl + '/' + id);
+    }
+
+    withdrawActorFromCast(idAtor: number, idTitulo: number): Observable<AtorModel> {
+        return this.http.delete<AtorModel>(this.resourceUrl + '/ator-titulo/' + idAtor + '/' + idTitulo);
     }
 }

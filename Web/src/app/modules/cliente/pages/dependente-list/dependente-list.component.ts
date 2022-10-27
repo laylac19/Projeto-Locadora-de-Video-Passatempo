@@ -41,10 +41,8 @@ export class DependenteListComponent implements OnInit {
         this.colunas = [
             new ColunaModel('socio', 'Nome Sócio'),
             new ColunaModel('numInscricao', 'Nº Inscrição'),
-            new ColunaModel('nomeCliente', 'Nome Dependente'),
-            new ColunaModel('dtNascimento', 'Data Nascimento'),
-            new ColunaModel('cpf', 'CPF'),
-            new ColunaModel('telefone', 'Telefone'),
+            new ColunaModel('nome', 'Nome Dependente'),
+            new ColunaModel('dataNascimento', 'Data Nascimento'),
             new ColunaModel('acoes', 'Ações', '132px')
         ]
     }

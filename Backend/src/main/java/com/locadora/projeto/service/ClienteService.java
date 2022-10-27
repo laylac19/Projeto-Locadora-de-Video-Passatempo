@@ -21,5 +21,5 @@ public interface ClienteService {
 
     void saveDependent(VinculoEntidadeDTO dto);
 
-    SocioDTO salvarSocio(SocioDTO dto);
+    public SocioDTO saveSocio(SocioDTO dto);
 }

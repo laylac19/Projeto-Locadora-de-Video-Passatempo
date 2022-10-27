@@ -4,7 +4,6 @@ import com.locadora.projeto.domain.Ator;
 import com.locadora.projeto.service.dto.AtorDTO;
 import com.locadora.projeto.service.dto.AtorListDTO;
 import com.locadora.projeto.service.dto.DropdownDTO;
-import com.locadora.projeto.service.dto.VinculoEntidadeDTO;
 
 import java.util.List;
 
@@ -24,5 +23,5 @@ public interface AtorService {
 
     List<DropdownDTO> searchCastMovie(Integer idFilme);
 
-    void deletarAtorTitulo(VinculoEntidadeDTO dto);
+    void withdrawActorFromCast(Integer idAtor, Integer idTitulo);
 }

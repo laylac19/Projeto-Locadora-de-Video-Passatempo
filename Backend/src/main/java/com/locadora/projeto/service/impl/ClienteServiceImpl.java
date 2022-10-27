@@ -33,6 +33,7 @@ public class ClienteServiceImpl implements ClienteService {
     private final SocioRepository socioRepository;
     private final SocioMapper socioMapper;
 
+
     public List<ClienteListDTO> findAllActive() {
         return repository.buscarTodos();
     }
@@ -114,13 +115,13 @@ public class ClienteServiceImpl implements ClienteService {
         return socioRepository.existsSocioById(idSocio);
     }
 
-    private void disableDependents(Integer idSocio){
+    private void disableDependents(Integer idSocio) {
         if(Boolean.TRUE.equals(isSocio(idSocio))){
             repository.desativarDependentes(dependenteRepository.buscarDependentes(idSocio));
         }
     }
 
-    public SocioDTO salvarSocio(SocioDTO dto){
+    public SocioDTO saveSocio(SocioDTO dto){
         return socioMapper.toDto(socioRepository.save(socioMapper.toEntity(dto)));
     }
 }

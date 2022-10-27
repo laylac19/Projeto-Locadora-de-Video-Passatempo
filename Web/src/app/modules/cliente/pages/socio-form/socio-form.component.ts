@@ -17,6 +17,7 @@ export class SocioFormComponent implements OnInit {
     public vinculo: VinculoEntidades;
 
     public listarSocios: boolean = false;
+    private listarDependentes: boolean  = false;
     public idSocio: number;
     public idDependente: number;
 
@@ -24,7 +25,7 @@ export class SocioFormComponent implements OnInit {
 
     @Input() socioModel: SocioModel;
     @Output() resForm: EventEmitter<boolean> = new EventEmitter();
-    private listarDependentes: boolean  = false;
+
 
     constructor(
         private builder: FormBuilder,
@@ -45,7 +46,8 @@ export class SocioFormComponent implements OnInit {
 
     public novoFormulario(): void {
         this.formSocio = this.builder.group({
-            idCliente: [null, [Validators.required]],
+            idClienteSocio: [null, [Validators.required]],
+            idClienteDependente: [null, [Validators.required]],
             cpf: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
             endereco: ['', [Validators.required, Validators.minLength(15), Validators.maxLength(100)]],
             telefone: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
@@ -54,9 +56,8 @@ export class SocioFormComponent implements OnInit {
 
     public salvarFormulario(): void {
         this.novoSocio = this.formSocio.getRawValue();
-        this.clienteService.insert(this.novoSocio).subscribe({
-            next: (response) => {
-                console.log(response);
+        this.clienteService.savePartners(this.novoSocio).subscribe({
+            next: () => {
                 this.fecharForm();
                 this.listarSocios = true;
             },
@@ -69,6 +70,7 @@ export class SocioFormComponent implements OnInit {
     public editarForm(id: number): void {
         this.clienteService.findById(id).subscribe({
                 next: (response) => {
+                    console.log(response)
                     this.formSocio.patchValue(response);
                 },
                 error: (error) => {
@@ -93,10 +95,13 @@ export class SocioFormComponent implements OnInit {
     }
 
     public adicionarDependente(idSocio?: number): void {
-        this.idSocio = this.formSocio.get('idCliente')?.value;
+        this.idSocio = this.formSocio.get('idClienteSocio')?.value;
+        this.idDependente = this.formSocio.get('idClienteDependente')?.value;
         this.vinculo = new VinculoEntidades(this.idSocio, this.idDependente);
+        console.log(this.vinculo)
         this.clienteService.saveDependent(this.vinculo).subscribe({
             next: () => {
+                console.log(this.vinculo)
                 this.listarDependentes = true;
                 this.listarDependentesDeSocio(this.idSocio);
             }

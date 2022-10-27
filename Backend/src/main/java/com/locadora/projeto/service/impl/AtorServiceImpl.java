@@ -82,8 +82,8 @@ public class AtorServiceImpl implements AtorService {
         }
     }
 
-    public void deletarAtorTitulo(VinculoEntidadeDTO dto){
-        atorTituloRepository.deleteAtorTituloByAtorIdAndTituloId(dto.getId1(), dto.getId2());
+    public void withdrawActorFromCast(Integer idAtor, Integer idTitulo) {
+        atorTituloRepository.deleteAtorTituloByAtorIdAndTituloId(idAtor, idTitulo);
     }
 
 }

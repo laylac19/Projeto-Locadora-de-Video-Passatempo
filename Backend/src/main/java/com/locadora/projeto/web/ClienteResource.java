@@ -61,7 +61,7 @@ public class ClienteResource {
 
     @PostMapping("/socio")
     public ResponseEntity<SocioDTO> salvarSocio(@RequestBody SocioDTO dto){
-        SocioDTO socio = service.salvarSocio(dto);
+        SocioDTO socio = service.saveSocio(dto);
         return new ResponseEntity<>(socio, HttpStatus.CREATED);
     }
 

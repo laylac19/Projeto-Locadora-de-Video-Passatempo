@@ -87,7 +87,6 @@ export class ClienteFormComponent implements OnInit {
                     !this.novoDado;
                     this.numInsc = response.numeroInscricao;
                     this.formCliente.patchValue(response);
-                    this.formCliente.disable();
                     this.abilitarBotao = true;
                 },
                 error: (error) => {
