@@ -1,6 +1,5 @@
-import {ClienteModel} from "./cliente.model";
-
-export class SocioModel extends ClienteModel{
+export class SocioModel {
+    public id: number;
     public cpf: string;
     public endereco: string;
     public telefone: string;

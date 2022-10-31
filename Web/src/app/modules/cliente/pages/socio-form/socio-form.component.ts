@@ -46,11 +46,11 @@ export class SocioFormComponent implements OnInit {
 
     public novoFormulario(): void {
         this.formSocio = this.builder.group({
-            idClienteSocio: [null, [Validators.required]],
-            idClienteDependente: [null, [Validators.required]],
-            cpf: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
+            id: [null, [Validators.required]],
+            cpf: ['', [Validators.required, Validators.minLength(11)]],
             endereco: ['', [Validators.required, Validators.minLength(15), Validators.maxLength(100)]],
-            telefone: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
+            telefone: ['', [Validators.required, Validators.minLength(11)]],
+            idDependente: [null, [Validators.required]],
         });
     }
 
@@ -95,13 +95,12 @@ export class SocioFormComponent implements OnInit {
     }
 
     public adicionarDependente(idSocio?: number): void {
-        this.idSocio = this.formSocio.get('idClienteSocio')?.value;
-        this.idDependente = this.formSocio.get('idClienteDependente')?.value;
+        this.idSocio = this.formSocio.get('id')?.value;
+        this.idDependente = this.formSocio.get('idDependente')?.value;
         this.vinculo = new VinculoEntidades(this.idSocio, this.idDependente);
         console.log(this.vinculo)
         this.clienteService.saveDependent(this.vinculo).subscribe({
             next: () => {
-                console.log(this.vinculo)
                 this.listarDependentes = true;
                 this.listarDependentesDeSocio(this.idSocio);
             }
