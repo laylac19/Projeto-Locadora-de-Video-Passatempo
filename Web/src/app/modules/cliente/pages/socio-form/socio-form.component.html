@@ -4,7 +4,7 @@
             <div class="field col-8">
                 <span class="item">
                     <label class="campo-form">Nome Sócio</label>
-                    <p-dropdown formControlName="idClienteSocio" [filter]="true" [options]="clientesDropDown"
+                    <p-dropdown formControlName="id" [filter]="true" [options]="clientesDropDown"
                                 placeholder="Selecione"
                                 appendTo="body">
                         <ng-template let-item pTemplate="item">
@@ -18,23 +18,32 @@
             <div class="field col-4">
                 <span class="item">
                     <label class="campo-form">CPF</label>
-                    <p-inputMask mask="999.999.999-99" formControlName="telefone" placeholder="999.999.999-99"></p-inputMask>
+                    <p-inputMask mask="999.999.999-99" formControlName="cpf" placeholder="999.999.999-99"></p-inputMask>
                 </span>
             </div>
         </div>
         <div class="area flex">
-            <div class="field col-2">
+            <div class="field col-3">
                 <span class="item">
                     <label class="campo-form">Telefone</label>
                     <p-inputMask mask="(99) 99999-9999" formControlName="telefone" placeholder="(99) 99999-9999"></p-inputMask>
                 </span>
             </div>
-            <div class="field col-10">
+            <div class="field col-9">
                 <span class="item">
                     <label class="campo-form" for="inputNomeTitulo">Endereço(Nº, Rua, Bairro)</label>
                     <input type="text" id="inputNomeTitulo" pInputText formControlName="endereco">
                 </span>
             </div>
+        </div>
+        <div class="field-continuar">
+            <button pButton type="button"
+                    icon="pi pi-plus"
+                    class="button-action ui-button-success button-save-new"
+                    iconPos="left"
+                    label="Continuar"
+                    (click)="salvarFormulario()">
+            </button>
         </div>
         <div class="field-acordion col-12">
             <p-accordion>
@@ -43,7 +52,7 @@
                         <div class="field acordion col-8">
                             <span class="item">
                                 <label class="campo-form">Nome Cliente</label>
-                                <p-dropdown formControlName="idClienteDependente" [filter]="true" [options]="clientesDropDown"
+                                <p-dropdown formControlName="idDependente" [filter]="true" [options]="clientesDropDown"
                                             placeholder="Selecione o Dependente"
                                             appendTo="body">
                                    <ng-template let-item pTemplate="item">
