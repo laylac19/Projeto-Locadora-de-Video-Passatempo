@@ -24,11 +24,11 @@ public class Locacao implements Serializable {
     @Column(name = "data_devolucao_prevista", nullable = false)
     private LocalDate dtDevolucaoPrevista;
 
-    @Column(name = "data_devolucao_efetiva")
-    private LocalDate dtDevolucaoEfetiva;
-
     @Column(name = "valor_cobrado", nullable = false)
     private Double valorCobrado;
+
+    @Column(name = "data_devolucao_efetiva")
+    private LocalDate dtDevolucaoEfetiva;
 
     @Column(name = "multa_cobrada")
     private Double multaCobrada;
@@ -37,7 +37,10 @@ public class Locacao implements Serializable {
     @JoinColumn(name = "cliente_id", nullable = false)
     private Cliente cliente;
 
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "item_id", nullable = false)
+    private Item item;
+
     @Column(name = "status")
     private Boolean status;
-
 }
