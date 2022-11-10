@@ -1,26 +1,20 @@
 import {Injectable} from '@angular/core';
 import {MessageService} from "primeng/api";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Injectable()
 export class MensagensUtil {
 
-    constructor(private messageService: MessageService) {
+    constructor(
+        private snackBar: MatSnackBar,
+    ) {
     }
 
-    mensagemErro(message: string, header: string, accept?: () => void, acceptLabel?: string, rejectLabel?: string, key?: string): void {
-        this.messageService.add({
-            severity: "error",
-            summary: header,
-            detail: message,
-            closable: true,
-        });
+    mensagemErro(message: string): void {
+        this.snackBar.open(message, '', {duration: 5000});
     }
 
-    mensagemSucesso(message: string, header: string, accept?: () => void, acceptLabel?: string, rejectLabel?: string, key?: string): void {
-        this.messageService.add({
-            severity: "success",
-            summary: header,
-            detail: message
-        });
+    mensagemSucesso(message: string): void {
+        this.snackBar.open(message, '', {duration: 5000});
     }
 }
