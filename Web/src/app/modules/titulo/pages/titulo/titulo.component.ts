@@ -8,6 +8,8 @@ import {ClasseService} from "../../../../shared/service/classe.service";
 import {DiretorService} from "../../../../shared/service/diretor.service";
 import {AtorService} from "../../../../shared/service/ator.service";
 import {VinculoEntidades} from "../../../../model/vinculo-entidade.model";
+import {MensagensProntasEnumModel} from "../../../../shared/util/mensagensProntasEnum.model";
+import {MensagensUtil} from "../../../../shared/util/mensagens-util";
 
 @Component({
     selector: 'app-titulo',
@@ -30,8 +32,6 @@ export class TituloComponent implements OnInit {
 
     public listarTitulos: boolean = false;
     public listarElenco: boolean = false;
-    // public abilitarAcordion: boolean = true;
-    // public abirAcordion: boolean = false;
     public abilitarBotao: boolean = false;
     public idTitulo: number;
     public idAtor: number;
@@ -47,7 +47,8 @@ export class TituloComponent implements OnInit {
         private tituloService: TituloService,
         private classeService: ClasseService,
         private diretorService: DiretorService,
-        private atorService: AtorService
+        private atorService: AtorService,
+        private message: MensagensUtil
     ) {
     }
 
@@ -116,9 +117,13 @@ export class TituloComponent implements OnInit {
                 this.idTitulo = response.id;
                 this.abilitarAcordion = false;
                 this.abirAcordion = true;
+                if (this.novoTituloFilme.id) {
+                    this.message.mensagemSucesso(MensagensProntasEnumModel.ATUALIZAR_TITULO.descricao);
+                } else {
+                    this.message.mensagemSucesso(MensagensProntasEnumModel.CADASTRO_TITULO.descricao);}
             },
-            error: (error) => {
-                console.log(error);
+            error: () => {
+                this.message.mensagemErro(MensagensProntasEnumModel.FALHA_ATOR.descricao);
             }
         });
     }
@@ -128,9 +133,6 @@ export class TituloComponent implements OnInit {
                 next: (response) => {
                     this.formTituloFilme.patchValue(response);
                     this.listarAtoresElenco(id);
-                },
-                error: (error) => {
-                    console.log(error);
                 },
             }
         );

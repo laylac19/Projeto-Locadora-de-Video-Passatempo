@@ -42,16 +42,15 @@ export class AtorComponent implements OnInit {
         this.novoAtor = this.formAtor.getRawValue();
         this.service.insert(this.novoAtor).subscribe({
             next: () => {
-                if(this.novoAtor.id) {
-                    this.message.mensagemSucesso(MensagensProntasEnumModel.ATUALIZAR_ATOR.descricao)
+                if (this.novoAtor.id) {
+                    this.message.mensagemSucesso(MensagensProntasEnumModel.ATUALIZAR_ATOR.descricao);
                 } else {
-                    this.message.mensagemSucesso(MensagensProntasEnumModel.CADASTRO_ATOR.descricao)
-                }
+                    this.message.mensagemSucesso(MensagensProntasEnumModel.CADASTRO_ATOR.descricao);}
                 this.fecharForm();
                 this.listarAtores = true;
             },
             error: () => {
-                this.message.mensagemErro(MensagensProntasEnumModel.FALHA_ATOR.descricao)
+                this.message.mensagemErro(MensagensProntasEnumModel.FALHA_ATOR.descricao);
             }
         });
     }
@@ -60,9 +59,6 @@ export class AtorComponent implements OnInit {
         this.service.findById(id).subscribe({
                 next: (response) => {
                     this.formAtor.patchValue(response);
-                },
-                error: (error) => {
-                    console.log(error);
                 },
             }
         );

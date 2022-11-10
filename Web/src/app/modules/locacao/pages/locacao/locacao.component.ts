@@ -3,6 +3,8 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {LocacaoModel} from "../../../../model/locacao.model";
 import {ClasseService} from "../../../../shared/service/classe.service";
 import {SelectItem} from "primeng/api";
+import {MensagensUtil} from "../../../../shared/util/mensagens-util";
+import {MensagensProntasEnumModel} from "../../../../shared/util/mensagensProntasEnum.model";
 
 @Component({
     selector: 'app-locacao',
@@ -29,6 +31,7 @@ export class LocacaoComponent implements OnInit {
     constructor(
         private builder: FormBuilder,
         private locacaoService: ClasseService,
+        private message: MensagensUtil
     ) {
     }
 
@@ -53,6 +56,10 @@ export class LocacaoComponent implements OnInit {
     //     this.novaClasse = this.formClasse.getRawValue();
     //     this.service.insert(this.novaClasse).subscribe({
     //         next: () => {
+//     if (this.novoAtor.id) {
+//     this.message.mensagemSucesso(MensagensProntasEnumModel.ATUALIZAR_ATOR.descricao);
+// } else {
+//     this.message.mensagemSucesso(MensagensProntasEnumModel.CADASTRO_ATOR.descricao);}
     //             this.fecharForm();
     //             this.listarClasses = true;
     //         },

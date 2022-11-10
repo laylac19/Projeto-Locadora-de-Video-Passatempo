@@ -4,6 +4,8 @@ import {SelectItem} from "primeng/api";
 import {SocioModel} from "../../../../model/socio.model";
 import {ClienteService} from "../../../../shared/service/cliente.service";
 import {VinculoEntidades} from "../../../../model/vinculo-entidade.model";
+import {MensagensUtil} from "../../../../shared/util/mensagens-util";
+import {MensagensProntasEnumModel} from "../../../../shared/util/mensagensProntasEnum.model";
 
 @Component({
     selector: 'app-socio-form',
@@ -29,7 +31,8 @@ export class SocioFormComponent implements OnInit {
 
     constructor(
         private builder: FormBuilder,
-        private clienteService: ClienteService
+        private clienteService: ClienteService,
+        private message: MensagensUtil
     ) {
     }
 
@@ -58,11 +61,15 @@ export class SocioFormComponent implements OnInit {
         this.novoSocio = this.formSocio.getRawValue();
         this.clienteService.savePartners(this.novoSocio).subscribe({
             next: () => {
+                if (this.novoSocio.id) {
+                    this.message.mensagemSucesso(MensagensProntasEnumModel.ATUALIZAR_SOCIO.descricao);
+                } else {
+                    this.message.mensagemSucesso(MensagensProntasEnumModel.CADASTRO_SOCIO.descricao);}
                 this.fecharForm();
                 this.listarSocios = true;
             },
-            error: (error) => {
-                console.log(error);
+            error: () => {
+                this.message.mensagemErro(MensagensProntasEnumModel.FALHA_SOCIO.descricao);
             }
         })
     }
@@ -70,11 +77,7 @@ export class SocioFormComponent implements OnInit {
     public editarForm(id: number): void {
         this.clienteService.findById(id).subscribe({
                 next: (response) => {
-                    console.log(response)
                     this.formSocio.patchValue(response);
-                },
-                error: (error) => {
-                    console.log(error);
                 },
             }
         );
@@ -98,7 +101,6 @@ export class SocioFormComponent implements OnInit {
         this.idSocio = this.formSocio.get('id')?.value;
         this.idDependente = this.formSocio.get('idDependente')?.value;
         this.vinculo = new VinculoEntidades(this.idSocio, this.idDependente);
-        console.log(this.vinculo)
         this.clienteService.saveDependent(this.vinculo).subscribe({
             next: () => {
                 this.listarDependentes = true;
