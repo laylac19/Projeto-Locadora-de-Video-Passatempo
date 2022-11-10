@@ -4,9 +4,9 @@ import {ItemModel} from "../../../../model/item.model";
 import {ItemComponent} from "../item/item.component";
 import {ConfirmationService} from "primeng/api";
 import {ItemService} from "../../../../shared/service/item.service";
-import {TituloModalEnum} from "../../../../model/util/titulo-modal-enum.model";
+import {TituloModalEnum} from "../../../../shared/util/titulo-modal-enum.model";
 import {EntidadeUtil} from "../../../../shared/util/entidade-util";
-import {ColunaModel} from "../../../../model/util/coluna.model";
+import {ColunaModel} from "../../../../shared/util/coluna.model";
 
 @Component({
     selector: 'app-item-list',

@@ -3,10 +3,10 @@ import {TituloListModel} from "../../../../model/list/titulo-list.model";
 import {TituloModel} from "../../../../model/titulo.model";
 import {TituloComponent} from "../titulo/titulo.component";
 import {ConfirmationService} from "primeng/api";
-import {TituloModalEnum} from "../../../../model/util/titulo-modal-enum.model";
+import {TituloModalEnum} from "../../../../shared/util/titulo-modal-enum.model";
 import {TituloService} from "../../../../shared/service/titulo.service";
 import {EntidadeUtil} from "../../../../shared/util/entidade-util";
-import {ColunaModel} from "../../../../model/util/coluna.model";
+import {ColunaModel} from "../../../../shared/util/coluna.model";
 
 @Component({
     selector: 'app-titulo-list',

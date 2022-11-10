@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {TituloModel} from "../../../../model/titulo.model";
 import {TituloService} from "../../../../shared/service/titulo.service";
-import {ColunaModel} from "../../../../model/util/coluna.model";
+import {ColunaModel} from "../../../../shared/util/coluna.model";
 import {SelectItem} from "primeng/api";
 import {ClasseService} from "../../../../shared/service/classe.service";
 import {DiretorService} from "../../../../shared/service/diretor.service";
