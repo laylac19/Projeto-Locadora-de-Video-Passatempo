@@ -2,7 +2,7 @@ import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {AtorModel} from "../../../../model/ator.model";
 import {AtorComponent} from "../ator/ator.component";
 import {TituloModalEnum} from "../../../../model/util/titulo-modal-enum.model";
-import {AtorListModel} from "../../../../model/ator-list.model";
+import {AtorListModel} from "../../../../model/list/ator-list.model";
 import {AtorService} from "../../../../shared/service/ator.service";
 import {EntidadeUtil} from "../../../../shared/util/entidade-util";
 import {ConfirmationService} from "primeng/api";

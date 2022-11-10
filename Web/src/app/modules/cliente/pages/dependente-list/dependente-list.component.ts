@@ -1,6 +1,6 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {ColunaModel} from "../../../../model/util/coluna.model";
-import {ClienteListModel} from "../../../../model/cliente-list.model";
+import {ClienteListModel} from "../../../../model/list/cliente-list.model";
 import {ClienteModel} from "../../../../model/cliente.model";
 import {ClienteFormComponent} from "../cliente-form/cliente-form.component";
 import {ClienteService} from "../../../../shared/service/cliente.service";

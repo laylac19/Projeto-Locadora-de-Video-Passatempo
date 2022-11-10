@@ -4,7 +4,7 @@ import {ClienteService} from "../../../../shared/service/cliente.service";
 import {ConfirmationService} from "primeng/api";
 import {TituloModalEnum} from "../../../../model/util/titulo-modal-enum.model";
 import {EntidadeUtil} from "../../../../shared/util/entidade-util";
-import {SocioListModel} from "../../../../model/socio-list.model";
+import {SocioListModel} from "../../../../model/list/socio-list.model";
 import {SocioModel} from "../../../../model/socio.model";
 import {SocioFormComponent} from "../socio-form/socio-form.component";
 

@@ -1,4 +1,4 @@
-export class LocacaoModel {
+export class LocacaoListModel {
     public id: number;
     public dtLocacao: Date;
     public dtDevolucaoPrevista: Date;

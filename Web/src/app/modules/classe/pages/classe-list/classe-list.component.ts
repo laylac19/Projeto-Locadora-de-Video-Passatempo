@@ -4,7 +4,7 @@ import {ClasseComponent} from "../classe/classe.component";
 import {TituloModalEnum} from "../../../../model/util/titulo-modal-enum.model";
 import {ClasseService} from "../../../../shared/service/classe.service";
 import {ConfirmationService} from "primeng/api";
-import {ClasseListModel} from "../../../../model/classe-list.model";
+import {ClasseListModel} from "../../../../model/list/classe-list.model";
 import {EntidadeUtil} from "../../../../shared/util/entidade-util";
 import {ColunaModel} from "../../../../model/util/coluna.model";
 

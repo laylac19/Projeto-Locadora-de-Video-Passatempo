@@ -1,6 +1,6 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {ColunaModel} from "../../../../model/util/coluna.model";
-import {LocacaoListModel} from "../../../../model/locacao-list.model";
+import {LocacaoListModel} from "../../../../model/list/locacao-list.model";
 import {LocacaoModel} from "../../../../model/locacao.model";
 import {LocacaoComponent} from "../locacao/locacao.component";
 

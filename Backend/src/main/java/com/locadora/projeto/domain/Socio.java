@@ -12,7 +12,7 @@ import javax.persistence.Table;
 @Setter
 @Entity
 @Table(name = "socio")
-public class Socio extends Cliente {
+public class Socio {
 
     @Id
     @Column(name = "id", nullable = false)

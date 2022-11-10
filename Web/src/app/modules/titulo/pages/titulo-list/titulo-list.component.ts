@@ -1,5 +1,5 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {TituloListModel} from "../../../../model/titulo-list.model";
+import {TituloListModel} from "../../../../model/list/titulo-list.model";
 import {TituloModel} from "../../../../model/titulo.model";
 import {TituloComponent} from "../titulo/titulo.component";
 import {ConfirmationService} from "primeng/api";

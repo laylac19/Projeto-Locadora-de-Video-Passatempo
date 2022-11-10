@@ -37,6 +37,9 @@
                     <ng-template pTemplate="body" let-rowData let-colunas="columns">
                         <tr>
                             <td *ngFor="let col of colunas">
+                                <ng-container *ngIf="col.field === 'dataNascimento'">
+                                    {{rowData[col.field] | date:"MM/dd/yyyy"}}
+                                </ng-container>
                                 <ng-container *ngIf="col.field != 'acoes' ">
                                     {{rowData[col.field]}}
                                 </ng-container>

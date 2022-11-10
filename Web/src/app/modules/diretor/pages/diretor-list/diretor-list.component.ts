@@ -2,7 +2,7 @@ import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {DiretorModel} from "../../../../model/diretor.model";
 import {DiretorComponent} from "../diretor/diretor.component";
 import {TituloModalEnum} from "../../../../model/util/titulo-modal-enum.model";
-import {DiretorListModel} from "../../../../model/diretor-list.model";
+import {DiretorListModel} from "../../../../model/list/diretor-list.model";
 import {DiretorService} from "../../../../shared/service/diretor.service";
 import {ConfirmationService} from "primeng/api";
 import {EntidadeUtil} from "../../../../shared/util/entidade-util";

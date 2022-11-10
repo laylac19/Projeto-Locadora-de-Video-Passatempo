@@ -1,5 +1,5 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {ItemListModel} from "../../../../model/item-list.model";
+import {ItemListModel} from "../../../../model/list/item-list.model";
 import {ItemModel} from "../../../../model/item.model";
 import {ItemComponent} from "../item/item.component";
 import {ConfirmationService} from "primeng/api";
