@@ -1,12 +1,12 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {ClasseModel} from "../../../../model/classe.model";
 import {ClasseComponent} from "../classe/classe.component";
-import {TituloModalEnum} from "../../../../model/util/titulo-modal-enum.model";
+import {TituloModalEnum} from "../../../../shared/util/titulo-modal-enum.model";
 import {ClasseService} from "../../../../shared/service/classe.service";
 import {ConfirmationService} from "primeng/api";
-import {ClasseListModel} from "../../../../model/classe-list.model";
+import {ClasseListModel} from "../../../../model/list/classe-list.model";
 import {EntidadeUtil} from "../../../../shared/util/entidade-util";
-import {ColunaModel} from "../../../../model/util/coluna.model";
+import {ColunaModel} from "../../../../shared/util/coluna.model";
 
 @Component({
     selector: 'app-classe-list',

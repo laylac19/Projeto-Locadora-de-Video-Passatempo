@@ -3,7 +3,10 @@ package com.locadora.projeto.domain;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Getter
 @Setter
@@ -23,5 +26,4 @@ public class Socio {
 
     @Column(name = "telefone", nullable = false)
     private String telefone;
-
 }

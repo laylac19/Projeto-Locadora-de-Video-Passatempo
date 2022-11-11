@@ -4,9 +4,9 @@ import {environment} from "../../../environments/environment";
 import {Observable} from "rxjs";
 
 import {SelectItem} from "primeng/api";
-import {ClienteListModel} from "../../model/cliente-list.model";
+import {ClienteListModel} from "../../model/list/cliente-list.model";
 import {ClienteModel} from "../../model/cliente.model";
-import {SocioListModel} from "../../model/socio-list.model";
+import {SocioListModel} from "../../model/list/socio-list.model";
 import {VinculoEntidades} from "../../model/vinculo-entidade.model";
 import {SocioModel} from "../../model/socio.model";
 

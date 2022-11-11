@@ -1,9 +1,9 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {TituloModalEnum} from "../../../../model/util/titulo-modal-enum.model";
+import {TituloModalEnum} from "../../../../shared/util/titulo-modal-enum.model";
 import {ClienteFormComponent} from "../cliente-form/cliente-form.component";
 import {ClienteModel} from "../../../../model/cliente.model";
-import {ColunaModel} from "../../../../model/util/coluna.model";
-import {ClienteListModel} from "../../../../model/cliente-list.model";
+import {ColunaModel} from "../../../../shared/util/coluna.model";
+import {ClienteListModel} from "../../../../model/list/cliente-list.model";
 import {ClienteService} from "../../../../shared/service/cliente.service";
 
 @Component({

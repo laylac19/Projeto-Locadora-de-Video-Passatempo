@@ -1,10 +1,10 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {ColunaModel} from "../../../../model/util/coluna.model";
+import {ColunaModel} from "../../../../shared/util/coluna.model";
 import {ClienteService} from "../../../../shared/service/cliente.service";
 import {ConfirmationService} from "primeng/api";
-import {TituloModalEnum} from "../../../../model/util/titulo-modal-enum.model";
+import {TituloModalEnum} from "../../../../shared/util/titulo-modal-enum.model";
 import {EntidadeUtil} from "../../../../shared/util/entidade-util";
-import {SocioListModel} from "../../../../model/socio-list.model";
+import {SocioListModel} from "../../../../model/list/socio-list.model";
 import {SocioModel} from "../../../../model/socio.model";
 import {SocioFormComponent} from "../socio-form/socio-form.component";
 
