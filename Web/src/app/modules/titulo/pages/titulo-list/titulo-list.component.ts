@@ -2,11 +2,11 @@ import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {TituloListModel} from "../../../../model/list/titulo-list.model";
 import {TituloModel} from "../../../../model/titulo.model";
 import {TituloComponent} from "../titulo/titulo.component";
-import {ConfirmationService} from "primeng/api";
 import {TituloModalEnum} from "../../../../shared/util/titulo-modal-enum.model";
 import {TituloService} from "../../../../shared/service/titulo.service";
 import {EntidadeUtil} from "../../../../shared/util/entidade-util";
 import {ColunaModel} from "../../../../shared/util/coluna.model";
+import {MensagensConfirmacao} from "../../../../shared/util/msgConfirmacaoDialog.util";
 
 @Component({
     selector: 'app-titulo-list',
@@ -29,7 +29,7 @@ export class TituloListComponent implements OnInit {
 
     constructor(
         private tituloService: TituloService,
-        private confirmMessage: ConfirmationService
+        private confirmMessage: MensagensConfirmacao
     ) {
     }
 
@@ -73,17 +73,7 @@ export class TituloListComponent implements OnInit {
     }
 
     public confirmarAcao(id: number): void {
-        this.confirmarDialog(id, () => this.desativarTitulo(id), EntidadeUtil.TITULO);
-    }
-
-    public confirmarDialog(id: number, alterarSituacao: () => void, entidade: EntidadeUtil): void {
-        this.confirmMessage.confirm({
-            header: 'Confirmação',
-            message: 'Deseja desativar esse(a) ' + entidade.descricao + ' ?',
-            acceptLabel: 'Sim',
-            rejectLabel: 'Cancelar',
-            accept: alterarSituacao
-        });
+        this.confirmMessage.confirmarDialog(id, () => this.desativarTitulo(id), EntidadeUtil.TITULO);
     }
 
     public resetarForm(): void {
@@ -107,4 +97,7 @@ export class TituloListComponent implements OnInit {
     //     this.abilitarAcordion = true;
     //     this.abirAcordion = false;
     // }
+    visualizarTitulo($event: number) {
+        
+    }
 }

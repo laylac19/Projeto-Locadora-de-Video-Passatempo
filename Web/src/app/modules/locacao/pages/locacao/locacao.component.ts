@@ -4,7 +4,6 @@ import {LocacaoModel} from "../../../../model/locacao.model";
 import {ClasseService} from "../../../../shared/service/classe.service";
 import {SelectItem} from "primeng/api";
 import {MensagensUtil} from "../../../../shared/util/mensagens-util";
-import {MensagensProntasEnumModel} from "../../../../shared/util/mensagensProntasEnum.model";
 
 @Component({
     selector: 'app-locacao',
@@ -13,7 +12,7 @@ import {MensagensProntasEnumModel} from "../../../../shared/util/mensagensPronta
 })
 export class LocacaoComponent implements OnInit {
 
-    public formClasse: FormGroup;
+    public formLocacao: FormGroup;
     public novaClasse: LocacaoModel;
 
     public listarLocacoes: boolean = false;
@@ -23,7 +22,6 @@ export class LocacaoComponent implements OnInit {
     public dtDevolucaoEfetiva: Date = new Date();
 
     public clientesDropDown: SelectItem[];
-
 
     @Input() locacaoModel: LocacaoModel;
     @Output() resForm: EventEmitter<boolean> = new EventEmitter();
@@ -40,7 +38,7 @@ export class LocacaoComponent implements OnInit {
     }
 
     public novoFormulario(): void {
-        this.formClasse = this.builder.group(({
+        this.formLocacao = this.builder.group(({
             id: [null],
             dtLocacao: [null, [Validators.required]],
             dtDevolucaoPrevista: [null, [Validators.required]],
@@ -52,37 +50,35 @@ export class LocacaoComponent implements OnInit {
         }))
     }
 
-    // public salvarFormulario(): void {
-    //     this.novaClasse = this.formClasse.getRawValue();
-    //     this.service.insert(this.novaClasse).subscribe({
-    //         next: () => {
-//     if (this.novoAtor.id) {
-//     this.message.mensagemSucesso(MensagensProntasEnumModel.ATUALIZAR_ATOR.descricao);
-// } else {
-//     this.message.mensagemSucesso(MensagensProntasEnumModel.CADASTRO_ATOR.descricao);}
-    //             this.fecharForm();
-    //             this.listarClasses = true;
-    //         },
-    //         error: (error) => {
-    //             console.log(error);
-    //         }
-    //     })
-    // }
-    //
-    // public editarForm(id: number): void {
-    //     this.service.findById(id).subscribe({
-    //             next: (response) => {
-    //                 this.formClasse.patchValue(response);
-    //             },
-    //             error: (error) => {
-    //                 console.log(error);
-    //             },
-    //         }
-    //     );
-    // }
+    public salvarFormulario(): void {
+        this.novaClasse = this.formLocacao.getRawValue();
+        // this.locacaoService.insert(this.novaClasse).subscribe({
+        //     next: () => {
+        //         if (this.novaClasse.id) {
+        //             this.message.mensagemSucesso(MensagensProntasEnumModel.ATUALIZAR_LOCACAO.descricao);
+        //         } else {
+        //             this.message.mensagemSucesso(MensagensProntasEnumModel.CADASTRO_LOCACAO.descricao);
+        //         }
+        //         this.fecharForm();
+        //         this.listarLocacoes = true;
+        //     },
+        //     error: () => {
+        //         this.message.mensagemSucesso(MensagensProntasEnumModel.FALHA_LOCACAO.descricao);
+        //     }
+        // })
+    }
+
+    public editarForm(id: number): void {
+        this.locacaoService.findById(id).subscribe({
+                next: (response) => {
+                    this.formLocacao.patchValue(response);
+                },
+            }
+        );
+    }
 
     public fecharForm(): void {
-        this.formClasse.reset();
+        this.formLocacao.reset();
         this.resForm.emit();
     }
 }

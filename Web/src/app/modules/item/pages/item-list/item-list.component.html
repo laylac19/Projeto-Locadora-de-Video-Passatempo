@@ -3,7 +3,7 @@
     <span class="titulo-caso">CONTROLE ACERVO</span>
 </div>
 <div class="detalhe"></div>
-<div class="container col-12 flex">
+<div class="flex flex-column col-12 flex">
     <div class="item-pagina col-12">
         <span class="titulo">Itens</span>
     </div>
@@ -19,7 +19,7 @@
     </div>
 
     <div class="item-pagina tabela">
-        <p-table [columns]="colunas" [value]="listaItnes" [paginator]="true" [rows]="7" [responsive]="true"
+        <p-table [columns]="colunas" [value]="listaItens" [paginator]="true" [rows]="7" [responsive]="true"
                  sortMode="multiple">
             <ng-template pTemplate="header" let-colunas>
                 <tr>
