@@ -98,6 +98,6 @@ export class TituloListComponent implements OnInit {
     //     this.abirAcordion = false;
     // }
     visualizarTitulo($event: number) {
-        
+
     }
 }

@@ -4,6 +4,8 @@ import {LocacaoModel} from "../../../../model/locacao.model";
 import {ClasseService} from "../../../../shared/service/classe.service";
 import {SelectItem} from "primeng/api";
 import {MensagensUtil} from "../../../../shared/util/mensagens-util";
+import {ColunaModel} from "../../../../shared/util/coluna.model";
+import {ItemListModel} from "../../../../model/list/item-list.model";
 
 @Component({
     selector: 'app-locacao',
@@ -22,6 +24,11 @@ export class LocacaoComponent implements OnInit {
     public dtDevolucaoEfetiva: Date = new Date();
 
     public clientesDropDown: SelectItem[];
+    public itensDropdown: SelectItem[];
+
+    public listaIntensLocados: ItemListModel[];
+
+    public colunas: ColunaModel[] = [];
 
     @Input() locacaoModel: LocacaoModel;
     @Output() resForm: EventEmitter<boolean> = new EventEmitter();
@@ -77,8 +84,16 @@ export class LocacaoComponent implements OnInit {
         );
     }
 
+    public setDataAtual(dtLocacao: Date): string {
+        return (dtLocacao.getDate() + '/' + dtLocacao.getMonth() + '/' + dtLocacao.getFullYear()).toString();
+    }
+
     public fecharForm(): void {
         this.formLocacao.reset();
         this.resForm.emit();
+    }
+
+    adicionarItemNaLocacao() {
+
     }
 }
