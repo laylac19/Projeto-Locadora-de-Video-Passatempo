@@ -32,6 +32,7 @@ export class LocacaoComponent implements OnInit {
 
     @Input() locacaoModel: LocacaoModel;
     @Output() resForm: EventEmitter<boolean> = new EventEmitter();
+    depoisSalvar: any;
 
     constructor(
         private builder: FormBuilder,
@@ -95,5 +96,13 @@ export class LocacaoComponent implements OnInit {
 
     adicionarItemNaLocacao() {
 
+    }
+
+    retirarItemDeLcacao($event: number) {
+
+    }
+
+    setDataDevoluvaoPrevista(dtLocacao: Date) {
+        return undefined;
     }
 }

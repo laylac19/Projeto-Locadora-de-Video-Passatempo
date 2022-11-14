@@ -161,4 +161,8 @@ export class TituloComponent implements OnInit {
             this.listaElenco = dataElenco;
         })
     }
+
+    retirarMembroElenco($event: number) {
+
+    }
 }

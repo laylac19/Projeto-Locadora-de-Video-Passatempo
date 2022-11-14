@@ -1,7 +1,7 @@
 <div class="form p-fluid">
     <form [formGroup]="formLocacao" class="ui-fluid">
         <div class="area flex">
-            <div class="field col-6">
+            <div class="field col-8">
             <span class="item">
                 <label class="campo-form">Cliente</label>
                 <p-dropdown formControlName="idCliente" [filter]="true" [options]="clientesDropDown"
@@ -15,7 +15,7 @@
                 </p-dropdown>
             </span>
             </div>
-            <div class="field col-6">
+            <div class="field col-4">
                 <span class="item">
                     <label class="campo-form" for="inputData">Data Aquisição</label>
                     <p-calendar
@@ -31,70 +31,79 @@
                     </p-calendar>
                 </span>
             </div>
-            <div class="field-acordion col-12">
-                <p-accordion>
-                    <p-accordionTab header="Elenco" [selected]="true">
-                        <div class="area-acordion flex col-12">
-                            <div class="field acordion col-8">
-                                <span class="item">
-                                    <label class="campo-form">Filme</label>
-                                    <p-dropdown formControlName="idAtor" [filter]="true" [options]="itensDropdown"
-                                                placeholder="Selecione o Elenco"
-                                                appendTo="body">
-                                       <ng-template let-item pTemplate="item">
-                                           <div class="ui-helper-clearfix div-itens">
-                                               <div class="place-drop">{{item.label}}</div>
-                                           </div>
-                                       </ng-template>
-                                   </p-dropdown>
-                                </span>
-                            </div>
-                            <div class="field button col-4">
-                                <button type="button" pButton icon="pi pi-plus" label="Adicionar"
-                                        (click)="adicionarItemNaLocacao()"
-                                        class="button-action ui-button-secondary mr-3">
-                                </button>
-                            </div>
+        </div>
+        <div class="field-acordion col-12">
+            <p-accordion>
+                <p-accordionTab header="Elenco" [selected]="true">
+                    <div class="area-acordion flex col-12">
+                        <div class="field acordion col-8">
+                            <span class="item">
+                                <label class="campo-form">Filme</label>
+                                <p-dropdown formControlName="idItem" [filter]="true" [options]="itensDropdown"
+                                            placeholder="Selecione o Elenco"
+                                            appendTo="body">
+                                   <ng-template let-item pTemplate="item">
+                                       <div class="ui-helper-clearfix div-itens">
+                                           <div class="place-drop">{{item.label}}</div>
+                                       </div>
+                                   </ng-template>
+                               </p-dropdown>
+                            </span>
                         </div>
-                        <div class="item-pagina tabela pt-1">
-                            <p-table [columns]="colunas" [value]="listaIntensLocados" [paginator]="true" [rows]="7" [responsive]="true"
-                                     sortMode="multiple">
-                                <ng-template pTemplate="header" let-colunas>
-                                    <tr>
-                                        <th id="titulo-colunas" *ngFor="let col of colunas" [pSortableColumn]="col.field"
-                                            [style]="'width:'+ col.width">
-                                            {{col.header}}
-                                            <ng-container>
-                                                <p-sortIcon [field]="col.field"></p-sortIcon>
-                                            </ng-container>
-                                        </th>
-                                    </tr>
-                                </ng-template>
-
-                                <ng-template pTemplate="body" let-rowData let-colunas="columns">
-                                    <tr>
-                                        <td *ngFor="let col of colunas">
-                                            <ng-container *ngIf="col.field != 'acoes' ">
-                                                {{rowData[col.field]}}
-                                            </ng-container>
-
-                                            <ng-container *ngIf="col.field === 'acoes' ">
-                                                <div class="column-action flex justify-content-evenly">
-                                                    <button pButton type="button"
-                                                            icon="pi pi-trash"
-                                                            class="button-action ui-button-success button-save-new"
-                                                            iconPos="left"
-                                                            pTooltip="Retirar">
-                                                    </button>
-                                                </div>
-                                            </ng-container>
-                                        </td>
-                                    </tr>
-                                </ng-template>
-                            </p-table>
+                        <div class="field button col-4">
+                            <button type="button" pButton icon="pi pi-plus" label="Adicionar"
+                                    (click)="adicionarItemNaLocacao()"
+                                    class="button-action ui-button-secondary mr-3">
+                            </button>
                         </div>
-                    </p-accordionTab>
-                </p-accordion>
+                    </div>
+                    <app-tabela-generica
+                        [colunas]="colunas"
+                        [dados]="listaIntensLocados"
+                        [paginator]="true"
+                        [rows]="8"
+                        [desativarDado]="true" (deletarDado)="retirarItemDeLcacao($event)">
+                    </app-tabela-generica>
+                </p-accordionTab>
+            </p-accordion>
+        </div>
+        <div class="area flex readonly pb-5">
+            <div class="field-acordion col-3">
+                <label class="campo-form" for="inputDataPrevista">Data Devolução Prevista</label>
+                <p-calendar
+                    class="calendario"
+                    id="inputDataPrevista"
+                    formControlName="dtLocacao"
+                    dateFormat="dd/mm/yy"
+                    appendTo="body"
+                    [yearNavigator]="true"
+                    [defaultDate]="dtDevolucaoPrevista"
+                    [showIcon]="true">
+                </p-calendar>
+            </div>
+            <div class="field-acordion col-3">
+                <label class="campo-form">Valor</label>
+                <input type="text" pInputText readonly formArrayName="valorCobrado">
+            </div>
+            <div class="area flex readonly justify-content-between" *ngIf="depoisSalvar">
+                <div class="field-acordion col-3">
+                    <label class="campo-form" for="inputDataDevolucao">Data Devolução Prevista</label>
+                    <p-calendar
+                        [readonlyInput]="true"
+                        class="calendario"
+                        id="inputDataDevolucao"
+                        formControlName="dtLocacao"
+                        dateFormat="dd/mm/yy"
+                        appendTo="body"
+                        [yearNavigator]="true"
+                        [defaultDate]="dtDevolucaoEfetiva"
+                        [showIcon]="true">
+                    </p-calendar>
+                </div>
+                <div class="field-acordion col-3">
+                    <label class="campo-form">Multa Cobrada</label>
+                    <input type="text" pInputText readonly formControlName="inputMulta">
+                </div>
             </div>
         </div>
     </form>
