@@ -6,6 +6,7 @@ import {SelectItem} from "primeng/api";
 import {MensagensUtil} from "../../../../shared/util/mensagens-util";
 import {ColunaModel} from "../../../../shared/util/coluna.model";
 import {ItemListModel} from "../../../../model/list/item-list.model";
+import {VinculoEntidades} from "../../../../model/vinculo-entidade.model";
 
 @Component({
     selector: 'app-locacao',
@@ -16,6 +17,7 @@ export class LocacaoComponent implements OnInit {
 
     public formLocacao: FormGroup;
     public novaClasse: LocacaoModel;
+    public vinculo: VinculoEntidades;
 
     public listarLocacoes: boolean = false;
 
@@ -25,10 +27,11 @@ export class LocacaoComponent implements OnInit {
 
     public clientesDropDown: SelectItem[];
     public itensDropdown: SelectItem[];
-
     public listaIntensLocados: ItemListModel[];
-
     public colunas: ColunaModel[] = [];
+
+    public idLocacao: number;
+    public idItem: number;
 
     @Input() locacaoModel: LocacaoModel;
     @Output() resForm: EventEmitter<boolean> = new EventEmitter();
@@ -62,6 +65,7 @@ export class LocacaoComponent implements OnInit {
         this.novaClasse = this.formLocacao.getRawValue();
         // this.locacaoService.insert(this.novaClasse).subscribe({
         //     next: () => {
+        //         this.idlocacao = responde.id;
         //         if (this.novaClasse.id) {
         //             this.message.mensagemSucesso(MensagensProntasEnumModel.ATUALIZAR_LOCACAO.descricao);
         //         } else {
@@ -95,14 +99,21 @@ export class LocacaoComponent implements OnInit {
     }
 
     adicionarItemNaLocacao() {
-
-    }
-
-    retirarItemDeLcacao($event: number) {
-
+        this.idItem = this.formLocacao.get('idItem')?.value;
+        this.vinculo = new VinculoEntidades(this.idLocacao, this.idItem);
+        // this.locacaoService.insertCastMovie(this.vinculo).subscribe({
+        //     next: () => {
+        //         this.listarLocacoes = true;
+        //         this.listarAtoresElenco(this.idTitulo);
+        //     }
+        // });
     }
 
     setDataDevoluvaoPrevista(dtLocacao: Date) {
         return undefined;
+    }
+
+    retirarItemLocacao(rowData: any) {
+        this.listaIntensLocados = this.listaIntensLocados.slice(rowData.value);
     }
 }

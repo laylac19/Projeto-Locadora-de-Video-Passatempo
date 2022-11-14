@@ -29,14 +29,15 @@ export class TituloComponent implements OnInit {
     public formTituloFilme: FormGroup;
     public novoTituloFilme: TituloModel;
     public vinculo: VinculoEntidades;
+    public model: TituloModel;
 
     public listarTitulos: boolean = false;
     public listarElenco: boolean = false;
     public abilitarBotao: boolean = false;
     public desabilitarCampo: boolean = false;
+
     public idTitulo: number;
     public idAtor: number;
-    public model: TituloModel;
 
     @Input() tituloFilmeModel: TituloModel;
     @Input() abilitarAcordion: boolean;
@@ -175,7 +176,7 @@ export class TituloComponent implements OnInit {
         })
     }
 
-    retirarMembroElenco(row: any) {
-        this.listaElenco = this.listaElenco.slice(row.value);
+    retirarMembroElenco(rowData: any) {
+        this.listaElenco = this.listaElenco.slice(rowData.value);
     }
 }
