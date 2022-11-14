@@ -76,14 +76,16 @@
                     formControlName="dtLocacao"
                     dateFormat="dd/mm/yy"
                     appendTo="body"
+                    [disabled]="true"
                     [yearNavigator]="true"
                     [defaultDate]="dtDevolucaoPrevista"
                     [showIcon]="true">
                 </p-calendar>
             </div>
             <div class="field-acordion col-3">
-                <label class="campo-form">Valor</label>
-                <input type="text" pInputText readonly formArrayName="valorCobrado">
+                <label class="campo-form">Valor R$</label>
+                <p-inputNumber formControlName="valorCobrado" mode="currency" locale="pt-BR" currency="BRL" [min]="0"
+                               [showButtons]="true" [step]="5" [disabled]="true"></p-inputNumber>
             </div>
             <div class="area flex readonly justify-content-between" *ngIf="depoisSalvar">
                 <div class="field-acordion col-3">
@@ -95,14 +97,16 @@
                         formControlName="dtLocacao"
                         dateFormat="dd/mm/yy"
                         appendTo="body"
+                        [disabled]="true"
                         [yearNavigator]="true"
                         [defaultDate]="dtDevolucaoEfetiva"
                         [showIcon]="true">
                     </p-calendar>
                 </div>
                 <div class="field-acordion col-3">
-                    <label class="campo-form">Multa Cobrada</label>
-                    <input type="text" pInputText readonly formControlName="inputMulta">
+                    <label class="campo-form">Multa Cobrada R$</label>
+                    <p-inputNumber formControlName="multaCobrada" mode="currency" locale="pt-BR" currency="BRL"
+                                   [disabled]="true" [min]="0" [showButtons]="true" [step]="5"></p-inputNumber>
                 </div>
             </div>
         </div>
