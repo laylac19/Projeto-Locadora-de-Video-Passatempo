@@ -33,6 +33,7 @@ export class TituloComponent implements OnInit {
     public listarTitulos: boolean = false;
     public listarElenco: boolean = false;
     public abilitarBotao: boolean = false;
+    public desabilitarCampo: boolean = false;
     public idTitulo: number;
     public idAtor: number;
     public model: TituloModel;
@@ -41,6 +42,7 @@ export class TituloComponent implements OnInit {
     @Input() abilitarAcordion: boolean;
     @Input() abirAcordion: boolean;
     @Output() resForm: EventEmitter<boolean> = new EventEmitter();
+
 
     constructor(
         private builder: FormBuilder,
@@ -138,6 +140,17 @@ export class TituloComponent implements OnInit {
         );
     }
 
+    public visualizarDadosTituloFilme(id: number): void {
+        this.tituloService.findById(id).subscribe({
+                next: (response) => {
+                    this.formTituloFilme.patchValue(response);
+                    this.listarAtoresElenco(id);
+
+                },
+            }
+        );
+    }
+
     public fecharForm(): void {
         this.formTituloFilme.reset();
         this.resForm.emit();
@@ -162,7 +175,7 @@ export class TituloComponent implements OnInit {
         })
     }
 
-    retirarMembroElenco($event: number) {
-
+    retirarMembroElenco(row: any) {
+        this.listaElenco = this.listaElenco.slice(row.value);
     }
 }

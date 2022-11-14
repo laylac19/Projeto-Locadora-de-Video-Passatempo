@@ -14,20 +14,21 @@ export class TituloModalEnum {
 
     static readonly NOVO_TITULO = new TituloModalEnum(9, 'Novo Filme');
     static readonly EDITAR_TITULO = new TituloModalEnum(10, 'Editar Filme');
+    static readonly VISUALIZAR_TITULO = new TituloModalEnum(11, 'Visualizar Dados do Filme');
 
-    static readonly NOVO_ITEM = new TituloModalEnum(11, 'Novo Item');
-    static readonly EDITAR_ITEM = new TituloModalEnum(12, 'Editar Item');
+    static readonly NOVO_ITEM = new TituloModalEnum(12, 'Novo Item');
+    static readonly EDITAR_ITEM = new TituloModalEnum(13, 'Editar Item');
 
-    static readonly NOVO_CLIENTE = new TituloModalEnum(13, 'Novo Cliente');
-    static readonly EDITAR_CLIENTE = new TituloModalEnum(14, 'Editar Cliente');
+    static readonly NOVO_CLIENTE = new TituloModalEnum(14, 'Novo Cliente');
+    static readonly EDITAR_CLIENTE = new TituloModalEnum(15, 'Editar Cliente');
 
-    static readonly NOVO_SOCIO = new TituloModalEnum(15, 'Novo Sócio');
-    static readonly VISUALIZAR_SOCIO = new TituloModalEnum(16, 'Visualizar Dados Sócio');
-    static readonly EDITAR_SOCIO = new TituloModalEnum(17, 'Editar Sócio');
+    static readonly NOVO_SOCIO = new TituloModalEnum(16, 'Novo Sócio');
+    static readonly VISUALIZAR_SOCIO = new TituloModalEnum(17, 'Visualizar Dados Sócio');
+    static readonly EDITAR_SOCIO = new TituloModalEnum(18, 'Editar Sócio');
 
-    static readonly NOVA_LOCACAO = new TituloModalEnum(18, 'Nova Locação');
-    static readonly VISUALIZAR_MOVIMENTACAO = new TituloModalEnum(19, 'Visualizar Movimentação');
-    static readonly EDITAR_LOCACAO = new TituloModalEnum(20, 'Editar Locação');
+    static readonly NOVA_LOCACAO = new TituloModalEnum(19, 'Nova Locação');
+    static readonly VISUALIZAR_MOVIMENTACAO = new TituloModalEnum(20, 'Visualizar Movimentação');
+    static readonly EDITAR_LOCACAO = new TituloModalEnum(21, 'Editar Locação');
 
 
     static values = [
@@ -42,6 +43,7 @@ export class TituloModalEnum {
         TituloModalEnum.EDITAR_DIRETOR,
         TituloModalEnum.NOVO_TITULO,
         TituloModalEnum.EDITAR_TITULO,
+        TituloModalEnum.VISUALIZAR_TITULO,
         TituloModalEnum.NOVO_ITEM,
         TituloModalEnum.EDITAR_ITEM,
         TituloModalEnum.NOVO_CLIENTE,
