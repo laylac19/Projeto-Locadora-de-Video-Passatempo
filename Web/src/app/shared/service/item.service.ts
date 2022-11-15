@@ -24,8 +24,12 @@ export class ItemService {
         return this.http.get<ItemModel>(this.resourceUrl + '/' + id);
     }
 
-    fillItenDropdown(): Observable<SelectItem[]>{
+    fillTypeCategoryItenDropdown(): Observable<SelectItem[]> {
         return this.http.get<SelectItem[]>(this.resourceUrl + '/dropdown-tipo-item')
+    }
+
+    fillAvailableItensDropdown(): Observable<SelectItem[]>{
+        return this.http.get<SelectItem[]>(this.resourceUrl + '/dropdown')
     }
 
     insert(entity: ItemModel): Observable<ItemModel> {

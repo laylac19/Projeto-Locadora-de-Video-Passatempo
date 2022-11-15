@@ -8,6 +8,7 @@ import {ColunaModel} from "../../../../shared/util/coluna.model";
 import {ItemListModel} from "../../../../model/list/item-list.model";
 import {VinculoEntidades} from "../../../../model/vinculo-entidade.model";
 import {ClienteService} from "../../../../shared/service/cliente.service";
+import {ItemService} from "../../../../shared/service/item.service";
 
 @Component({
     selector: 'app-locacao',
@@ -42,6 +43,7 @@ export class LocacaoComponent implements OnInit {
         private builder: FormBuilder,
         private locacaoService: ClasseService,
         private clienteService: ClienteService,
+        private itemService: ItemService,
         private message: MensagensUtil
     ) {
     }
@@ -49,12 +51,27 @@ export class LocacaoComponent implements OnInit {
     ngOnInit(): void {
         this.novoFormulario();
         this.dropDownCliente();
+        this.dropDownItensDisponiveis();
+        this.colunasTabelaElenco();
     }
 
     public dropDownCliente(): void {
         this.clienteService.fillClientsDropDown().subscribe((data) => {
             this.clientesDropDown = data;
-        })
+        });
+    }
+
+    public dropDownItensDisponiveis(): void {
+        this.itemService.fillAvailableItensDropdown().subscribe((data) => {
+            this.itensDropdown = data;
+        });
+    }
+
+    public colunasTabelaElenco(): void {
+        this.colunas = [
+            new ColunaModel('label', 'Itens'),
+            new ColunaModel('acoes', 'Ações', '132px')
+        ]
     }
 
     public novoFormulario(): void {
@@ -67,7 +84,7 @@ export class LocacaoComponent implements OnInit {
             multaCobrada: [''],
             idCliente: [null, [Validators.required]],
             idItem: [null, [Validators.required]]
-        }))
+        }));
     }
 
     public salvarFormulario(): void {

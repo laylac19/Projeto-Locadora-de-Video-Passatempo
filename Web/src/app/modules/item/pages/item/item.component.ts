@@ -52,7 +52,7 @@ export class ItemComponent implements OnInit {
     }
 
     public dropDownItem(): void {
-        this.itemService.fillItenDropdown().subscribe((data) => {
+        this.itemService.fillTypeCategoryItenDropdown().subscribe((data) => {
             this.tipoItemDropDown = data;
         })
     }
