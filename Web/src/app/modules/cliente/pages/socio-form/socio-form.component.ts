@@ -44,6 +44,7 @@ export class SocioFormComponent implements OnInit {
     ngOnInit(): void {
         this.novoFormulario();
         this.colunasTabelaDependentes();
+        this.preencherDropdown();
     }
 
     public colunasTabelaDependentes(): void {

@@ -53,7 +53,7 @@ public class ClienteResource {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/clientes/'dropdown'")
+    @GetMapping("/clientes/dropdown")
     public ResponseEntity<List<DropdownDTO>> buscarClientesNaoSocios(){
         List<DropdownDTO> dto = service.nonPartnersCustomersDropdown();
         return new ResponseEntity<>(dto, HttpStatus.OK);

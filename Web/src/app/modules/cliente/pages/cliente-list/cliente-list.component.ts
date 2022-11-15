@@ -18,6 +18,7 @@ export class ClienteListComponent implements OnInit {
     public tituloModal: string;
     public status: boolean;
     public clienteAtivo: boolean;
+    public abaSelecionada: boolean;
 
     public cliente: ClienteModel;
     public listaClientes: ClienteListModel[] = [];
@@ -25,7 +26,6 @@ export class ClienteListComponent implements OnInit {
 
     @Input() display = false;
     @ViewChild(ClienteFormComponent) formCliente: ClienteFormComponent;
-    abaSelecionada: boolean;
 
     constructor(
         private clienteService: ClienteService,
@@ -100,7 +100,7 @@ export class ClienteListComponent implements OnInit {
         this.display = false;
     }
 
-    configurarListagem(status: boolean): boolean {
+    public configurarListagem(status: boolean): boolean {
        return status ? this.clienteAtivo : this.clienteAtivo = false;
     }
 }
