@@ -70,6 +70,10 @@ public class ClienteServiceImpl implements ClienteService {
                         MensagemSocioUtil.SOCIO_NAO_ENCONTRADO));
     }
 
+    public List<DropdownDTO> searchDropdown() {
+        return repository.buscarDropdown();
+    }
+
     public ClienteDTO save(ClienteDTO dto) {
         checkNameDuplicate(dto);
         Cliente cliente = repository.save(mapper.toEntity(dto));

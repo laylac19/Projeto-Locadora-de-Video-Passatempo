@@ -18,6 +18,9 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
 
     Optional<Cliente> findClienteByNome(String nome);
 
+    @Query("select new com.locadora.projeto.service.dto.DropdownDTO(c.id, c.nome) From Cliente c where c.ativo = true")
+    List<DropdownDTO> buscarDropdown();
+
     @Query("select new com.locadora.projeto.service.dto.ClienteListDTO(c.id, c.numeroInscricao, c.nome, c.dataNascimento, c.ativo) " +
             "from Cliente c where c.ativo = true")
     List<ClienteListDTO> buscarTodos();

@@ -53,11 +53,18 @@ public class ClienteResource {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/clientes/dropdown")
+    @GetMapping("/clientes/'dropdown'")
     public ResponseEntity<List<DropdownDTO>> buscarClientesNaoSocios(){
         List<DropdownDTO> dto = service.nonPartnersCustomersDropdown();
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
+
+    @GetMapping("/dropdown")
+    public ResponseEntity<List<DropdownDTO>> preencherComTodosClientesDropdown(){
+        List<DropdownDTO> dto = service.searchDropdown();
+        return new ResponseEntity<>(dto, HttpStatus.OK);
+    }
+
 
     @PostMapping
     public ResponseEntity<ClienteDTO> salvarCliente(@RequestBody ClienteDTO clienteDTO){

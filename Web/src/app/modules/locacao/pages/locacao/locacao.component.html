@@ -34,13 +34,13 @@
         </div>
         <div class="field-acordion col-12">
             <p-accordion>
-                <p-accordionTab header="Elenco" [selected]="true">
+                <p-accordionTab header="Itens Locados" [selected]="true">
                     <div class="area-acordion flex col-12">
                         <div class="field acordion col-8">
                             <span class="item">
-                                <label class="campo-form">Filme</label>
+                                <label class="campo-form">Título Item</label>
                                 <p-dropdown formControlName="idItem" [filter]="true" [options]="itensDropdown"
-                                            placeholder="Selecione o Elenco"
+                                            placeholder="Selecione os Títulos"
                                             appendTo="body">
                                    <ng-template let-item pTemplate="item">
                                        <div class="ui-helper-clearfix div-itens">

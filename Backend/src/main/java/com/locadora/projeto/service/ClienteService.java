@@ -15,6 +15,8 @@ public interface ClienteService {
 
     List<DropdownDTO> nonPartnersCustomersDropdown();
 
+    List<DropdownDTO> searchDropdown();
+
     ClienteDTO find(Integer id);
 
     ClienteDTO save(ClienteDTO dto);

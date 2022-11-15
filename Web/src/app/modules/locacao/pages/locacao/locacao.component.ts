@@ -7,6 +7,7 @@ import {MensagensUtil} from "../../../../shared/util/mensagens-util";
 import {ColunaModel} from "../../../../shared/util/coluna.model";
 import {ItemListModel} from "../../../../model/list/item-list.model";
 import {VinculoEntidades} from "../../../../model/vinculo-entidade.model";
+import {ClienteService} from "../../../../shared/service/cliente.service";
 
 @Component({
     selector: 'app-locacao',
@@ -40,12 +41,20 @@ export class LocacaoComponent implements OnInit {
     constructor(
         private builder: FormBuilder,
         private locacaoService: ClasseService,
+        private clienteService: ClienteService,
         private message: MensagensUtil
     ) {
     }
 
     ngOnInit(): void {
         this.novoFormulario();
+        this.dropDownCliente();
+    }
+
+    public dropDownCliente(): void {
+        this.clienteService.fillClientsDropDown().subscribe((data) => {
+            this.clientesDropDown = data;
+        })
     }
 
     public novoFormulario(): void {
