@@ -44,4 +44,8 @@ export class TabelaGenericaComponent implements OnInit {
     campoPrazoDevolucao(coluna: string): boolean {
         return coluna === 'prazoDevolucao';
     }
+
+    campoNumeroSerie(coluna: string): boolean {
+        return coluna === 'numeroSerie'
+    }
 }

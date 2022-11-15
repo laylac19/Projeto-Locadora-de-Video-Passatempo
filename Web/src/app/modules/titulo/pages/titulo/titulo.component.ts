@@ -146,7 +146,7 @@ export class TituloComponent implements OnInit {
                 next: (response) => {
                     this.formTituloFilme.patchValue(response);
                     this.listarAtoresElenco(id);
-
+                    this.formTituloFilme.disable();
                 },
             }
         );
@@ -154,6 +154,7 @@ export class TituloComponent implements OnInit {
 
     public fecharForm(): void {
         this.formTituloFilme.reset();
+        this.formTituloFilme.enable();
         this.resForm.emit();
         this.listaElenco = [];
     }
@@ -164,6 +165,7 @@ export class TituloComponent implements OnInit {
         this.tituloService.insertCastMovie(this.vinculo).subscribe({
             next: () => {
                 this.listarElenco = true;
+                this.listarAtoresElenco(this.idTitulo);
             }
         });
         this.abilitarBotao = false;
@@ -172,7 +174,7 @@ export class TituloComponent implements OnInit {
     public listarAtoresElenco(idFilme: number): void {
         this.atorService.findCastMovie(idFilme).subscribe((dataElenco) => {
             this.listaElenco = dataElenco;
-        })
+        });
     }
 
     public retirarMembroElenco(rowData: any): void {

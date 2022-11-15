@@ -19,7 +19,11 @@
         <ng-template pTemplate="body" let-rowData let-colunas="columns">
             <tr>
                 <td *ngFor="let col of colunas">
-                    <ng-container *ngIf="!campoDatanascimento(col.field) && !campoPrazoDevolucao(col.field) && !campoDataItem(col.field) && !campoValor(col.field)">
+                    <ng-container *ngIf="!campoDatanascimento(col.field) &&
+                                        !campoNumeroSerie(col.field) &&
+                                        !campoPrazoDevolucao(col.field) &&
+                                        !campoDataItem(col.field) &&
+                                        !campoValor(col.field)">
                         {{rowData[col.field]}}
                     </ng-container>
                     <ng-container *ngIf="campoDatanascimento(col.field)">
@@ -39,6 +43,9 @@
                     </ng-container>
                     <ng-container *ngIf="campoPrazoDevolucao(col.field)">
                         {{rowData[col.field] + ' dia(s)'}}
+                    </ng-container>
+                    <ng-container *ngIf="campoNumeroSerie(col.field)">
+                        {{'IFL-' + rowData[col.field]}}
                     </ng-container>
                     <ng-container *ngIf="col.field === 'acoes' ">
                         <div class="flex justify-content-center p-0">
