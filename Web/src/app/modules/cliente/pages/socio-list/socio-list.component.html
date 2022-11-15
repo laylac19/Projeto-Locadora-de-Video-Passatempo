@@ -16,7 +16,7 @@
             [colunas]="colunas"
             [dados]="listaSociosAtivos"
             [paginator]="true"
-            [rows]="8"
+            [rows]="7"
             [editarDado]="true" [desativarDado]="true" [visualizarDado]="true"
             (abrirModalVisualizar)="visualizarDadosSocio($event)"
             (abrirModalHabilitado)="editarSocio($event)"
@@ -31,7 +31,7 @@
             [colunas]="colunas"
             [dados]="listaSociosInativos"
             [paginator]="true"
-            [rows]="8"
+            [rows]="7"
             [visualizarDado]="true" [reativarDado]="true"
             (abrirModalVisualizar)="visualizarDadosSocio($event)" (reativar)="rativarSocio($event)">
         </app-tabela-generica>

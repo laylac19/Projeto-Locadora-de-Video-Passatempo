@@ -50,7 +50,11 @@ public class ClienteServiceImpl implements ClienteService {
         return mapper.toDto(findbyId(id));
     }
 
-    public List<DropdownDTO> NonPartnersCustomersDropdown() {
+    public List<DropdownDTO> searchDependentsOfPartner(Integer idSocio) {
+        return repository.buscarDependentesSocio(idSocio);
+    }
+
+    public List<DropdownDTO> nonPartnersCustomersDropdown() {
         return repository.buscarClientesNaoSocios();
     }
 

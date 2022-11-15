@@ -30,6 +30,10 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
             "from Socio s join Cliente c on c.id = s.id where c.ativo = :situacao")
     List<ClienteSocioListDTO> clienteSocios(@Param("situacao") Boolean situacao);
 
+    @Query("select new com.locadora.projeto.service.dto.DropdownDTO(d.idDependente, d.cliente.nome) " +
+            "from Cliente c join Dependente d on c.id = d.idDependente where d.idSocio = :idSocio")
+    List<DropdownDTO> buscarDependentesSocio(@Param("idSocio") Integer idSocio);
+
     @Query("select new com.locadora.projeto.service.dto.DropdownDTO(c.id, c.nome) from Cliente c " +
             "where c.id not in (select s.id from Socio s) and c.id not in (select d.idDependente from Dependente d) " +
             "and c.ativo = true")

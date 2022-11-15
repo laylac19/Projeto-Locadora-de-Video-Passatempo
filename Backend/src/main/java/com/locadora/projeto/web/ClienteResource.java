@@ -41,6 +41,12 @@ public class ClienteResource {
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
+    @GetMapping("dependentes-socio/{idSocio}")
+    public ResponseEntity<List<DropdownDTO>> buscarDependentesSocio(@PathVariable("idSocio") Integer idSocio){
+        List<DropdownDTO> listaDependentes = service.searchDependentsOfPartner(idSocio);
+        return new ResponseEntity<>(listaDependentes, HttpStatus.OK);
+    }
+
     @PostMapping("/salvar-dependente")
     public ResponseEntity<Void> salvarDependente(@Valid @RequestBody VinculoEntidadeDTO dto){
         service.saveDependent(dto);
@@ -49,7 +55,7 @@ public class ClienteResource {
 
     @GetMapping("/clientes/dropdown")
     public ResponseEntity<List<DropdownDTO>> buscarClientesNaoSocios(){
-        List<DropdownDTO> dto = service.NonPartnersCustomersDropdown();
+        List<DropdownDTO> dto = service.nonPartnersCustomersDropdown();
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 

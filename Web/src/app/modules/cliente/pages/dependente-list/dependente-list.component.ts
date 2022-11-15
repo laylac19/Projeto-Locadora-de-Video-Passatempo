@@ -79,11 +79,11 @@ export class DependenteListComponent implements OnInit {
         this.confirmMessage.confirmarDialog(id, () => this.desativarDependente(id), EntidadeUtil.CLIENTE);
     }
 
-    visualizarDados($event: number) {
+    public visualizarDados($event: number) {
 
     }
 
-    reativarDependente($event: number) {
+    public reativarDependente($event: number) {
 
     }
 }

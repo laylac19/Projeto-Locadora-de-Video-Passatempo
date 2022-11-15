@@ -36,7 +36,11 @@ export class ClienteService {
         return this.http.get<ClienteModel>(this.resourceUrl + '/' + id);
     }
 
-    saveDependent(vinculo: VinculoEntidades): Observable<ClienteModel> {
+    findDependentsOfPartner(idSocio: number):  Observable<SelectItem[]> {
+        return this.http.get<SelectItem[]>(this.resourceUrl + '/dependentes-socio/' + idSocio);
+    }
+
+    insertDependent(vinculo: VinculoEntidades): Observable<ClienteModel> {
         return this.http.post<ClienteModel>(this.resourceUrl + '/salvar-dependente', vinculo);
     }
 

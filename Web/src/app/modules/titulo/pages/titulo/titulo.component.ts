@@ -164,7 +164,6 @@ export class TituloComponent implements OnInit {
         this.tituloService.insertCastMovie(this.vinculo).subscribe({
             next: () => {
                 this.listarElenco = true;
-                this.listarAtoresElenco(this.idTitulo);
             }
         });
         this.abilitarBotao = false;
@@ -176,7 +175,7 @@ export class TituloComponent implements OnInit {
         })
     }
 
-    retirarMembroElenco(rowData: any) {
+    public retirarMembroElenco(rowData: any): void {
         this.listaElenco = this.listaElenco.slice(rowData.value);
     }
 }

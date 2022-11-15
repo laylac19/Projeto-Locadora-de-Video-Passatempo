@@ -11,7 +11,9 @@ public interface ClienteService {
 
     List<ClienteSocioListDTO> findAllPartners(Boolean situacao);
 
-    List<DropdownDTO> NonPartnersCustomersDropdown();
+    List<DropdownDTO> searchDependentsOfPartner(Integer idSocio);
+
+    List<DropdownDTO> nonPartnersCustomersDropdown();
 
     ClienteDTO find(Integer id);
 

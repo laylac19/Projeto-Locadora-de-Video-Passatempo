@@ -6,6 +6,7 @@ import {ClienteService} from "../../../../shared/service/cliente.service";
 import {VinculoEntidades} from "../../../../model/vinculo-entidade.model";
 import {MensagensUtil} from "../../../../shared/util/mensagens-util";
 import {MensagensProntasEnumModel} from "../../../../shared/util/mensagensProntasEnum.model";
+import {ColunaModel} from "../../../../shared/util/coluna.model";
 
 @Component({
     selector: 'app-socio-form',
@@ -24,8 +25,12 @@ export class SocioFormComponent implements OnInit {
     public idDependente: number;
 
     public clientesDropDown: SelectItem[];
+    public listaDependentesSocio: SelectItem[] = [];
+    public colunas: ColunaModel[] = [];
 
     @Input() socioModel: SocioModel;
+    @Input() abilitarAcordion: boolean;
+    @Input() abirAcordion: boolean;
     @Output() resForm: EventEmitter<boolean> = new EventEmitter();
 
 
@@ -38,7 +43,14 @@ export class SocioFormComponent implements OnInit {
 
     ngOnInit(): void {
         this.novoFormulario();
-        this.preencherDropdown();
+        this.colunasTabelaDependentes();
+    }
+
+    public colunasTabelaDependentes(): void {
+        this.colunas = [
+            new ColunaModel('label', 'Dependentes'),
+            new ColunaModel('acoes', 'Ações', '132px')
+        ]
     }
 
     public preencherDropdown() {
@@ -60,24 +72,27 @@ export class SocioFormComponent implements OnInit {
     public salvarFormulario(): void {
         this.novoSocio = this.formSocio.getRawValue();
         this.clienteService.savePartners(this.novoSocio).subscribe({
-            next: () => {
+            next: (response) => {
+                this.idSocio = response.id;
+                this.abilitarAcordion = false;
+                this.abirAcordion = true;
                 if (this.novoSocio.id) {
                     this.message.mensagemSucesso(MensagensProntasEnumModel.ATUALIZAR_SOCIO.descricao);
                 } else {
                     this.message.mensagemSucesso(MensagensProntasEnumModel.CADASTRO_SOCIO.descricao);}
-                this.fecharForm();
-                this.listarSocios = true;
             },
             error: () => {
                 this.message.mensagemErro(MensagensProntasEnumModel.FALHA_SOCIO.descricao);
             }
         })
+        this.preencherDropdown();
     }
 
     public editarForm(id: number): void {
         this.clienteService.findById(id).subscribe({
                 next: (response) => {
                     this.formSocio.patchValue(response);
+                    this.listarDependentesDeSocio(id);
                 },
             }
         );
@@ -88,6 +103,7 @@ export class SocioFormComponent implements OnInit {
             next: (response) => {
                 this.formSocio.disabled;
                 this.formSocio.patchValue(response);
+                this.listarDependentesDeSocio(id);
             },
         })
     }
@@ -95,21 +111,27 @@ export class SocioFormComponent implements OnInit {
     public fecharForm(): void {
         this.formSocio.reset();
         this.resForm.emit();
+        this.formSocio.enable();
+        this.listaDependentesSocio = [];
     }
 
-    public adicionarDependente(idSocio?: number): void {
-        this.idSocio = this.formSocio.get('id')?.value;
+    public adicionarDependente(): void {
         this.idDependente = this.formSocio.get('idDependente')?.value;
         this.vinculo = new VinculoEntidades(this.idSocio, this.idDependente);
-        this.clienteService.saveDependent(this.vinculo).subscribe({
+        this.clienteService.insertDependent(this.vinculo).subscribe({
             next: () => {
                 this.listarDependentes = true;
-                this.listarDependentesDeSocio(this.idSocio);
             }
         })
     }
 
-    private listarDependentesDeSocio(idSocio: number) {
-        console.log('falta função')
+    public listarDependentesDeSocio(idSocio: number): void {
+        this.clienteService.findDependentsOfPartner(idSocio).subscribe((dataDependentes) => {
+            this.listaDependentesSocio = dataDependentes;
+        })
+    }
+
+    public retirarDependente(rowData: any): void {
+        this.listaDependentesSocio = this.listaDependentesSocio.slice(rowData.value);
     }
 }
