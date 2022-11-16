@@ -2,9 +2,11 @@ package com.locadora.projeto.service.mapper;
 
 import com.locadora.projeto.domain.Locacao;
 import com.locadora.projeto.service.dto.LocacaoDTO;
+import org.mapstruct.AfterMapping;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "spring")
 public interface LocacaoMapper extends EntityMapper<LocacaoDTO, Locacao> {
@@ -17,5 +19,10 @@ public interface LocacaoMapper extends EntityMapper<LocacaoDTO, Locacao> {
     @Override
     @InheritInverseConfiguration
     LocacaoDTO toDto(Locacao entity);
+
+    @AfterMapping
+    default void calcularMulta(Locacao entity, @MappingTarget LocacaoDTO dto){
+        dto.setMultaCobrada(entity.calcularMulta());
+    }
 
 }
