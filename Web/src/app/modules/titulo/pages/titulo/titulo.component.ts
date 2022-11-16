@@ -29,18 +29,21 @@ export class TituloComponent implements OnInit {
     public formTituloFilme: FormGroup;
     public novoTituloFilme: TituloModel;
     public vinculo: VinculoEntidades;
+    public model: TituloModel;
 
     public listarTitulos: boolean = false;
     public listarElenco: boolean = false;
     public abilitarBotao: boolean = false;
+    public desabilitarCampo: boolean = false;
+
     public idTitulo: number;
     public idAtor: number;
-    public model: TituloModel;
 
     @Input() tituloFilmeModel: TituloModel;
     @Input() abilitarAcordion: boolean;
     @Input() abirAcordion: boolean;
     @Output() resForm: EventEmitter<boolean> = new EventEmitter();
+
 
     constructor(
         private builder: FormBuilder,
@@ -138,8 +141,20 @@ export class TituloComponent implements OnInit {
         );
     }
 
+    public visualizarDadosTituloFilme(id: number): void {
+        this.tituloService.findById(id).subscribe({
+                next: (response) => {
+                    this.formTituloFilme.patchValue(response);
+                    this.listarAtoresElenco(id);
+                    this.formTituloFilme.disable();
+                },
+            }
+        );
+    }
+
     public fecharForm(): void {
         this.formTituloFilme.reset();
+        this.formTituloFilme.enable();
         this.resForm.emit();
         this.listaElenco = [];
     }
@@ -159,6 +174,10 @@ export class TituloComponent implements OnInit {
     public listarAtoresElenco(idFilme: number): void {
         this.atorService.findCastMovie(idFilme).subscribe((dataElenco) => {
             this.listaElenco = dataElenco;
-        })
+        });
+    }
+
+    public retirarMembroElenco(rowData: any): void {
+        this.listaElenco = this.listaElenco.slice(rowData.value);
     }
 }

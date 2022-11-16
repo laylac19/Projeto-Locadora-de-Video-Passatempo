@@ -3,6 +3,9 @@ import {ColunaModel} from "../../../../shared/util/coluna.model";
 import {LocacaoListModel} from "../../../../model/list/locacao-list.model";
 import {LocacaoModel} from "../../../../model/locacao.model";
 import {LocacaoComponent} from "../locacao/locacao.component";
+import {TituloModalEnum} from "../../../../shared/util/titulo-modal-enum.model";
+import {EntidadeUtil} from "../../../../shared/util/entidade-util";
+import {MensagensConfirmacao} from "../../../../shared/util/msgConfirmacaoDialog.util";
 
 @Component({
     selector: 'app-locacao-list',
@@ -20,7 +23,9 @@ export class LocacaoListComponent implements OnInit {
     @Input() display = false;
     @ViewChild(LocacaoComponent) formLocacao: LocacaoComponent;
 
-    constructor() {
+    constructor(
+        private confirmMessage: MensagensConfirmacao,
+    ) {
     }
 
     ngOnInit(): void {
@@ -46,26 +51,38 @@ export class LocacaoListComponent implements OnInit {
     //     })
     // }
 
-    // public novaLocacao(): void {
-    //     this.tituloModal = TituloModalEnum.setTitulo(TituloModalEnum.NOVA_LOCACAO.index).header;
-    //     this.formLocacao.formLocacao.reset();
-    //     this.display = true;
-    // }
+    public novaLocacao(): void {
+        this.tituloModal = TituloModalEnum.setTitulo(TituloModalEnum.NOVA_LOCACAO.index).header;
+        this.formLocacao.formLocacao.reset();
+        this.display = true;
+    }
 
-    // public editarLocacao(id: number): void {
-    //     this.display = true;
-    //     this.tituloModal = TituloModalEnum.setTitulo(TituloModalEnum.EDITAR_LOCACAO.index).header;
-    //     this.formLocacao.editarLocacao(id);
-    // }
+    public editarLocacao(id: number): void {
+        this.display = true;
+        this.tituloModal = TituloModalEnum.setTitulo(TituloModalEnum.EDITAR_LOCACAO.index).header;
+        // this.formLocacao.editarLocacao(id);
+    }
 
-    // public resetarForm(): void {
-    //     this.formLocacao.fecharForm();
-    // }
+    public resetarForm(): void {
+        this.formLocacao.fecharForm();
+    }
 
-    // public fecharModal(): void {
-    //     if (this.formLocacao.listarLocacoes) {
-    //         this.listarTodasLocacoesAbertas();
-    //     }
-    //     this.display = false;
-    // }
+    public confirmarAcao(id: number): void {
+        this.confirmMessage.confirmarDialog(id, () => this.destivarLocacao(id), EntidadeUtil.LOCACAO);
+    }
+
+    public fecharModal(): void {
+        // if (this.formLocacao.listarLocacoes) {
+        //     this.listarTodasLocacoesAbertas();
+        // }
+        this.display = false;
+    }
+
+    visualizarDados($event: number) {
+
+    }
+
+    private destivarLocacao(id: number) {
+
+    }
 }

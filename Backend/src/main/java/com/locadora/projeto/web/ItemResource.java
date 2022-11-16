@@ -37,6 +37,12 @@ public class ItemResource {
         return new ResponseEntity<>(dropdown, HttpStatus.OK);
     }
 
+    @GetMapping("/dropdown")
+    public ResponseEntity<List<DropdownDTO>> preencherDropdown(){
+        List<DropdownDTO> dropdown = service.searchDropdownAvailableItems();
+        return new ResponseEntity<>(dropdown, HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<ItemDTO> salvarItem(@RequestBody ItemDTO itemDTO){
         ItemDTO dto = service.save(itemDTO);

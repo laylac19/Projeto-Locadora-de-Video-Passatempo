@@ -78,6 +78,7 @@ export class ClienteFormComponent implements OnInit {
         this.clienteService.findById(id).subscribe({
                 next: (response) => {
                     !this.novoDado;
+                    response.dataNascimento = new Date(response.dataNascimento);
                     this.numInsc = response.numeroInscricao;
                     this.formCliente.patchValue(response);
                 },
@@ -89,9 +90,11 @@ export class ClienteFormComponent implements OnInit {
         this.clienteService.findById(id).subscribe({
                 next: (response) => {
                     !this.novoDado;
+                    response.dataNascimento = new Date(response.dataNascimento);
                     this.numInsc = response.numeroInscricao;
                     this.formCliente.patchValue(response);
                     this.abilitarBotao = true;
+                    this.formCliente.disable();
                 },
             }
         );
@@ -100,6 +103,7 @@ export class ClienteFormComponent implements OnInit {
     public fecharForm(): void {
         this.numInsc = '';
         this.formCliente.reset();
+        this.formCliente.enable();
         this.resForm.emit();
     }
 }

@@ -52,7 +52,7 @@ export class ItemComponent implements OnInit {
     }
 
     public dropDownItem(): void {
-        this.itemService.fillItenDropdown().subscribe((data) => {
+        this.itemService.fillTypeCategoryItenDropdown().subscribe((data) => {
             this.tipoItemDropDown = data;
         })
     }
@@ -86,6 +86,7 @@ export class ItemComponent implements OnInit {
     public editarItem(id: number): void {
         this.itemService.findById(id).subscribe({
                 next: (response) => {
+                    response.data = new Date(response.data);
                     this.formItem.patchValue(response);
                 },
             }
