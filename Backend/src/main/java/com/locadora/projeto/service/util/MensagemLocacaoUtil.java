@@ -6,4 +6,5 @@ import lombok.experimental.UtilityClass;
 public class MensagemLocacaoUtil {
 
     public static final String TITULO_NAO_ENCOTRADO = "Essa Locação Não Foi Encontrada";
+
 }

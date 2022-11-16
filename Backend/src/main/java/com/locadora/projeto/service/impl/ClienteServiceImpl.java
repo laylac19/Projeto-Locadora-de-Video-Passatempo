@@ -132,4 +132,8 @@ public class ClienteServiceImpl implements ClienteService {
     public SocioDTO saveSocio(SocioDTO dto){
         return socioMapper.toDto(socioRepository.save(socioMapper.toEntity(dto)));
     }
+
+    public List<DropdownDTO> dropdownLocacao(){
+        return repository.dropdownLocacao();
+    }
 }

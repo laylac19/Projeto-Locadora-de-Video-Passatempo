@@ -7,6 +7,7 @@ import com.locadora.projeto.service.dto.LocacaoDTO;
 import com.locadora.projeto.service.dto.LocacaoListDTO;
 import com.locadora.projeto.service.mapper.LocacaoListMapper;
 import com.locadora.projeto.service.mapper.LocacaoMapper;
+import com.locadora.projeto.service.util.MensagemClienteUtil;
 import com.locadora.projeto.service.util.MensagemLocacaoUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -39,6 +40,7 @@ public class LocacaoServiceImpl implements LocacaoService {
     }
 
     public LocacaoDTO save(LocacaoDTO dto) {
+        emDebito(dto.getId());
         return mapper.toDto(repository.save(mapper.toEntity(dto)));
     }
 
@@ -46,5 +48,11 @@ public class LocacaoServiceImpl implements LocacaoService {
         Locacao locacao = findByEntity(id);
         locacao.setStatus(false);
         repository.save(locacao);
+    }
+
+    private void emDebito(Integer id){
+        if(repository.existsLocacaosByClienteIdAndAndStatusFalse(id)){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, MensagemClienteUtil.CLIENTE_DEBITO);
+        }
     }
 }
