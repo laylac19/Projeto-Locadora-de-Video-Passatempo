@@ -45,4 +45,9 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
     @Modifying
     @Query("update Cliente c set c.ativo = false where c.id in :lista")
     void desativarDependentes(@Param("lista") List<Integer> lista);
+
+    @Query("select new com.locadora.projeto.service.dto.DropdownDTO(c.id, c.nome) from Cliente c " +
+            "join Locacao l on l.cliente.id = c.id where l.status = false")
+    List<DropdownDTO> dropdownClientesLocacao();
+
 }

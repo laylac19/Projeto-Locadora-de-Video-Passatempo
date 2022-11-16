@@ -65,6 +65,11 @@ public class ClienteResource {
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
+    @GetMapping("/dropdown/locacao")
+    public ResponseEntity<List<DropdownDTO>> buscarDropdownLocacao(){
+        List<DropdownDTO> dropdown = service.dropdownLocacao();
+        return new ResponseEntity<>(dropdown,HttpStatus.OK);
+    }
 
     @PostMapping
     public ResponseEntity<ClienteDTO> salvarCliente(@RequestBody ClienteDTO clienteDTO){

@@ -26,4 +26,6 @@ public interface ClienteService {
     void saveDependent(VinculoEntidadeDTO dto);
 
     public SocioDTO saveSocio(SocioDTO dto);
+
+    List<DropdownDTO> dropdownLocacao();
 }

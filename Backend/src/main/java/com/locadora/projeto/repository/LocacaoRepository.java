@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LocacaoRepository extends JpaRepository<Locacao, Integer> {
+
+    Boolean existsLocacaosByClienteIdAndAndStatusFalse(Integer id);
 }

@@ -10,6 +10,7 @@ import {VinculoEntidades} from "../../../../model/vinculo-entidade.model";
 import {ClienteService} from "../../../../shared/service/cliente.service";
 import {ItemService} from "../../../../shared/service/item.service";
 import {LocacaoService} from "../../../../shared/service/locacao.service";
+import {MensagensProntasEnumModel} from "../../../../shared/util/mensagensProntasEnum.model";
 
 @Component({
     selector: 'app-locacao',
@@ -20,9 +21,6 @@ export class LocacaoComponent implements OnInit {
 
     public formLocacao: FormGroup;
     public novaLocacao: LocacaoModel;
-    public vinculo: VinculoEntidades;
-
-    public listarLocacoes: boolean = false;
 
     public dtLocacao: Date = new Date();
     public dtDevolucaoPrevista: Date = new Date();
@@ -30,15 +28,15 @@ export class LocacaoComponent implements OnInit {
 
     public clientesDropDown: SelectItem[];
     public itensDropdown: SelectItem[];
-    public listaIntensLocados: ItemListModel[];
     public colunas: ColunaModel[] = [];
 
     public idLocacao: number;
     public idItem: number;
+    public depoisSalvar: boolean = false;
+    public listarLocacoes: boolean = false;
 
     @Input() locacaoModel: LocacaoModel;
     @Output() resForm: EventEmitter<boolean> = new EventEmitter();
-    depoisSalvar: any;
 
     constructor(
         private builder: FormBuilder,
@@ -57,7 +55,7 @@ export class LocacaoComponent implements OnInit {
     }
 
     public dropDownCliente(): void {
-        this.clienteService.fillClientsDropDown().subscribe((data) => {
+        this.clienteService.fillDropDownLease().subscribe((data) => {
             this.clientesDropDown = data;
         });
     }
@@ -90,38 +88,44 @@ export class LocacaoComponent implements OnInit {
 
     public salvarFormulario(): void {
         this.novaLocacao = this.formLocacao.getRawValue();
-        // this.locacaoService.insert(this.novaLocacao).subscribe({
-        //     next: () => {
-        //         this.idlocacao = responde.id;
-        //         if (this.novaLocacao.id) {
-        //             this.message.mensagemSucesso(MensagensProntasEnumModel.ATUALIZAR_LOCACAO.descricao);
-        //         } else {
-        //             this.message.mensagemSucesso(MensagensProntasEnumModel.CADASTRO_LOCACAO.descricao);
-        //         }
-        //         this.fecharForm();
-        //         this.listarLocacoes = true;
-        //     },
-        //     error: () => {
-        //         this.message.mensagemSucesso(MensagensProntasEnumModel.FALHA_LOCACAO.descricao);
-        //     }
-        // })
+        this.locacaoService.insert(this.novaLocacao).subscribe({
+            next: () => {
+                if (this.novaLocacao.id) {
+                    this.message.mensagemSucesso(MensagensProntasEnumModel.ATUALIZAR_LOCACAO.descricao);
+                } else {
+                    this.message.mensagemSucesso(MensagensProntasEnumModel.CADASTRO_LOCACAO.descricao);
+                }
+                this.fecharForm();
+                this.listarLocacoes = true;
+            },
+            error: () => {
+                this.message.mensagemSucesso(MensagensProntasEnumModel.FALHA_LOCACAO.descricao);
+            }
+        })
     }
 
-    public visualizarLocacao(id): void {
-
+    public visualizarLocacao(id: number): void {
+        this.locacaoService.findById(id).subscribe({
+            next: (response) => {
+                this.depoisSalvar = true;
+                this.formLocacao.patchValue(response);
+                this.formLocacao.disable();
+            }
+        });
     }
 
-    public novaDevolucao(id): void {
-
+    public novaDevolucao(id: number): void {
+        this.depoisSalvar = true;
     }
 
     public editarForm(id: number): void {
-        // this.locacaoService.findById(id).subscribe({
-        //         next: (response) => {
-        //             this.formLocacao.patchValue(response);
-        //         },
-        //     }
-        // );
+        this.locacaoService.findById(id).subscribe({
+                next: (response) => {
+                    this.depoisSalvar = true;
+                    this.formLocacao.patchValue(response);
+                },
+            }
+        );
     }
 
     public setDataAtual(dtLocacao: Date): string {
@@ -129,26 +133,12 @@ export class LocacaoComponent implements OnInit {
     }
 
     public fecharForm(): void {
+        this.depoisSalvar = false;
         this.formLocacao.reset();
         this.resForm.emit();
     }
 
-    adicionarItemNaLocacao() {
-        this.idItem = this.formLocacao.get('idItem')?.value;
-        this.vinculo = new VinculoEntidades(this.idLocacao, this.idItem);
-        // this.locacaoService.insertCastMovie(this.vinculo).subscribe({
-        //     next: () => {
-        //         this.listarLocacoes = true;
-        //         this.listarAtoresElenco(this.idTitulo);
-        //     }
-        // });
-    }
-
     setDataDevoluvaoPrevista(dtLocacao: Date) {
         return undefined;
-    }
-
-    retirarItemLocacao(rowData: any) {
-        this.listaIntensLocados = this.listaIntensLocados.slice(rowData.value);
     }
 }
