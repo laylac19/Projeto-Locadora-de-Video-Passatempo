@@ -6,6 +6,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 @Getter
 @Setter
@@ -43,4 +44,13 @@ public class Locacao implements Serializable {
 
     @Column(name = "status")
     private Boolean status;
+
+    public Double calcularMulta(){
+        long diasPassados = ChronoUnit.DAYS.between(this.dtDevolucaoEfetiva, LocalDate.now());
+        if (diasPassados > 0 && this.status.equals(true)) {
+            return ((this.valorCobrado * (diasPassados * 0.5)) + this.valorCobrado);
+        } else {
+            return 0.0;
+        }
+    }
 }
