@@ -54,4 +54,8 @@ public class ItemServiceImpl implements ItemService {
     public List<DropdownDTO> searchDropdownAvailableItems() {
         return repository.buscarDropdown();
     }
+
+    public Double buscarValorItem(Integer idItem){
+        return repository.buscarValorItem(idItem);
+    }
 }

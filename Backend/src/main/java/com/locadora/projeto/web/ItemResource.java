@@ -60,4 +60,10 @@ public class ItemResource {
         service.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    @GetMapping("/valorItem/{idItem}")
+    public ResponseEntity<Double> valorItem(@PathVariable("idItem") Integer id){
+        Double valor = service.buscarValorItem(id);
+        return new ResponseEntity<>(valor, HttpStatus.OK);
+    }
 }

@@ -17,4 +17,7 @@ public interface ItemRepository extends JpaRepository<Item, Integer> {
     @Query("select new com.locadora.projeto.service.dto.DropdownDTO(i.id, i.titulo.nome) from Item i where i.ativo = true")
     List<DropdownDTO> buscarDropdown();
 
+    @Query("select i.titulo.classe.valor from Item i")
+    Double buscarValorItem(Integer id);
+
 }
