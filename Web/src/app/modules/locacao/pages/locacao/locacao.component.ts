@@ -9,6 +9,7 @@ import {ItemListModel} from "../../../../model/list/item-list.model";
 import {VinculoEntidades} from "../../../../model/vinculo-entidade.model";
 import {ClienteService} from "../../../../shared/service/cliente.service";
 import {ItemService} from "../../../../shared/service/item.service";
+import {LocacaoService} from "../../../../shared/service/locacao.service";
 
 @Component({
     selector: 'app-locacao',
@@ -18,7 +19,7 @@ import {ItemService} from "../../../../shared/service/item.service";
 export class LocacaoComponent implements OnInit {
 
     public formLocacao: FormGroup;
-    public novaClasse: LocacaoModel;
+    public novaLocacao: LocacaoModel;
     public vinculo: VinculoEntidades;
 
     public listarLocacoes: boolean = false;
@@ -41,7 +42,7 @@ export class LocacaoComponent implements OnInit {
 
     constructor(
         private builder: FormBuilder,
-        private locacaoService: ClasseService,
+        private locacaoService: LocacaoService,
         private clienteService: ClienteService,
         private itemService: ItemService,
         private message: MensagensUtil
@@ -88,11 +89,11 @@ export class LocacaoComponent implements OnInit {
     }
 
     public salvarFormulario(): void {
-        this.novaClasse = this.formLocacao.getRawValue();
-        // this.locacaoService.insert(this.novaClasse).subscribe({
+        this.novaLocacao = this.formLocacao.getRawValue();
+        // this.locacaoService.insert(this.novaLocacao).subscribe({
         //     next: () => {
         //         this.idlocacao = responde.id;
-        //         if (this.novaClasse.id) {
+        //         if (this.novaLocacao.id) {
         //             this.message.mensagemSucesso(MensagensProntasEnumModel.ATUALIZAR_LOCACAO.descricao);
         //         } else {
         //             this.message.mensagemSucesso(MensagensProntasEnumModel.CADASTRO_LOCACAO.descricao);
@@ -106,13 +107,21 @@ export class LocacaoComponent implements OnInit {
         // })
     }
 
+    public visualizarLocacao(id): void {
+
+    }
+
+    public novaDevolucao(id): void {
+
+    }
+
     public editarForm(id: number): void {
-        this.locacaoService.findById(id).subscribe({
-                next: (response) => {
-                    this.formLocacao.patchValue(response);
-                },
-            }
-        );
+        // this.locacaoService.findById(id).subscribe({
+        //         next: (response) => {
+        //             this.formLocacao.patchValue(response);
+        //         },
+        //     }
+        // );
     }
 
     public setDataAtual(dtLocacao: Date): string {
