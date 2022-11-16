@@ -5,7 +5,7 @@ export class LocacaoListModel {
     public valorCobrado: number;
     public dtDevolucaoEfetiva: Date;
     public multaCobrada: number;
-    public idCliente: number;
-    public idItem: number;
+    public nomeCliente: number;
+    public numeroItem: number;
     public status: boolean;
 }

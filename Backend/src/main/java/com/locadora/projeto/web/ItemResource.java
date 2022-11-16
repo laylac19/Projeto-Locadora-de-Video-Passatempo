@@ -43,6 +43,12 @@ public class ItemResource {
         return new ResponseEntity<>(dropdown, HttpStatus.OK);
     }
 
+    @GetMapping("/valorItem/{idItem}")
+    public ResponseEntity<Double> valorItem(@PathVariable("idItem") Integer id){
+        Double valor = service.buscarValorItem(id);
+        return new ResponseEntity<>(valor, HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<ItemDTO> salvarItem(@RequestBody ItemDTO itemDTO){
         ItemDTO dto = service.save(itemDTO);

@@ -48,5 +48,6 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
 
     @Query("select new com.locadora.projeto.service.dto.DropdownDTO(c.id, c.nome) from Cliente c " +
             "join Locacao l on l.cliente.id = c.id where l.status = false")
-    List<DropdownDTO> dropdownLocacao();
+    List<DropdownDTO> dropdownClientesLocacao();
+
 }

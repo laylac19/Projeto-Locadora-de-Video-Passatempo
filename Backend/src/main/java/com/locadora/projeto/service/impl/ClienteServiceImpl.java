@@ -134,6 +134,6 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     public List<DropdownDTO> dropdownLocacao(){
-        return repository.dropdownLocacao();
+        return repository.dropdownClientesLocacao();
     }
 }

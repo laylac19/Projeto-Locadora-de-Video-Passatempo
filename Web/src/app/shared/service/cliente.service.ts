@@ -44,12 +44,16 @@ export class ClienteService {
         return this.http.get<SelectItem[]>(this.resourceUrl + '/dropdown')
     }
 
-    insertDependent(vinculo: VinculoEntidades): Observable<ClienteModel> {
-        return this.http.post<ClienteModel>(this.resourceUrl + '/salvar-dependente', vinculo);
-    }
-
     fillNonPartnersCustomersDropdown(): Observable<SelectItem[]>{
         return this.http.get<SelectItem[]>(this.resourceUrl + '/clientes/dropdown')
+    }
+
+    fillDropDownLease(): Observable<SelectItem[]>{
+        return this.http.get<SelectItem[]>(this.resourceUrl + '/dropdown/locacao')
+    }
+
+    insertDependent(vinculo: VinculoEntidades): Observable<ClienteModel> {
+        return this.http.post<ClienteModel>(this.resourceUrl + '/salvar-dependente', vinculo);
     }
 
     insert(entity: ClienteModel): Observable<ClienteModel> {

@@ -10,7 +10,7 @@ import {SharedModule} from "../../shared/shared.module";
 @NgModule({
     declarations: [
         LocacaoComponent,
-        LocacaoListComponent
+        LocacaoListComponent,
     ],
     imports: [
         CommonModule,

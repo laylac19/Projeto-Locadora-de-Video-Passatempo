@@ -36,7 +36,7 @@ public class LocacaoServiceImpl implements LocacaoService {
 
     public Locacao findByEntity(Integer id){
         return repository.findById(id).orElseThrow(() ->
-                new ResponseStatusException(HttpStatus.NOT_FOUND, MensagemLocacaoUtil.TITULO_NAO_ENCOTRADO));
+                new ResponseStatusException(HttpStatus.NOT_FOUND, MensagemLocacaoUtil.LOCACAO_NAO_ENCOTRADO));
     }
 
     public LocacaoDTO save(LocacaoDTO dto) {
@@ -52,7 +52,7 @@ public class LocacaoServiceImpl implements LocacaoService {
 
     private void emDebito(Integer id){
         if(repository.existsLocacaosByClienteIdAndAndStatusFalse(id)){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, MensagemClienteUtil.CLIENTE_DEBITO);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, MensagemClienteUtil.CLIENTE_ESTA_EM_DEBITO);
         }
     }
 }
