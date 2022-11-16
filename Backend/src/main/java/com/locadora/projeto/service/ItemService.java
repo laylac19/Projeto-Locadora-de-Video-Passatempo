@@ -17,4 +17,6 @@ public interface ItemService {
     void delete(Integer id);
 
     List<DropdownDTO> searchDropdownAvailableItems();
+
+    Double buscarValorItem(Integer idItem);
 }
