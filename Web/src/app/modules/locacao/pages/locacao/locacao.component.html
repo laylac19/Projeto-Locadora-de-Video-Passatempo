@@ -32,7 +32,8 @@
                 </span>
             </div>
         </div>
-        <div class="field col-12">
+        <div class="area-acordion flex col-12">
+            <div class="field col-8">
             <span class="item">
                 <label class="campo-form">Título Item</label>
                 <p-dropdown formControlName="idItem" [filter]="true" [options]="itensDropdown"
@@ -45,7 +46,15 @@
                    </ng-template>
                </p-dropdown>
             </span>
+            </div>
+            <div class="field button col-4">
+                <button type="button" pButton icon="bi bi-check-circle" label="Confirmar"
+                        (click)="confirmarLocacaoItem()"
+                        class="button-action ui-button-secondary mr-3">
+                </button>
+            </div>
         </div>
+        <div class="detalhe"></div>
         <div class="area flex readonly pb-5">
             <div class="field-acordion col-3">
                 <label class="campo-form" for="inputDataPrevista">Data Devolução Prevista</label>

@@ -11,6 +11,7 @@ import {ClienteService} from "../../../../shared/service/cliente.service";
 import {ItemService} from "../../../../shared/service/item.service";
 import {LocacaoService} from "../../../../shared/service/locacao.service";
 import {MensagensProntasEnumModel} from "../../../../shared/util/mensagensProntasEnum.model";
+import {ItemModel} from "../../../../model/item.model";
 
 @Component({
     selector: 'app-locacao',
@@ -21,6 +22,7 @@ export class LocacaoComponent implements OnInit {
 
     public formLocacao: FormGroup;
     public novaLocacao: LocacaoModel;
+    public itemLocacao: ItemModel;
 
     public dtLocacao: Date = new Date();
     public dtDevolucaoPrevista: Date = new Date();
@@ -32,11 +34,13 @@ export class LocacaoComponent implements OnInit {
 
     public idLocacao: number;
     public idItem: number;
+    public valorTotalLocacao: number[];
     public depoisSalvar: boolean = false;
     public listarLocacoes: boolean = false;
 
     @Input() locacaoModel: LocacaoModel;
     @Output() resForm: EventEmitter<boolean> = new EventEmitter();
+
 
     constructor(
         private builder: FormBuilder,
@@ -140,5 +144,14 @@ export class LocacaoComponent implements OnInit {
 
     setDataDevoluvaoPrevista(dtLocacao: Date) {
         return undefined;
+    }
+
+    confirmarLocacaoItem() {
+        this.idItem = this.formLocacao.get('idItem')?.value;
+        this.itemService.valueOfItemLease(this.idItem).subscribe((valor)=> {
+            this.valorTotalLocacao = valor;
+        });
+        console.log(this.valorTotalLocacao);
+        this.formLocacao.get('valorCobrado')?.setValue(this.valorTotalLocacao);
     }
 }
