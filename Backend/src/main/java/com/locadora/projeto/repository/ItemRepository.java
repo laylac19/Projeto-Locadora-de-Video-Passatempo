@@ -4,6 +4,7 @@ import com.locadora.projeto.domain.Item;
 import com.locadora.projeto.service.dto.DropdownDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -17,7 +18,9 @@ public interface ItemRepository extends JpaRepository<Item, Integer> {
     @Query("select new com.locadora.projeto.service.dto.DropdownDTO(i.id, i.titulo.nome) from Item i where i.ativo = true")
     List<DropdownDTO> buscarDropdown();
 
-    @Query("select i.titulo.classe.valor from Item i")
-    Double buscarValorItem(Integer id);
+    @Query("select i.titulo.classe.valor from Item i where i.id = :idItem")
+    Double buscarValorItem(@Param("idItem") Integer idItem);
 
+    @Query("select i.titulo.classe.prazoDevolucao from Item i where i.id = :idItem")
+    Integer buscarPrazoDevolucaoItem(@Param("idItem") Integer idItem);
 }

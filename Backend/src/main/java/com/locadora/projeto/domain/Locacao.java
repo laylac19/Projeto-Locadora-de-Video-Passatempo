@@ -17,7 +17,7 @@ public class Locacao implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_locacao")
     @SequenceGenerator(name = "seq_locacao", sequenceName = "seq_locacao", allocationSize = 1)
     @Column(name = "id", nullable = false)
-    private Long id;
+    private Integer id;
 
     @Column(name = "data_locacao", nullable = false)
     private LocalDate dtLocacao;
@@ -28,7 +28,7 @@ public class Locacao implements Serializable {
     @Column(name = "valor_cobrado", nullable = false)
     private Double valorCobrado;
 
-    @Column(name = "data_devolucao_efetiva")
+    @Column(name = "data_devolucao_efetiva", nullable = true)
     private LocalDate dtDevolucaoEfetiva;
 
     @Column(name = "multa_cobrada")
@@ -46,7 +46,7 @@ public class Locacao implements Serializable {
     private Boolean status;
 
     public Double calcularMulta(){
-        long diasPassados = ChronoUnit.DAYS.between(this.dtDevolucaoEfetiva, LocalDate.now());
+        long diasPassados = ChronoUnit.DAYS.between(this.dtDevolucaoPrevista, LocalDate.now());
         if (diasPassados > 0 && this.status.equals(true)) {
             return ((this.valorCobrado * (diasPassados * 0.5)) + this.valorCobrado);
         } else {

@@ -32,8 +32,8 @@ export class LocacaoComponent implements OnInit {
     public itensDropdown: SelectItem[];
     public colunas: ColunaModel[] = [];
 
-    public idLocacao: number;
     public idItem: number;
+    public prazoDevolucao: number;
     public valorTotalLocacao: number[];
     public depoisSalvar: boolean = false;
     public listarLocacoes: boolean = false;
@@ -91,6 +91,7 @@ export class LocacaoComponent implements OnInit {
     }
 
     public salvarFormulario(): void {
+        this.formLocacao.get('dtLocacao')?.setValue(this.converterLocalDate(this.dtLocacao));
         this.novaLocacao = this.formLocacao.getRawValue();
         this.locacaoService.insert(this.novaLocacao).subscribe({
             next: () => {
@@ -105,7 +106,7 @@ export class LocacaoComponent implements OnInit {
             error: () => {
                 this.message.mensagemSucesso(MensagensProntasEnumModel.FALHA_LOCACAO.descricao);
             }
-        })
+        });
     }
 
     public visualizarLocacao(id: number): void {
@@ -132,8 +133,8 @@ export class LocacaoComponent implements OnInit {
         );
     }
 
-    public setDataAtual(dtLocacao: Date): string {
-        return (dtLocacao.getDate() + '/' + dtLocacao.getMonth() + '/' + dtLocacao.getFullYear()).toString();
+    public setDataFormatoData(dtLocacao: Date): string {
+        return dtLocacao.toLocaleDateString()
     }
 
     public fecharForm(): void {
@@ -142,16 +143,36 @@ export class LocacaoComponent implements OnInit {
         this.resForm.emit();
     }
 
-    setDataDevoluvaoPrevista(dtLocacao: Date) {
-        return undefined;
+    setarValorDataPrevista() {
+        this.idItem = this.formLocacao.get('idItem')?.value;
+        this.setPriceItem(this.idItem);
+        this.setDeadline(this.idItem);
     }
 
-    confirmarLocacaoItem() {
-        this.idItem = this.formLocacao.get('idItem')?.value;
-        this.itemService.valueOfItemLease(this.idItem).subscribe((valor)=> {
-            this.valorTotalLocacao = valor;
+    private setPriceItem(id: number): void {
+        this.itemService.valueOfItemLease(id).subscribe((valor)=> {
+            this.formLocacao.get('valorCobrado')?.setValue(valor);
         });
-        console.log(this.valorTotalLocacao);
-        this.formLocacao.get('valorCobrado')?.setValue(this.valorTotalLocacao);
+    }
+
+    private setDeadline(id: number): void {
+        this.itemService.returnDeadlineItemLease(id).subscribe((prazo) => {
+            this.dtDevolucaoPrevista = this.calcularDataDevolucaoPresvista(this.dtLocacao, prazo);
+            this.setDataFormatoData(this.dtDevolucaoPrevista);
+        })
+    }
+
+    private calcularDataDevolucaoPresvista(dtLocacao: Date, prazoDias: any): Date {
+        const copiaDaData = new Date(dtLocacao);
+        copiaDaData.setDate(copiaDaData.getDate() + prazoDias);
+        this.formLocacao.get('dtDevolucaoPrevista')?.setValue(this.converterLocalDate(copiaDaData));
+        return copiaDaData;
+    }
+
+    public converterLocalDate(date: Date | string | number): Date | null {
+        if (date == null || date.toString().trim() === '') {
+            return null;
+        }
+        return date instanceof Date ? new Date(date.getTime()) : new Date(`${ date }T00:00:00-03:00`);
     }
 }

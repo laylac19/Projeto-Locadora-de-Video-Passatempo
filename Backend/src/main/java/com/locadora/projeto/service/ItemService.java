@@ -19,4 +19,6 @@ public interface ItemService {
     List<DropdownDTO> searchDropdownAvailableItems();
 
     Double buscarValorItem(Integer idItem);
+
+    Integer buscarPrazoDevolucaoItem(Integer idItem);
 }

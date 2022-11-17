@@ -55,7 +55,11 @@ public class ItemServiceImpl implements ItemService {
         return repository.buscarDropdown();
     }
 
-    public Double buscarValorItem(Integer idItem){
+    public Double buscarValorItem(Integer idItem) {
         return repository.buscarValorItem(idItem);
+    }
+
+    public Integer buscarPrazoDevolucaoItem(Integer idItem) {
+        return repository.buscarPrazoDevolucaoItem(idItem);
     }
 }

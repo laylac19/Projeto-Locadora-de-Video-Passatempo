@@ -82,7 +82,6 @@ export class TituloListComponent implements OnInit {
             this.displayFormTitulo = false;
             this.listarTodosTitulosFilmes();
         }
-
     }
 
     visualizarTitulo(id: number) {

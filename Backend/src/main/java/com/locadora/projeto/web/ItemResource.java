@@ -49,6 +49,12 @@ public class ItemResource {
         return new ResponseEntity<>(valor, HttpStatus.OK);
     }
 
+    @GetMapping("/prazoDevolucao/{idItem}")
+    public ResponseEntity<Integer> prazoDevoluvaoItem(@PathVariable("idItem") Integer id){
+        Integer prazoDevolucao = service.buscarPrazoDevolucaoItem(id);
+        return new ResponseEntity<>(prazoDevolucao, HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<ItemDTO> salvarItem(@RequestBody ItemDTO itemDTO){
         ItemDTO dto = service.save(itemDTO);

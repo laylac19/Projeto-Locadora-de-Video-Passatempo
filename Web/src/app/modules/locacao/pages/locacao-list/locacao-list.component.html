@@ -39,8 +39,8 @@
                 </ng-template>
 
                 <ng-template pTemplate="body" let-rowData let-colunas="columns">
-                    <tr *ngFor="let item of items | filter:filterItem">
-                        <td *ngFor="let col of colunas">
+                    <tr>
+                        <td *ngFor="let col of colunas | filter:filterItem">
                             <ng-container *ngIf="col.field != 'acoes' ">
                                 {{rowData[col.field]}}
                             </ng-container>
@@ -51,7 +51,7 @@
                                             class="button-action ui-button-success button-save-new"
                                             iconPos="left"
                                             pTooltip="Visualizar Dados"
-                                            (click)="visualizarDados(rowData)">
+                                            (click)="visualizarDados(rowData.id)">
                                     </button>
                                 </div>
                                 <div class="column-action flex justify-content-evenly">
@@ -60,7 +60,7 @@
                                             class="button-action ui-button-success button-save-new"
                                             iconPos="left"
                                             pTooltip="Editar Dados Locação"
-                                            (click)="editarLocacao(rowData)">
+                                            (click)="editarLocacao(rowData.id)">
                                     </button>
                                 </div>
                                 <div class="column-action flex justify-content-evenly">
@@ -69,7 +69,7 @@
                                             class="button-action ui-button-success button-save-new"
                                             iconPos="left"
                                             pTooltip="Realizar Devolução"
-                                            (click)="ralizarDevolucaoItem(rowData)">
+                                            (click)="ralizarDevolucaoItem(rowData.id)">
                                     </button>
                                 </div>
                                 <div class="column-action flex justify-content-evenly">
@@ -78,7 +78,7 @@
                                             class="button-action ui-button-success button-save-new"
                                             iconPos="left"
                                             pTooltip="Excluir Locação"
-                                            (click)="desativarLocacao(rowData)">
+                                            (click)="desativarLocacao(rowData.id)">
                                     </button>
                                 </div>
                             </ng-container>

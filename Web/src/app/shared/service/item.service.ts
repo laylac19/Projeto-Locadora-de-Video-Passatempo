@@ -36,6 +36,10 @@ export class ItemService {
         return this.http.get<number[]>(this.resourceUrl + '/valorItem' + '/' + id)
     }
 
+    returnDeadlineItemLease(id: number): Observable<number[]>{
+        return this.http.get<number[]>(this.resourceUrl + '/prazoDevolucao' + '/' + id)
+    }
+
     insert(entity: ItemModel): Observable<ItemModel> {
         return this.http.post<ItemModel>(this.resourceUrl, entity);
     }
