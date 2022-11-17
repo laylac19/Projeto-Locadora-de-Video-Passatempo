@@ -95,9 +95,4 @@ public class ClienteResource {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("/dropdown/locacao")
-    public ResponseEntity<List<DropdownDTO>> buscarDropdownLocacao(){
-        List<DropdownDTO> dropdown = service.dropdownLocacao();
-        return new ResponseEntity<>(dropdown,HttpStatus.OK);
-    }
 }
