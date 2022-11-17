@@ -49,7 +49,7 @@
             </div>
         </div>
         <div class="detalhe"></div>
-        <div class="area flex readonly pb-5 align-items-end">
+        <div class="area flex readonly pb-2 align-items-end">
             <div class="field-acordion col-3">
                 <label class="campo-form" for="inputDataPrevista">Data Devolução Prevista</label>
                 <p-calendar
@@ -70,28 +70,31 @@
                 <p-inputNumber formControlName="valorCobrado" mode="currency" locale="pt-BR" currency="BRL" [min]="0"
                                [showButtons]="true" [step]="5" [disabled]="true"></p-inputNumber>
             </div>
-            <div class="area flex readonly justify-content-between" *ngIf="depoisSalvar">
-                <div class="field-acordion col-3">
-                    <label class="campo-form" for="inputDataDevolucao">Data Devolução Prevista</label>
-                    <p-calendar
-                        [readonlyInput]="true"
-                        class="calendario"
-                        id="inputDataDevolucao"
-                        formControlName="dtLocacao"
-                        dateFormat="dd/mm/yy"
-                        appendTo="body"
-                        [disabled]="true"
-                        [yearNavigator]="true"
-                        [defaultDate]="dtDevolucaoEfetiva"
-                        [showIcon]="true">
-                    </p-calendar>
-                </div>
-                <div class="field-acordion col-3">
-                    <label class="campo-form">Multa Cobrada R$</label>
-                    <p-inputNumber formControlName="multaCobrada" mode="currency" locale="pt-BR" currency="BRL"
-                                   [disabled]="true" [min]="0" [showButtons]="true" [step]="5"></p-inputNumber>
-                </div>
+            <div class="field-acordion col-3" *ngIf="depoisSalvar">
+                <label class="campo-form" for="inputDataDevolucao">Data Devolução</label>
+                <p-calendar
+                    [readonlyInput]="true"
+                    class="calendario"
+                    id="inputDataDevolucao"
+                    formControlName="dtLocacao"
+                    dateFormat="dd/mm/yy"
+                    appendTo="body"
+                    [disabled]="habilitarCampo"
+                    [yearNavigator]="true"
+                    [defaultDate]="dtDevolucaoEfetiva"
+                    [showIcon]="true">
+                </p-calendar>
             </div>
+            <div class="field-acordion col-3" *ngIf="depoisSalvar">
+                <label class="campo-form">Multa Cobrada R$</label>
+                <p-inputNumber formControlName="multaCobrada" mode="currency" locale="pt-BR" currency="BRL"
+                               [disabled]="true" [min]="0" [showButtons]="true" [step]="5"></p-inputNumber>
+            </div>
+        </div>
+        <div class="field readonly col-6 pb-5 align-items-end">
+            <label class="campo-form">Valor Total R$</label>
+            <p-inputNumber formControlName="valorTotal" mode="currency" locale="pt-BR" currency="BRL"
+                           [disabled]="true" [min]="0" [showButtons]="true" [step]="5"></p-inputNumber>
         </div>
     </form>
 </div>

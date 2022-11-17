@@ -37,6 +37,7 @@ export class LocacaoComponent implements OnInit {
     public valorTotalLocacao: number[];
     public depoisSalvar: boolean = false;
     public listarLocacoes: boolean = false;
+    public habilitarCampo: boolean = true;
 
     @Input() locacaoModel: LocacaoModel;
     @Output() resForm: EventEmitter<boolean> = new EventEmitter();
@@ -113,6 +114,8 @@ export class LocacaoComponent implements OnInit {
         this.locacaoService.findById(id).subscribe({
             next: (response) => {
                 this.depoisSalvar = true;
+                this.dtLocacao = response.dtLocacao;
+                this.dtDevolucaoPrevista = response.dtDevolucaoPrevista
                 this.formLocacao.patchValue(response);
                 this.formLocacao.disable();
             }
@@ -124,9 +127,13 @@ export class LocacaoComponent implements OnInit {
     }
 
     public editarForm(id: number): void {
+        this.habilitarCampo = false;
+        this.depoisSalvar = true;
         this.locacaoService.findById(id).subscribe({
                 next: (response) => {
-                    this.depoisSalvar = true;
+
+                    this.dtLocacao = response.dtLocacao;
+                    this.dtDevolucaoPrevista = response.dtDevolucaoPrevista;
                     this.formLocacao.patchValue(response);
                 },
             }
@@ -139,7 +146,9 @@ export class LocacaoComponent implements OnInit {
 
     public fecharForm(): void {
         this.depoisSalvar = false;
+        this.habilitarCampo = true;
         this.formLocacao.reset();
+        this.formLocacao.enable();
         this.resForm.emit();
     }
 

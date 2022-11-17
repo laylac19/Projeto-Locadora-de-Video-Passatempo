@@ -45,7 +45,7 @@
                                 {{rowData[col.field]}}
                             </ng-container>
                             <ng-container *ngIf="col.field === 'acoes' ">
-                                <div class="column-action flex justify-content-evenly">
+                                <div class="column-action flex justify-content-between">
                                     <button pButton type="button"
                                             icon="pi pi-eye"
                                             class="button-action ui-button-success button-save-new"
@@ -53,8 +53,6 @@
                                             pTooltip="Visualizar Dados"
                                             (click)="visualizarDados(rowData.id)">
                                     </button>
-                                </div>
-                                <div class="column-action flex justify-content-evenly">
                                     <button pButton type="button"
                                             icon="pi pi-pencil"
                                             class="button-action ui-button-success button-save-new"
@@ -62,8 +60,6 @@
                                             pTooltip="Editar Dados Locação"
                                             (click)="editarLocacao(rowData.id)">
                                     </button>
-                                </div>
-                                <div class="column-action flex justify-content-evenly">
                                     <button pButton type="button"
                                             icon="bi bi-inbox"
                                             class="button-action ui-button-success button-save-new"
@@ -71,8 +67,6 @@
                                             pTooltip="Realizar Devolução"
                                             (click)="ralizarDevolucaoItem(rowData.id)">
                                     </button>
-                                </div>
-                                <div class="column-action flex justify-content-evenly">
                                     <button pButton type="button"
                                             icon="pi pi-trash"
                                             class="button-action ui-button-success button-save-new"

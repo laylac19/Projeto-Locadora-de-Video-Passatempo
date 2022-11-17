@@ -46,8 +46,8 @@ export class LocacaoListComponent implements OnInit {
             new ColunaModel('dtDevolucaoPrevista', 'Dt. Devolução Prevista'),
             new ColunaModel('status', 'Status'),
             new ColunaModel('dtDevolucaoEfetiva', 'Dt. Devolução'),
-            new ColunaModel('valorCobrado', 'Valor Cobrado'),
             new ColunaModel('multaCobrada', 'Multa Cobrada'),
+            new ColunaModel('valorCobrado', 'Valor Total'),
             new ColunaModel('acoes', 'Ações', '132px')
         ]
     }
