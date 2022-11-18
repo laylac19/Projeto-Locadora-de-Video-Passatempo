@@ -1,12 +1,6 @@
 export class FuncoesUtil {
 
     public static editarFormatoData(data: Date): string {
-        const vazio = 'dd/mm/aaa';
-        // if (data) {
-        //     return data.toLocaleDateString()
-        // } else {
-        //     return  vazio;
-        // }
         return data.toLocaleDateString();
     }
 

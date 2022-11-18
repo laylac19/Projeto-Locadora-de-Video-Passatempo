@@ -17,7 +17,7 @@
             </div>
             <div class="field col-4">
                 <span class="item">
-                    <label class="campo-form" for="inputData">Data Aquisição</label>
+                    <label class="campo-form" for="inputData">Data Locação</label>
                     <p-calendar
                         class="calendario"
                         id="inputData"
@@ -55,7 +55,7 @@
                 <p-calendar
                     class="calendario"
                     id="inputDataPrevista"
-                    formControlName="dtLocacao"
+                    formControlName="dtDevolucaoPrevista"
                     dateFormat="dd/mm/yy"
                     appendTo="body"
                     [disabled]="true"
@@ -66,7 +66,7 @@
                 </p-calendar>
             </div>
             <div class="field-acordion col-3">
-                <label class="campo-form">Valor R$</label>
+                <label class="campo-form">SubTotal R$</label>
                 <p-inputNumber formControlName="valorCobrado" mode="currency" locale="pt-BR" currency="BRL" [min]="0"
                                [showButtons]="true" [step]="5" [disabled]="true"></p-inputNumber>
             </div>
@@ -79,7 +79,8 @@
                     formControlName="dtLocacao"
                     dateFormat="dd/mm/yy"
                     appendTo="body"
-                    [disabled]="habilitarCampo"
+                    placeholder="__/__/____"
+                    [disabled]="true"
                     [yearNavigator]="true"
                     [defaultDate]="dtDevolucaoEfetiva"
                     [showIcon]="true">

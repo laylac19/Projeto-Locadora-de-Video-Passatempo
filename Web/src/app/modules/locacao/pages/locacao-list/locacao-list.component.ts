@@ -1,9 +1,9 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {ColunaModel} from "../../../../shared/util/coluna.model";
+import {ColunaUtil} from "../../../../shared/util/coluna.util";
 import {LocacaoListModel} from "../../../../model/list/locacao-list.model";
 import {LocacaoModel} from "../../../../model/locacao.model";
 import {LocacaoComponent} from "../locacao/locacao.component";
-import {TituloModalEnum} from "../../../../shared/util/titulo-modal-enum.model";
+import {TituloModalEnum} from "../../../../shared/util/enum/titulo-modal-enum.model";
 import {EntidadeUtil} from "../../../../shared/util/entidade-util";
 import {MensagensConfirmacao} from "../../../../shared/util/msgConfirmacaoDialog.util";
 import {ItemModel} from "../../../../model/item.model";
@@ -16,13 +16,14 @@ import {LocacaoService} from "../../../../shared/service/locacao.service";
 })
 export class LocacaoListComponent implements OnInit {
 
-    public colunas: ColunaModel[] = [];
+    public colunas: ColunaUtil[] = [];
     public listaMovimentacaoLocacao: LocacaoListModel[] = [];
     public items: ItemModel[] = [];
     public locacao: LocacaoModel;
 
     public tituloModal: string;
     public filterItem: string;
+    public novaLocaco: boolean = false;
 
     @Input() display = false;
     @ViewChild(LocacaoComponent) formLocacao: LocacaoComponent;
@@ -40,16 +41,16 @@ export class LocacaoListComponent implements OnInit {
 
     public colunasTabela(): void {
         this.colunas = [
-            new ColunaModel('nomeCliente', 'Cliente'),
-            new ColunaModel('numeroItem', 'Nº Série Item'),
-            new ColunaModel('dtLocacao', 'Data Locação'),
-            new ColunaModel('dtDevolucaoPrevista', 'Dt. Devolução Prevista'),
-            new ColunaModel('status', 'Status'),
-            new ColunaModel('dtDevolucaoEfetiva', 'Dt. Devolução'),
-            new ColunaModel('multaCobrada', 'Multa Cobrada'),
-            new ColunaModel('valorCobrado', 'Valor Total'),
-            new ColunaModel('acoes', 'Ações', '132px')
-        ]
+            new ColunaUtil('nomeCliente', 'Cliente'),
+            new ColunaUtil('numeroItem', 'Nº Série Item'),
+            new ColunaUtil('dtLocacao', 'Data Locação'),
+            new ColunaUtil('dtDevolucaoPrevista', 'Dt. Devolução Prevista'),
+            new ColunaUtil('status', 'Status'),
+            new ColunaUtil('dtDevolucaoEfetiva', 'Dt. Devolução'),
+            new ColunaUtil('multaCobrada', 'Multa Cobrada'),
+            new ColunaUtil('valorCobrado', 'Valor Total'),
+            new ColunaUtil('acoes', 'Ações', '230px')
+        ];
     }
 
     public listarTodasLocacoes(): void {

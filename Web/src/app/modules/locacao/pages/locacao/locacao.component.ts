@@ -1,17 +1,15 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {LocacaoModel} from "../../../../model/locacao.model";
-import {ClasseService} from "../../../../shared/service/classe.service";
 import {SelectItem} from "primeng/api";
-import {MensagensUtil} from "../../../../shared/util/mensagens-util";
-import {ColunaModel} from "../../../../shared/util/coluna.model";
-import {ItemListModel} from "../../../../model/list/item-list.model";
-import {VinculoEntidades} from "../../../../model/vinculo-entidade.model";
+import {MensagensUtil} from "../../../../shared/util/mensagens.util";
+import {ColunaUtil} from "../../../../shared/util/coluna.util";
 import {ClienteService} from "../../../../shared/service/cliente.service";
 import {ItemService} from "../../../../shared/service/item.service";
 import {LocacaoService} from "../../../../shared/service/locacao.service";
-import {MensagensProntasEnumModel} from "../../../../shared/util/mensagensProntasEnum.model";
+import {MensagensProntasEnumModel} from "../../../../shared/util/enum/mensagensProntasEnum.model";
 import {ItemModel} from "../../../../model/item.model";
+import {FuncoesUtil} from "../../../../shared/util/funcoes.util";
 
 @Component({
     selector: 'app-locacao',
@@ -30,18 +28,19 @@ export class LocacaoComponent implements OnInit {
 
     public clientesDropDown: SelectItem[];
     public itensDropdown: SelectItem[];
-    public colunas: ColunaModel[] = [];
+    public colunas: ColunaUtil[] = [];
 
     public idItem: number;
     public prazoDevolucao: number;
-    public valorTotalLocacao: number[];
+    public valorTotalLocacao: number;
     public depoisSalvar: boolean = false;
     public listarLocacoes: boolean = false;
     public habilitarCampo: boolean = true;
+    public holderDtLocacao: string;
 
     @Input() locacaoModel: LocacaoModel;
+    @Input() novoDado: boolean;
     @Output() resForm: EventEmitter<boolean> = new EventEmitter();
-
 
     constructor(
         private builder: FormBuilder,
@@ -73,8 +72,8 @@ export class LocacaoComponent implements OnInit {
 
     public colunasTabelaElenco(): void {
         this.colunas = [
-            new ColunaModel('label', 'Itens'),
-            new ColunaModel('acoes', 'Ações', '132px')
+            new ColunaUtil('label', 'Itens'),
+            new ColunaUtil('acoes', 'Ações', '132px')
         ]
     }
 
@@ -87,12 +86,13 @@ export class LocacaoComponent implements OnInit {
             dtDevolucaoEfetiva: [null],
             multaCobrada: [''],
             idCliente: [null, [Validators.required]],
-            idItem: [null, [Validators.required]]
+            idItem: [null, [Validators.required]],
+            valorTotal: ['']
         }));
     }
 
     public salvarFormulario(): void {
-        this.formLocacao.get('dtLocacao')?.setValue(this.converterLocalDate(this.dtLocacao));
+        this.formLocacao.get('dtLocacao')?.setValue(FuncoesUtil.converterLocalDate(this.dtLocacao));
         this.novaLocacao = this.formLocacao.getRawValue();
         this.locacaoService.insert(this.novaLocacao).subscribe({
             next: () => {
@@ -114,8 +114,10 @@ export class LocacaoComponent implements OnInit {
         this.locacaoService.findById(id).subscribe({
             next: (response) => {
                 this.depoisSalvar = true;
-                this.dtLocacao = response.dtLocacao;
-                this.dtDevolucaoPrevista = response.dtDevolucaoPrevista
+                if (!this.novoDado) {
+                    this.dtLocacao = new Date(response.dtLocacao);
+                    this.dtDevolucaoPrevista = new Date(response.dtDevolucaoPrevista);
+                }
                 this.formLocacao.patchValue(response);
                 this.formLocacao.disable();
             }
@@ -124,6 +126,10 @@ export class LocacaoComponent implements OnInit {
 
     public novaDevolucao(id: number): void {
         this.depoisSalvar = true;
+        const multa: number = this.calcularMulta();
+        this.formLocacao.get('multaCobrada')?.setValue(multa);
+        console.log('****************')
+        console.log(this.formLocacao.get('multaCobrada')?.value);
     }
 
     public editarForm(id: number): void {
@@ -131,9 +137,11 @@ export class LocacaoComponent implements OnInit {
         this.depoisSalvar = true;
         this.locacaoService.findById(id).subscribe({
                 next: (response) => {
-
-                    this.dtLocacao = response.dtLocacao;
-                    this.dtDevolucaoPrevista = response.dtDevolucaoPrevista;
+                    this.depoisSalvar = true;
+                    if (!this.novoDado) {
+                        this.dtLocacao = new Date(response.dtLocacao);
+                        this.dtDevolucaoPrevista = new Date(response.dtDevolucaoPrevista);
+                    }
                     this.formLocacao.patchValue(response);
                 },
             }
@@ -152,7 +160,7 @@ export class LocacaoComponent implements OnInit {
         this.resForm.emit();
     }
 
-    setarValorDataPrevista() {
+    public setarValorDataPrevista(): void {
         this.idItem = this.formLocacao.get('idItem')?.value;
         this.setPriceItem(this.idItem);
         this.setDeadline(this.idItem);
@@ -166,22 +174,41 @@ export class LocacaoComponent implements OnInit {
 
     private setDeadline(id: number): void {
         this.itemService.returnDeadlineItemLease(id).subscribe((prazo) => {
-            this.dtDevolucaoPrevista = this.calcularDataDevolucaoPresvista(this.dtLocacao, prazo);
-            this.setDataFormatoData(this.dtDevolucaoPrevista);
-        })
+            this.dtDevolucaoPrevista = this.setarDataDevolucaoPresvista(this.dtLocacao, prazo);
+            FuncoesUtil.editarFormatoData(this.dtDevolucaoPrevista);
+        });
     }
 
-    private calcularDataDevolucaoPresvista(dtLocacao: Date, prazoDias: any): Date {
-        const copiaDaData = new Date(dtLocacao);
-        copiaDaData.setDate(copiaDaData.getDate() + prazoDias);
-        this.formLocacao.get('dtDevolucaoPrevista')?.setValue(this.converterLocalDate(copiaDaData));
-        return copiaDaData;
+    private setarDataDevolucaoPresvista(dtLocacao: Date, prazoDias?: any): Date {
+        const dataDevolucaoPrevista: Date = FuncoesUtil.calcularDataDevolucaoPresvista(dtLocacao, prazoDias);
+        this.formLocacao.get('dtDevolucaoPrevista')?.setValue(dataDevolucaoPrevista);
+        return dataDevolucaoPrevista;
     }
 
-    public converterLocalDate(date: Date | string | number): Date | null {
-        if (date == null || date.toString().trim() === '') {
-            return null;
+    //    public Double calcularMulta(){
+//        long diasPassados = ChronoUnit.DAYS.between(this.dtDevolucaoPrevista, LocalDate.now());
+//        if (diasPassados > 0 && this.status.equals(true)) {
+//            return ((this.valorCobrado * (diasPassados * 0.5)) + this.valorCobrado);
+//        } else {
+//            return 0.0;
+//        }
+//    }
+
+
+    calcularMulta(): number {
+        const dataAtual: Date = new Date();
+        this.dtDevolucaoPrevista = this.formLocacao.get('dtDevolucaoPrevista')?.value;
+        const status = this.formLocacao.get('status')?.value;
+        const diasPassados: number = FuncoesUtil.diferencaDatas(dataAtual, this.dtDevolucaoPrevista);
+
+        console.log(dataAtual);
+        console.log(this.dtDevolucaoPrevista);
+        console.log(status);
+        console.log(diasPassados);
+        if (diasPassados > 0 && status.equals(true)) {
+            return (this.valorTotalLocacao * (diasPassados * 0.5)) + this.valorTotalLocacao;
+        } else {
+            return 0.0;
         }
-        return date instanceof Date ? new Date(date.getTime()) : new Date(`${ date }T00:00:00-03:00`);
     }
 }
