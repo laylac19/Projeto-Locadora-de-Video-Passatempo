@@ -1,5 +1,5 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {ColunaModel} from "../../../../shared/util/coluna.model";
+import {ColunaUtil} from "../../../../shared/util/coluna.util";
 import {ClienteListModel} from "../../../../model/list/cliente-list.model";
 import {ClienteModel} from "../../../../model/cliente.model";
 import {ClienteFormComponent} from "../cliente-form/cliente-form.component";
@@ -14,7 +14,7 @@ import {MensagensConfirmacao} from "../../../../shared/util/msgConfirmacaoDialog
 })
 export class DependenteListComponent implements OnInit {
 
-    public colunas: ColunaModel[] = [];
+    public colunas: ColunaUtil[] = [];
     public listaDependentesAtivos: ClienteListModel[] = [];
     public listaDependentesInativos: ClienteListModel[] = [];
     public dependete: ClienteModel;
@@ -39,11 +39,11 @@ export class DependenteListComponent implements OnInit {
 
     public colunasTabela(): void {
         this.colunas = [
-            new ColunaModel('socio', 'Nome Sócio'),
-            new ColunaModel('numInscricao', 'Nº Inscrição'),
-            new ColunaModel('nome', 'Nome Dependente'),
-            new ColunaModel('dataNascimento', 'Data Nascimento'),
-            new ColunaModel('acoes', 'Ações', '132px')
+            new ColunaUtil('socio', 'Nome Sócio'),
+            new ColunaUtil('numInscricao', 'Nº Inscrição'),
+            new ColunaUtil('nome', 'Nome Dependente'),
+            new ColunaUtil('dataNascimento', 'Data Nascimento'),
+            new ColunaUtil('acoes', 'Ações', '132px')
         ]
     }
 

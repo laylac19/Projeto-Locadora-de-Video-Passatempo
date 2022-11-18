@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {ColunaModel} from "../../util/coluna.model";
+import {ColunaUtil} from "../../util/coluna.util";
 
 @Component({
     selector: 'app-tabela-generica',
@@ -8,7 +8,7 @@ import {ColunaModel} from "../../util/coluna.model";
 })
 export class TabelaGenericaComponent implements OnInit {
 
-    @Input() colunas: ColunaModel[] = [];
+    @Input() colunas: ColunaUtil[] = [];
     @Input() dados: any;
     @Input() rows: number;
     @Input() paginator: boolean;

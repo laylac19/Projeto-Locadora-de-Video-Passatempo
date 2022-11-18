@@ -1,11 +1,11 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {DiretorModel} from "../../../../model/diretor.model";
 import {DiretorComponent} from "../diretor/diretor.component";
-import {TituloModalEnum} from "../../../../shared/util/titulo-modal-enum.model";
+import {TituloModalEnum} from "../../../../shared/util/enum/titulo-modal-enum.model";
 import {DiretorListModel} from "../../../../model/list/diretor-list.model";
 import {DiretorService} from "../../../../shared/service/diretor.service";
 import {EntidadeUtil} from "../../../../shared/util/entidade-util";
-import {ColunaModel} from "../../../../shared/util/coluna.model";
+import {ColunaUtil} from "../../../../shared/util/coluna.util";
 import {MensagensConfirmacao} from "../../../../shared/util/msgConfirmacaoDialog.util";
 
 @Component({
@@ -15,7 +15,7 @@ import {MensagensConfirmacao} from "../../../../shared/util/msgConfirmacaoDialog
 })
 export class DiretorListComponent implements OnInit {
 
-    public colunas: ColunaModel[] = [];
+    public colunas: ColunaUtil[] = [];
     public listaDiretores: DiretorListModel[] = [];
 
     public diretor: DiretorModel;
@@ -38,8 +38,8 @@ export class DiretorListComponent implements OnInit {
 
     public colunasTabela(): void {
         this.colunas = [
-            new ColunaModel('nomeDiretor', 'Nome Diretor'),
-            new ColunaModel('acoes', 'Ações', '132px')
+            new ColunaUtil('nomeDiretor', 'Nome Diretor'),
+            new ColunaUtil('acoes', 'Ações', '132px')
         ]
     }
 

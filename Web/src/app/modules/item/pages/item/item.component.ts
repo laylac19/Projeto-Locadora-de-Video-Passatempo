@@ -4,8 +4,8 @@ import {ItemModel} from "../../../../model/item.model";
 import {ItemService} from "../../../../shared/service/item.service";
 import {SelectItem} from "primeng/api";
 import {TituloService} from "../../../../shared/service/titulo.service";
-import {MensagensProntasEnumModel} from "../../../../shared/util/mensagensProntasEnum.model";
-import {MensagensUtil} from "../../../../shared/util/mensagens-util";
+import {MensagensProntasEnumModel} from "../../../../shared/util/enum/mensagensProntasEnum.model";
+import {MensagensUtil} from "../../../../shared/util/mensagens.util";
 
 @Component({
     selector: 'app-item',

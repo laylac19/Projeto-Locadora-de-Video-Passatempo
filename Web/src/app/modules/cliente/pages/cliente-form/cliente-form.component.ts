@@ -3,8 +3,8 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ClienteModel} from "../../../../model/cliente.model";
 import {ClienteService} from "../../../../shared/service/cliente.service";
 import {SelectItem} from "primeng/api";
-import {MensagensUtil} from "../../../../shared/util/mensagens-util";
-import {MensagensProntasEnumModel} from "../../../../shared/util/mensagensProntasEnum.model";
+import {MensagensUtil} from "../../../../shared/util/mensagens.util";
+import {MensagensProntasEnumModel} from "../../../../shared/util/enum/mensagensProntasEnum.model";
 
 @Component({
     selector: 'app-cliente-form',

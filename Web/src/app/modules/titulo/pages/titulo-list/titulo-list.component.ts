@@ -2,10 +2,10 @@ import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {TituloListModel} from "../../../../model/list/titulo-list.model";
 import {TituloModel} from "../../../../model/titulo.model";
 import {TituloComponent} from "../titulo/titulo.component";
-import {TituloModalEnum} from "../../../../shared/util/titulo-modal-enum.model";
+import {TituloModalEnum} from "../../../../shared/util/enum/titulo-modal-enum.model";
 import {TituloService} from "../../../../shared/service/titulo.service";
 import {EntidadeUtil} from "../../../../shared/util/entidade-util";
-import {ColunaModel} from "../../../../shared/util/coluna.model";
+import {ColunaUtil} from "../../../../shared/util/coluna.util";
 import {MensagensConfirmacao} from "../../../../shared/util/msgConfirmacaoDialog.util";
 
 @Component({
@@ -15,7 +15,7 @@ import {MensagensConfirmacao} from "../../../../shared/util/msgConfirmacaoDialog
 })
 export class TituloListComponent implements OnInit {
 
-    public colunas: ColunaModel[] = [];
+    public colunas: ColunaUtil[] = [];
     public listaTitulosFilmes: TituloListModel[] = [];
     public tituloFilme: TituloModel;
 
@@ -37,11 +37,11 @@ export class TituloListComponent implements OnInit {
 
     public colunasTabela(): void {
         this.colunas = [
-            new ColunaModel('nome', 'Nome Título'),
-            new ColunaModel('ano', 'Ano Lançamento'),
-            new ColunaModel('nomeClasse', 'Classse'),
-            new ColunaModel('nomeCategoria', 'Categoria'),
-            new ColunaModel('acoes', 'Ações', '132px')
+            new ColunaUtil('nome', 'Nome Título'),
+            new ColunaUtil('ano', 'Ano Lançamento'),
+            new ColunaUtil('nomeClasse', 'Classse'),
+            new ColunaUtil('nomeCategoria', 'Categoria'),
+            new ColunaUtil('acoes', 'Ações', '132px')
         ]
     }
 

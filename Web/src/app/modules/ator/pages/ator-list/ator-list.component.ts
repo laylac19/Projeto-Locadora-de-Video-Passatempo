@@ -1,11 +1,11 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {AtorModel} from "../../../../model/ator.model";
 import {AtorComponent} from "../ator/ator.component";
-import {TituloModalEnum} from "../../../../shared/util/titulo-modal-enum.model";
+import {TituloModalEnum} from "../../../../shared/util/enum/titulo-modal-enum.model";
 import {AtorListModel} from "../../../../model/list/ator-list.model";
 import {AtorService} from "../../../../shared/service/ator.service";
 import {EntidadeUtil} from "../../../../shared/util/entidade-util";
-import {ColunaModel} from "../../../../shared/util/coluna.model";
+import {ColunaUtil} from "../../../../shared/util/coluna.util";
 import {MensagensConfirmacao} from "../../../../shared/util/msgConfirmacaoDialog.util";
 
 @Component({
@@ -15,7 +15,7 @@ import {MensagensConfirmacao} from "../../../../shared/util/msgConfirmacaoDialog
 })
 export class AtorListComponent implements OnInit {
 
-    public colunas: ColunaModel[] = [];
+    public colunas: ColunaUtil[] = [];
     public listaAtor: AtorListModel[] = [];
     public ator: AtorModel;
 
@@ -37,8 +37,8 @@ export class AtorListComponent implements OnInit {
 
     public colunasTabela(): void {
         this.colunas = [
-            new ColunaModel('nomeAtor', 'Nome Ator'),
-            new ColunaModel('acoes', 'Ações', '132px')
+            new ColunaUtil('nomeAtor', 'Nome Ator'),
+            new ColunaUtil('acoes', 'Ações', '132px')
         ]
     }
 

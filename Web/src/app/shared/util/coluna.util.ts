@@ -1,4 +1,4 @@
-export class ColunaModel {
+export class ColunaUtil {
     public field: string;
     public header: string;
 

@@ -4,9 +4,9 @@ import {SelectItem} from "primeng/api";
 import {SocioModel} from "../../../../model/socio.model";
 import {ClienteService} from "../../../../shared/service/cliente.service";
 import {VinculoEntidades} from "../../../../model/vinculo-entidade.model";
-import {MensagensUtil} from "../../../../shared/util/mensagens-util";
-import {MensagensProntasEnumModel} from "../../../../shared/util/mensagensProntasEnum.model";
-import {ColunaModel} from "../../../../shared/util/coluna.model";
+import {MensagensUtil} from "../../../../shared/util/mensagens.util";
+import {MensagensProntasEnumModel} from "../../../../shared/util/enum/mensagensProntasEnum.model";
+import {ColunaUtil} from "../../../../shared/util/coluna.util";
 
 @Component({
     selector: 'app-socio-form',
@@ -26,7 +26,7 @@ export class SocioFormComponent implements OnInit {
 
     public clientesDropDown: SelectItem[];
     public listaDependentesSocio: SelectItem[] = [];
-    public colunas: ColunaModel[] = [];
+    public colunas: ColunaUtil[] = [];
 
     @Input() socioModel: SocioModel;
     @Input() abilitarAcordion: boolean;
@@ -49,8 +49,8 @@ export class SocioFormComponent implements OnInit {
 
     public colunasTabelaDependentes(): void {
         this.colunas = [
-            new ColunaModel('label', 'Dependentes'),
-            new ColunaModel('acoes', 'Ações', '132px')
+            new ColunaUtil('label', 'Dependentes'),
+            new ColunaUtil('acoes', 'Ações', '132px')
         ]
     }
 

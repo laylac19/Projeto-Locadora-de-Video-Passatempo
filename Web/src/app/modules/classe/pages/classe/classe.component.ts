@@ -2,8 +2,8 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ClasseModel} from "../../../../model/classe.model";
 import {ClasseService} from "../../../../shared/service/classe.service";
-import {MensagensProntasEnumModel} from "../../../../shared/util/mensagensProntasEnum.model";
-import {MensagensUtil} from "../../../../shared/util/mensagens-util";
+import {MensagensProntasEnumModel} from "../../../../shared/util/enum/mensagensProntasEnum.model";
+import {MensagensUtil} from "../../../../shared/util/mensagens.util";
 
 @Component({
     selector: 'app-classe',

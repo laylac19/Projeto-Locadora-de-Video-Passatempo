@@ -3,9 +3,9 @@ import {ItemListModel} from "../../../../model/list/item-list.model";
 import {ItemModel} from "../../../../model/item.model";
 import {ItemComponent} from "../item/item.component";
 import {ItemService} from "../../../../shared/service/item.service";
-import {TituloModalEnum} from "../../../../shared/util/titulo-modal-enum.model";
+import {TituloModalEnum} from "../../../../shared/util/enum/titulo-modal-enum.model";
 import {EntidadeUtil} from "../../../../shared/util/entidade-util";
-import {ColunaModel} from "../../../../shared/util/coluna.model";
+import {ColunaUtil} from "../../../../shared/util/coluna.util";
 import {MensagensConfirmacao} from "../../../../shared/util/msgConfirmacaoDialog.util";
 
 @Component({
@@ -15,7 +15,7 @@ import {MensagensConfirmacao} from "../../../../shared/util/msgConfirmacaoDialog
 })
 export class ItemListComponent implements OnInit {
 
-    public colunas: ColunaModel[] = [];
+    public colunas: ColunaUtil[] = [];
     public listaItens: ItemListModel[] = [];
     public item: ItemModel;
 
@@ -37,11 +37,11 @@ export class ItemListComponent implements OnInit {
 
     public colunasTabela(): void {
         this.colunas = [
-            new ColunaModel('numeroSerie', 'Número de Série'),
-            new ColunaModel('titulo', 'Título Filme'),
-            new ColunaModel('data', 'Data Aquisição'),
-            new ColunaModel('nomeTipoItem', 'Tipo'),
-            new ColunaModel('acoes', 'Ações', '132px')
+            new ColunaUtil('numeroSerie', 'Número de Série'),
+            new ColunaUtil('titulo', 'Título Filme'),
+            new ColunaUtil('data', 'Data Aquisição'),
+            new ColunaUtil('nomeTipoItem', 'Tipo'),
+            new ColunaUtil('acoes', 'Ações', '132px')
         ]
     }
 

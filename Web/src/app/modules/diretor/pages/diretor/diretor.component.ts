@@ -2,8 +2,8 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {DiretorModel} from "../../../../model/diretor.model";
 import {DiretorService} from "../../../../shared/service/diretor.service";
-import {MensagensUtil} from "../../../../shared/util/mensagens-util";
-import {MensagensProntasEnumModel} from "../../../../shared/util/mensagensProntasEnum.model";
+import {MensagensUtil} from "../../../../shared/util/mensagens.util";
+import {MensagensProntasEnumModel} from "../../../../shared/util/enum/mensagensProntasEnum.model";
 
 @Component({
     selector: 'app-diretor',

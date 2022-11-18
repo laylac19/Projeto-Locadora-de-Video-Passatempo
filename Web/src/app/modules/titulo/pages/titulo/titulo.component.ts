@@ -2,14 +2,14 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {TituloModel} from "../../../../model/titulo.model";
 import {TituloService} from "../../../../shared/service/titulo.service";
-import {ColunaModel} from "../../../../shared/util/coluna.model";
+import {ColunaUtil} from "../../../../shared/util/coluna.util";
 import {SelectItem} from "primeng/api";
 import {ClasseService} from "../../../../shared/service/classe.service";
 import {DiretorService} from "../../../../shared/service/diretor.service";
 import {AtorService} from "../../../../shared/service/ator.service";
 import {VinculoEntidades} from "../../../../model/vinculo-entidade.model";
-import {MensagensProntasEnumModel} from "../../../../shared/util/mensagensProntasEnum.model";
-import {MensagensUtil} from "../../../../shared/util/mensagens-util";
+import {MensagensProntasEnumModel} from "../../../../shared/util/enum/mensagensProntasEnum.model";
+import {MensagensUtil} from "../../../../shared/util/mensagens.util";
 
 @Component({
     selector: 'app-titulo',
@@ -18,7 +18,7 @@ import {MensagensUtil} from "../../../../shared/util/mensagens-util";
 })
 export class TituloComponent implements OnInit {
 
-    public colunas: ColunaModel[] = [];
+    public colunas: ColunaUtil[] = [];
     public listaElenco: SelectItem[] = [];
 
     public categoriasDropDown: SelectItem[];
@@ -63,8 +63,8 @@ export class TituloComponent implements OnInit {
 
     public colunasTabelaElenco(): void {
         this.colunas = [
-            new ColunaModel('label', 'Elenco'),
-            new ColunaModel('acoes', 'Ações', '132px')
+            new ColunaUtil('label', 'Elenco'),
+            new ColunaUtil('acoes', 'Ações', '132px')
         ]
     }
 

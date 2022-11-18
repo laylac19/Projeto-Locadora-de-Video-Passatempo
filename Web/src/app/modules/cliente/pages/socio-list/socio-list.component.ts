@@ -1,7 +1,7 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {ColunaModel} from "../../../../shared/util/coluna.model";
+import {ColunaUtil} from "../../../../shared/util/coluna.util";
 import {ClienteService} from "../../../../shared/service/cliente.service";
-import {TituloModalEnum} from "../../../../shared/util/titulo-modal-enum.model";
+import {TituloModalEnum} from "../../../../shared/util/enum/titulo-modal-enum.model";
 import {EntidadeUtil} from "../../../../shared/util/entidade-util";
 import {SocioListModel} from "../../../../model/list/socio-list.model";
 import {SocioModel} from "../../../../model/socio.model";
@@ -15,7 +15,7 @@ import {MensagensConfirmacao} from "../../../../shared/util/msgConfirmacaoDialog
 })
 export class SocioListComponent implements OnInit {
 
-    public colunas: ColunaModel[] = [];
+    public colunas: ColunaUtil[] = [];
     public listaSociosAtivos: SocioListModel[] = [];
     public listaSociosInativos: SocioListModel[] = [];
     public socio: SocioModel;
@@ -40,12 +40,12 @@ export class SocioListComponent implements OnInit {
 
     public colunasTabela(): void {
         this.colunas = [
-            new ColunaModel('numeroInscricao', 'Nº Inscrição'),
-            new ColunaModel('nome', 'Nome Cliente'),
-            new ColunaModel('dataNascimento', 'Data Nascimento'),
-            new ColunaModel('cpf', 'CPF'),
-            new ColunaModel('telefone', 'Telefone'),
-            new ColunaModel('acoes', 'Ações', '132px')
+            new ColunaUtil('numeroInscricao', 'Nº Inscrição'),
+            new ColunaUtil('nome', 'Nome Cliente'),
+            new ColunaUtil('dataNascimento', 'Data Nascimento'),
+            new ColunaUtil('cpf', 'CPF'),
+            new ColunaUtil('telefone', 'Telefone'),
+            new ColunaUtil('acoes', 'Ações', '132px')
         ]
     }
 

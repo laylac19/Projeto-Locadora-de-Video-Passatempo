@@ -1,8 +1,8 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {TituloModalEnum} from "../../../../shared/util/titulo-modal-enum.model";
+import {TituloModalEnum} from "../../../../shared/util/enum/titulo-modal-enum.model";
 import {ClienteFormComponent} from "../cliente-form/cliente-form.component";
 import {ClienteModel} from "../../../../model/cliente.model";
-import {ColunaModel} from "../../../../shared/util/coluna.model";
+import {ColunaUtil} from "../../../../shared/util/coluna.util";
 import {ClienteListModel} from "../../../../model/list/cliente-list.model";
 import {ClienteService} from "../../../../shared/service/cliente.service";
 import {MensagensConfirmacao} from "../../../../shared/util/msgConfirmacaoDialog.util";
@@ -22,7 +22,7 @@ export class ClienteListComponent implements OnInit {
 
     public cliente: ClienteModel;
     public listaClientes: ClienteListModel[] = [];
-    public colunas: ColunaModel[] = [];
+    public colunas: ColunaUtil[] = [];
 
     @Input() display = false;
     @ViewChild(ClienteFormComponent) formCliente: ClienteFormComponent;
@@ -48,10 +48,10 @@ export class ClienteListComponent implements OnInit {
 
     public colunasTabela(): void {
         this.colunas = [
-            new ColunaModel('numeroInscricao', 'Nº Inscrição'),
-            new ColunaModel('nome', 'Nome Cliente'),
-            new ColunaModel('dataNascimento', 'Data Nascimento'),
-            new ColunaModel('acoes', 'Ações', '132px')
+            new ColunaUtil('numeroInscricao', 'Nº Inscrição'),
+            new ColunaUtil('nome', 'Nome Cliente'),
+            new ColunaUtil('dataNascimento', 'Data Nascimento'),
+            new ColunaUtil('acoes', 'Ações', '132px')
         ]
     }
 
