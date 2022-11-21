@@ -20,4 +20,5 @@ public class LocacaoListDTO implements Serializable {
     private String nomeCliente;
     private String numeroItem;
     private Boolean status;
+    private Double valorTotal;
 }

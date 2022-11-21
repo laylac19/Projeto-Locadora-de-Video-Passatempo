@@ -25,6 +25,9 @@ export class MensagensProntasEnumModel {
     static readonly FALHA_LOCACAO = new MensagensProntasEnumModel(21, 'Falha ao Salvar Locação.');
     static readonly FALHA_SOCIO = new MensagensProntasEnumModel(22, 'Falha ao Salvar Sócio.');
     static readonly FALHA_TITULO = new MensagensProntasEnumModel(23, 'Falha ao Salvar Filme.');
+    static readonly FALHA_DEVOLUCAO = new MensagensProntasEnumModel(24, 'Falha ao Realizar Delovução');
+
+    static readonly SUCESSO_DEVOLUCAO = new MensagensProntasEnumModel(25, 'Sucesso ao Realizar Devolução');
 
     static values = []
 

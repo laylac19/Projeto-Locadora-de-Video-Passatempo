@@ -49,19 +49,19 @@
                                 {{rowData[col.field]}}
                             </ng-container>
                             <ng-container *ngIf="col.field === 'dtLocacao' ">
-                                {{rowData[col.field] | date: 'dd/mm/yyyy'}}
+                                {{rowData[col.field] | date: 'dd/MM/yyyy'}}
                             </ng-container>
                             <ng-container *ngIf="col.field === 'dtDevolucaoPrevista' ">
-                                {{rowData[col.field] | date: 'dd/mm/yyyy'}}
+                                {{rowData[col.field] | date: 'dd/MM/yyyy'}}
                             </ng-container>
                             <ng-container *ngIf="col.field === 'valorCobrado' ">
                                 {{rowData[col.field] | currency: 'BRL'}}
                             </ng-container>
                             <ng-container *ngIf="col.field === 'dtDevolucaoEfetiva' ">
-                                {{rowData[col.field] | date: 'dd/mm/yyyy'}}
+                                {{rowData[col.field] | date: 'dd/MM/yyyy'}}
                             </ng-container>
                             <ng-container *ngIf="col.field === 'status' ">
-                                {{setStatusLocacao( rowData[col.field])}}
+                                {{setStatusLocacao(rowData[col.field])}}
                             </ng-container>
                             <ng-container *ngIf="col.field === 'multaCobrada' ">
                                 {{rowData[col.field] | currency: 'BRL'}}

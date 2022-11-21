@@ -45,9 +45,9 @@ public class LocacaoServiceImpl implements LocacaoService {
     }
 
     public void makeReturn(Integer id) {
-        Locacao locacao = findByEntity(id);
-        locacao.setStatus(false);
-        repository.save(locacao);
+        LocacaoDTO locacaoDTO = find(id);
+        locacaoDTO.setStatus(false);
+        save(locacaoDTO);
     }
 
     public void delete(Integer id) {

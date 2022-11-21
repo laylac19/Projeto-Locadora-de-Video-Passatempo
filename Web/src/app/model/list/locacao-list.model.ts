@@ -8,4 +8,6 @@ export class LocacaoListModel {
     public nomeCliente: number;
     public numeroItem: number;
     public status: boolean;
+    public valorTotal: number;
+    public ativo: number;
 }

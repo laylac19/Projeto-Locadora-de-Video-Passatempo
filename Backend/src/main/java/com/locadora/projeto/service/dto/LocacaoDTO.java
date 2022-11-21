@@ -18,6 +18,7 @@ public class LocacaoDTO implements Serializable {
     private Integer idCliente;
     private Integer idItem;
     private Boolean status = true;
+    private Double valorTotal;
     private Boolean ativo = true;
 
 }

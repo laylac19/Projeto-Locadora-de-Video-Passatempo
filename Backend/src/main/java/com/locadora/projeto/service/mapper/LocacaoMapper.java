@@ -21,4 +21,9 @@ public interface LocacaoMapper extends EntityMapper<LocacaoDTO, Locacao> {
         dto.setMultaCobrada(entity.calcularMulta());
     }
 
+    @AfterMapping
+    default void calcularValorTotal(Locacao entity, @MappingTarget LocacaoDTO dto) {
+        dto.setValorTotal(entity.calcularValorTotal());
+    }
+
 }

@@ -8,4 +8,6 @@ export class LocacaoModel {
     public idCliente: number;
     public idItem: number;
     public status: boolean;
+    public valorTotal: number;
+    public ativo: boolean;
 }

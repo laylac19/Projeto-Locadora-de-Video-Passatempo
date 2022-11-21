@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {LocacaoModel} from "../../../../model/locacao.model";
 import {SelectItem} from "primeng/api";
 import {MensagensUtil} from "../../../../shared/util/mensagens.util";
@@ -33,10 +33,11 @@ export class LocacaoComponent implements OnInit {
     public idItem: number;
     public prazoDevolucao: number;
     public valorTotalLocacao: number;
+
     public depoisSalvar: boolean = false;
     public listarLocacoes: boolean = false;
-    public habilitarCampo: boolean = false;
-    public holderDtLocacao: string;
+
+    public placeholderData: string = '__/__/____';
 
     @Input() locacaoModel: LocacaoModel;
     @Input() novoDado: boolean;
@@ -87,13 +88,12 @@ export class LocacaoComponent implements OnInit {
             multaCobrada: [''],
             idCliente: [null, [Validators.required]],
             idItem: [null, [Validators.required]],
-            valorTotal: ['']
+            valorTotal: ['', [Validators.required]]
         }));
     }
 
     public salvarFormulario(): void {
-        this.formLocacao.get('dtLocacao')?.setValue(FuncoesUtil.converterLocalDate(this.dtLocacao));
-        this.formLocacao.get('dtDevolucaoPrevista')?.setValue(FuncoesUtil.converterLocalDate(this.dtDevolucaoPrevista));
+        this.converterDatasFormParaSalvar();
         this.novaLocacao = this.formLocacao.getRawValue();
         this.locacaoService.insert(this.novaLocacao).subscribe({
             next: () => {
@@ -113,12 +113,10 @@ export class LocacaoComponent implements OnInit {
 
     public visualizarLocacao(id: number): void {
         this.locacaoService.findById(id).subscribe({
-            next: (response) => {
+            next: (response: LocacaoModel) => {
                 this.depoisSalvar = true;
                 if (!this.novoDado) {
-                    response.dtLocacao = new Date(response.dtLocacao);
-                    response.dtDevolucaoPrevista = new Date(response.dtDevolucaoPrevista);
-                    response.dtDevolucaoEfetiva ? new Date(response.dtDevolucaoEfetiva) : '__/__/____';
+                    this.instanciarDatasRespostaBack(response);
                     this.formLocacao.get('valorTotal')?.setValue(response.valorCobrado);
                 }
                 this.formLocacao.patchValue(response);
@@ -128,49 +126,43 @@ export class LocacaoComponent implements OnInit {
     }
 
     public novaDevolucao(id: number): void {
-        this.formLocacao.disable();
-        this.locacaoService.makeReturnOfItem(id).subscribe({
-            next: (response) => {
+        this.locacaoService.findById(id).subscribe({
+            next: (response: LocacaoModel) => {
                 this.depoisSalvar = true;
-                const multa: number = this.calcularMulta();
                 if (!this.novoDado) {
-                    response.dtLocacao = new Date(response.dtLocacao);
-                    response.dtDevolucaoPrevista = new Date(response.dtDevolucaoPrevista);
-                    response.dtDevolucaoEfetiva = new Date(response.dtDevolucaoEfetiva);
-                    response.multaCobrada = multa;
+                    response.dtLocacao = new Date(response.dtLocacao + 'T00:00');
+                    response.dtDevolucaoPrevista = new Date(response.dtDevolucaoPrevista + 'T00:00');
+                    response.dtDevolucaoEfetiva = new Date();
+                    response.valorTotal = response.valorCobrado + response.multaCobrada
+                    response.status = false;
                 }
-                const valorTotal: number = response.multaCobrada + response.valorCobrado;
-                console.log(valorTotal)
-                this.formLocacao.get('valorTotal')?.setValue(valorTotal);
-                this.formLocacao.get('multaCobrada')?.setValue(multa);
                 this.formLocacao.patchValue(response);
-                response.valorCobrado = valorTotal;
-            }
+                this.formLocacao.disable();
+                this.locacaoService.makeReturnOfItem(id);
+            },
         });
-        console.log('****************')
-        console.log(this.formLocacao.get('valorTotal')?.value);
-        console.log(this.formLocacao.get('multaCobrada')?.value);
-        console.log(this.formLocacao.get('valorTotal')?.value);
+
     }
 
     public editarForm(id: number): void {
         this.locacaoService.findById(id).subscribe({
-                next: (response) => {
-                    this.habilitarCampo = false;
+                next: (response: LocacaoModel) => {
                     this.depoisSalvar = true;
                     if (!this.novoDado) {
-                        response.dtLocacao = new Date(response.dtLocacao);
-                        response.dtDevolucaoPrevista = new Date(response.dtDevolucaoPrevista);
-                        response.dtDevolucaoEfetiva = new Date(response.dtDevolucaoEfetiva);
+                        this.instanciarDatasRespostaBack(response)
                     }
                     this.formLocacao.patchValue(response);
+                    this.camposFormDesabilitados();
                 },
             }
         );
     }
 
-    public setDataFormatoData(dtLocacao: Date): string {
-        return dtLocacao ? dtLocacao.toLocaleDateString() : '__/__/____';
+    public setarDataLocacao(): string {
+        if (this.novoDado) {
+            return this.dtLocacao.toLocaleDateString();
+        }
+        return this.formLocacao.get('dtLocacao')?.value;
     }
 
     public fecharForm(): void {
@@ -184,6 +176,13 @@ export class LocacaoComponent implements OnInit {
         this.idItem = this.formLocacao.get('idItem')?.value;
         this.setPriceItem(this.idItem);
         this.setDeadline(this.idItem);
+    }
+
+    public camposFormDesabilitados(): void {
+        this.formLocacao.get('dtDevolucaoPrevista')?.disable();
+        this.formLocacao.get('valorCobrado')?.disable();
+        this.formLocacao.get('multaCobrada')?.disable();
+        this.formLocacao.get('valorTotal')?.disable();
     }
 
     private setPriceItem(id: number): void {
@@ -206,18 +205,38 @@ export class LocacaoComponent implements OnInit {
         return dataDevolucaoPrevista;
     }
 
-    calcularMulta(): number {
-        const dataAtual: Date = new Date();
-        this.dtDevolucaoPrevista = this.formLocacao.get('dtDevolucaoPrevista')?.value;
-        const status = this.formLocacao.get('status')?.value;
-        const diasPassados: number = FuncoesUtil.diferencaDatas(dataAtual, this.dtDevolucaoPrevista);
+    private converterDatasFormParaSalvar(): void {
+        this.formLocacao.get('dtLocacao')?.setValue(FuncoesUtil.converterLocalDate(this.dtLocacao));
+        this.formLocacao.get('dtDevolucaoPrevista')?.setValue(FuncoesUtil.converterLocalDate(this.dtDevolucaoPrevista));
+        if (this.formLocacao.get('dtDevolucaoEfetiva')?.value) {
+            this.formLocacao.get('dtDevolucaoEfetiva')?.setValue(FuncoesUtil.converterLocalDate(this.dtDevolucaoPrevista));
+        }
+    }
 
-        console.log(dataAtual);
-        console.log(this.dtDevolucaoPrevista);
-        console.log(status);
+    private instanciarDatasRespostaBack(response: LocacaoModel): void {
+        response.dtLocacao = new Date(response.dtLocacao + 'T00:00');
+        response.dtDevolucaoPrevista = new Date(response.dtDevolucaoPrevista + 'T00:00');
+        response.dtDevolucaoEfetiva ? new Date(response.dtDevolucaoEfetiva + 'T00:00') : this.placeholderData;
+    }
+
+    private aplicarMultaLocacao(response: LocacaoModel, multa: number): void {
+        const valorTotal: number = response.multaCobrada + response.valorCobrado;
+        console.log(valorTotal)
+        this.formLocacao.get('valorTotal')?.setValue(valorTotal);
+        this.formLocacao.get('multaCobrada')?.setValue(multa);
+        response.valorCobrado = valorTotal;
+        response.status = false;
+    }
+
+    private calcularMulta(response: any, dtDevolucao: Date, dtPrevisao: Date): number {
+        console.log('********** calcularMulta *************')
+        const diasPassados: number = FuncoesUtil.diferencaDatas(dtDevolucao, dtPrevisao);
+        console.log('dtDevolucao = ' + dtDevolucao);
+        console.log('dtPrevisao = ' + dtPrevisao);
+        console.log('diasPassados = ' + diasPassados);
         console.log(diasPassados);
-        if (diasPassados > 0 && status.equals(true)) {
-            return (this.valorTotalLocacao * (diasPassados * 0.5)) + this.valorTotalLocacao;
+        if (diasPassados > 0 && response.status.equals(true)) {
+            return (this.valorTotalLocacao * (diasPassados * 0.05)) + this.valorTotalLocacao;
         } else {
             return 0.0;
         }

@@ -11,7 +11,7 @@ export class MensagensConfirmacao {
     public confirmarDialogDevolucao(id: number, alterarSituacao: () => void, entidade: EntidadeUtil): void {
         this.confirmMessage.confirm({
             header: 'Confirmação',
-            message: 'Deseja Realizar A Devolucao desse ' + entidade.descricao + ' ?',
+            message: 'Deseja Realizar a Devolucao Desse ' + entidade.descricao + ' ?',
             acceptLabel: 'Sim',
             rejectLabel: 'Cancelar',
             accept: alterarSituacao

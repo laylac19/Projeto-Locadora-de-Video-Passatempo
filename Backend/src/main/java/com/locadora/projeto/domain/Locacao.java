@@ -45,6 +45,9 @@ public class Locacao implements Serializable {
     @Column(name = "status")
     private Boolean status;
 
+    @Column(name = "valor_total", nullable = false)
+    private Double valorTotal;
+
     @Column(name = "ativo")
     private Boolean ativo;
 
@@ -55,5 +58,9 @@ public class Locacao implements Serializable {
         } else {
             return 0.0;
         }
+    }
+
+    public Double calcularValorTotal() {
+        return this.multaCobrada != null ? this.valorCobrado + this.multaCobrada : this.valorCobrado;
     }
 }

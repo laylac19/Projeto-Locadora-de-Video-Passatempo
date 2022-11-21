@@ -18,7 +18,6 @@ export class FuncoesUtil {
     }
 
     public static diferencaDatas(date1: Date, date2: Date): number {
-        FuncoesUtil.converterLocalDate(date1);
-        return (date1.getTime() - date2.getTime()) / (1000 * 60 * 60 * 24);
+        return (date1.getDate() - date2.getDate()) / (1000 * 60 * 60 * 24);
     }
 }

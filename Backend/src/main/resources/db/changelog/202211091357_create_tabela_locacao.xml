@@ -29,6 +29,9 @@
                 <constraints nullable="false"/>
             </column>
             <column name="status" type="BOOLEAN"/>
+            <column name="valor_total" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
             <column name="ativo" type="BOOLEAN"/>
         </createTable>
         <addForeignKeyConstraint baseColumnNames="cliente_id" baseTableName="locacao" constraintName="FK_LOCACAO_ON_CLIENTE" referencedColumnNames="id" referencedTableName="cliente"/>

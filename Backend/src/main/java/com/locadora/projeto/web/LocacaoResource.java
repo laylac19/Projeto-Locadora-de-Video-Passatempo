@@ -43,7 +43,7 @@ public class LocacaoResource {
 
     @DeleteMapping("devolucao-item/{id}")
     public ResponseEntity<Void> realizarDevolucaoDeItem(@PathVariable("id") Integer id) {
-        service.delete(id);
+        service.makeReturn(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
