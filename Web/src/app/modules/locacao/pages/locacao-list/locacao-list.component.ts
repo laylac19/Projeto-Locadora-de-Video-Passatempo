@@ -103,4 +103,8 @@ export class LocacaoListComponent implements OnInit {
         }
         this.display = false;
     }
+
+    setStatusLocacao(rowDatum: any): string {
+        return rowDatum ? 'EM ABERTO' : 'EFETIVADA';
+    }
 }

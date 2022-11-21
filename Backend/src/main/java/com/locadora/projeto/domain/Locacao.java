@@ -45,6 +45,9 @@ public class Locacao implements Serializable {
     @Column(name = "status")
     private Boolean status;
 
+    @Column(name = "ativo")
+    private Boolean ativo;
+
     public Double calcularMulta(){
         long diasPassados = ChronoUnit.DAYS.between(this.dtDevolucaoPrevista, LocalDate.now());
         if (diasPassados > 0 && this.status.equals(true)) {

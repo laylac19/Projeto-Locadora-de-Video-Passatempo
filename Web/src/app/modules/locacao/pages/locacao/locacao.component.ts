@@ -35,7 +35,7 @@ export class LocacaoComponent implements OnInit {
     public valorTotalLocacao: number;
     public depoisSalvar: boolean = false;
     public listarLocacoes: boolean = false;
-    public habilitarCampo: boolean = true;
+    public habilitarCampo: boolean = false;
     public holderDtLocacao: string;
 
     @Input() locacaoModel: LocacaoModel;
@@ -93,6 +93,7 @@ export class LocacaoComponent implements OnInit {
 
     public salvarFormulario(): void {
         this.formLocacao.get('dtLocacao')?.setValue(FuncoesUtil.converterLocalDate(this.dtLocacao));
+        this.formLocacao.get('dtDevolucaoPrevista')?.setValue(FuncoesUtil.converterLocalDate(this.dtDevolucaoPrevista));
         this.novaLocacao = this.formLocacao.getRawValue();
         this.locacaoService.insert(this.novaLocacao).subscribe({
             next: () => {
@@ -115,8 +116,10 @@ export class LocacaoComponent implements OnInit {
             next: (response) => {
                 this.depoisSalvar = true;
                 if (!this.novoDado) {
-                    this.dtLocacao = new Date(response.dtLocacao);
-                    this.dtDevolucaoPrevista = new Date(response.dtDevolucaoPrevista);
+                    response.dtLocacao = new Date(response.dtLocacao);
+                    response.dtDevolucaoPrevista = new Date(response.dtDevolucaoPrevista);
+                    response.dtDevolucaoEfetiva ? new Date(response.dtDevolucaoEfetiva) : '__/__/____';
+                    this.formLocacao.get('valorTotal')?.setValue(response.valorCobrado);
                 }
                 this.formLocacao.patchValue(response);
                 this.formLocacao.disable();
@@ -125,22 +128,40 @@ export class LocacaoComponent implements OnInit {
     }
 
     public novaDevolucao(id: number): void {
-        this.depoisSalvar = true;
-        const multa: number = this.calcularMulta();
-        this.formLocacao.get('multaCobrada')?.setValue(multa);
+        this.formLocacao.disable();
+        this.locacaoService.findById(id).subscribe({
+            next: (response) => {
+                this.depoisSalvar = true;
+                const multa: number = this.calcularMulta();
+                if (!this.novoDado) {
+                    response.dtLocacao = new Date(response.dtLocacao);
+                    response.dtDevolucaoPrevista = new Date(response.dtDevolucaoPrevista);
+                    response.dtDevolucaoEfetiva = new Date(response.dtDevolucaoEfetiva);
+                    response.multaCobrada = multa;
+                }
+                const valorTotal: number = response.multaCobrada + response.valorCobrado;
+                console.log(valorTotal)
+                this.formLocacao.get('valorTotal')?.setValue(valorTotal);
+                this.formLocacao.get('multaCobrada')?.setValue(multa);
+                this.formLocacao.patchValue(response);
+                response.valorCobrado = valorTotal;
+            }
+        });
         console.log('****************')
+        console.log(this.formLocacao.get('valorTotal')?.value);
         console.log(this.formLocacao.get('multaCobrada')?.value);
+        console.log(this.formLocacao.get('valorTotal')?.value);
     }
 
     public editarForm(id: number): void {
-        this.habilitarCampo = false;
-        this.depoisSalvar = true;
         this.locacaoService.findById(id).subscribe({
                 next: (response) => {
+                    this.habilitarCampo = false;
                     this.depoisSalvar = true;
                     if (!this.novoDado) {
-                        this.dtLocacao = new Date(response.dtLocacao);
-                        this.dtDevolucaoPrevista = new Date(response.dtDevolucaoPrevista);
+                        response.dtLocacao = new Date(response.dtLocacao);
+                        response.dtDevolucaoPrevista = new Date(response.dtDevolucaoPrevista);
+                        response.dtDevolucaoEfetiva = new Date(response.dtDevolucaoEfetiva);
                     }
                     this.formLocacao.patchValue(response);
                 },
@@ -149,12 +170,11 @@ export class LocacaoComponent implements OnInit {
     }
 
     public setDataFormatoData(dtLocacao: Date): string {
-        return dtLocacao.toLocaleDateString()
+        return dtLocacao ? dtLocacao.toLocaleDateString() : '__/__/____';
     }
 
     public fecharForm(): void {
         this.depoisSalvar = false;
-        this.habilitarCampo = true;
         this.formLocacao.reset();
         this.formLocacao.enable();
         this.resForm.emit();
@@ -169,6 +189,7 @@ export class LocacaoComponent implements OnInit {
     private setPriceItem(id: number): void {
         this.itemService.valueOfItemLease(id).subscribe((valor)=> {
             this.formLocacao.get('valorCobrado')?.setValue(valor);
+            this.formLocacao.get('valorTotal')?.setValue(valor);
         });
     }
 
@@ -184,16 +205,6 @@ export class LocacaoComponent implements OnInit {
         this.formLocacao.get('dtDevolucaoPrevista')?.setValue(dataDevolucaoPrevista);
         return dataDevolucaoPrevista;
     }
-
-    //    public Double calcularMulta(){
-//        long diasPassados = ChronoUnit.DAYS.between(this.dtDevolucaoPrevista, LocalDate.now());
-//        if (diasPassados > 0 && this.status.equals(true)) {
-//            return ((this.valorCobrado * (diasPassados * 0.5)) + this.valorCobrado);
-//        } else {
-//            return 0.0;
-//        }
-//    }
-
 
     calcularMulta(): number {
         const dataAtual: Date = new Date();
