@@ -90,14 +90,14 @@
                                             class="button-action ui-button-success button-save-new"
                                             iconPos="left"
                                             pTooltip="Realizar Devolução"
-                                            (click)="ralizarDevolucaoItem(rowData.id)">
+                                            (click)="confirmarDevolucao(rowData.id)">
                                     </button>
                                     <button pButton type="button"
                                             icon="pi pi-trash"
                                             class="button-action ui-button-success button-save-new"
                                             iconPos="left"
                                             pTooltip="Excluir Locação"
-                                            (click)="desativarLocacao(rowData.id)">
+                                            (click)="confirmarExclusaoLocacao(rowData.id)">
                                     </button>
                                 </div>
                             </ng-container>

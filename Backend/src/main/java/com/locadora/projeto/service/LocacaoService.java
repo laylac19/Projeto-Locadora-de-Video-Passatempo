@@ -13,5 +13,7 @@ public interface LocacaoService {
 
     LocacaoDTO save(LocacaoDTO dto);
 
+    void makeReturn(Integer id);
+
     void delete(Integer id);
 }

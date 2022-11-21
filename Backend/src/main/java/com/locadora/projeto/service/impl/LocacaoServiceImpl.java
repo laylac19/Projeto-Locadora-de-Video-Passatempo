@@ -27,7 +27,7 @@ public class LocacaoServiceImpl implements LocacaoService {
     private final LocacaoListMapper listMapper;
 
     public List<LocacaoListDTO> findAll() {
-        return listMapper.toDto(repository.findAll());
+        return listMapper.toDto(repository.findAllByAtivoIsTrue());
     }
 
     public LocacaoDTO find(Integer id) {
@@ -44,14 +44,20 @@ public class LocacaoServiceImpl implements LocacaoService {
         return mapper.toDto(repository.save(mapper.toEntity(dto)));
     }
 
-    public void delete(Integer id) {
+    public void makeReturn(Integer id) {
         Locacao locacao = findByEntity(id);
         locacao.setStatus(false);
         repository.save(locacao);
     }
 
+    public void delete(Integer id) {
+        Locacao locacao = findByEntity(id);
+        locacao.setAtivo(false);
+        repository.save(locacao);
+    }
+
     private void emDebito(Integer id){
-        if(repository.existsLocacaosByClienteIdAndAndStatusFalse(id)){
+        if(Boolean.TRUE.equals(repository.existsLocacaosByClienteIdAndAndStatusFalse(id))){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, MensagemClienteUtil.CLIENTE_ESTA_EM_DEBITO);
         }
     }

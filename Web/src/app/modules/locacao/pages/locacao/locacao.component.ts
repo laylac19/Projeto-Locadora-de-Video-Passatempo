@@ -129,7 +129,7 @@ export class LocacaoComponent implements OnInit {
 
     public novaDevolucao(id: number): void {
         this.formLocacao.disable();
-        this.locacaoService.findById(id).subscribe({
+        this.locacaoService.makeReturnOfItem(id).subscribe({
             next: (response) => {
                 this.depoisSalvar = true;
                 const multa: number = this.calcularMulta();

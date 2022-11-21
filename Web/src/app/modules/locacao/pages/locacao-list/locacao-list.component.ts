@@ -71,7 +71,7 @@ export class LocacaoListComponent implements OnInit {
         this.formLocacao.visualizarLocacao(id);
     }
 
-    public ralizarDevolucaoItem(id: number): void {
+    public realizarDevolucaoItem(id: number): void {
         this.display = true;
         this.tituloModal = TituloModalEnum.setTitulo(TituloModalEnum.EDITAR_LOCACAO.index).header;
         this.formLocacao.novaDevolucao(id);
@@ -93,7 +93,11 @@ export class LocacaoListComponent implements OnInit {
         this.formLocacao.fecharForm();
     }
 
-    public confirmarAcao(id: number): void {
+    public confirmarDevolucao(id: number): void {
+        this.confirmMessage.confirmarDialogDevolucao(id, () => this.realizarDevolucaoItem(id), EntidadeUtil.LOCACAO);
+    }
+
+    public confirmarExclusaoLocacao(id: number): void {
         this.confirmMessage.confirmarDialog(id, () => this.desativarLocacao(id), EntidadeUtil.LOCACAO);
     }
 

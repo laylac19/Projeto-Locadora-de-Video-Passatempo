@@ -37,6 +37,10 @@ export class LocacaoService {
         return this.http.put<LocacaoModel>(this.resourceUrl, entity);
     }
 
+    makeReturnOfItem(id: number): Observable<LocacaoModel> {
+        return this.http.delete<LocacaoModel>(this.resourceUrl + '/devolucao-item/' + id);
+    }
+
     delete(id: number): Observable<LocacaoModel> {
         return this.http.delete<LocacaoModel>(this.resourceUrl + '/' + id);
     }

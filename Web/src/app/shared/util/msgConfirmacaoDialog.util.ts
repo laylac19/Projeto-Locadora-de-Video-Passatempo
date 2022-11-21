@@ -8,6 +8,16 @@ export class MensagensConfirmacao {
     constructor(private confirmMessage: ConfirmationService) {
     }
 
+    public confirmarDialogDevolucao(id: number, alterarSituacao: () => void, entidade: EntidadeUtil): void {
+        this.confirmMessage.confirm({
+            header: 'Confirmação',
+            message: 'Deseja Realizar A Devolucao desse ' + entidade.descricao + ' ?',
+            acceptLabel: 'Sim',
+            rejectLabel: 'Cancelar',
+            accept: alterarSituacao
+        });
+    }
+
     public confirmarDialog(id: number, alterarSituacao: () => void, entidade: EntidadeUtil): void {
         this.confirmMessage.confirm({
             header: 'Confirmação',
