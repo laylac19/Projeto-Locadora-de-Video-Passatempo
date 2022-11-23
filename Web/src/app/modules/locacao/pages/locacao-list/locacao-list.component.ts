@@ -18,6 +18,7 @@ export class LocacaoListComponent implements OnInit {
 
     public colunas: ColunaUtil[] = [];
     public listaMovimentacaoLocacao: LocacaoListModel[] = [];
+    public backupLista: LocacaoListModel[] = [];
     public items: ItemModel[] = [];
     public locacao: LocacaoModel;
 
@@ -117,5 +118,13 @@ export class LocacaoListComponent implements OnInit {
 
     public setStatusLocacao(statusRow: boolean): string {
         return statusRow ? 'EM ABERTO' : 'EFETIVADA';
+    }
+
+    public filterList(itens: LocacaoListModel[], valorPesq: any): LocacaoListModel[] {
+        console.log(valorPesq)
+        this.backupLista = this.listaMovimentacaoLocacao;
+        console.log('BACKUP ' + this.backupLista);
+        return this.listaMovimentacaoLocacao = valorPesq.key !== null ? this.listaMovimentacaoLocacao.filter((numSerie)=> numSerie.numeroItem.toString().includes(valorPesq.data)) : this.backupLista;
+        // console.log('aparecendo ' + this.listaMovimentacaoLocacao)
     }
 }

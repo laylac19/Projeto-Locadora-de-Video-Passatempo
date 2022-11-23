@@ -19,7 +19,7 @@
     <div class="field col-12 align-content-center">
         <span class="item-pesquisa">
             <label class="campo-form col-2">Nº Série Item</label>
-            <input class="campo-pesquisa col-10" type="text" pInputText placeholder="Pesquisar" [(ngModel)]="filterItem">
+            <input class="campo-pesquisa col-10" type="text" pInputText placeholder="Pesquisar" (input)="filterList(listaMovimentacaoLocacao, $event)">
         </span>
     </div>
     <div class="item-pagina tabela">
@@ -40,13 +40,16 @@
 
                 <ng-template pTemplate="body" let-rowData let-colunas="columns">
                     <tr>
-                        <td *ngFor="let col of colunas | filter:filterItem">
-                            <ng-container *ngIf="col.field != 'acoes' && col.field != 'dtLocacao' &&
+                        <td *ngFor="let col of colunas">
+                            <ng-container *ngIf="col.field != 'numeroItem' && col.field != 'dtLocacao' &&
                                                  col.field != 'dtDevolucaoPrevista' && col.field != 'valorCobrado' &&
                                                  col.field != 'dtDevolucaoEfetiva' && col.field != 'status'
                                                  && col.field != 'multaCobrada' &&
-                                                 col.field != 'valorTotal'">
+                                                 col.field != 'valorTotal' && col.field != 'acoes' ">
                                 {{rowData[col.field]}}
+                            </ng-container>
+                            <ng-container *ngIf="col.field === 'numeroItem'" pKeyFilter="filterItem">
+                                {{'IFL-' + rowData[col.field]}}
                             </ng-container>
                             <ng-container *ngIf="col.field === 'dtLocacao' ">
                                 {{rowData[col.field] | date: 'dd/MM/yyyy'}}
