@@ -58,7 +58,12 @@ export class LocacaoListComponent implements OnInit {
     public listarTodasLocacoes(): void {
         this.locacaoService.findAll().subscribe((data) => {
             this.listaMovimentacaoLocacao = data;
+            this.backupLista = this.listaMovimentacaoLocacao;
         });
+    }
+
+    public listagemFiltrada(): void {
+
     }
 
     public novaLocacao(): void {
@@ -120,11 +125,9 @@ export class LocacaoListComponent implements OnInit {
         return statusRow ? 'EM ABERTO' : 'EFETIVADA';
     }
 
-    public filterList(itens: LocacaoListModel[], valorPesq: any): LocacaoListModel[] {
+    public filterList(valorPesq: any) {
         console.log(valorPesq)
-        this.backupLista = this.listaMovimentacaoLocacao;
-        console.log('BACKUP ' + this.backupLista);
-        return this.listaMovimentacaoLocacao = valorPesq.key !== null ? this.listaMovimentacaoLocacao.filter((numSerie)=> numSerie.numeroItem.toString().includes(valorPesq.data)) : this.backupLista;
-        // console.log('aparecendo ' + this.listaMovimentacaoLocacao)
+        this.listaMovimentacaoLocacao = valorPesq.key !== null ? this.listaMovimentacaoLocacao.filter(
+            (numSerie) => numSerie.numeroItem.toString().includes(valorPesq.key)) : this.backupLista;
     }
 }
