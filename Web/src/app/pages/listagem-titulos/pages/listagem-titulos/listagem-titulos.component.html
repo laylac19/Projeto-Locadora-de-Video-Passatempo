@@ -1,0 +1,13 @@
+<div class="flex flex-column col-12">
+    <div class="item-pagina filme col-12">
+        <span class="titulo-filmes">Títulos de Filmes</span>
+    </div>
+    <div class="detalhe filme"></div>
+    <div class="detalhe pt-0"></div>
+    <app-tabela-generica
+        [colunas]="colunas"
+        [dados]="listaTitulosFilmes"
+        [paginator]="true"
+        [rows]="7">
+    </app-tabela-generica>
+</div>

@@ -18,6 +18,16 @@ export class MensagensConfirmacao {
         });
     }
 
+    public confirmarDialogEncerrarSessao(deslogar: () => void): void {
+        this.confirmMessage.confirm({
+            header: 'Confirmação',
+            message: 'Deseja Encerrar A Sessão?',
+            acceptLabel: 'Sim',
+            rejectLabel: 'Cancelar',
+            accept: deslogar
+        });
+    }
+
     public confirmarDialog(id: number, alterarSituacao: () => void, entidade: EntidadeUtil): void {
         this.confirmMessage.confirm({
             header: 'Confirmação',

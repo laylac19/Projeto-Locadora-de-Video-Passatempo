@@ -1,0 +1,18 @@
+div.item-pagina {
+    &.filme {
+        background-color: var(--cor-tema-raisin-black);
+        text-align: center;
+        font-size: 20pt;
+        font-family: "Kreon", Verdana, sans-serif;
+        font-weight: 700;
+        color: var(--cor-tema-beige);
+    }
+
+    &.botao-login {
+        padding-right: 8px;
+    }
+}
+
+div.detalhe.filme {
+    border-bottom: 5px solid var(--cor-tema-verde);
+}

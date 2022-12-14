@@ -28,6 +28,8 @@ export class MensagensProntasEnumModel {
     static readonly FALHA_DEVOLUCAO = new MensagensProntasEnumModel(24, 'Falha ao Realizar Delovução');
 
     static readonly SUCESSO_DEVOLUCAO = new MensagensProntasEnumModel(25, 'Sucesso ao Realizar Devolução');
+    static readonly LOGIN_SUCESSO = new MensagensProntasEnumModel(26, 'Login Realizado Com Sucesso');
+    static readonly DESLOGAR_SUCESSO = new MensagensProntasEnumModel(27, 'Sessão Encerrada Com Sucsso');
 
     static values = []
 
